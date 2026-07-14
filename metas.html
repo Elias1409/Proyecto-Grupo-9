@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metas de Ahorro – FinTrack Web</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <div class="brand">FinTrack</div>
+            <span class="tagline">Finanzas personales</span>
+        </div>
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <span class="nav-label">Principal</span>
+                <a href="dashboard.html" class="nav-item"><span class="ni">🏠</span> Dashboard</a>
+                <a href="transacciones.html" class="nav-item"><span class="ni">💱</span> Transacciones</a>
+                <a href="deudas.html" class="nav-item"><span class="ni">💳</span> Deudas</a>
+            </div>
+            <div class="nav-section">
+                <span class="nav-label">Análisis</span>
+                <a href="reportes.html" class="nav-item"><span class="ni">📊</span> Reportes</a>
+                <a href="metas.html" class="nav-item active"><span class="ni">🎯</span> Metas de ahorro</a>
+            </div>
+            <div class="nav-section">
+                <span class="nav-label">Cuenta</span>
+                <a href="perfil.html" class="nav-item"><span class="ni">👤</span> Mi perfil</a>
+                <a href="index.html" class="nav-item"><span class="ni">🚪</span> Cerrar sesión</a>
+            </div>
+        </nav>
+        <div class="sidebar-user">
+            <div class="avatar">ER</div>
+            <div>
+                <div class="s-name">Elias Rodriguez</div>
+                <div class="s-email">erodriguez60177@ufide.ac.cr</div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main">
+        <div class="page-header">
+            <div>
+                <h2>Metas de ahorro</h2>
+                <div class="sub">Define tus objetivos y monitorea tu progreso</div>
+            </div>
+            <button class="btn btn-primary">+ Nueva meta</button>
+        </div>
+
+        <!-- Tarjetas resumen -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="ic ic-teal">🎯</div>
+                <div class="lbl">Metas activas</div>
+                <div class="val">0</div>
+                <div class="chg">En progreso actualmente</div>
+            </div>
+            <div class="stat-card">
+                <div class="ic ic-green">✅</div>
+                <div class="lbl">Completadas</div>
+                <div class="val green">0</div>
+                <div class="chg">Este año</div>
+            </div>
+            <div class="stat-card">
+                <div class="ic ic-yellow">💰</div>
+                <div class="lbl">Total ahorrado</div>
+                <div class="val">₡ 0</div>
+                <div class="chg">En todas las metas</div>
+            </div>
+            <div class="stat-card">
+                <div class="ic ic-blue">📅</div>
+                <div class="lbl">Por alcanzar</div>
+                <div class="val">₡ 0</div>
+                <div class="chg">Faltante total</div>
+            </div>
+        </div>
+
+        <!-- TODO: formulario para crear nueva meta -->
+
+        <!-- TODO: grid de tarjetas con metas activas (nombre, progreso, monto ahorrado vs objetivo, fecha límite) -->
+
+        <!-- TODO: tabla de metas completadas -->
+
+    </main>
+</div>
+</body>
+</html>

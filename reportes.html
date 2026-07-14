@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportes – FinTrack Web</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <div class="brand">FinTrack</div>
+            <span class="tagline">Finanzas personales</span>
+        </div>
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <span class="nav-label">Principal</span>
+                <a href="dashboard.html" class="nav-item"><span class="ni">🏠</span> Dashboard</a>
+                <a href="transacciones.html" class="nav-item"><span class="ni">💱</span> Transacciones</a>
+                <a href="deudas.html" class="nav-item"><span class="ni">💳</span> Deudas</a>
+            </div>
+            <div class="nav-section">
+                <span class="nav-label">Análisis</span>
+                <a href="reportes.html" class="nav-item active"><span class="ni">📊</span> Reportes</a>
+                <a href="metas.html" class="nav-item"><span class="ni">🎯</span> Metas de ahorro</a>
+            </div>
+            <div class="nav-section">
+                <span class="nav-label">Cuenta</span>
+                <a href="perfil.html" class="nav-item"><span class="ni">👤</span> Mi perfil</a>
+                <a href="index.html" class="nav-item"><span class="ni">🚪</span> Cerrar sesión</a>
+            </div>
+        </nav>
+        <div class="sidebar-user">
+            <div class="avatar">ER</div>
+            <div>
+                <div class="s-name">Elias Rodriguez</div>
+                <div class="s-email">erodriguez60177@ufide.ac.cr</div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main">
+        <div class="page-header">
+            <div>
+                <h2>Reportes financieros</h2>
+                <div class="sub">Análisis detallado de tus movimientos</div>
+            </div>
+            <div class="flex gap-2">
+                <select class="form-control" style="width:auto;padding:9px 14px;">
+                    <option>Julio 2026</option>
+                    <option>Junio 2026</option>
+                    <option>Mayo 2026</option>
+                    <option>Últimos 3 meses</option>
+                    <option>Último año</option>
+                </select>
+                <button class="btn btn-outline">📥 Exportar PDF</button>
+            </div>
+        </div>
+
+        <!-- Tarjetas resumen -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="ic ic-green">💰</div>
+                <div class="lbl">Ingresos</div>
+                <div class="val green">₡ 0</div>
+                <div class="chg">Este mes</div>
+            </div>
+            <div class="stat-card">
+                <div class="ic ic-red">💸</div>
+                <div class="lbl">Gastos</div>
+                <div class="val red">₡ 0</div>
+                <div class="chg">Este mes</div>
+            </div>
+            <div class="stat-card">
+                <div class="ic ic-teal">💰</div>
+                <div class="lbl">Ahorrado</div>
+                <div class="val">₡ 0</div>
+                <div class="chg">Este mes</div>
+            </div>
+            <div class="stat-card">
+                <div class="ic ic-yellow">📊</div>
+                <div class="lbl">Promedio diario</div>
+                <div class="val">₡ 0</div>
+                <div class="chg">Gasto por día</div>
+            </div>
+        </div>
+
+        <!-- TODO: gráfico de evolución mensual (barras) -->
+
+        <!-- TODO: gráfico de distribución por categoría (dona) -->
+
+        <!-- TODO: tabla resumen de gastos por categoría -->
+
+        <!-- TODO: tabla comparativo mensual (últimos 6 meses) -->
+
+    </main>
+</div>
+</body>
+</html>

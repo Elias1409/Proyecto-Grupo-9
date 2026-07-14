@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard – FinTrack Web</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <div class="brand">FinTrack</div>
+            <span class="tagline">Finanzas personales</span>
+        </div>
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <span class="nav-label">Principal</span>
+                <a href="dashboard.html" class="nav-item active"><span class="ni">🏠</span> Dashboard</a>
+                <a href="transacciones.html" class="nav-item"><span class="ni">💱</span> Transacciones</a>
+                <a href="deudas.html" class="nav-item"><span class="ni">💳</span> Deudas</a>
+            </div>
+            <div class="nav-section">
+                <span class="nav-label">Análisis</span>
+                <a href="reportes.html" class="nav-item"><span class="ni">📊</span> Reportes</a>
+                <a href="metas.html" class="nav-item"><span class="ni">🎯</span> Metas de ahorro</a>
+            </div>
+            <div class="nav-section">
+                <span class="nav-label">Cuenta</span>
+                <a href="perfil.html" class="nav-item"><span class="ni">👤</span> Mi perfil</a>
+                <a href="index.html" class="nav-item"><span class="ni">🚪</span> Cerrar sesión</a>
+            </div>
+        </nav>
+        <div class="sidebar-user">
+            <div class="avatar">ER</div>
+            <div>
+                <div class="s-name">Elias Rodriguez</div>
+                <div class="s-email">erodriguez60177@ufide.ac.cr</div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="main">
+
+        <div class="page-header">
+            <div>
+                <h2>Buenos días, Elias 👋</h2>
+                <div class="sub">Julio 2026 · Aquí está el resumen de tus finanzas</div>
+            </div>
+            <a href="transacciones.html" class="btn btn-primary">+ Agregar transacción</a>
+        </div>
+
+        <!-- Alert -->
+        <div class="alert alert-warning">
+            ⚠️ Llevas el 73% de tu presupuesto mensual en Alimentación. Considera ajustar tus gastos.
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="ic ic-green">💰</div>
+                <div class="lbl">Ingresos del mes</div>
+                <div class="val green">₡ 850,000</div>
+                <div class="chg">↑ 5% respecto al mes anterior</div>
+            </div>
+            <div class="stat-card">
+                <div class="ic ic-red">💸</div>
+                <div class="lbl">Gastos del mes</div>
+                <div class="val red">₡ 534,200</div>
+                <div class="chg">↑ 12% respecto al mes anterior</div>
+            </div>
+            <div class="stat-card">
+                <div class="ic ic-teal">🏦</div>
+                <div class="lbl">Balance actual</div>
+                <div class="val">₡ 315,800</div>
+                <div class="chg">Disponible este mes</div>
+            </div>
+            <div class="stat-card">
+                <div class="ic ic-yellow">🎯</div>
+                <div class="lbl">Ahorrado este mes</div>
+                <div class="val">₡ 120,000</div>
+                <div class="chg">Meta: ₡ 200,000 (60%)</div>
+            </div>
+        </div>
+
+        <!-- Charts row -->
+        <div class="grid-65">
+            <!-- Bar chart -->
+            <div class="card">
+                <div class="card-title">📈 Ingresos vs Gastos (últimos 6 meses)</div>
+                <div style="display:flex;gap:16px;margin-bottom:14px;">
+                    <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-muted);">
+                        <span style="width:12px;height:12px;border-radius:3px;background:#86efac;display:inline-block;"></span> Ingresos
+                    </span>
+                    <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-muted);">
+                        <span style="width:12px;height:12px;border-radius:3px;background:#fca5a5;display:inline-block;"></span> Gastos
+                    </span>
+                </div>
+                <div style="display:flex;align-items:flex-end;gap:8px;height:170px;border-bottom:2px solid var(--border);padding-bottom:0;">
+                    <!-- Feb -->
+                    <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;justify-content:flex-end;height:100%;">
+                        <div style="width:100%;display:flex;gap:3px;align-items:flex-end;height:100%;justify-content:center;">
+                            <div style="flex:1;background:#86efac;border-radius:4px 4px 0 0;height:68%;"></div>
+                            <div style="flex:1;background:#fca5a5;border-radius:4px 4px 0 0;height:55%;"></div>
+                        </div>
+                        <span style="font-size:10px;color:var(--text-muted);padding-top:6px;">Feb</span>
+                    </div>
+                    <!-- Mar -->
+                    <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;justify-content:flex-end;height:100%;">
+                        <div style="width:100%;display:flex;gap:3px;align-items:flex-end;height:100%;justify-content:center;">
+                            <div style="flex:1;background:#86efac;border-radius:4px 4px 0 0;height:72%;"></div>
+                            <div style="flex:1;background:#fca5a5;border-radius:4px 4px 0 0;height:60%;"></div>
+                        </div>
+                        <span style="font-size:10px;color:var(--text-muted);padding-top:6px;">Mar</span>
+                    </div>
+                    <!-- Abr -->
+                    <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;justify-content:flex-end;height:100%;">
+                        <div style="width:100%;display:flex;gap:3px;align-items:flex-end;height:100%;justify-content:center;">
+                            <div style="flex:1;background:#86efac;border-radius:4px 4px 0 0;height:75%;"></div>
+                            <div style="flex:1;background:#fca5a5;border-radius:4px 4px 0 0;height:70%;"></div>
+                        </div>
+                        <span style="font-size:10px;color:var(--text-muted);padding-top:6px;">Abr</span>
+                    </div>
+                    <!-- May -->
+                    <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;justify-content:flex-end;height:100%;">
+                        <div style="width:100%;display:flex;gap:3px;align-items:flex-end;height:100%;justify-content:center;">
+                            <div style="flex:1;background:#86efac;border-radius:4px 4px 0 0;height:70%;"></div>
+                            <div style="flex:1;background:#fca5a5;border-radius:4px 4px 0 0;height:58%;"></div>
+                        </div>
+                        <span style="font-size:10px;color:var(--text-muted);padding-top:6px;">May</span>
+                    </div>
+                    <!-- Jun -->
+                    <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;justify-content:flex-end;height:100%;">
+                        <div style="width:100%;display:flex;gap:3px;align-items:flex-end;height:100%;justify-content:center;">
+                            <div style="flex:1;background:#86efac;border-radius:4px 4px 0 0;height:78%;"></div>
+                            <div style="flex:1;background:#fca5a5;border-radius:4px 4px 0 0;height:62%;"></div>
+                        </div>
+                        <span style="font-size:10px;color:var(--text-muted);padding-top:6px;">Jun</span>
+                    </div>
+                    <!-- Jul -->
+                    <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;justify-content:flex-end;height:100%;">
+                        <div style="width:100%;display:flex;gap:3px;align-items:flex-end;height:100%;justify-content:center;">
+                            <div style="flex:1;background:#86efac;border-radius:4px 4px 0 0;height:85%;"></div>
+                            <div style="flex:1;background:#fca5a5;border-radius:4px 4px 0 0;height:63%;"></div>
+                        </div>
+                        <span style="font-size:10px;color:var(--text-muted);padding-top:6px;">Jul</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gastos por categoría -->
+            <div class="card">
+                <div class="card-title">🍩 Gastos por categoría</div>
+                <div class="category-row">
+                    <div class="flex gap-2"><div class="dot" style="background:#14b8a6;"></div> Alimentación</div>
+                    <div class="flex gap-2"><span style="font-size:13px;color:var(--text-muted);">₡ 142,000</span> <span class="badge badge-teal">27%</span></div>
+                </div>
+                <div class="category-row">
+                    <div class="flex gap-2"><div class="dot" style="background:#6366f1;"></div> Transporte</div>
+                    <div class="flex gap-2"><span style="font-size:13px;color:var(--text-muted);">₡ 98,000</span> <span class="badge badge-blue">18%</span></div>
+                </div>
+                <div class="category-row">
+                    <div class="flex gap-2"><div class="dot" style="background:#f59e0b;"></div> Vivienda</div>
+                    <div class="flex gap-2"><span style="font-size:13px;color:var(--text-muted);">₡ 160,000</span> <span class="badge badge-yellow">30%</span></div>
+                </div>
+                <div class="category-row">
+                    <div class="flex gap-2"><div class="dot" style="background:#ec4899;"></div> Salud</div>
+                    <div class="flex gap-2"><span style="font-size:13px;color:var(--text-muted);">₡ 52,000</span> <span class="badge badge-gray">10%</span></div>
+                </div>
+                <div class="category-row">
+                    <div class="flex gap-2"><div class="dot" style="background:#94a3b8;"></div> Otros</div>
+                    <div class="flex gap-2"><span style="font-size:13px;color:var(--text-muted);">₡ 82,200</span> <span class="badge badge-gray">15%</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom row -->
+        <div class="grid-2">
+            <!-- Últimas transacciones -->
+            <div class="card">
+                <div class="flex-between mb-2">
+                    <div class="card-title mb-0">🕐 Últimas transacciones</div>
+                    <a href="transacciones.html" class="btn btn-outline btn-sm">Ver todas</a>
+                </div>
+
+                <div class="transaction-row">
+                    <div class="flex gap-2" style="flex:1;">
+                        <div class="transaction-icon" style="background:#dcfce7;">🛒</div>
+                        <div>
+                            <div style="font-size:14px;font-weight:600;">Supermercado Buen Precio</div>
+                            <div class="text-xs text-muted">Alimentación · 12 Jul</div>
+                        </div>
+                    </div>
+                    <div class="text-red fw-700">-₡ 28,500</div>
+                </div>
+                <div class="transaction-row">
+                    <div class="flex gap-2" style="flex:1;">
+                        <div class="transaction-icon" style="background:#dcfce7;">💼</div>
+                        <div>
+                            <div style="font-size:14px;font-weight:600;">Salario mensual</div>
+                            <div class="text-xs text-muted">Ingreso · 10 Jul</div>
+                        </div>
+                    </div>
+                    <div class="text-green fw-700">+₡ 850,000</div>
+                </div>
+                <div class="transaction-row">
+                    <div class="flex gap-2" style="flex:1;">
+                        <div class="transaction-icon" style="background:#fee2e2;">🚌</div>
+                        <div>
+                            <div style="font-size:14px;font-weight:600;">Tarjeta de bus</div>
+                            <div class="text-xs text-muted">Transporte · 9 Jul</div>
+                        </div>
+                    </div>
+                    <div class="text-red fw-700">-₡ 15,000</div>
+                </div>
+                <div class="transaction-row">
+                    <div class="flex gap-2" style="flex:1;">
+                        <div class="transaction-icon" style="background:#fef9c3;">🏠</div>
+                        <div>
+                            <div style="font-size:14px;font-weight:600;">Alquiler apartamento</div>
+                            <div class="text-xs text-muted">Vivienda · 5 Jul</div>
+                        </div>
+                    </div>
+                    <div class="text-red fw-700">-₡ 160,000</div>
+                </div>
+                <div class="transaction-row">
+                    <div class="flex gap-2" style="flex:1;">
+                        <div class="transaction-icon" style="background:#dbeafe;">📱</div>
+                        <div>
+                            <div style="font-size:14px;font-weight:600;">Plan telefónico</div>
+                            <div class="text-xs text-muted">Servicios · 3 Jul</div>
+                        </div>
+                    </div>
+                    <div class="text-red fw-700">-₡ 22,000</div>
+                </div>
+            </div>
+
+            <!-- Metas de ahorro -->
+            <div class="card">
+                <div class="flex-between mb-2">
+                    <div class="card-title mb-0">🎯 Metas de ahorro</div>
+                    <a href="metas.html" class="btn btn-outline btn-sm">Ver todas</a>
+                </div>
+
+                <div style="display:flex;flex-direction:column;gap:18px;">
+                    <div>
+                        <div class="flex-between">
+                            <div class="flex gap-2">
+                                <span>✈️</span>
+                                <div>
+                                    <div style="font-size:14px;font-weight:600;">Vacaciones</div>
+                                    <div class="text-xs text-muted">₡ 360,000 de ₡ 600,000</div>
+                                </div>
+                            </div>
+                            <span class="badge badge-teal">60%</span>
+                        </div>
+                        <div class="progress-bar mt-1"><div class="progress-fill" style="width:60%;"></div></div>
+                    </div>
+
+                    <div>
+                        <div class="flex-between">
+                            <div class="flex gap-2">
+                                <span>💻</span>
+                                <div>
+                                    <div style="font-size:14px;font-weight:600;">Laptop nueva</div>
+                                    <div class="text-xs text-muted">₡ 150,000 de ₡ 500,000</div>
+                                </div>
+                            </div>
+                            <span class="badge badge-yellow">30%</span>
+                        </div>
+                        <div class="progress-bar mt-1"><div class="progress-fill orange" style="width:30%;"></div></div>
+                    </div>
+
+                    <div>
+                        <div class="flex-between">
+                            <div class="flex gap-2">
+                                <span>🚗</span>
+                                <div>
+                                    <div style="font-size:14px;font-weight:600;">Carro propio</div>
+                                    <div class="text-xs text-muted">₡ 950,000 de ₡ 3,000,000</div>
+                                </div>
+                            </div>
+                            <span class="badge badge-gray">32%</span>
+                        </div>
+                        <div class="progress-bar mt-1"><div class="progress-fill" style="width:32%;background:#a78bfa;"></div></div>
+                    </div>
+
+                    <div>
+                        <div class="flex-between">
+                            <div class="flex gap-2">
+                                <span>🏥</span>
+                                <div>
+                                    <div style="font-size:14px;font-weight:600;">Fondo de emergencia</div>
+                                    <div class="text-xs text-muted">₡ 480,000 de ₡ 500,000</div>
+                                </div>
+                            </div>
+                            <span class="badge badge-green">96%</span>
+                        </div>
+                        <div class="progress-bar mt-1"><div class="progress-fill green" style="width:96%;"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+</div>
+</body>
+</html>

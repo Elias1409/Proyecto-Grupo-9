@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transacciones – FinTrack Web</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <div class="brand">FinTrack</div>
+            <span class="tagline">Finanzas personales</span>
+        </div>
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <span class="nav-label">Principal</span>
+                <a href="dashboard.html" class="nav-item"><span class="ni">🏠</span> Dashboard</a>
+                <a href="transacciones.html" class="nav-item active"><span class="ni">💱</span> Transacciones</a>
+                <a href="deudas.html" class="nav-item"><span class="ni">💳</span> Deudas</a>
+            </div>
+            <div class="nav-section">
+                <span class="nav-label">Análisis</span>
+                <a href="reportes.html" class="nav-item"><span class="ni">📊</span> Reportes</a>
+                <a href="metas.html" class="nav-item"><span class="ni">🎯</span> Metas de ahorro</a>
+            </div>
+            <div class="nav-section">
+                <span class="nav-label">Cuenta</span>
+                <a href="perfil.html" class="nav-item"><span class="ni">👤</span> Mi perfil</a>
+                <a href="index.html" class="nav-item"><span class="ni">🚪</span> Cerrar sesión</a>
+            </div>
+        </nav>
+        <div class="sidebar-user">
+            <div class="avatar">ER</div>
+            <div>
+                <div class="s-name">Elias Rodriguez</div>
+                <div class="s-email">erodriguez60177@ufide.ac.cr</div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main">
+        <div class="page-header">
+            <div>
+                <h2>Transacciones</h2>
+                <div class="sub">Registra y gestiona tus ingresos y gastos</div>
+            </div>
+        </div>
+
+        <div class="grid-2" style="grid-template-columns:1.2fr 1fr;">
+
+            <!-- Formulario -->
+            <div class="card">
+                <div class="card-title">➕ Nueva transacción</div>
+
+                <!-- Tipo -->
+                <div class="form-group">
+                    <label class="form-label">Tipo de movimiento</label>
+                    <div style="display:flex;gap:8px;">
+                        <button onclick="setTipo('gasto', this)" id="btn-gasto"
+                            class="btn btn-danger" style="flex:1;justify-content:center;">
+                            ↓ Gasto
+                        </button>
+                        <button onclick="setTipo('ingreso', this)" id="btn-ingreso"
+                            class="btn btn-outline" style="flex:1;justify-content:center;">
+                            ↑ Ingreso
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Monto (₡)</label>
+                        <input type="number" class="form-control" placeholder="0.00" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Fecha</label>
+                        <input type="date" class="form-control" value="2026-07-13">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Descripción</label>
+                    <input type="text" class="form-control" placeholder="Ej: Pago de supermercado">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Categoría</label>
+                        <select class="form-control" id="categoria-select">
+                            <option value="">Seleccionar...</option>
+                            <option>🛒 Alimentación</option>
+                            <option>🚌 Transporte</option>
+                            <option>🏠 Vivienda</option>
+                            <option>💊 Salud</option>
+                            <option>📚 Educación</option>
+                            <option>🎮 Entretenimiento</option>
+                            <option>👔 Ropa</option>
+                            <option>💡 Servicios</option>
+                            <option>💼 Salario</option>
+                            <option>💡 Otro</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Método de pago</label>
+                        <select class="form-control">
+                            <option>Efectivo</option>
+                            <option>Tarjeta débito</option>
+                            <option>Tarjeta crédito</option>
+                            <option>SINPE</option>
+                            <option>Transferencia</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Notas adicionales (opcional)</label>
+                    <textarea class="form-control" placeholder="Cualquier detalle extra sobre esta transacción..."></textarea>
+                </div>
+
+                <div style="display:flex;gap:10px;">
+                    <button class="btn btn-primary" style="flex:1;justify-content:center;">
+                        Guardar transacción
+                    </button>
+                    <button class="btn btn-outline" style="padding:10px 14px;">
+                        Limpiar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mini stats -->
+            <div style="display:flex;flex-direction:column;gap:18px;">
+                <div class="stat-card">
+                    <div class="ic ic-green">💰</div>
+                    <div class="lbl">Ingresos del mes</div>
+                    <div class="val green">₡ 850,000</div>
+                    <div class="chg">3 transacciones este mes</div>
+                </div>
+                <div class="stat-card">
+                    <div class="ic ic-red">💸</div>
+                    <div class="lbl">Gastos del mes</div>
+                    <div class="val red">₡ 534,200</div>
+                    <div class="chg">18 transacciones este mes</div>
+                </div>
+                <div class="stat-card">
+                    <div class="ic ic-teal">📅</div>
+                    <div class="lbl">Balance mensual</div>
+                    <div class="val">₡ 315,800</div>
+                    <div class="chg">Disponible tras todos los gastos</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabla de transacciones -->
+        <div class="card">
+            <div class="flex-between mb-2">
+                <div class="card-title mb-0">📋 Historial de transacciones</div>
+                <div class="flex gap-2">
+                    <select class="form-control" style="width:auto;padding:7px 12px;font-size:13px;">
+                        <option>Julio 2026</option>
+                        <option>Junio 2026</option>
+                        <option>Mayo 2026</option>
+                    </select>
+                    <select class="form-control" style="width:auto;padding:7px 12px;font-size:13px;">
+                        <option>Todos</option>
+                        <option>Gastos</option>
+                        <option>Ingresos</option>
+                    </select>
+                    <select class="form-control" style="width:auto;padding:7px 12px;font-size:13px;">
+                        <option>Todas las categorías</option>
+                        <option>Alimentación</option>
+                        <option>Transporte</option>
+                        <option>Vivienda</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Descripción</th>
+                            <th>Categoría</th>
+                            <th>Fecha</th>
+                            <th>Método</th>
+                            <th>Tipo</th>
+                            <th style="text-align:right;">Monto</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Salario mensual</strong></td>
+                            <td><span class="badge badge-teal">💼 Salario</span></td>
+                            <td>10 Jul 2026</td>
+                            <td>Transferencia</td>
+                            <td><span class="badge badge-green">↑ Ingreso</span></td>
+                            <td style="text-align:right;" class="text-green fw-700">+₡ 850,000</td>
+                            <td>
+                                <div class="flex gap-2">
+                                    <button class="btn btn-outline btn-sm">✏️</button>
+                                    <button class="btn btn-danger btn-sm">🗑️</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Alquiler apartamento</strong></td>
+                            <td><span class="badge badge-yellow">🏠 Vivienda</span></td>
+                            <td>5 Jul 2026</td>
+                            <td>SINPE</td>
+                            <td><span class="badge badge-red">↓ Gasto</span></td>
+                            <td style="text-align:right;" class="text-red fw-700">-₡ 160,000</td>
+                            <td>
+                                <div class="flex gap-2">
+                                    <button class="btn btn-outline btn-sm">✏️</button>
+                                    <button class="btn btn-danger btn-sm">🗑️</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Supermercado Buen Precio</strong></td>
+                            <td><span class="badge badge-teal">🛒 Alimentación</span></td>
+                            <td>12 Jul 2026</td>
+                            <td>Tarjeta débito</td>
+                            <td><span class="badge badge-red">↓ Gasto</span></td>
+                            <td style="text-align:right;" class="text-red fw-700">-₡ 28,500</td>
+                            <td>
+                                <div class="flex gap-2">
+                                    <button class="btn btn-outline btn-sm">✏️</button>
+                                    <button class="btn btn-danger btn-sm">🗑️</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tarjeta de bus mensual</strong></td>
+                            <td><span class="badge badge-blue">🚌 Transporte</span></td>
+                            <td>9 Jul 2026</td>
+                            <td>Efectivo</td>
+                            <td><span class="badge badge-red">↓ Gasto</span></td>
+                            <td style="text-align:right;" class="text-red fw-700">-₡ 15,000</td>
+                            <td>
+                                <div class="flex gap-2">
+                                    <button class="btn btn-outline btn-sm">✏️</button>
+                                    <button class="btn btn-danger btn-sm">🗑️</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Plan telefónico Kölbi</strong></td>
+                            <td><span class="badge badge-gray">💡 Servicios</span></td>
+                            <td>3 Jul 2026</td>
+                            <td>Tarjeta débito</td>
+                            <td><span class="badge badge-red">↓ Gasto</span></td>
+                            <td style="text-align:right;" class="text-red fw-700">-₡ 22,000</td>
+                            <td>
+                                <div class="flex gap-2">
+                                    <button class="btn btn-outline btn-sm">✏️</button>
+                                    <button class="btn btn-danger btn-sm">🗑️</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Consulta médica CCSS</strong></td>
+                            <td><span class="badge badge-gray">💊 Salud</span></td>
+                            <td>8 Jul 2026</td>
+                            <td>Efectivo</td>
+                            <td><span class="badge badge-red">↓ Gasto</span></td>
+                            <td style="text-align:right;" class="text-red fw-700">-₡ 12,000</td>
+                            <td>
+                                <div class="flex gap-2">
+                                    <button class="btn btn-outline btn-sm">✏️</button>
+                                    <button class="btn btn-danger btn-sm">🗑️</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Netflix</strong></td>
+                            <td><span class="badge badge-gray">🎮 Entretenimiento</span></td>
+                            <td>1 Jul 2026</td>
+                            <td>Tarjeta crédito</td>
+                            <td><span class="badge badge-red">↓ Gasto</span></td>
+                            <td style="text-align:right;" class="text-red fw-700">-₡ 7,500</td>
+                            <td>
+                                <div class="flex gap-2">
+                                    <button class="btn btn-outline btn-sm">✏️</button>
+                                    <button class="btn btn-danger btn-sm">🗑️</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Trabajo freelance</strong></td>
+                            <td><span class="badge badge-teal">💼 Salario</span></td>
+                            <td>6 Jul 2026</td>
+                            <td>SINPE</td>
+                            <td><span class="badge badge-green">↑ Ingreso</span></td>
+                            <td style="text-align:right;" class="text-green fw-700">+₡ 75,000</td>
+                            <td>
+                                <div class="flex gap-2">
+                                    <button class="btn btn-outline btn-sm">✏️</button>
+                                    <button class="btn btn-danger btn-sm">🗑️</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Paginación -->
+            <div class="flex-between mt-2" style="padding-top:16px;border-top:1px solid var(--border);">
+                <span class="text-sm text-muted">Mostrando 8 de 21 transacciones</span>
+                <div class="flex gap-2">
+                    <button class="btn btn-outline btn-sm">← Anterior</button>
+                    <button class="btn btn-primary btn-sm">1</button>
+                    <button class="btn btn-outline btn-sm">2</button>
+                    <button class="btn btn-outline btn-sm">3</button>
+                    <button class="btn btn-outline btn-sm">Siguiente →</button>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script>
+    function setTipo(tipo, el) {
+        const gasto = document.getElementById('btn-gasto');
+        const ingreso = document.getElementById('btn-ingreso');
+        const select = document.getElementById('categoria-select');
+
+        gasto.className = 'btn btn-outline';
+        ingreso.className = 'btn btn-outline';
+
+        if (tipo === 'gasto') {
+            gasto.className = 'btn btn-danger';
+            // Mostrar categorías de gasto
+            select.innerHTML = `<option value="">Seleccionar...</option>
+                <option>🛒 Alimentación</option><option>🚌 Transporte</option>
+                <option>🏠 Vivienda</option><option>💊 Salud</option>
+                <option>📚 Educación</option><option>🎮 Entretenimiento</option>
+                <option>👔 Ropa</option><option>💡 Servicios</option><option>💡 Otro</option>`;
+        } else {
+            ingreso.className = 'btn btn-success';
+            select.innerHTML = `<option value="">Seleccionar...</option>
+                <option>💼 Salario</option><option>💻 Freelance</option>
+                <option>🏦 Inversión</option><option>🎁 Regalo</option><option>💡 Otro</option>`;
+        }
+    }
+</script>
+</body>
+</html>

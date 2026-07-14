@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinTrack Web – Iniciar Sesión</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="auth-page">
+
+        <!-- Panel izquierdo informativo -->
+        <div class="auth-left">
+            <h1>FinTrack<br>Web</h1>
+            <p>Controla tus finanzas personales de forma simple, visual y desde cualquier lugar.</p>
+
+            <div class="auth-features">
+                <div class="auth-feature">
+                    <div class="auth-feature-icon">💰</div>
+                    <div>
+                        <h4>Registro de ingresos y gastos</h4>
+                        <p>Categoriza cada movimiento fácilmente</p>
+                    </div>
+                </div>
+                <div class="auth-feature">
+                    <div class="auth-feature-icon">📊</div>
+                    <div>
+                        <h4>Reportes y gráficos</h4>
+                        <p>Visualiza tu situación financiera en tiempo real</p>
+                    </div>
+                </div>
+                <div class="auth-feature">
+                    <div class="auth-feature-icon">🎯</div>
+                    <div>
+                        <h4>Metas de ahorro</h4>
+                        <p>Define objetivos y monitorea tu progreso</p>
+                    </div>
+                </div>
+                <div class="auth-feature">
+                    <div class="auth-feature-icon">💳</div>
+                    <div>
+                        <h4>Gestión de deudas</h4>
+                        <p>Lleva control de lo que debes y lo que te deben</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel derecho con formulario -->
+        <div class="auth-right">
+            <div class="auth-box">
+                <div class="logo">FinTrack</div>
+
+                <!-- Tabs -->
+                <div class="auth-tabs">
+                    <div class="auth-tab active" onclick="showTab('login', this)">Iniciar sesión</div>
+                    <div class="auth-tab" onclick="showTab('register', this)">Registrarse</div>
+                </div>
+
+                <!-- Login form -->
+                <div id="tab-login">
+                    <h2>Bienvenido</h2>
+                    <p class="sub">Ingresa a tu cuenta para continuar</p>
+
+                    <form action="dashboard.html">
+                        <div class="form-group">
+                            <label class="form-label">Correo electrónico</label>
+                            <div class="input-icon-wrap">
+                                <span class="i-icon">✉</span>
+                                <input type="email" class="form-control" placeholder="ejemplo@correo.com">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Contraseña</label>
+                            <div class="input-icon-wrap">
+                                <span class="i-icon">🔒</span>
+                                <input type="password" class="form-control" placeholder="Tu contraseña">
+                            </div>
+                        </div>
+
+                        <div class="flex-between mb-2">
+                            <label style="display:flex;align-items:center;gap:7px;font-size:13px;cursor:pointer;">
+                                <input type="checkbox"> Recordarme
+                            </label>
+                            <a href="#" style="font-size:13px;color:var(--primary);text-decoration:none;font-weight:600;">¿Olvidaste tu contraseña?</a>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-full" style="padding:13px;">
+                            Iniciar sesión →
+                        </button>
+                    </form>
+
+                    <p class="auth-link mt-2">¿No tienes cuenta? <a href="#" onclick="showTab2('register')">Regístrate gratis</a></p>
+                </div>
+
+                <!-- Register form -->
+                <div id="tab-register" style="display:none;">
+                    <h2>Crear cuenta</h2>
+                    <p class="sub">Empieza a controlar tus finanzas hoy</p>
+
+                    <form action="dashboard.html">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Nombre</label>
+                                <input type="text" class="form-control" placeholder="Tu nombre">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Apellido</label>
+                                <input type="text" class="form-control" placeholder="Tu apellido">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Correo electrónico</label>
+                            <div class="input-icon-wrap">
+                                <span class="i-icon">✉</span>
+                                <input type="email" class="form-control" placeholder="ejemplo@correo.com">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Contraseña</label>
+                            <div class="input-icon-wrap">
+                                <span class="i-icon">🔒</span>
+                                <input type="password" class="form-control" placeholder="Mínimo 8 caracteres">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Confirmar contraseña</label>
+                            <div class="input-icon-wrap">
+                                <span class="i-icon">🔒</span>
+                                <input type="password" class="form-control" placeholder="Repite tu contraseña">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label style="display:flex;align-items:flex-start;gap:8px;font-size:13px;cursor:pointer;line-height:1.5;">
+                                <input type="checkbox" style="margin-top:2px;">
+                                Acepto los <a href="#" style="color:var(--primary);font-weight:600;text-decoration:none;margin:0 3px;">términos y condiciones</a> de uso
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-full" style="padding:13px;">
+                            Crear cuenta gratis →
+                        </button>
+                    </form>
+
+                    <p class="auth-link mt-2">¿Ya tienes cuenta? <a href="#" onclick="showTab2('login')">Inicia sesión</a></p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(name, el) {
+            document.getElementById('tab-login').style.display = 'none';
+            document.getElementById('tab-register').style.display = 'none';
+            document.getElementById('tab-' + name).style.display = 'block';
+            document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+            el.classList.add('active');
+        }
+
+        function showTab2(name) {
+            const tabs = document.querySelectorAll('.auth-tab');
+            if (name === 'login') showTab('login', tabs[0]);
+            else showTab('register', tabs[1]);
+        }
+    </script>
+</body>
+</html>
