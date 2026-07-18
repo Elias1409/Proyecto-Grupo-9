@@ -46,45 +46,41 @@
         <div class="page-header">
             <div>
                 <h2>Metas de ahorro</h2>
-                <div class="sub">Define tus objetivos y monitorea tu progreso</div>
-            </div>
-            <button class="btn btn-primary">+ Nueva meta</button>
-        </div>
-
-        <!-- Tarjetas resumen -->
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="ic ic-teal">🎯</div>
-                <div class="lbl">Metas activas</div>
-                <div class="val">0</div>
-                <div class="chg">En progreso actualmente</div>
-            </div>
-            <div class="stat-card">
-                <div class="ic ic-green">✅</div>
-                <div class="lbl">Completadas</div>
-                <div class="val green">0</div>
-                <div class="chg">Este año</div>
-            </div>
-            <div class="stat-card">
-                <div class="ic ic-yellow">💰</div>
-                <div class="lbl">Total ahorrado</div>
-                <div class="val">₡ 0</div>
-                <div class="chg">En todas las metas</div>
-            </div>
-            <div class="stat-card">
-                <div class="ic ic-blue">📅</div>
-                <div class="lbl">Por alcanzar</div>
-                <div class="val">₡ 0</div>
-                <div class="chg">Faltante total</div>
+                <div class="sub">Objetivos financieros</div>
             </div>
         </div>
 
-        <!-- TODO: formulario para crear nueva meta -->
+        <div class="grid-65">
+            <!-- Formulario básico -->
+            <div class="card">
+                <div class="card-title">➕ Nueva Meta</div>
+                <form action="#">
+                    <div class="form-group">
+                        <label class="form-label">Nombre</label>
+                        <input type="text" class="form-control" placeholder="Ej: Laptop, Marchamo..." required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Monto Objetivo (₡)</label>
+                        <input type="number" class="form-control" placeholder="0" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Crear Meta</button>
+                </form>
+            </div>
 
-        <!-- TODO: grid de tarjetas con metas activas (nombre, progreso, monto ahorrado vs objetivo, fecha límite) -->
-
-        <!-- TODO: tabla de metas completadas -->
-
+            <!-- Lista de Metas Activas -->
+            <div style="display:flex; flex-direction:column; gap:16px;">
+                <div class="card" style="padding:16px;">
+                    <div class="flex-between"><strong>💻 Laptop Nueva</strong> <span class="badge badge-teal">60%</span></div>
+                    <div class="text-xs text-muted mt-1">₡ 300,000 de ₡ 500,000</div>
+                    <div class="progress-bar mt-1"><div class="progress-fill" style="width:60%;"></div></div>
+                </div>
+                <div class="card" style="padding:16px;">
+                    <div class="flex-between"><strong>🚗 Marchamo</strong> <span class="badge badge-yellow">40%</span></div>
+                    <div class="text-xs text-muted mt-1">₡ 80,000 de ₡ 200,000</div>
+                    <div class="progress-bar mt-1"><div class="progress-fill orange" style="width:40%;"></div></div>
+                </div>
+            </div>
+        </div>
     </main>
 </div>
 </body>
