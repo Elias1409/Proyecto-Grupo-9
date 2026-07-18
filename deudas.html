@@ -46,39 +46,62 @@
         <div class="page-header">
             <div>
                 <h2>Gestión de deudas</h2>
-                <div class="sub">Control de lo que debes y lo que te deben</div>
-            </div>
-            <button class="btn btn-primary">+ Agregar deuda</button>
-        </div>
-
-        <!-- Tarjetas resumen -->
-        <div class="stats-grid" style="grid-template-columns:repeat(3,1fr);">
-            <div class="stat-card">
-                <div class="ic ic-red">📤</div>
-                <div class="lbl">Total que debo</div>
-                <div class="val red">₡ 0</div>
-                <div class="chg">Sin deudas registradas</div>
-            </div>
-            <div class="stat-card">
-                <div class="ic ic-green">📥</div>
-                <div class="lbl">Me deben a mí</div>
-                <div class="val green">₡ 0</div>
-                <div class="chg">Sin deudas registradas</div>
-            </div>
-            <div class="stat-card">
-                <div class="ic ic-teal">⚖️</div>
-                <div class="lbl">Balance neto</div>
-                <div class="val">₡ 0</div>
-                <div class="chg">Deuda neta total</div>
+                <div class="sub">Control de cuentas pendientes</div>
             </div>
         </div>
 
-        <!-- TODO: formulario para agregar deuda -->
+        <div class="grid-65">
+            <!-- Formulario básico -->
+            <div class="card">
+                <div class="card-title">➕ Nueva Deuda</div>
+                <form action="#">
+                    <div class="form-group">
+                        <label class="form-label">Tipo</label>
+                        <select class="form-control" required>
+                            <option value="debo">📤 Yo debo</option>
+                            <option value="me_deben">📥 Me deben</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Persona / Entidad</label>
+                        <input type="text" class="form-control" placeholder="Ej: Gollo, Juan Pérez..." required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Monto (₡)</label>
+                        <input type="number" class="form-control" placeholder="0" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Guardar Registro</button>
+                </form>
+            </div>
 
-        <!-- TODO: tabla de deudas activas (yo debo / me deben) -->
-
-        <!-- TODO: tabla de deudas pagadas -->
-
+            <!-- Tabla básica -->
+            <div class="card">
+                <div class="card-title">📋 Cuentas Pendientes</div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Contacto</th>
+                                <th>Tipo</th>
+                                <th style="text-align:right;">Monto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Gollo</strong></td>
+                                <td><span class="badge badge-red">Yo debo</span></td>
+                                <td style="text-align:right;" class="text-red fw-700">₡ 45,000</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Carlos Alvarado</strong></td>
+                                <td><span class="badge badge-green">Me deben</span></td>
+                                <td style="text-align:right;" class="text-green fw-700">₡ 30,000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </main>
 </div>
 </body>
