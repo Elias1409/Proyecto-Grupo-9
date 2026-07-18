@@ -46,30 +46,50 @@
         <div class="page-header">
             <div>
                 <h2>Mi perfil</h2>
-                <div class="sub">Administra tu información personal y configuración</div>
+                <div class="sub">Administra la configuración de tu cuenta</div>
             </div>
         </div>
 
-        <!-- Encabezado de perfil con foto y nombre -->
-        <div class="card mb-3" style="padding:0;overflow:hidden;">
-            <div style="height:120px;background:linear-gradient(135deg,#0d5c56,#14b8a6);"></div>
-            <div style="padding:0 28px 24px;display:flex;align-items:flex-end;gap:20px;margin-top:-36px;">
-                <div class="avatar xl">ER</div>
-                <div style="padding-bottom:6px;">
-                    <h3 style="font-size:20px;font-weight:700;">Elias Rodriguez Quintana</h3>
-                    <div class="text-muted text-sm">erodriguez60177@ufide.ac.cr</div>
-                </div>
+        <div class="grid-65">
+            <!-- Datos del Usuario -->
+            <div class="card">
+                <div class="card-title">👤 Datos Personales</div>
+                <form action="#">
+                    <div class="form-group">
+                        <label class="form-label">Nombre Completo</label>
+                        <input type="text" class="form-control" value="Elias Rodriguez" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Correo Electrónico</label>
+                        <input type="email" class="form-control" value="erodriguez60177@ufide.ac.cr" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Moneda Principal</label>
+                        <select class="form-control">
+                            <option value="CRC">Colón Costarricense (₡)</option>
+                            <option value="USD">Dólar (🇺🇸 $)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Actualizar Perfil</button>
+                </form>
+            </div>
+
+            <!-- Cambio de contraseña básico -->
+            <div class="card">
+                <div class="card-title">🔒 Seguridad</div>
+                <form action="#">
+                    <div class="form-group">
+                        <label class="form-label">Contraseña Actual</label>
+                        <input type="password" class="form-control" placeholder="••••••••" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Nueva Contraseña</label>
+                        <input type="password" class="form-control" placeholder="Mínimo 8 caracteres" required>
+                    </div>
+                    <button type="submit" class="btn btn-outline btn-full">Cambiar Contraseña</button>
+                </form>
             </div>
         </div>
-
-        <!-- TODO: formulario de edición de datos personales (nombre, correo, teléfono, país, moneda) -->
-
-        <!-- TODO: sección para cambiar contraseña -->
-
-        <!-- TODO: resumen de actividad del usuario (total transacciones, metas, deudas, fecha de registro) -->
-
-        <!-- TODO: zona de peligro (exportar datos / eliminar cuenta) -->
-
     </main>
 </div>
 </body>
