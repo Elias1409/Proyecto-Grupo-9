@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -46,56 +47,62 @@
         <div class="page-header">
             <div>
                 <h2>Reportes financieros</h2>
-                <div class="sub">Análisis detallado de tus movimientos</div>
-            </div>
-            <div class="flex gap-2">
-                <select class="form-control" style="width:auto;padding:9px 14px;">
-                    <option>Julio 2026</option>
-                    <option>Junio 2026</option>
-                    <option>Mayo 2026</option>
-                    <option>Últimos 3 meses</option>
-                    <option>Último año</option>
-                </select>
-                <button class="btn btn-outline">📥 Exportar PDF</button>
+                <div class="sub">Resumen de ingresos y gastos</div>
             </div>
         </div>
 
-        <!-- Tarjetas resumen -->
-        <div class="stats-grid">
+        <!-- Tarjetas esenciales -->
+        <div class="stats-grid" style="grid-template-columns: repeat(2, 1fr);">
             <div class="stat-card">
-                <div class="ic ic-green">💰</div>
-                <div class="lbl">Ingresos</div>
-                <div class="val green">₡ 0</div>
-                <div class="chg">Este mes</div>
+                <div class="lbl">Total Ingresos</div>
+                <div class="val green">₡ 850,000</div>
             </div>
             <div class="stat-card">
-                <div class="ic ic-red">💸</div>
-                <div class="lbl">Gastos</div>
-                <div class="val red">₡ 0</div>
-                <div class="chg">Este mes</div>
-            </div>
-            <div class="stat-card">
-                <div class="ic ic-teal">💰</div>
-                <div class="lbl">Ahorrado</div>
-                <div class="val">₡ 0</div>
-                <div class="chg">Este mes</div>
-            </div>
-            <div class="stat-card">
-                <div class="ic ic-yellow">📊</div>
-                <div class="lbl">Promedio diario</div>
-                <div class="val">₡ 0</div>
-                <div class="chg">Gasto por día</div>
+                <div class="lbl">Total Gastos</div>
+                <div class="val red">₡ 534,200</div>
             </div>
         </div>
 
-        <!-- TODO: gráfico de evolución mensual (barras) -->
+        <div class="grid-65">
+            <!-- Gráfico mensual limpio -->
+            <div class="card">
+                <div class="card-title">📈 Histórico de Gastos</div>
+                <div class="bar-chart" style="margin-top: 20px;">
+                    <div class="bar-col"><div class="bar-fill expense" style="height: 70%;"></div><span class="bar-lbl">Mayo</span></div>
+                    <div class="bar-col"><div class="bar-fill expense" style="height: 85%;"></div><span class="bar-lbl">Junio</span></div>
+                    <div class="bar-col"><div class="bar-fill" style="height: 60%; background: var(--primary);"></div><span class="bar-lbl">Julio</span></div>
+                </div>
+            </div>
 
-        <!-- TODO: gráfico de distribución por categoría (dona) -->
-
-        <!-- TODO: tabla resumen de gastos por categoría -->
-
-        <!-- TODO: tabla comparativo mensual (últimos 6 meses) -->
-
+            <!-- Tabla básica por categoría -->
+            <div class="card">
+                <div class="card-title">📋 Gastos por Categoría</div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Categoría</th>
+                                <th style="text-align:right;">Monto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>🏠 Vivienda</td>
+                                <td style="text-align:right;" class="fw-700">₡ 160,000</td>
+                            </tr>
+                            <tr>
+                                <td>🛒 Alimentación</td>
+                                <td style="text-align:right;" class="fw-700">₡ 142,000</td>
+                            </tr>
+                            <tr>
+                                <td>🚌 Transporte</td>
+                                <td style="text-align:right;" class="fw-700">₡ 98,000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </main>
 </div>
 </body>
