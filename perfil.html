@@ -12,25 +12,28 @@
     <!-- Sidebar -->
     <aside class="sidebar">
         <div class="sidebar-logo">
-            <div class="brand">FinTrack</div>
-            <span class="tagline">Finanzas personales</span>
+            <div class="mark"><svg class="icon"><use href="assets/icons.svg#icon-bar-chart"></use></svg></div>
+            <div>
+                <div class="brand">FinTrack</div>
+                <span class="tagline">Finanzas personales</span>
+            </div>
         </div>
         <nav class="sidebar-nav">
             <div class="nav-section">
                 <span class="nav-label">Principal</span>
-                <a href="dashboard.html" class="nav-item"><span class="ni">🏠</span> Dashboard</a>
-                <a href="transacciones.html" class="nav-item"><span class="ni">💱</span> Transacciones</a>
-                <a href="deudas.html" class="nav-item"><span class="ni">💳</span> Deudas</a>
+                <a href="dashboard.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-home"></use></svg> Dashboard</a>
+                <a href="transacciones.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-exchange"></use></svg> Transacciones</a>
+                <a href="deudas.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-credit-card"></use></svg> Deudas</a>
             </div>
             <div class="nav-section">
                 <span class="nav-label">Análisis</span>
-                <a href="reportes.html" class="nav-item"><span class="ni">📊</span> Reportes</a>
-                <a href="metas.html" class="nav-item"><span class="ni">🎯</span> Metas de ahorro</a>
+                <a href="reportes.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-bar-chart"></use></svg> Reportes</a>
+                <a href="metas.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-target"></use></svg> Metas de ahorro</a>
             </div>
             <div class="nav-section">
                 <span class="nav-label">Cuenta</span>
-                <a href="perfil.html" class="nav-item active"><span class="ni">👤</span> Mi perfil</a>
-                <a href="index.html" class="nav-item"><span class="ni">🚪</span> Cerrar sesión</a>
+                <a href="perfil.html" class="nav-item active"><svg class="icon"><use href="assets/icons.svg#icon-user"></use></svg> Mi perfil</a>
+                <a href="index.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-log-out"></use></svg> Cerrar sesión</a>
             </div>
         </nav>
         <div class="sidebar-user">
@@ -50,24 +53,40 @@
             </div>
         </div>
 
+        <!-- Encabezado de perfil -->
+        <div class="profile-header-card mb-3">
+            <div class="profile-cover"></div>
+            <div class="profile-info">
+                <div class="avatar-upload">
+                    <div class="avatar lg">ER</div>
+                </div>
+                <div style="padding-bottom:6px;">
+                    <h3 style="font-size:19px;font-weight:700;">Elias Rodriguez</h3>
+                    <div class="text-muted text-sm">erodriguez60177@ufide.ac.cr</div>
+                </div>
+            </div>
+        </div>
+
         <div class="grid-65">
             <!-- Datos del Usuario -->
             <div class="card">
-                <div class="card-title">👤 Datos Personales</div>
+                <div class="card-title"><svg class="icon"><use href="assets/icons.svg#icon-user"></use></svg> Datos Personales</div>
                 <form action="#">
-                    <div class="form-group">
-                        <label class="form-label">Nombre Completo</label>
-                        <input type="text" class="form-control" value="Elias Rodriguez" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Correo Electrónico</label>
-                        <input type="email" class="form-control" value="erodriguez60177@ufide.ac.cr" required>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Nombre Completo</label>
+                            <input type="text" class="form-control" value="Elias Rodriguez" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Correo Electrónico</label>
+                            <input type="email" class="form-control" value="erodriguez60177@ufide.ac.cr" required>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Moneda Principal</label>
                         <select class="form-control">
                             <option value="CRC">Colón Costarricense (₡)</option>
-                            <option value="USD">Dólar (🇺🇸 $)</option>
+                            <option value="USD">Dólar (USD $)</option>
                         </select>
                     </div>
                     <button type="submit" class="btn btn-primary btn-full">Actualizar Perfil</button>
@@ -76,15 +95,17 @@
 
             <!-- Cambio de contraseña básico -->
             <div class="card">
-                <div class="card-title">🔒 Seguridad</div>
+                <div class="card-title"><svg class="icon"><use href="assets/icons.svg#icon-lock"></use></svg> Seguridad</div>
                 <form action="#">
-                    <div class="form-group">
-                        <label class="form-label">Contraseña Actual</label>
-                        <input type="password" class="form-control" placeholder="••••••••" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Nueva Contraseña</label>
-                        <input type="password" class="form-control" placeholder="Mínimo 8 caracteres" required>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Contraseña Actual</label>
+                            <input type="password" class="form-control" placeholder="••••••••" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Nueva Contraseña</label>
+                            <input type="password" class="form-control" placeholder="Mínimo 8 caracteres" required>
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-outline btn-full">Cambiar Contraseña</button>
                 </form>

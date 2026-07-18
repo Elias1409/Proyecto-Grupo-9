@@ -12,25 +12,28 @@
     <!-- Sidebar -->
     <aside class="sidebar">
         <div class="sidebar-logo">
-            <div class="brand">FinTrack</div>
-            <span class="tagline">Finanzas personales</span>
+            <div class="mark"><svg class="icon"><use href="assets/icons.svg#icon-bar-chart"></use></svg></div>
+            <div>
+                <div class="brand">FinTrack</div>
+                <span class="tagline">Finanzas personales</span>
+            </div>
         </div>
         <nav class="sidebar-nav">
             <div class="nav-section">
                 <span class="nav-label">Principal</span>
-                <a href="dashboard.html" class="nav-item active"><span class="ni">🏠</span> Dashboard</a>
-                <a href="transacciones.html" class="nav-item"><span class="ni">💱</span> Transacciones</a>
-                <a href="deudas.html" class="nav-item"><span class="ni">💳</span> Deudas</a>
+                <a href="dashboard.html" class="nav-item active"><svg class="icon"><use href="assets/icons.svg#icon-home"></use></svg> Dashboard</a>
+                <a href="transacciones.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-exchange"></use></svg> Transacciones</a>
+                <a href="deudas.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-credit-card"></use></svg> Deudas</a>
             </div>
             <div class="nav-section">
                 <span class="nav-label">Análisis</span>
-                <a href="reportes.html" class="nav-item"><span class="ni">📊</span> Reportes</a>
-                <a href="metas.html" class="nav-item"><span class="ni">🎯</span> Metas de ahorro</a>
+                <a href="reportes.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-bar-chart"></use></svg> Reportes</a>
+                <a href="metas.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-target"></use></svg> Metas de ahorro</a>
             </div>
             <div class="nav-section">
                 <span class="nav-label">Cuenta</span>
-                <a href="perfil.html" class="nav-item"><span class="ni">👤</span> Mi perfil</a>
-                <a href="index.html" class="nav-item"><span class="ni">🚪</span> Cerrar sesión</a>
+                <a href="perfil.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-user"></use></svg> Mi perfil</a>
+                <a href="index.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-log-out"></use></svg> Cerrar sesión</a>
             </div>
         </nav>
         <div class="sidebar-user">
@@ -51,39 +54,42 @@
         </div>
 
         <!-- Tarjetas de Estado Financiero -->
-        <div class="stats-grid">
+        <div class="stats-grid-3">
             <div class="stat-card">
+                <div class="ic ic-teal"><svg class="icon"><use href="assets/icons.svg#icon-credit-card"></use></svg></div>
                 <div class="lbl">Balance Disponible</div>
-                <div class="val green">₡ 315,800</div>
+                <div class="val green num">₡ 315,800</div>
             </div>
             <div class="stat-card">
+                <div class="ic ic-green"><svg class="icon"><use href="assets/icons.svg#icon-trending-up"></use></svg></div>
                 <div class="lbl">Ingresos del Mes</div>
-                <div class="val">₡ 850,000</div>
+                <div class="val num">₡ 850,000</div>
             </div>
             <div class="stat-card">
+                <div class="ic ic-red"><svg class="icon"><use href="assets/icons.svg#icon-cart"></use></svg></div>
                 <div class="lbl">Gastos del Mes</div>
-                <div class="val red">₡ 534,200</div>
+                <div class="val red num">₡ 534,200</div>
             </div>
         </div>
 
         <div class="grid-65">
             <!-- Últimos movimientos -->
             <div class="card">
-                <div class="card-title">🕒 Actividad Reciente</div>
+                <div class="card-title"><svg class="icon"><use href="assets/icons.svg#icon-clock"></use></svg> Actividad Reciente</div>
                 <div class="table-wrap">
                     <table>
                         <tbody>
                             <tr>
-                                <td>🛒 Supermercado Palí</td>
-                                <td class="text-red fw-700">-₡ 42,000</td>
+                                <td><span class="cell-ic"><svg class="icon"><use href="assets/icons.svg#icon-cart"></use></svg> Supermercado Palí</span></td>
+                                <td class="text-red fw-700 num">-₡ 42,000</td>
                             </tr>
                             <tr>
-                                <td>💰 Depósito Quincena</td>
-                                <td class="text-green fw-700">+₡ 425,000</td>
+                                <td><span class="cell-ic"><svg class="icon"><use href="assets/icons.svg#icon-arrow-down-left"></use></svg> Depósito Quincena</span></td>
+                                <td class="text-green fw-700 num">+₡ 425,000</td>
                             </tr>
                             <tr>
-                                <td>🚌 Carga de Tarjeta Bus</td>
-                                <td class="text-red fw-700">-₡ 5,000</td>
+                                <td><span class="cell-ic"><svg class="icon"><use href="assets/icons.svg#icon-bus"></use></svg> Carga de Tarjeta Bus</span></td>
+                                <td class="text-red fw-700 num">-₡ 5,000</td>
                             </tr>
                         </tbody>
                     </table>
@@ -92,9 +98,9 @@
 
             <!-- Alertas rápidas -->
             <div class="card">
-                <div class="card-title">🔔 Avisos Importantes</div>
-                <div class="alert alert-info">Recuerda que tu meta "Marchamo" vence pronto.</div>
-                <div class="alert alert-danger" style="margin-top: 10px;">Tienes una deuda pendiente con Gollo por pagar.</div>
+                <div class="card-title"><svg class="icon"><use href="assets/icons.svg#icon-bell"></use></svg> Avisos Importantes</div>
+                <div class="alert alert-info"><svg class="icon"><use href="assets/icons.svg#icon-target"></use></svg> Recuerda que tu meta "Marchamo" vence pronto.</div>
+                <div class="alert alert-danger" style="margin-top: 10px;"><svg class="icon"><use href="assets/icons.svg#icon-credit-card"></use></svg> Tienes una deuda pendiente con Gollo por pagar.</div>
             </div>
         </div>
     </main>

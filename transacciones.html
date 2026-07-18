@@ -12,25 +12,28 @@
     <!-- Sidebar -->
     <aside class="sidebar">
         <div class="sidebar-logo">
-            <div class="brand">FinTrack</div>
-            <span class="tagline">Finanzas personales</span>
+            <div class="mark"><svg class="icon"><use href="assets/icons.svg#icon-bar-chart"></use></svg></div>
+            <div>
+                <div class="brand">FinTrack</div>
+                <span class="tagline">Finanzas personales</span>
+            </div>
         </div>
         <nav class="sidebar-nav">
             <div class="nav-section">
                 <span class="nav-label">Principal</span>
-                <a href="dashboard.html" class="nav-item"><span class="ni">🏠</span> Dashboard</a>
-                <a href="transacciones.html" class="nav-item active"><span class="ni">💱</span> Transacciones</a>
-                <a href="deudas.html" class="nav-item"><span class="ni">💳</span> Deudas</a>
+                <a href="dashboard.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-home"></use></svg> Dashboard</a>
+                <a href="transacciones.html" class="nav-item active"><svg class="icon"><use href="assets/icons.svg#icon-exchange"></use></svg> Transacciones</a>
+                <a href="deudas.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-credit-card"></use></svg> Deudas</a>
             </div>
             <div class="nav-section">
                 <span class="nav-label">Análisis</span>
-                <a href="reportes.html" class="nav-item"><span class="ni">📊</span> Reportes</a>
-                <a href="metas.html" class="nav-item"><span class="ni">🎯</span> Metas de ahorro</a>
+                <a href="reportes.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-bar-chart"></use></svg> Reportes</a>
+                <a href="metas.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-target"></use></svg> Metas de ahorro</a>
             </div>
             <div class="nav-section">
                 <span class="nav-label">Cuenta</span>
-                <a href="perfil.html" class="nav-item"><span class="ni">👤</span> Mi perfil</a>
-                <a href="index.html" class="nav-item"><span class="ni">🚪</span> Cerrar sesión</a>
+                <a href="perfil.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-user"></use></svg> Mi perfil</a>
+                <a href="index.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-log-out"></use></svg> Cerrar sesión</a>
             </div>
         </nav>
         <div class="sidebar-user">
@@ -53,22 +56,24 @@
         <div class="grid-65">
             <!-- Formulario de Registro -->
             <div class="card">
-                <div class="card-title">➕ Nueva Transacción</div>
+                <div class="card-title"><svg class="icon"><use href="assets/icons.svg#icon-plus-circle"></use></svg> Nueva Transacción</div>
                 <form action="#">
-                    <div class="form-group">
-                        <label class="form-label">Tipo de Movimiento</label>
-                        <select class="form-control" required>
-                            <option value="gasto">💸 Gasto / Egreso</option>
-                            <option value="ingreso">💰 Ingreso</option>
-                        </select>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Tipo de Movimiento</label>
+                            <select class="form-control" required>
+                                <option value="gasto">Gasto / Egreso</option>
+                                <option value="ingreso">Ingreso</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Monto (₡)</label>
+                            <input type="number" class="form-control" placeholder="0" required>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Detalle / Concepto</label>
                         <input type="text" class="form-control" placeholder="Ej: Pago de luz CNFL, Almuerzo..." required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Monto (₡)</label>
-                        <input type="number" class="form-control" placeholder="0" required>
                     </div>
                     <button type="submit" class="btn btn-primary btn-full">Agregar Movimiento</button>
                 </form>
@@ -76,7 +81,7 @@
 
             <!-- Tabla Detallada -->
             <div class="card">
-                <div class="card-title">📋 Registro del Mes</div>
+                <div class="card-title"><svg class="icon"><use href="assets/icons.svg#icon-list"></use></svg> Registro del Mes</div>
                 <div class="table-wrap">
                     <table>
                         <thead>
@@ -87,16 +92,16 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>🏠 Pago Recibo CNFL</td>
-                                <td style="text-align:right;" class="text-red fw-700">-₡ 28,500</td>
+                                <td><span class="cell-ic"><svg class="icon"><use href="assets/icons.svg#icon-home"></use></svg> Pago Recibo CNFL</span></td>
+                                <td style="text-align:right;" class="text-red fw-700 num">-₡ 28,500</td>
                             </tr>
                             <tr>
-                                <td>🛒 Compra Walmart</td>
-                                <td style="text-align:right;" class="text-red fw-700">-₡ 45,000</td>
+                                <td><span class="cell-ic"><svg class="icon"><use href="assets/icons.svg#icon-cart"></use></svg> Compra Walmart</span></td>
+                                <td style="text-align:right;" class="text-red fw-700 num">-₡ 45,000</td>
                             </tr>
                             <tr>
-                                <td>📲 SINPE Recibido</td>
-                                <td style="text-align:right;" class="text-green fw-700">+₡ 15,000</td>
+                                <td><span class="cell-ic"><svg class="icon"><use href="assets/icons.svg#icon-smartphone"></use></svg> SINPE Recibido</span></td>
+                                <td style="text-align:right;" class="text-green fw-700 num">+₡ 15,000</td>
                             </tr>
                         </tbody>
                     </table>

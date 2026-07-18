@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -13,25 +12,28 @@
     <!-- Sidebar -->
     <aside class="sidebar">
         <div class="sidebar-logo">
-            <div class="brand">FinTrack</div>
-            <span class="tagline">Finanzas personales</span>
+            <div class="mark"><svg class="icon"><use href="assets/icons.svg#icon-bar-chart"></use></svg></div>
+            <div>
+                <div class="brand">FinTrack</div>
+                <span class="tagline">Finanzas personales</span>
+            </div>
         </div>
         <nav class="sidebar-nav">
             <div class="nav-section">
                 <span class="nav-label">Principal</span>
-                <a href="dashboard.html" class="nav-item"><span class="ni">🏠</span> Dashboard</a>
-                <a href="transacciones.html" class="nav-item"><span class="ni">💱</span> Transacciones</a>
-                <a href="deudas.html" class="nav-item"><span class="ni">💳</span> Deudas</a>
+                <a href="dashboard.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-home"></use></svg> Dashboard</a>
+                <a href="transacciones.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-exchange"></use></svg> Transacciones</a>
+                <a href="deudas.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-credit-card"></use></svg> Deudas</a>
             </div>
             <div class="nav-section">
                 <span class="nav-label">Análisis</span>
-                <a href="reportes.html" class="nav-item active"><span class="ni">📊</span> Reportes</a>
-                <a href="metas.html" class="nav-item"><span class="ni">🎯</span> Metas de ahorro</a>
+                <a href="reportes.html" class="nav-item active"><svg class="icon"><use href="assets/icons.svg#icon-bar-chart"></use></svg> Reportes</a>
+                <a href="metas.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-target"></use></svg> Metas de ahorro</a>
             </div>
             <div class="nav-section">
                 <span class="nav-label">Cuenta</span>
-                <a href="perfil.html" class="nav-item"><span class="ni">👤</span> Mi perfil</a>
-                <a href="index.html" class="nav-item"><span class="ni">🚪</span> Cerrar sesión</a>
+                <a href="perfil.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-user"></use></svg> Mi perfil</a>
+                <a href="index.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-log-out"></use></svg> Cerrar sesión</a>
             </div>
         </nav>
         <div class="sidebar-user">
@@ -52,31 +54,45 @@
         </div>
 
         <!-- Tarjetas esenciales -->
-        <div class="stats-grid" style="grid-template-columns: repeat(2, 1fr);">
+        <div class="stats-grid-2">
             <div class="stat-card">
+                <div class="ic ic-green"><svg class="icon"><use href="assets/icons.svg#icon-trending-up"></use></svg></div>
                 <div class="lbl">Total Ingresos</div>
-                <div class="val green">₡ 850,000</div>
+                <div class="val green num">₡ 850,000</div>
             </div>
             <div class="stat-card">
+                <div class="ic ic-red"><svg class="icon"><use href="assets/icons.svg#icon-cart"></use></svg></div>
                 <div class="lbl">Total Gastos</div>
-                <div class="val red">₡ 534,200</div>
+                <div class="val red num">₡ 534,200</div>
             </div>
         </div>
 
         <div class="grid-65">
             <!-- Gráfico mensual limpio -->
             <div class="card">
-                <div class="card-title">📈 Histórico de Gastos</div>
+                <div class="card-title"><svg class="icon"><use href="assets/icons.svg#icon-trending-up"></use></svg> Histórico de Gastos</div>
                 <div class="bar-chart" style="margin-top: 20px;">
-                    <div class="bar-col"><div class="bar-fill expense" style="height: 70%;"></div><span class="bar-lbl">Mayo</span></div>
-                    <div class="bar-col"><div class="bar-fill expense" style="height: 85%;"></div><span class="bar-lbl">Junio</span></div>
-                    <div class="bar-col"><div class="bar-fill" style="height: 60%; background: var(--primary);"></div><span class="bar-lbl">Julio</span></div>
+                    <div class="bar-col">
+                        <span class="bar-val num">₡623k</span>
+                        <div class="bar-track"><div class="bar-fill expense" style="height: 70%;"></div></div>
+                        <span class="bar-lbl">Mayo</span>
+                    </div>
+                    <div class="bar-col">
+                        <span class="bar-val num">₡757k</span>
+                        <div class="bar-track"><div class="bar-fill expense" style="height: 85%;"></div></div>
+                        <span class="bar-lbl">Junio</span>
+                    </div>
+                    <div class="bar-col">
+                        <span class="bar-val num">₡534k</span>
+                        <div class="bar-track"><div class="bar-fill" style="height: 60%; background: var(--primary);"></div></div>
+                        <span class="bar-lbl">Julio</span>
+                    </div>
                 </div>
             </div>
 
             <!-- Tabla básica por categoría -->
             <div class="card">
-                <div class="card-title">📋 Gastos por Categoría</div>
+                <div class="card-title"><svg class="icon"><use href="assets/icons.svg#icon-list"></use></svg> Gastos por Categoría</div>
                 <div class="table-wrap">
                     <table>
                         <thead>
@@ -87,16 +103,16 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>🏠 Vivienda</td>
-                                <td style="text-align:right;" class="fw-700">₡ 160,000</td>
+                                <td><span class="cell-ic"><span class="dot" style="background:var(--info-text);"></span><svg class="icon"><use href="assets/icons.svg#icon-home"></use></svg> Vivienda</span></td>
+                                <td style="text-align:right;" class="fw-700 num">₡ 160,000</td>
                             </tr>
                             <tr>
-                                <td>🛒 Alimentación</td>
-                                <td style="text-align:right;" class="fw-700">₡ 142,000</td>
+                                <td><span class="cell-ic"><span class="dot" style="background:var(--warning-text);"></span><svg class="icon"><use href="assets/icons.svg#icon-cart"></use></svg> Alimentación</span></td>
+                                <td style="text-align:right;" class="fw-700 num">₡ 142,000</td>
                             </tr>
                             <tr>
-                                <td>🚌 Transporte</td>
-                                <td style="text-align:right;" class="fw-700">₡ 98,000</td>
+                                <td><span class="cell-ic"><span class="dot" style="background:var(--primary);"></span><svg class="icon"><use href="assets/icons.svg#icon-bus"></use></svg> Transporte</span></td>
+                                <td style="text-align:right;" class="fw-700 num">₡ 98,000</td>
                             </tr>
                         </tbody>
                     </table>

@@ -12,25 +12,28 @@
     <!-- Sidebar -->
     <aside class="sidebar">
         <div class="sidebar-logo">
-            <div class="brand">FinTrack</div>
-            <span class="tagline">Finanzas personales</span>
+            <div class="mark"><svg class="icon"><use href="assets/icons.svg#icon-bar-chart"></use></svg></div>
+            <div>
+                <div class="brand">FinTrack</div>
+                <span class="tagline">Finanzas personales</span>
+            </div>
         </div>
         <nav class="sidebar-nav">
             <div class="nav-section">
                 <span class="nav-label">Principal</span>
-                <a href="dashboard.html" class="nav-item"><span class="ni">🏠</span> Dashboard</a>
-                <a href="transacciones.html" class="nav-item"><span class="ni">💱</span> Transacciones</a>
-                <a href="deudas.html" class="nav-item active"><span class="ni">💳</span> Deudas</a>
+                <a href="dashboard.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-home"></use></svg> Dashboard</a>
+                <a href="transacciones.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-exchange"></use></svg> Transacciones</a>
+                <a href="deudas.html" class="nav-item active"><svg class="icon"><use href="assets/icons.svg#icon-credit-card"></use></svg> Deudas</a>
             </div>
             <div class="nav-section">
                 <span class="nav-label">Análisis</span>
-                <a href="reportes.html" class="nav-item"><span class="ni">📊</span> Reportes</a>
-                <a href="metas.html" class="nav-item"><span class="ni">🎯</span> Metas de ahorro</a>
+                <a href="reportes.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-bar-chart"></use></svg> Reportes</a>
+                <a href="metas.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-target"></use></svg> Metas de ahorro</a>
             </div>
             <div class="nav-section">
                 <span class="nav-label">Cuenta</span>
-                <a href="perfil.html" class="nav-item"><span class="ni">👤</span> Mi perfil</a>
-                <a href="index.html" class="nav-item"><span class="ni">🚪</span> Cerrar sesión</a>
+                <a href="perfil.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-user"></use></svg> Mi perfil</a>
+                <a href="index.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-log-out"></use></svg> Cerrar sesión</a>
             </div>
         </nav>
         <div class="sidebar-user">
@@ -53,22 +56,24 @@
         <div class="grid-65">
             <!-- Formulario básico -->
             <div class="card">
-                <div class="card-title">➕ Nueva Deuda</div>
+                <div class="card-title"><svg class="icon"><use href="assets/icons.svg#icon-plus-circle"></use></svg> Nueva Deuda</div>
                 <form action="#">
-                    <div class="form-group">
-                        <label class="form-label">Tipo</label>
-                        <select class="form-control" required>
-                            <option value="debo">📤 Yo debo</option>
-                            <option value="me_deben">📥 Me deben</option>
-                        </select>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Tipo</label>
+                            <select class="form-control" required>
+                                <option value="debo">Yo debo</option>
+                                <option value="me_deben">Me deben</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Monto (₡)</label>
+                            <input type="number" class="form-control" placeholder="0" required>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Persona / Entidad</label>
                         <input type="text" class="form-control" placeholder="Ej: Gollo, Juan Pérez..." required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Monto (₡)</label>
-                        <input type="number" class="form-control" placeholder="0" required>
                     </div>
                     <button type="submit" class="btn btn-primary btn-full">Guardar Registro</button>
                 </form>
@@ -76,7 +81,7 @@
 
             <!-- Tabla básica -->
             <div class="card">
-                <div class="card-title">📋 Cuentas Pendientes</div>
+                <div class="card-title"><svg class="icon"><use href="assets/icons.svg#icon-list"></use></svg> Cuentas Pendientes</div>
                 <div class="table-wrap">
                     <table>
                         <thead>
@@ -90,12 +95,12 @@
                             <tr>
                                 <td><strong>Gollo</strong></td>
                                 <td><span class="badge badge-red">Yo debo</span></td>
-                                <td style="text-align:right;" class="text-red fw-700">₡ 45,000</td>
+                                <td style="text-align:right;" class="text-red fw-700 num">₡ 45,000</td>
                             </tr>
                             <tr>
                                 <td><strong>Carlos Alvarado</strong></td>
                                 <td><span class="badge badge-green">Me deben</span></td>
-                                <td style="text-align:right;" class="text-green fw-700">₡ 30,000</td>
+                                <td style="text-align:right;" class="text-green fw-700 num">₡ 30,000</td>
                             </tr>
                         </tbody>
                     </table>

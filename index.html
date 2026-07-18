@@ -5,46 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión – FinTrack</title>
     <link rel="stylesheet" href="css/style.css">
-    <style>
-        /* Centrado básico para la pantalla de Login sin dañar el layout principal */
-        .login-body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: #f8fafc;
-            padding: 20px;
-        }
-        .login-card {
-            width: 100%;
-            max-width: 400px;
-        }
-    </style>
 </head>
-<body class="login-body">
+<body>
 
-    <div class="card login-card">
-        <div style="text-align: center; margin-bottom: 24px;">
-            <h1 style="color: var(--primary); margin: 0; font-size: 2rem;">FinTrack</h1>
-            <p class="text-sm text-muted">Controla tus finanzas personales fácilmente</p>
+<div class="auth-page">
+    <div class="auth-hero">
+        <div class="mark">
+            <svg class="icon"><use href="assets/icons.svg#icon-bar-chart"></use></svg>
         </div>
-
-        <form action="dashboard.html">
-            <div class="form-group">
-                <label class="form-label">Correo Universitario</label>
-                <input type="email" class="form-control" value="erodriguez60177@ufide.ac.cr" required>
-            </div>
-            
-            <div class="form-group">
-                <label class="form-label">Contraseña</label>
-                <input type="password" class="form-control" value="12345678" required>
-            </div>
-
-            <button type="submit" class="btn btn-primary btn-full" style="margin-top: 10px;">
-                Ingresar al Sistema
-            </button>
-        </form>
+        <h1>FinTrack</h1>
+        <p>El registro claro de tus finanzas personales: movimientos, deudas y metas de ahorro en un solo lugar.</p>
+        <ul class="value-props">
+            <li>Registra tus movimientos.</li>
+            <li>Controla tus deudas.</li>
+            <li>Alcanza tus metas.</li>
+        </ul>
     </div>
+
+    <div class="auth-panel">
+        <div class="auth-card">
+            <div class="logo">FinTrack</div>
+            <h2>Iniciar sesión</h2>
+            <div class="sub">Ingresa con tu correo universitario</div>
+
+            <form action="dashboard.html">
+                <div class="form-group">
+                    <label class="form-label">Correo Universitario</label>
+                    <div class="control-icon">
+                        <svg class="icon"><use href="assets/icons.svg#icon-mail"></use></svg>
+                        <input type="email" class="form-control" placeholder="usuario@ufide.ac.cr" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Contraseña</label>
+                    <div class="control-icon">
+                        <svg class="icon"><use href="assets/icons.svg#icon-lock"></use></svg>
+                        <input type="password" class="form-control" placeholder="••••••••" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-full mt-2">
+                    Ingresar al Sistema
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
