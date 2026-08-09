@@ -32,7 +32,7 @@
           <h2>Iniciar sesión</h2>
           <div class="sub">Ingresa con tu Correo Electronico</div>
 
-          <form action="dashboard.html">
+          <form id="formLogin">
             <div class="form-group">
               <label class="form-label">Correo Electronico</label>
               <div class="control-icon">
@@ -40,9 +40,10 @@
                   <use href="assets/icons.svg#icon-mail"></use>
                 </svg>
                 <input
+                id="loginCorreo"
                   type="email"
                   class="form-control"
-                  placeholder="Tu Correo Elecotrnico"
+                  placeholder="Tu Correo Electronico"
                   required
                 />
               </div>
@@ -55,6 +56,7 @@
                   <use href="assets/icons.svg#icon-lock"></use>
                 </svg>
                 <input
+                  id="loginClave"
                   type="password"
                   class="form-control"
                   placeholder="••••••••"
@@ -62,7 +64,7 @@
                 />
               </div>
             </div>
-
+            <div id="loginMensaje"></div>
             <button type="submit" class="btn btn-primary btn-full mt-2">
               Ingresar al Sistema
             </button>
