@@ -337,6 +337,66 @@ if (usuarioGuardado) {
         avatarUsuario.textContent =
             iniciales.toUpperCase();
     }
+    // =====================================================
+// DATOS DE LA PÁGINA DE PERFIL
+// =====================================================
+
+const perfilNombre =
+    document.getElementById("perfilNombre");
+
+if (perfilNombre) {
+    perfilNombre.textContent =
+        usuario.nombre;
+}
+
+
+const perfilCorreo =
+    document.getElementById("perfilCorreo");
+
+if (perfilCorreo) {
+    perfilCorreo.textContent =
+        usuario.correo;
+}
+
+
+const perfilNombreInput =
+    document.getElementById("perfilNombreInput");
+
+if (perfilNombreInput) {
+    perfilNombreInput.value =
+        usuario.nombre;
+}
+
+
+const perfilCorreoInput =
+    document.getElementById("perfilCorreoInput");
+
+if (perfilCorreoInput) {
+    perfilCorreoInput.value =
+        usuario.correo;
+}
+
+
+const perfilAvatar =
+    document.getElementById("perfilAvatar");
+
+if (perfilAvatar && usuario.nombre) {
+
+    const partes =
+        usuario.nombre
+            .trim()
+            .split(" ");
+
+    let iniciales =
+        partes[0][0];
+
+    if (partes.length > 1) {
+        iniciales += partes[1][0];
+    }
+
+    perfilAvatar.textContent =
+        iniciales.toUpperCase();
+}
 
 
     // Formato de colones
