@@ -1,42 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    // ==========================================
-    // USUARIO INICIAL
-    // ==========================================
-
-    let usuarios = JSON.parse(
-        localStorage.getItem("fintrackUsuarios")
-    ) || [];
-
-    // Crear la cuenta de Elias solamente si no existe
-    const existeElias = usuarios.some(function (usuario) {
-        return usuario.correo === "erodriguez60177@ufide.ac.cr";
-    });
-
-    if (!existeElias) {
-
-        usuarios.push({
-            nombre: "Elias Rodriguez",
-            correo: "erodriguez60177@ufide.ac.cr",
-            clave: "12345678"
-        });
-
-        localStorage.setItem(
-            "fintrackUsuarios",
-            JSON.stringify(usuarios)
-        );
-    }
-
-
-    // ==========================================
+    // =====================================================
     // INICIAR SESIÓN
-    // ==========================================
+    // =====================================================
 
     const formLogin = document.getElementById("formLogin");
 
     if (formLogin) {
 
-        formLogin.addEventListener("submit", function (event) {
+        formLogin.addEventListener("submit", async function (event) {
 
             event.preventDefault();
 
@@ -50,188 +22,357 @@ document.addEventListener("DOMContentLoaded", function () {
                 .getElementById("loginClave")
                 .value;
 
-            const mensaje =
-                document.getElementById("loginMensaje");
+            const mensaje = document
+                .getElementById("loginMensaje");
 
 
-            // Volver a obtener usuarios
-            const usuariosGuardados = JSON.parse(
-                localStorage.getItem("fintrackUsuarios")
-            ) || [];
+            // Limpiar mensaje anterior
+            mensaje.textContent = "";
 
 
-            // Buscar correo
-            const usuarioEncontrado =
-                usuariosGuardados.find(function (usuario) {
+            try {
 
-                    return usuario.correo.toLowerCase() === correo;
+                // Enviar correo y contraseña a PHP
+                const respuesta = await fetch(
+                    "backend/login.php",
+                    {
+                        method: "POST",
 
-                });
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            correo: correo,
+                            clave: clave
+                        })
+                    }
+                );
 
 
-            // CUENTA NO EXISTE
-            if (!usuarioEncontrado) {
+                const datos = await respuesta.json();
+
+
+                // Si PHP devuelve un error
+                if (!datos.ok) {
+
+                    mensaje.textContent = datos.mensaje;
+                    mensaje.style.color = "red";
+
+                    return;
+                }
+
+
+                // Guardar usuario que inició sesión
+                sessionStorage.setItem(
+                    "fintrackUsuarioActual",
+                    JSON.stringify(datos.usuario)
+                );
+
+
+                // Entrar al dashboard
+                window.location.href = "dashboard.html";
+
+
+            } catch (error) {
+
+                console.error("Error en login:", error);
 
                 mensaje.textContent =
-                    "La cuenta no existe.";
+                    "No se pudo conectar al servidor.";
 
                 mensaje.style.color = "red";
-
-                return;
             }
-
-
-            // CONTRASEÑA INCORRECTA
-            if (usuarioEncontrado.clave !== clave) {
-
-                mensaje.textContent =
-                    "Contraseña incorrecta.";
-
-                mensaje.style.color = "red";
-
-                return;
-            }
-
-
-            // LOGIN CORRECTO
-            sessionStorage.setItem(
-                "fintrackUsuarioActual",
-                JSON.stringify(usuarioEncontrado)
-            );
-
-
-            window.location.href =
-                "dashboard.html";
 
         });
 
     }
 
-    const formRegistro =
-        document.getElementById("formRegistro");
+
+
+    // =====================================================
+    // CREAR CUENTA
+    // =====================================================
+
+    const formRegistro = document
+        .getElementById("formRegistro");
 
 
     if (formRegistro) {
 
-        formRegistro.addEventListener("submit", function (event) {
+        formRegistro.addEventListener(
+            "submit",
+            async function (event) {
 
-            event.preventDefault();
-
-
-            const nombre = document
-                .getElementById("registroNombre")
-                .value
-                .trim();
+                event.preventDefault();
 
 
-            const correo = document
-                .getElementById("registroCorreo")
-                .value
-                .trim()
-                .toLowerCase();
+                // Obtener datos del formulario
+                const nombre = document
+                    .getElementById("registroNombre")
+                    .value
+                    .trim();
 
 
-            const clave = document
-                .getElementById("registroClave")
-                .value;
+                const correo = document
+                    .getElementById("registroCorreo")
+                    .value
+                    .trim()
+                    .toLowerCase();
 
 
-            const confirmar = document
-                .getElementById("registroConfirmar")
-                .value;
+                const clave = document
+                    .getElementById("registroClave")
+                    .value;
 
 
-            const mensaje =
-                document.getElementById("registroMensaje");
+                const confirmar = document
+                    .getElementById("registroConfirmar")
+                    .value;
 
 
-            // Obtener usuarios
-            const usuariosGuardados = JSON.parse(
-                localStorage.getItem("fintrackUsuarios")
-            ) || [];
+                const mensaje = document
+                    .getElementById("registroMensaje");
 
 
-            // Verificar correo existente
-            const cuentaExistente =
-                usuariosGuardados.some(function (usuario) {
-
-                    return usuario.correo.toLowerCase() === correo;
-
-                });
+                // Limpiar mensaje anterior
+                mensaje.textContent = "";
 
 
-            if (cuentaExistente) {
+                // =================================================
+                // VALIDAR NOMBRE
+                // =================================================
 
-                mensaje.textContent =
-                    "Ya existe una cuenta con ese correo.";
+                if (nombre === "") {
 
-                mensaje.style.color = "red";
+                    mensaje.textContent =
+                        "Debe ingresar su nombre.";
 
-                return;
+                    mensaje.style.color = "red";
+
+                    return;
+                }
+
+
+                // =================================================
+                // VALIDAR CORREO
+                // =================================================
+
+                if (correo === "") {
+
+                    mensaje.textContent =
+                        "Debe ingresar su correo electrónico.";
+
+                    mensaje.style.color = "red";
+
+                    return;
+                }
+
+
+                // =================================================
+                // VALIDAR CONTRASEÑA
+                // =================================================
+
+                if (clave.length < 8) {
+
+                    mensaje.textContent =
+                        "La contraseña debe tener mínimo 8 caracteres.";
+
+                    mensaje.style.color = "red";
+
+                    return;
+                }
+
+
+                // =================================================
+                // COMPARAR CONTRASEÑAS
+                // =================================================
+
+                if (clave !== confirmar) {
+
+                    mensaje.textContent =
+                        "Las contraseñas no coinciden.";
+
+                    mensaje.style.color = "red";
+
+                    return;
+                }
+
+
+                try {
+
+                    mensaje.textContent =
+                        "Creando cuenta...";
+
+                    mensaje.style.color = "#555";
+
+
+                    // Enviar datos a registro.php
+                    const respuesta = await fetch(
+                        "backend/registro.php",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body: JSON.stringify({
+                                nombre: nombre,
+                                correo: correo,
+                                clave: clave
+                            })
+                        }
+                    );
+
+
+                    const datos = await respuesta.json();
+
+
+                    // PHP encontró algún problema
+                    if (!datos.ok) {
+
+                        mensaje.textContent =
+                            datos.mensaje;
+
+                        mensaje.style.color =
+                            "red";
+
+                        return;
+                    }
+
+
+                    // =================================================
+                    // CUENTA CREADA
+                    // =================================================
+
+                    mensaje.textContent =
+                        "Cuenta creada correctamente.";
+
+                    mensaje.style.color =
+                        "green";
+
+
+                    // Limpiar formulario
+                    formRegistro.reset();
+
+
+                    // Volver al login después de 1 segundo
+                    setTimeout(function () {
+
+                        window.location.href =
+                            "index.html";
+
+                    }, 1000);
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Error en registro:",
+                        error
+                    );
+
+                    mensaje.textContent =
+                        "No se pudo conectar al servidor.";
+
+                    mensaje.style.color =
+                        "red";
+                }
+
             }
-
-
-            // Contraseña mínima
-            if (clave.length < 8) {
-
-                mensaje.textContent =
-                    "La contraseña debe tener mínimo 8 caracteres.";
-
-                mensaje.style.color = "red";
-
-                return;
-            }
-
-
-            // Comparar contraseñas
-            if (clave !== confirmar) {
-
-                mensaje.textContent =
-                    "Las contraseñas no coinciden.";
-
-                mensaje.style.color = "red";
-
-                return;
-            }
-
-
-            // Crear usuario
-            const nuevoUsuario = {
-
-                nombre: nombre,
-                correo: correo,
-                clave: clave
-
-            };
-
-
-            // Agregar usuario
-            usuariosGuardados.push(nuevoUsuario);
-
-
-            // Guardar
-            localStorage.setItem(
-                "fintrackUsuarios",
-                JSON.stringify(usuariosGuardados)
-            );
-
-
-            mensaje.textContent =
-                "Cuenta creada correctamente.";
-
-            mensaje.style.color = "green";
-
-
-            // Regresar al login después de crear cuenta
-            setTimeout(function () {
-
-                window.location.href =
-                    "index.html";
-
-            }, 1000);
-
-        });
+        );
 
     }
+
+
+
+    // =====================================================
+    // OBTENER USUARIO QUE INICIÓ SESIÓN
+    // =====================================================
+
+    const usuarioGuardado = sessionStorage.getItem("fintrackUsuarioActual");
+
+if (usuarioGuardado) {
+
+    const usuario = JSON.parse(usuarioGuardado);
+
+    const nombreUsuario =
+        document.getElementById("nombreUsuario");
+
+    const correoUsuario =
+        document.getElementById("correoUsuario");
+
+    const avatarUsuario =
+        document.getElementById("avatarUsuario");
+
+
+    // Cambiar nombre
+    if (nombreUsuario) {
+        nombreUsuario.textContent = usuario.nombre;
+    }
+
+
+    // Cambiar correo
+    if (correoUsuario) {
+        correoUsuario.textContent = usuario.correo;
+    }
+
+
+    // Cambiar iniciales del avatar
+    if (avatarUsuario && usuario.nombre) {
+
+        const partes = usuario.nombre
+            .trim()
+            .split(" ");
+
+        let iniciales = partes[0][0];
+
+        if (partes.length > 1) {
+            iniciales += partes[1][0];
+        }
+
+        avatarUsuario.textContent =
+            iniciales.toUpperCase();
+    }
+}
+
+
+    // =====================================================
+    // CERRAR SESIÓN
+    // =====================================================
+
+    const botonesCerrarSesion =
+        document.querySelectorAll(
+            ".logout-link"
+        );
+
+
+    botonesCerrarSesion.forEach(
+        function (boton) {
+
+            boton.addEventListener(
+                "click",
+                function (event) {
+
+                    event.preventDefault();
+
+
+                    // Borrar usuario de la sesión
+                    sessionStorage.removeItem(
+                        "fintrackUsuarioActual"
+                    );
+
+
+                    // Volver al login
+                    window.location.href =
+                        "index.html";
+
+                }
+            );
+
+        }
+    );
 
 });
