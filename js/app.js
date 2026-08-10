@@ -292,40 +292,41 @@ document.addEventListener("DOMContentLoaded", function () {
     // OBTENER USUARIO QUE INICIÓ SESIÓN
     // =====================================================
 
-    const usuarioGuardado = sessionStorage.getItem("fintrackUsuarioActual");
+   const usuarioGuardado =
+    sessionStorage.getItem("fintrackUsuarioActual");
 
 if (usuarioGuardado) {
 
-    const usuario = JSON.parse(usuarioGuardado);
+    const usuario =
+        JSON.parse(usuarioGuardado);
 
+
+    // Nombre
     const nombreUsuario =
         document.getElementById("nombreUsuario");
 
-    const correoUsuario =
-        document.getElementById("correoUsuario");
-
-    const avatarUsuario =
-        document.getElementById("avatarUsuario");
-
-
-    // Cambiar nombre
     if (nombreUsuario) {
         nombreUsuario.textContent = usuario.nombre;
     }
 
 
-    // Cambiar correo
+    // Correo
+    const correoUsuario =
+        document.getElementById("correoUsuario");
+
     if (correoUsuario) {
         correoUsuario.textContent = usuario.correo;
     }
 
 
-    // Cambiar iniciales del avatar
+    // Avatar
+    const avatarUsuario =
+        document.getElementById("avatarUsuario");
+
     if (avatarUsuario && usuario.nombre) {
 
-        const partes = usuario.nombre
-            .trim()
-            .split(" ");
+        const partes =
+            usuario.nombre.trim().split(" ");
 
         let iniciales = partes[0][0];
 
@@ -336,6 +337,97 @@ if (usuarioGuardado) {
         avatarUsuario.textContent =
             iniciales.toUpperCase();
     }
+
+
+    // Formato de colones
+    function formatoColones(valor) {
+
+        const numero =
+            Number(valor) || 0;
+
+        return "₡ " +
+            numero.toLocaleString("es-CR");
+    }
+
+
+    // Balance
+    const balanceUsuario =
+        document.getElementById("balanceUsuario");
+
+    if (balanceUsuario) {
+
+        balanceUsuario.textContent =
+            formatoColones(usuario.balance);
+    }
+
+
+    // Ingresos
+    const ingresosUsuario =
+        document.getElementById("ingresosUsuario");
+
+    if (ingresosUsuario) {
+
+        ingresosUsuario.textContent =
+            formatoColones(usuario.ingresos);
+    }
+
+
+    // Gastos
+    const gastosUsuario =
+        document.getElementById("gastosUsuario");
+
+    if (gastosUsuario) {
+
+        gastosUsuario.textContent =
+            formatoColones(usuario.gastos);
+    }
+
+
+    // =====================================================
+    // COMPROBAR SI ES UN USUARIO NUEVO
+    // =====================================================
+
+    const esUsuarioNuevo =
+        Number(usuario.balance) === 0 &&
+        Number(usuario.ingresos) === 0 &&
+        Number(usuario.gastos) === 0 &&
+        Number(usuario.deudas) === 0 &&
+        Number(usuario.ahorro) === 0;
+
+
+    if (esUsuarioNuevo) {
+
+        // Quitar movimientos de ejemplo
+        const tablaMovimientos =
+            document.getElementById("tablaMovimientos");
+
+        if (tablaMovimientos) {
+
+            tablaMovimientos.innerHTML = `
+                <tr>
+                    <td colspan="2">
+                        No hay movimientos registrados.
+                    </td>
+                </tr>
+            `;
+        }
+
+
+        // Quitar avisos de ejemplo
+        const avisosUsuario =
+            document.getElementById("avisosUsuario");
+
+        if (avisosUsuario) {
+
+            avisosUsuario.innerHTML = `
+                <div class="alert alert-info">
+                    No tienes avisos importantes.
+                </div>
+            `;
+        }
+
+    }
+
 }
 
 

@@ -58,17 +58,17 @@
             <div class="stat-card">
                 <div class="ic ic-teal"><svg class="icon"><use href="assets/icons.svg#icon-credit-card"></use></svg></div>
                 <div class="lbl">Balance Disponible</div>
-                <div class="val green num">₡ 315,800</div>
+                <div class="val green num" id="balanceUsuario">₡ 315,800</div>
             </div>
             <div class="stat-card">
                 <div class="ic ic-green"><svg class="icon"><use href="assets/icons.svg#icon-trending-up"></use></svg></div>
                 <div class="lbl">Ingresos del Mes</div>
-                <div class="val num">₡ 850,000</div>
+                <div class="val num" id="ingresosUsuario">₡ 850,000</div>
             </div>
             <div class="stat-card">
                 <div class="ic ic-red"><svg class="icon"><use href="assets/icons.svg#icon-cart"></use></svg></div>
                 <div class="lbl">Gastos del Mes</div>
-                <div class="val red num">₡ 534,200</div>
+                <div class="val red num" id="gastosUsuario">₡ 534,200</div>
             </div>
         </div>
 
@@ -78,7 +78,7 @@
                 <div class="card-title"><svg class="icon"><use href="assets/icons.svg#icon-clock"></use></svg> Actividad Reciente</div>
                 <div class="table-wrap">
                     <table>
-                        <tbody>
+                        <tbody id="tablaMovimientos">
                             <tr>
                                 <td><span class="cell-ic"><svg class="icon"><use href="assets/icons.svg#icon-cart"></use></svg> Supermercado Palí</span></td>
                                 <td class="text-red fw-700 num">-₡ 42,000</td>
@@ -97,13 +97,32 @@
             </div>
 
             <!-- Alertas rápidas -->
-            <div class="card">
-                <div class="card-title"><svg class="icon"><use href="assets/icons.svg#icon-bell"></use></svg> Avisos Importantes</div>
-                <div class="alert alert-info"><svg class="icon"><use href="assets/icons.svg#icon-target"></use></svg> Recuerda que tu meta "Marchamo" vence pronto.</div>
-                <div class="alert alert-danger" style="margin-top: 10px;"><svg class="icon"><use href="assets/icons.svg#icon-credit-card"></use></svg> Tienes una deuda pendiente con Gollo por pagar.</div>
-            </div>
+             <div class="card">
+    <div class="card-title">
+        <svg class="icon">
+            <use href="assets/icons.svg#icon-bell"></use>
+        </svg>
+        Avisos Importantes
+    </div>
+
+    <div id="avisosUsuario">
+
+        <div class="alert alert-info">
+            <svg class="icon">
+                <use href="assets/icons.svg#icon-target"></use>
+            </svg>
+            Recuerda que tu meta "Marchamo" vence pronto.
         </div>
-    </main>
+
+        <div class="alert alert-danger" style="margin-top: 10px;">
+            <svg class="icon">
+                <use href="assets/icons.svg#icon-credit-card"></use>
+            </svg>
+            Tienes una deuda pendiente con Gollo por pagar.
+        </div>
+
+    </div>
 </div>
+<script src="js/app.js"></script>
 </body>
 </html>
