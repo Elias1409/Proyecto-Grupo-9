@@ -66,24 +66,29 @@
         <!-- Encabezado de perfil -->
        <div class="profile-header-card mb-3">
     <div class="profile-cover"></div>
+
     <div class="profile-info">
+
         <div class="avatar-upload">
-            <div class="avatar lg" id="perfilAvatar">ER</div>
+            <div class="avatar lg usuario-avatar">ER</div>
         </div>
 
         <div style="padding-bottom:6px;">
-            <h3 id="perfilNombre" style="font-size:19px;font-weight:700;">
+
+            <h3
+                class="usuario-nombre"
+                style="font-size:19px;font-weight:700;">
                 Elias Rodriguez
             </h3>
 
-            <div id="perfilCorreo" class="text-muted text-sm">
+            <div class="text-muted text-sm usuario-correo">
                 erodriguez60177@ufide.ac.cr
             </div>
+
         </div>
+
     </div>
 </div>
-
-        <div class="grid-65">
             <!-- Datos del Usuario -->
             <div class="card">
                 <div class="card-title"><svg class="icon"><use href="assets/icons.svg#icon-user"></use></svg> Datos Personales</div>
@@ -95,7 +100,13 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label">Correo Electrónico</label>
-                            <input type="email" class="form-control" value="erodriguez60177@ufide.ac.cr" required>
+                            <input
+    id="perfilNombreInput"
+    type="text"
+    class="form-control"
+    value="Elias Rodriguez"
+    required
+>
                         </div>
                     </div>
                     <div class="form-group">
