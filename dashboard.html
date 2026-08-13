@@ -37,95 +37,574 @@
             </div>
         </nav>
         <div class="sidebar-user">
-    <div class="avatar usuario-avatar">ER</div>
 
-<div>
-    <div class="s-name usuario-nombre">Elias Rodriguez</div>
-    <div class="s-email usuario-correo">erodriguez60177@ufide.ac.cr</div>
-</div>
-</div>
+    <div class="avatar" id="avatarUsuario">ER</div>
+
+    <div>
+        <div class="s-name" id="nombreUsuario">
+            Elias Rodriguez
+        </div>
+
+        <div class="s-email" id="correoUsuario">
+            erodriguez60177@ufide.ac.cr
+        </div>
+    </div>
 
     </aside>
 
     <main class="main">
-        <div class="page-header">
+
+    <!-- ============================= -->
+    <!-- BIENVENIDA -->
+    <!-- ============================= -->
+
+    <div class="page-header dashboard-welcome">
+
+        <div class="welcome-user">
+
+            <div class="avatar welcome-avatar" id="avatarBienvenida">
+                ER
+            </div>
+
             <div>
-                <h2>Vista General</h2>
-                <div class="sub">Bienvenido de vuelta a tu control financiero</div>
-            </div>
-        </div>
+                <h2>
+                    Bienvenido,
+                    <span id="nombreBienvenida">Elias</span> 👋
+                </h2>
 
-        <!-- Tarjetas de Estado Financiero -->
-        <div class="stats-grid-3">
-            <div class="stat-card">
-                <div class="ic ic-teal"><svg class="icon"><use href="assets/icons.svg#icon-credit-card"></use></svg></div>
-                <div class="lbl">Balance Disponible</div>
-                <div class="val green num" id="balanceUsuario">₡ 315,800</div>
-            </div>
-            <div class="stat-card">
-                <div class="ic ic-green"><svg class="icon"><use href="assets/icons.svg#icon-trending-up"></use></svg></div>
-                <div class="lbl">Ingresos del Mes</div>
-                <div class="val num" id="ingresosUsuario">₡ 850,000</div>
-            </div>
-            <div class="stat-card">
-                <div class="ic ic-red"><svg class="icon"><use href="assets/icons.svg#icon-cart"></use></svg></div>
-                <div class="lbl">Gastos del Mes</div>
-                <div class="val red num" id="gastosUsuario">₡ 534,200</div>
-            </div>
-        </div>
-
-        <div class="grid-65">
-            <!-- Últimos movimientos -->
-            <div class="card">
-                <div class="card-title"><svg class="icon"><use href="assets/icons.svg#icon-clock"></use></svg> Actividad Reciente</div>
-                <div class="table-wrap">
-                    <table>
-                        <tbody id="tablaMovimientos">
-                            <tr>
-                                <td><span class="cell-ic"><svg class="icon"><use href="assets/icons.svg#icon-cart"></use></svg> Supermercado Palí</span></td>
-                                <td class="text-red fw-700 num">-₡ 42,000</td>
-                            </tr>
-                            <tr>
-                                <td><span class="cell-ic"><svg class="icon"><use href="assets/icons.svg#icon-arrow-down-left"></use></svg> Depósito Quincena</span></td>
-                                <td class="text-green fw-700 num">+₡ 425,000</td>
-                            </tr>
-                            <tr>
-                                <td><span class="cell-ic"><svg class="icon"><use href="assets/icons.svg#icon-bus"></use></svg> Carga de Tarjeta Bus</span></td>
-                                <td class="text-red fw-700 num">-₡ 5,000</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="sub">
+                    Aquí tienes el resumen de tus finanzas de hoy.
                 </div>
             </div>
 
-            <!-- Alertas rápidas -->
-             <div class="card">
-    <div class="card-title">
-        <svg class="icon">
-            <use href="assets/icons.svg#icon-bell"></use>
-        </svg>
-        Avisos Importantes
-    </div>
-
-    <div id="avisosUsuario">
-
-        <div class="alert alert-info">
-            <svg class="icon">
-                <use href="assets/icons.svg#icon-target"></use>
-            </svg>
-            Recuerda que tu meta "Marchamo" vence pronto.
         </div>
 
-        <div class="alert alert-danger" style="margin-top: 10px;">
-            <svg class="icon">
-                <use href="assets/icons.svg#icon-credit-card"></use>
-            </svg>
-            Tienes una deuda pendiente con Gollo por pagar.
+
+        <!-- Notificaciones -->
+        <button type="button"
+                class="notification-button"
+                id="botonNotificaciones">
+
+            🔔
+
+            <span class="notification-count"
+                  id="contadorNotificaciones">
+                2
+            </span>
+
+        </button>
+
+    </div>
+
+
+
+    <!-- ============================= -->
+    <!-- TARJETAS PRINCIPALES -->
+    <!-- ============================= -->
+
+    <div class="stats-grid-3 resumen-financiero">
+
+
+        <!-- BALANCE -->
+        <div class="stat-card">
+
+            <div class="ic ic-teal">
+                <svg class="icon">
+                    <use href="assets/icons.svg#icon-credit-card"></use>
+                </svg>
+            </div>
+
+            <div class="lbl">
+                Balance Disponible
+            </div>
+
+            <div class="val green num"
+                 id="balanceUsuario">
+                ₡ 315,800
+            </div>
+
+        </div>
+
+
+
+        <!-- INGRESOS -->
+        <div class="stat-card">
+
+            <div class="ic ic-green">
+                <svg class="icon">
+                    <use href="assets/icons.svg#icon-trending-up"></use>
+                </svg>
+            </div>
+
+            <div class="lbl">
+                Ingresos del Mes
+            </div>
+
+            <div class="val num"
+                 id="ingresosUsuario">
+                ₡ 850,000
+            </div>
+
+            <button
+                type="button"
+                class="detalle-toggle"
+                data-target="detalleIngresos">
+                Ver desglose
+            </button>
+
+
+            <div class="detalle-financiero"
+                 id="detalleIngresos">
+
+                <div class="detalle-item">
+                    <span>Salario</span>
+                    <strong>₡ 700,000</strong>
+                </div>
+
+                <div class="detalle-item">
+                    <span>Ventas</span>
+                    <strong>₡ 100,000</strong>
+                </div>
+
+                <div class="detalle-item">
+                    <span>Otros ingresos</span>
+                    <strong>₡ 50,000</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- GASTOS -->
+        <div class="stat-card">
+
+            <div class="ic ic-red">
+                <svg class="icon">
+                    <use href="assets/icons.svg#icon-cart"></use>
+                </svg>
+            </div>
+
+            <div class="lbl">
+                Gastos del Mes
+            </div>
+
+            <div class="val red num"
+                 id="gastosUsuario">
+                ₡ 534,200
+            </div>
+
+            <button
+                type="button"
+                class="detalle-toggle"
+                data-target="detalleGastos">
+                Ver desglose
+            </button>
+
+
+            <div class="detalle-financiero"
+                 id="detalleGastos">
+
+                <div class="detalle-item">
+                    <span>Alimentación</span>
+                    <strong>₡ 185,000</strong>
+                </div>
+
+                <div class="detalle-item">
+                    <span>Transporte</span>
+                    <strong>₡ 72,000</strong>
+                </div>
+
+                <div class="detalle-item">
+                    <span>Servicios</span>
+                    <strong>₡ 110,000</strong>
+                </div>
+
+                <div class="detalle-item">
+                    <span>Otros</span>
+                    <strong>₡ 167,200</strong>
+                </div>
+
+            </div>
+
         </div>
 
     </div>
+
+
+
+    <!-- ============================= -->
+    <!-- ACTIVIDAD + PRÓXIMOS PAGOS -->
+    <!-- ============================= -->
+
+    <div class="grid-65">
+
+
+        <!-- ACTIVIDAD RECIENTE -->
+        <div class="card">
+
+            <div class="card-title">
+                <svg class="icon">
+                    <use href="assets/icons.svg#icon-clock"></use>
+                </svg>
+                Actividad Reciente
+            </div>
+
+
+            <div class="table-wrap">
+
+                <table>
+
+                    <tbody id="tablaMovimientos">
+
+                        <tr>
+                            <td>
+                                <span class="cell-ic">
+                                    <svg class="icon">
+                                        <use href="assets/icons.svg#icon-cart"></use>
+                                    </svg>
+
+                                    Supermercado Palí
+                                </span>
+                            </td>
+
+                            <td class="text-red fw-700 num">
+                                -₡ 42,000
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td>
+                                <span class="cell-ic">
+                                    <svg class="icon">
+                                        <use href="assets/icons.svg#icon-arrow-down-left"></use>
+                                    </svg>
+
+                                    Depósito Quincena
+                                </span>
+                            </td>
+
+                            <td class="text-green fw-700 num">
+                                +₡ 425,000
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td>
+                                <span class="cell-ic">
+                                    <svg class="icon">
+                                        <use href="assets/icons.svg#icon-bus"></use>
+                                    </svg>
+
+                                    Carga de Tarjeta Bus
+                                </span>
+                            </td>
+
+                            <td class="text-red fw-700 num">
+                                -₡ 5,000
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- PRÓXIMOS PAGOS -->
+        <div class="card">
+
+            <div class="card-title">
+                <svg class="icon">
+                    <use href="assets/icons.svg#icon-credit-card"></use>
+                </svg>
+                Próximos Pagos
+            </div>
+
+
+            <div id="proximosPagos">
+
+                <div class="payment-item">
+
+                    <div>
+                        <strong>Gollo</strong>
+
+                        <div class="text-muted text-sm">
+                            Vence en 3 días
+                        </div>
+                    </div>
+
+                    <div class="text-red fw-700 num">
+                        ₡ 35,000
+                    </div>
+
+                </div>
+
+
+                <div class="payment-item">
+
+                    <div>
+                        <strong>Internet</strong>
+
+                        <div class="text-muted text-sm">
+                            Vence en 6 días
+                        </div>
+                    </div>
+
+                    <div class="fw-700 num">
+                        ₡ 28,500
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ============================= -->
+    <!-- AHORRO + RESUMEN DEL MES -->
+    <!-- ============================= -->
+
+    <div class="grid-65">
+
+
+        <!-- SOBRES DE AHORRO -->
+        <div class="card">
+
+            <div class="card-title">
+                <svg class="icon">
+                    <use href="assets/icons.svg#icon-target"></use>
+                </svg>
+                Mis Sobres de Ahorro
+            </div>
+
+
+            <div id="sobresAhorro">
+
+                <div class="goal-item">
+
+                    <div class="goal-top">
+                        <strong>Marchamo</strong>
+                        <span>75%</span>
+                    </div>
+
+                    <div class="goal-bar">
+                        <div class="goal-progress"
+                             style="width: 75%;">
+                        </div>
+                    </div>
+
+                    <div class="text-muted text-sm">
+                        ₡150,000 de ₡200,000
+                    </div>
+
+                </div>
+
+
+                <div class="goal-item">
+
+                    <div class="goal-top">
+                        <strong>Viaje</strong>
+                        <span>28%</span>
+                    </div>
+
+                    <div class="goal-bar">
+                        <div class="goal-progress"
+                             style="width: 28%;">
+                        </div>
+                    </div>
+
+                    <div class="text-muted text-sm">
+                        ₡85,000 de ₡300,000
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- RESUMEN DEL MES -->
+        <div class="card">
+
+            <div class="card-title">
+                Resumen del Mes
+            </div>
+
+
+            <div class="month-summary">
+
+                <div class="summary-row">
+                    <span>Ingresos</span>
+                    <strong id="resumenIngresos">
+                        ₡ 850,000
+                    </strong>
+                </div>
+
+
+                <div class="summary-row">
+                    <span>Gastos</span>
+                    <strong id="resumenGastos">
+                        ₡ 534,200
+                    </strong>
+                </div>
+
+
+                <div class="summary-row">
+                    <span>Disponible</span>
+                    <strong id="resumenDisponible">
+                        ₡ 315,800
+                    </strong>
+                </div>
+
+
+                <div class="usage-label">
+                    Has utilizado el 62.8% de tus ingresos.
+                </div>
+
+
+                <div class="usage-bar">
+                    <div class="usage-progress"
+                         style="width: 62.8%;">
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ============================= -->
+<!-- PANEL DE NOTIFICACIONES -->
+<!-- ============================= -->
+
+<div class="notification-panel"
+     id="panelNotificaciones">
+
+    <div class="notification-panel-header">
+
+        <div>
+            <div class="notification-panel-title">
+                Notificaciones
+            </div>
+
+            <div class="text-muted text-xs">
+                Recordatorios importantes
+            </div>
+        </div>
+
+    </div>
+
+
+    <div id="listaNotificaciones">
+
+
+        <!-- NOTIFICACIÓN DE DEUDA -->
+        <div class="notification-card"
+             data-id="gollo">
+
+            <div class="notification-icon notification-icon-danger">
+
+                <svg class="icon">
+                    <use href="assets/icons.svg#icon-credit-card"></use>
+                </svg>
+
+            </div>
+
+
+            <div class="notification-content">
+
+                <strong>
+                    Pago próximo
+                </strong>
+
+                <div class="notification-text">
+                    Tu cuota de Gollo vence en 3 días.
+                </div>
+
+
+                <div class="notification-actions">
+
+                    <a href="deudas.html"
+                       class="notification-review">
+                        Revisar
+                    </a>
+
+                    <button type="button"
+                            class="notification-delete">
+                        Eliminar
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- NOTIFICACIÓN DE META -->
+        <div class="notification-card"
+             data-id="marchamo">
+
+            <div class="notification-icon notification-icon-teal">
+
+                <svg class="icon">
+                    <use href="assets/icons.svg#icon-target"></use>
+                </svg>
+
+            </div>
+
+
+            <div class="notification-content">
+
+                <strong>
+                    Meta de ahorro
+                </strong>
+
+                <div class="notification-text">
+                    Tu meta "Marchamo" vence pronto.
+                </div>
+
+
+                <div class="notification-actions">
+
+                    <a href="metas.html"
+                       class="notification-review">
+                        Revisar
+                    </a>
+
+                    <button type="button"
+                            class="notification-delete">
+                        Eliminar
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
-</div> 
+</main>
 
 </main>
 <script src="js/app.js"></script>

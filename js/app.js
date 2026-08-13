@@ -288,11 +288,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-    // =====================================================
-    // OBTENER USUARIO QUE INICIÓ SESIÓN
-    // =====================================================
+   // =====================================================
+// OBTENER USUARIO QUE INICIÓ SESIÓN
+// =====================================================
 
-   const usuarioGuardado =
+const usuarioGuardado =
     sessionStorage.getItem("fintrackUsuarioActual");
 
 if (usuarioGuardado) {
@@ -301,29 +301,27 @@ if (usuarioGuardado) {
         JSON.parse(usuarioGuardado);
 
 
-    // Nombre
-    const nombreUsuario =
-        document.getElementById("nombreUsuario");
+    // =====================================================
+    // BIENVENIDA DEL DASHBOARD
+    // =====================================================
 
-    if (nombreUsuario) {
-        nombreUsuario.textContent = usuario.nombre;
+    const nombreBienvenida =
+        document.getElementById("nombreBienvenida");
+
+    if (nombreBienvenida && usuario.nombre) {
+
+        const primerNombre =
+            usuario.nombre.trim().split(" ")[0];
+
+        nombreBienvenida.textContent =
+            primerNombre;
     }
 
 
-    // Correo
-    const correoUsuario =
-        document.getElementById("correoUsuario");
+    const avatarBienvenida =
+        document.getElementById("avatarBienvenida");
 
-    if (correoUsuario) {
-        correoUsuario.textContent = usuario.correo;
-    }
-
-
-    // Avatar
-    const avatarUsuario =
-        document.getElementById("avatarUsuario");
-
-    if (avatarUsuario && usuario.nombre) {
+    if (avatarBienvenida && usuario.nombre) {
 
         const partes =
             usuario.nombre.trim().split(" ");
@@ -334,72 +332,39 @@ if (usuarioGuardado) {
             iniciales += partes[1][0];
         }
 
-        avatarUsuario.textContent =
+        avatarBienvenida.textContent =
             iniciales.toUpperCase();
     }
+
+
     // =====================================================
-// DATOS DE LA PÁGINA DE PERFIL
-// =====================================================
+    // IDENTIFICAR USUARIO
+    // =====================================================
 
-const perfilNombre =
-    document.getElementById("perfilNombre");
+    const esElias =
+        usuario.correo ===
+        "erodriguez60177@ufide.ac.cr";
 
-if (perfilNombre) {
-    perfilNombre.textContent =
-        usuario.nombre;
-}
+    // aquí continúa el resto de tu código...
 
 
-const perfilCorreo =
-    document.getElementById("perfilCorreo");
-
-if (perfilCorreo) {
-    perfilCorreo.textContent =
-        usuario.correo;
-}
+    // =====================================================
+    // IDENTIFICAR USUARIO
+    // =====================================================
 
 
-const perfilNombreInput =
-    document.getElementById("perfilNombreInput");
-
-if (perfilNombreInput) {
-    perfilNombreInput.value =
-        usuario.nombre;
-}
-
-
-const perfilCorreoInput =
-    document.getElementById("perfilCorreoInput");
-
-if (perfilCorreoInput) {
-    perfilCorreoInput.value =
-        usuario.correo;
-}
+    const esUsuarioNuevo =
+        Number(usuario.balance) === 0 &&
+        Number(usuario.ingresos) === 0 &&
+        Number(usuario.gastos) === 0 &&
+        Number(usuario.deudas) === 0 &&
+        Number(usuario.ahorro) === 0;
 
 
-const perfilAvatar =
-    document.getElementById("perfilAvatar");
+    // =====================================================
+    // FORMATO DE COLONES
+    // =====================================================
 
-if (perfilAvatar && usuario.nombre) {
-
-    const partes =
-        usuario.nombre
-            .trim()
-            .split(" ");
-
-    let iniciales =
-        partes[0][0];
-
-    if (partes.length > 1) {
-        iniciales += partes[1][0];
-    }
-
-    perfilAvatar.textContent =
-        iniciales.toUpperCase();
-}
-
-
-    // Formato de colones
     function formatoColones(valor) {
 
         const numero =
@@ -410,121 +375,506 @@ if (perfilAvatar && usuario.nombre) {
     }
 
 
-    // Balance
+    // =====================================================
+    // NOMBRE DEL USUARIO
+    // =====================================================
+
+    const nombreUsuario =
+        document.getElementById("nombreUsuario");
+
+    if (nombreUsuario) {
+        nombreUsuario.textContent =
+            usuario.nombre;
+    }
+
+
+    // =====================================================
+    // CORREO DEL USUARIO
+    // =====================================================
+
+    const correoUsuario =
+        document.getElementById("correoUsuario");
+
+    if (correoUsuario) {
+        correoUsuario.textContent =
+            usuario.correo;
+    }
+
+
+    // =====================================================
+    // AVATAR DEL SIDEBAR
+    // =====================================================
+
+    const avatarUsuario =
+        document.getElementById("avatarUsuario");
+
+    if (avatarUsuario && usuario.nombre) {
+
+        const partes =
+            usuario.nombre
+                .trim()
+                .split(" ");
+
+        let iniciales =
+            partes[0][0];
+
+        if (partes.length > 1) {
+            iniciales += partes[1][0];
+        }
+
+        avatarUsuario.textContent =
+            iniciales.toUpperCase();
+    }
+
+
+    // =====================================================
+    // DATOS DE PERFIL
+    // =====================================================
+
+    const perfilNombre =
+        document.getElementById("perfilNombre");
+
+    if (perfilNombre) {
+        perfilNombre.textContent =
+            usuario.nombre;
+    }
+
+
+    const perfilCorreo =
+        document.getElementById("perfilCorreo");
+
+    if (perfilCorreo) {
+        perfilCorreo.textContent =
+            usuario.correo;
+    }
+
+
+    const perfilNombreInput =
+        document.getElementById("perfilNombreInput");
+
+    if (perfilNombreInput) {
+        perfilNombreInput.value =
+            usuario.nombre;
+    }
+
+
+    const perfilCorreoInput =
+        document.getElementById("perfilCorreoInput");
+
+    if (perfilCorreoInput) {
+        perfilCorreoInput.value =
+            usuario.correo;
+    }
+
+
+    const perfilAvatar =
+        document.getElementById("perfilAvatar");
+
+    if (perfilAvatar && usuario.nombre) {
+
+        const partes =
+            usuario.nombre
+                .trim()
+                .split(" ");
+
+        let iniciales =
+            partes[0][0];
+
+        if (partes.length > 1) {
+            iniciales += partes[1][0];
+        }
+
+        perfilAvatar.textContent =
+            iniciales.toUpperCase();
+    }
+
+
+    // =====================================================
+    // ELEMENTOS DEL DASHBOARD
+    // =====================================================
+
+    const ahorroUsuario =
+        document.getElementById("ahorroUsuario");
+
     const balanceUsuario =
         document.getElementById("balanceUsuario");
 
-    if (balanceUsuario) {
-
-        balanceUsuario.textContent =
-            formatoColones(usuario.balance);
-    }
-
-
-    // Ingresos
     const ingresosUsuario =
         document.getElementById("ingresosUsuario");
 
-    if (ingresosUsuario) {
-
-        ingresosUsuario.textContent =
-            formatoColones(usuario.ingresos);
-    }
-
-
-    // Gastos
     const gastosUsuario =
         document.getElementById("gastosUsuario");
 
-    if (gastosUsuario) {
 
-        gastosUsuario.textContent =
-            formatoColones(usuario.gastos);
+    // =====================================================
+    // ELIAS - CLIENTE ANTIGUO
+    // =====================================================
+
+    if (esElias) {
+        if (ahorroUsuario) {
+            ahorroUsuario.textContent =
+        formatoColones(usuario.ahorro);
+}
+
+        if (balanceUsuario) {
+            balanceUsuario.textContent =
+                formatoColones(315800);
+        }
+
+        if (ingresosUsuario) {
+            ingresosUsuario.textContent =
+                formatoColones(850000);
+        }
+
+        if (gastosUsuario) {
+            gastosUsuario.textContent =
+                formatoColones(534200);
+        }
+
     }
 
 
     // =====================================================
-    // COMPROBAR SI ES UN USUARIO NUEVO
+// USUARIO NUEVO
+// =====================================================
+
+else if (esUsuarioNuevo) {
+
+    // Ahorro
+    if (ahorroUsuario) {
+        ahorroUsuario.textContent = "₡ 0";
+    }
+
+    // Balance
+    if (balanceUsuario) {
+        balanceUsuario.textContent = "₡ 0";
+    }
+
+    // Ingresos
+    if (ingresosUsuario) {
+        ingresosUsuario.textContent = "₡ 0";
+    }
+
+    // Gastos
+    if (gastosUsuario) {
+        gastosUsuario.textContent = "₡ 0";
+    }
+
+
+    // =====================================================
+    // ACTIVIDAD RECIENTE
     // =====================================================
 
-    const esUsuarioNuevo =
-        Number(usuario.balance) === 0 &&
-        Number(usuario.ingresos) === 0 &&
-        Number(usuario.gastos) === 0 &&
-        Number(usuario.deudas) === 0 &&
-        Number(usuario.ahorro) === 0;
+    const tablaMovimientos =
+        document.getElementById("tablaMovimientos");
+
+    if (tablaMovimientos) {
+
+        tablaMovimientos.innerHTML = `
+            <tr>
+                <td colspan="2">
+                    No hay movimientos registrados.
+                </td>
+            </tr>
+        `;
+    }
 
 
-    if (esUsuarioNuevo) {
+    // =====================================================
+    // AVISOS
+    // =====================================================
 
-        // Quitar movimientos de ejemplo
-        const tablaMovimientos =
-            document.getElementById("tablaMovimientos");
+    const avisosUsuario =
+        document.getElementById("avisosUsuario");
 
-        if (tablaMovimientos) {
+    if (avisosUsuario) {
 
-            tablaMovimientos.innerHTML = `
-                <tr>
-                    <td colspan="2">
-                        No hay movimientos registrados.
-                    </td>
-                </tr>
-            `;
-        }
+        avisosUsuario.innerHTML = `
+            <div class="alert alert-info">
+                No tienes avisos importantes.
+            </div>
+        `;
+    }
 
 
-        // Quitar avisos de ejemplo
-        const avisosUsuario =
-            document.getElementById("avisosUsuario");
+    // =====================================================
+    // PRÓXIMOS PAGOS
+    // =====================================================
 
-        if (avisosUsuario) {
+    const proximosPagos =
+        document.getElementById("proximosPagos");
 
-            avisosUsuario.innerHTML = `
-                <div class="alert alert-info">
-                    No tienes avisos importantes.
-                </div>
-            `;
-        }
+    if (proximosPagos) {
 
+        proximosPagos.innerHTML = `
+            <div class="alert alert-info">
+                No tienes pagos próximos.
+            </div>
+        `;
+    }
+
+
+    // =====================================================
+    // SOBRES DE AHORRO
+    // =====================================================
+
+    const sobresAhorro =
+        document.getElementById("sobresAhorro");
+
+    if (sobresAhorro) {
+
+        sobresAhorro.innerHTML = `
+            <div class="alert alert-info">
+                Aún no tienes metas de ahorro.
+            </div>
+        `;
+    }
+
+
+    // =====================================================
+    // CONTADOR DE NOTIFICACIONES
+    // =====================================================
+
+    const contadorNotificaciones =
+        document.getElementById("contadorNotificaciones");
+
+    if (contadorNotificaciones) {
+        contadorNotificaciones.textContent = "0";
+    }
+
+
+    // =====================================================
+    // PANEL DE NOTIFICACIONES
+    // =====================================================
+
+    const panelNotificaciones =
+        document.getElementById("panelNotificaciones");
+
+    if (panelNotificaciones) {
+
+        panelNotificaciones.innerHTML = `
+            <div class="notification-panel-title">
+                Notificaciones
+            </div>
+
+            <div class="notification-item">
+                No tienes notificaciones.
+            </div>
+        `;
+    }
+
+
+    // =====================================================
+    // RESUMEN DEL MES
+    // =====================================================
+
+    const resumenIngresos =
+        document.getElementById("resumenIngresos");
+
+    const resumenGastos =
+        document.getElementById("resumenGastos");
+
+    const resumenDisponible =
+        document.getElementById("resumenDisponible");
+
+    if (resumenIngresos) {
+        resumenIngresos.textContent = "₡ 0";
+    }
+
+    if (resumenGastos) {
+        resumenGastos.textContent = "₡ 0";
+    }
+
+    if (resumenDisponible) {
+        resumenDisponible.textContent = "₡ 0";
     }
 
 }
 
 
     // =====================================================
-    // CERRAR SESIÓN
+    // OTRO USUARIO CON DATOS
     // =====================================================
 
-    const botonesCerrarSesion =
-        document.querySelectorAll(
-            ".logout-link"
-        );
+    else {
+
+        if (balanceUsuario) {
+            balanceUsuario.textContent =
+                formatoColones(
+                    usuario.balance
+                );
+        }
+
+        if (ingresosUsuario) {
+            ingresosUsuario.textContent =
+                formatoColones(
+                    usuario.ingresos
+                );
+        }
+
+        if (gastosUsuario) {
+            gastosUsuario.textContent =
+                formatoColones(
+                    usuario.gastos
+                );
+        }
+
+    }
+
+}
+// =====================================================
+// DESPLEGAR INGRESOS Y GASTOS
+// =====================================================
+
+const botonesDetalle =
+    document.querySelectorAll(".detalle-toggle");
+
+botonesDetalle.forEach(function (boton) {
+
+    boton.addEventListener("click", function () {
+
+        const idDetalle =
+            boton.getAttribute("data-target");
+
+        const detalle =
+            document.getElementById(idDetalle);
+
+        if (!detalle) {
+            return;
+        }
+
+        detalle.classList.toggle("abierto");
+
+        if (detalle.classList.contains("abierto")) {
+            boton.textContent = "Ocultar desglose";
+        } else {
+            boton.textContent = "Ver desglose";
+        }
+
+    });
+
+});
 
 
-    botonesCerrarSesion.forEach(
-        function (boton) {
+// =====================================================
+// NOTIFICACIONES
+// =====================================================
 
-            boton.addEventListener(
-                "click",
-                function (event) {
+const botonNotificaciones =
+    document.getElementById("botonNotificaciones");
 
-                    event.preventDefault();
+const panelNotificaciones =
+    document.getElementById("panelNotificaciones");
 
+if (botonNotificaciones && panelNotificaciones) {
 
-                    // Borrar usuario de la sesión
-                    sessionStorage.removeItem(
-                        "fintrackUsuarioActual"
-                    );
+    botonNotificaciones.addEventListener(
+        "click",
+        function () {
 
-
-                    // Volver al login
-                    window.location.href =
-                        "index.html";
-
-                }
-            );
+            panelNotificaciones
+                .classList
+                .toggle("abierto");
 
         }
     );
+}
+// =====================================================
+// ELIMINAR NOTIFICACIONES
+// =====================================================
+
+const botonesEliminarNotificacion =
+    document.querySelectorAll(".notification-delete");
+
+botonesEliminarNotificacion.forEach(function (boton) {
+
+    boton.addEventListener("click", function () {
+
+        const notificacion =
+            boton.closest(".notification-card");
+
+        if (!notificacion) {
+            return;
+        }
+
+        // Animación opcional
+        notificacion.classList.add("eliminando");
+
+        setTimeout(function () {
+
+            notificacion.remove();
+
+            actualizarContadorNotificaciones();
+
+            const lista =
+                document.getElementById("listaNotificaciones");
+
+            if (
+                lista &&
+                lista.querySelectorAll(".notification-card").length === 0
+            ) {
+                lista.innerHTML = `
+                    <div class="alert alert-info">
+                        No tienes notificaciones pendientes.
+                    </div>
+                `;
+            }
+
+        }, 200);
+
+    });
+
+});
+
+
+// =====================================================
+// ACTUALIZAR CONTADOR DE NOTIFICACIONES
+// =====================================================
+
+function actualizarContadorNotificaciones() {
+
+    const contador =
+        document.getElementById("contadorNotificaciones");
+
+    const cantidad =
+        document.querySelectorAll(".notification-card").length;
+
+    if (!contador) {
+        return;
+    }
+
+    contador.textContent = cantidad;
+
+    if (cantidad === 0) {
+        contador.style.display = "none";
+    } else {
+        contador.style.display = "flex";
+    }
+}
+
+
+// =====================================================
+// CERRAR SESIÓN
+// =====================================================
+
+const botonesCerrarSesion =
+    document.querySelectorAll(".logout-link");
+
+botonesCerrarSesion.forEach(function (boton) {
+
+    boton.addEventListener("click", function (event) {
+
+        event.preventDefault();
+
+        sessionStorage.removeItem(
+            "fintrackUsuarioActual"
+        );
+
+        window.location.href =
+            "index.html";
+
+    });
+
+});
 
 });
