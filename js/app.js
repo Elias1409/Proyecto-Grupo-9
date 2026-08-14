@@ -9,8 +9,8 @@ document.addEventListener("DOMContentLoaded", function () {
     formLogin.addEventListener("submit", async function (event) {
       event.preventDefault();
 
-      const correo = document
-        .getElementById("loginCorreo")
+      const usuario = document
+        .getElementById("loginUsuario")
         .value.trim()
         .toLowerCase();
 
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
           },
 
           body: JSON.stringify({
-            correo: correo,
+            usuario: usuario,
             clave: clave,
           }),
         });
@@ -133,7 +133,13 @@ document.addEventListener("DOMContentLoaded", function () {
       // =================================================
       // VALIDAR NOMBRE
       // =================================================
+      if (nombre === "") {
+        mensaje.textContent = "Debe ingresar su nombre.";
 
+        mensaje.style.color = "red";
+
+        return;
+      }
       if (apellidos === "") {
         mensaje.textContent = "Debe ingresar sus apellidos.";
 
