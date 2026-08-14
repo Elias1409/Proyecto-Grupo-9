@@ -2450,3 +2450,849 @@ tbody tr:hover td {
 .auth-page:not(:has(.auth-panel-register)) .btn-full {
     width: 100%;
 }
+
+/* =====================================================
+   TRANSACCIONES
+===================================================== */
+
+.transaction-consumption-card {
+    margin-bottom: 24px;
+}
+
+
+.transaction-consumption-header {
+    margin-bottom: 20px;
+}
+
+
+.transaction-consumption-percent {
+    font-size: 26px;
+    font-weight: 800;
+
+    color: var(--primary);
+}
+
+
+.transaction-consumption-values {
+    display: flex;
+    justify-content: space-between;
+
+    margin-bottom: 12px;
+}
+
+
+.transaction-consumption-values div {
+    display: flex;
+    flex-direction: column;
+
+    gap: 2px;
+}
+
+
+.transaction-consumption-values span {
+    font-size: 12px;
+
+    color: var(--ink-700);
+}
+
+
+.transaction-consumption-values strong {
+    font-size: 16px;
+}
+
+
+.transaction-consumption-right {
+    text-align: right;
+}
+
+
+.transaction-usage-bar {
+    height: 11px;
+
+    margin-bottom: 10px;
+}
+
+
+
+/* HISTORIAL */
+
+.transaction-history-header {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 20px;
+}
+
+
+
+/* FILTROS */
+
+.transaction-filters {
+    display: grid;
+
+    grid-template-columns:
+        auto 160px 210px minmax(200px, 1fr);
+
+    gap: 12px;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+}
+
+
+.transaction-filter-tabs {
+    display: flex;
+
+    padding: 4px;
+
+    background: var(--paper);
+
+    border-radius: var(--radius-md);
+}
+
+
+.transaction-filter {
+    border: none;
+
+    padding: 8px 14px;
+
+    border-radius: 7px;
+
+    background: transparent;
+
+    color: var(--ink-700);
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+.transaction-filter.active {
+    background: var(--surface);
+
+    color: var(--primary);
+
+    box-shadow: var(--shadow-sm);
+}
+
+
+.transaction-filter-select,
+.transaction-search {
+    margin: 0;
+}
+
+
+
+/* TABLA */
+
+.transaction-table td {
+    vertical-align: middle;
+}
+
+
+.transaction-main {
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+}
+
+
+.transaction-main strong {
+    display: block;
+
+    font-size: 13.5px;
+}
+
+
+.transaction-main span {
+    display: block;
+
+    margin-top: 2px;
+
+    color: var(--ink-700);
+
+    font-size: 11.5px;
+}
+
+
+.transaction-merchant-icon {
+    width: 34px;
+    height: 34px;
+
+    min-width: 34px;
+
+    border-radius: 9px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+.transaction-merchant-icon .icon {
+    width: 15px;
+    height: 15px;
+}
+
+
+
+@media (max-width: 1100px) {
+
+    .transaction-filters {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+
+    .transaction-filter-tabs {
+        grid-column:
+            1 / -1;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .transaction-filters {
+        grid-template-columns: 1fr;
+    }
+
+
+    .transaction-filter-tabs {
+        grid-column: auto;
+    }
+
+
+    .transaction-consumption-values {
+        flex-direction: column;
+
+        gap: 12px;
+    }
+
+
+    .transaction-consumption-right {
+        text-align: left;
+    }
+
+}
+
+/* =====================================================
+   LAYOUT TRANSACCIONES
+===================================================== */
+
+.transactions-layout {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 2.2fr)
+        minmax(280px, .8fr);
+
+    gap: 22px;
+
+    align-items: start;
+}
+
+
+/* IZQUIERDA */
+
+.transaction-history-card {
+    width: 100%;
+}
+
+
+/* DERECHA */
+
+.transaction-side {
+    display: flex;
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+
+.transaction-new-button {
+    height: 46px;
+}
+
+
+/* TARJETA DE USO */
+
+.transaction-consumption-card {
+    margin-bottom: 0;
+}
+
+
+.transaction-consumption-header {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: flex-start;
+
+    margin-bottom: 22px;
+}
+
+
+.transaction-consumption-percent {
+    font-size: 26px;
+    font-weight: 800;
+
+    color: var(--primary);
+}
+
+
+.transaction-side-amount {
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+
+    margin-bottom: 12px;
+}
+
+
+.transaction-side-amount span {
+    font-size: 12px;
+
+    color: var(--ink-700);
+}
+
+
+.transaction-side-amount strong {
+    font-size: 20px;
+}
+
+
+.transaction-usage-bar {
+    height: 10px;
+
+    margin-bottom: 12px;
+}
+
+
+.transaction-side-footer {
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+
+.transaction-side-footer span {
+    font-size: 12px;
+
+    color: var(--ink-700);
+}
+
+
+.transaction-side-footer strong {
+    font-size: 12px;
+}
+
+
+/* FILTROS MÁS COMPACTOS */
+
+.transaction-filters {
+    display: grid;
+
+    grid-template-columns:
+        auto
+        145px
+        190px
+        minmax(180px, 1fr);
+
+    gap: 10px;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 1200px) {
+
+    .transactions-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .transaction-side {
+        display: grid;
+
+        grid-template-columns:
+            220px 1fr;
+
+        align-items: start;
+    }
+
+}
+
+
+@media (max-width: 800px) {
+
+    .transaction-side {
+        grid-template-columns: 1fr;
+    }
+
+    .transaction-filters {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+.transaction-status-column {
+    min-width: 110px;
+    text-align: center;
+}
+
+.status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 82px;
+
+    padding: 6px 10px;
+
+    border-radius: 999px;
+
+    font-size: 11.5px;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+.status-success {
+    background: var(--success-wash);
+    color: var(--success-text);
+}
+
+.status-info {
+    background: var(--accent-wash);
+    color: var(--primary);
+}
+
+.status-warning {
+    background: var(--warning-wash);
+    color: var(--warning-text);
+}
+
+.status-danger {
+    background: var(--danger-wash);
+    color: var(--danger-text);
+}
+
+/* =====================================================
+   AJUSTES FINALES - TRANSACCIONES
+===================================================== */
+
+.transaction-top {
+    display: block;
+    margin-bottom: 24px;
+}
+
+
+/* TARJETA DE USO */
+
+.transaction-consumption-card {
+    padding: 20px 26px;
+    margin-bottom: 14px;
+}
+
+
+.transaction-consumption-header {
+    margin-bottom: 14px;
+}
+
+
+.transaction-top-data {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 8px;
+}
+
+
+.transaction-usage-bar {
+    height: 9px;
+    margin-bottom: 8px;
+}
+
+
+/* BOTÓN */
+
+.transaction-action-card {
+    display: flex;
+    justify-content: flex-end;
+
+    margin-bottom: 22px;
+}
+
+
+.transaction-new-button {
+    width: auto;
+    min-width: 210px;
+
+    min-height: 46px;
+
+    padding: 10px 22px;
+}
+
+
+/* TABLA */
+
+.transaction-history-card {
+    margin-top: 0;
+}
+
+/* =====================================================
+   RESUMEN + BOTÓN TRANSACCIONES
+===================================================== */
+
+.transaction-summary-row {
+    display: grid;
+
+    /* barra grande + botón pequeño */
+    grid-template-columns: minmax(0, 1fr) 245px;
+
+    gap: 18px;
+
+    align-items: stretch;
+
+    margin-bottom: 22px;
+}
+
+
+/* TARJETA DE LA BARRA */
+
+.transaction-summary-row .transaction-consumption-card {
+    margin: 0;
+    padding: 18px 24px;
+}
+
+
+.transaction-consumption-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    margin-bottom: 14px;
+}
+
+
+.transaction-consumption-percent {
+    font-size: 26px;
+    font-weight: 800;
+
+    color: var(--primary);
+}
+
+
+/* GASTADO / DISPONIBLE */
+
+.transaction-summary-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 9px;
+}
+
+
+.transaction-summary-info > div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+
+.transaction-summary-info span {
+    font-size: 14px;
+    color: var(--ink-700);
+}
+
+
+.transaction-summary-info strong {
+    font-size: 16px;
+}
+
+
+/* BARRA */
+
+.transaction-summary-row .transaction-usage-bar {
+    height: 8px;
+    margin: 0 0 9px;
+}
+
+
+.transaction-income-caption {
+    font-size: 13px;
+    color: var(--ink-700);
+}
+
+
+/* BOTÓN */
+
+.transaction-summary-row .transaction-new-button {
+    width: 100%;
+    height: 100%;
+
+    min-height: 120px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    border-radius: 14px;
+
+    font-size: 15px;
+    font-weight: 700;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+
+    .transaction-summary-row {
+        grid-template-columns: 1fr;
+    }
+
+    .transaction-summary-row .transaction-new-button {
+        min-height: 48px;
+    }
+
+}
+
+/* =====================================================
+   TRANSACCIONES - LAYOUT FINAL
+===================================================== */
+
+.transactions-layout {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr) 290px;
+
+    gap: 20px;
+
+    align-items: start;
+}
+
+
+/* =====================================================
+   TABLA IZQUIERDA
+===================================================== */
+
+.transaction-history-card {
+    width: 100%;
+
+    padding: 22px;
+}
+
+
+.transaction-table.compact {
+    width: 100%;
+
+    min-width: 0;
+}
+
+
+.transaction-table.compact th,
+.transaction-table.compact td {
+    padding: 13px 14px;
+}
+
+
+.transaction-table.compact th:first-child {
+    width: 42%;
+}
+
+
+.transaction-table.compact th:nth-child(2) {
+    width: 18%;
+}
+
+
+.transaction-table.compact th:nth-child(3) {
+    width: 25%;
+}
+
+
+.transaction-table.compact th:nth-child(4) {
+    width: 15%;
+}
+
+
+/* =====================================================
+   FILTROS
+===================================================== */
+
+.transaction-filters.compact {
+    display: grid;
+
+    grid-template-columns:
+        auto minmax(180px, 1fr);
+
+    gap: 12px;
+
+    margin-bottom: 18px;
+}
+
+
+/* =====================================================
+   PANEL DERECHO
+===================================================== */
+
+.transaction-side {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+}
+
+
+/* =====================================================
+   BOTÓN PEQUEÑO
+===================================================== */
+
+.transaction-side .transaction-new-button {
+    width: 100%;
+
+    height: 44px;
+
+    min-height: 44px;
+
+    padding: 0 14px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 9px;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+/* =====================================================
+   TARJETA DE USO
+===================================================== */
+
+.transaction-side .transaction-consumption-card {
+    width: 100%;
+
+    margin: 0;
+
+    padding: 20px;
+}
+
+
+.transaction-consumption-header {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: flex-start;
+
+    margin-bottom: 20px;
+}
+
+
+.transaction-consumption-percent {
+    font-size: 25px;
+
+    font-weight: 800;
+
+    color: var(--primary);
+}
+
+
+.transaction-side-amount {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+
+    margin-bottom: 12px;
+}
+
+
+.transaction-side-amount span,
+.transaction-side-footer span {
+    font-size: 12px;
+
+    color: var(--ink-700);
+}
+
+
+.transaction-side-amount strong {
+    font-size: 20px;
+}
+
+
+.transaction-usage-bar {
+    height: 8px;
+
+    margin-bottom: 12px;
+}
+
+
+.transaction-side-footer {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 2px;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 1050px) {
+
+    .transactions-layout {
+        grid-template-columns: 1fr;
+    }
+
+
+    .transaction-side {
+        display: grid;
+
+        grid-template-columns:
+            200px 1fr;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .transaction-side {
+        grid-template-columns: 1fr;
+    }
+
+
+    .transaction-filters.compact {
+        grid-template-columns: 1fr;
+    }
+
+}

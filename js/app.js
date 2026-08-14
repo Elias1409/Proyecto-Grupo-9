@@ -700,6 +700,191 @@ document.addEventListener("DOMContentLoaded", function () {
       contador.style.display = "flex";
     }
   }
+  // =====================================================
+// FILTROS DE TRANSACCIONES
+// =====================================================
+
+const filtrosTransaccion =
+    document.querySelectorAll(".transaction-filter");
+
+const filtroMetodo =
+    document.getElementById("filtroMetodo");
+
+const buscarTransaccion =
+    document.getElementById("buscarTransaccion");
+
+
+function filtrarTransacciones() {
+
+    // BOTÓN ACTIVO
+    const filtroActivo =
+        document.querySelector(
+            ".transaction-filter.active"
+        );
+
+    const tipoSeleccionado =
+        filtroActivo
+            ? filtroActivo.dataset.tipo
+            : "todos";
+
+
+    // MÉTODO DE PAGO
+    const metodoSeleccionado =
+        filtroMetodo
+            ? filtroMetodo.value
+            : "todos";
+
+
+    // BÚSQUEDA
+    const textoBusqueda =
+    buscarTransaccion
+        ? normalizarTexto(
+            buscarTransaccion.value.trim()
+        )
+        : "";
+
+
+    // FILAS DE LA TABLA
+    const filas =
+        document.querySelectorAll(
+            "#tablaTransacciones tr"
+        );
+
+
+    filas.forEach(function (fila) {
+
+        const tipoFila =
+            fila.dataset.tipo;
+
+        const metodoFila =
+            fila.dataset.metodo;
+
+        const contenidoFila =
+    normalizarTexto(
+        fila.textContent
+    );
+
+
+        // FILTRAR POR TIPO
+        const coincideTipo =
+            tipoSeleccionado === "todos" ||
+            tipoFila === tipoSeleccionado;
+
+
+        // FILTRAR POR MÉTODO
+        const coincideMetodo =
+            metodoSeleccionado === "todos" ||
+            metodoFila === metodoSeleccionado;
+
+
+        // FILTRAR POR BÚSQUEDA
+        const coincideBusqueda =
+            textoBusqueda === "" ||
+            contenidoFila.includes(
+                textoBusqueda
+            );
+
+
+        // MOSTRAR U OCULTAR
+        if (
+            coincideTipo &&
+            coincideMetodo &&
+            coincideBusqueda
+        ) {
+
+            fila.style.display = "";
+
+        } else {
+
+            fila.style.display = "none";
+        }
+
+    });
+
+}
+
+
+
+// =====================================================
+// BOTONES TODOS / INGRESOS / GASTOS
+// =====================================================
+function normalizarTexto(texto) {
+
+    return texto
+        .toLowerCase()
+
+        // Separar letras de sus tildes
+        .normalize("NFD")
+
+        // Quitar tildes y marcas
+        .replace(/[\u0300-\u036f]/g, "")
+
+        // Convertir ñ en n
+        .replace(/ñ/g, "n");
+}
+filtrosTransaccion.forEach(
+    function (boton) {
+
+        boton.addEventListener(
+            "click",
+            function () {
+
+                // Quitar activo de todos
+                filtrosTransaccion.forEach(
+                    function (otroBoton) {
+
+                        otroBoton.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+
+                // Activar botón seleccionado
+                boton.classList.add(
+                    "active"
+                );
+
+
+                // Filtrar tabla
+                filtrarTransacciones();
+
+            }
+        );
+
+    }
+);
+
+
+
+// =====================================================
+// FILTRO POR MÉTODO
+// =====================================================
+
+if (filtroMetodo) {
+
+    filtroMetodo.addEventListener(
+        "change",
+        filtrarTransacciones
+    );
+
+}
+
+
+
+// =====================================================
+// BUSCADOR
+// =====================================================
+
+if (buscarTransaccion) {
+
+    buscarTransaccion.addEventListener(
+        "input",
+        filtrarTransacciones
+    );
+
+}
 
   // =====================================================
   // CERRAR SESIÓN

@@ -1,125 +1,1767 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transacciones – FinTrack Web</title>
-    <link rel="stylesheet" href="css/style.css">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Transacciones – FinTrack Web
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
 </head>
+
+
 <body>
+
 <div class="layout">
 
-    <!-- Sidebar -->
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
     <aside class="sidebar">
+
         <div class="sidebar-logo">
-            <div class="mark"><svg class="icon"><use href="assets/icons.svg#icon-bar-chart"></use></svg></div>
+
+            <div class="mark">
+
+                <svg class="icon">
+                    <use href="assets/icons.svg#icon-bar-chart"></use>
+                </svg>
+
+            </div>
+
+
             <div>
-                <div class="brand">FinTrack</div>
-                <span class="tagline">Finanzas personales</span>
+
+                <div class="brand">
+                    FinTrack
+                </div>
+
+                <span class="tagline">
+                    Finanzas personales
+                </span>
+
             </div>
+
         </div>
+
+
         <nav class="sidebar-nav">
+
+            <!-- PRINCIPAL -->
+
             <div class="nav-section">
-                <span class="nav-label">Principal</span>
-                <a href="dashboard.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-home"></use></svg> Dashboard</a>
-                <a href="transacciones.html" class="nav-item active"><svg class="icon"><use href="assets/icons.svg#icon-exchange"></use></svg> Transacciones</a>
-                <a href="deudas.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-credit-card"></use></svg> Deudas</a>
+
+                <span class="nav-label">
+                    Principal
+                </span>
+
+                <a
+                    href="dashboard.html"
+                    class="nav-item"
+                >
+
+                    <svg class="icon">
+                        <use href="assets/icons.svg#icon-home"></use>
+                    </svg>
+
+                    Dashboard
+
+                </a>
+
+
+                <a
+                    href="transacciones.html"
+                    class="nav-item active"
+                >
+
+                    <svg class="icon">
+                        <use href="assets/icons.svg#icon-exchange"></use>
+                    </svg>
+
+                    Transacciones
+
+                </a>
+
+
+                <a
+                    href="deudas.html"
+                    class="nav-item"
+                >
+
+                    <svg class="icon">
+                        <use href="assets/icons.svg#icon-credit-card"></use>
+                    </svg>
+
+                    Deudas
+
+                </a>
+
             </div>
+
+
+            <!-- ANÁLISIS -->
+
             <div class="nav-section">
-                <span class="nav-label">Análisis</span>
-                <a href="reportes.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-bar-chart"></use></svg> Reportes</a>
-                <a href="metas.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-target"></use></svg> Metas de ahorro</a>
+
+                <span class="nav-label">
+                    Análisis
+                </span>
+
+                <a
+                    href="reportes.html"
+                    class="nav-item"
+                >
+
+                    <svg class="icon">
+                        <use href="assets/icons.svg#icon-bar-chart"></use>
+                    </svg>
+
+                    Reportes
+
+                </a>
+
+
+                <a
+                    href="metas.html"
+                    class="nav-item"
+                >
+
+                    <svg class="icon">
+                        <use href="assets/icons.svg#icon-target"></use>
+                    </svg>
+
+                    Metas de ahorro
+
+                </a>
+
             </div>
+
+
+            <!-- CUENTA -->
+
             <div class="nav-section">
-                <span class="nav-label">Cuenta</span>
-                <a href="perfil.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-user"></use></svg> Mi perfil</a>
-                <a href="index.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-log-out"></use></svg> Cerrar sesión</a>
+
+                <span class="nav-label">
+                    Cuenta
+                </span>
+
+                <a
+                    href="perfil.html"
+                    class="nav-item"
+                >
+
+                    <svg class="icon">
+                        <use href="assets/icons.svg#icon-user"></use>
+                    </svg>
+
+                    Mi perfil
+
+                </a>
+
+
+                <a
+                    href="index.html"
+                    class="nav-item logout-link"
+                >
+
+                    <svg class="icon">
+                        <use href="assets/icons.svg#icon-log-out"></use>
+                    </svg>
+
+                    Cerrar sesión
+
+                </a>
+
             </div>
+
         </nav>
+
+
+        <!-- USUARIO -->
+
         <div class="sidebar-user">
 
-    <div class="avatar" id="avatarUsuario">
-        ER
-    </div>
+            <div
+                class="avatar"
+                id="avatarUsuario"
+            >
+                ER
+            </div>
 
-    <div>
-        <div class="s-name" id="nombreUsuario">
-            Elias Rodriguez
+
+            <div>
+
+                <div
+                    class="s-name"
+                    id="nombreUsuario"
+                >
+                    Elias Rodriguez
+                </div>
+
+                <div
+                    class="s-email"
+                    id="correoUsuario"
+                >
+                    erodriguez60177@ufide.ac.cr
+                </div>
+
+            </div>
+
         </div>
 
-        <div class="s-email" id="correoUsuario">
-            erodriguez60177@ufide.ac.cr
-        </div>
-    </div>
-
-</div>
     </aside>
 
+
+
+    <!-- =====================================================
+         CONTENIDO
+    ====================================================== -->
+
     <main class="main">
-        <div class="page-header">
+
+
+        <!-- =================================================
+             ENCABEZADO
+        ================================================== -->
+
+        <div class="transactions-layout">
+
+    <!-- =====================================================
+         IZQUIERDA - TABLA
+    ====================================================== -->
+
+    <div class="card transaction-history-card">
+
+        <div class="transaction-history-header">
+
             <div>
-                <h2>Historial de Transacciones</h2>
-                <div class="sub">Registra y revisa tus movimientos diarios</div>
+
+                <div class="card-title mb-0">
+
+                    <svg class="icon">
+                        <use href="assets/icons.svg#icon-list"></use>
+                    </svg>
+
+                    Movimientos de agosto
+
+                </div>
+
+                <div class="text-muted text-sm">
+                    Historial sincronizado con tus medios de pago.
+                </div>
+
             </div>
+
         </div>
 
-        <div class="grid-65">
-            <!-- Formulario de Registro -->
-            <div class="card">
-                <div class="card-title"><svg class="icon"><use href="assets/icons.svg#icon-plus-circle"></use></svg> Nueva Transacción</div>
-                <form action="#">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label">Tipo de Movimiento</label>
-                            <select class="form-control" required>
-                                <option value="gasto">Gasto / Egreso</option>
-                                <option value="ingreso">Ingreso</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Monto (₡)</label>
-                            <input type="number" class="form-control" placeholder="0" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Detalle / Concepto</label>
-                        <input type="text" class="form-control" placeholder="Ej: Pago de luz CNFL, Almuerzo..." required>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-full">Agregar Movimiento</button>
-                </form>
+
+        <!-- FILTROS -->
+
+        <div class="transaction-filters compact">
+
+            <div class="transaction-filter-tabs">
+
+                <button
+                    type="button"
+                    class="transaction-filter active"
+                    data-tipo="todos">
+                    Todos
+                </button>
+
+                <button
+                    type="button"
+                    class="transaction-filter"
+                    data-tipo="ingreso">
+                    Ingresos
+                </button>
+
+                <button
+                    type="button"
+                    class="transaction-filter"
+                    data-tipo="gasto">
+                    Gastos
+                </button>
+
             </div>
 
-            <!-- Tabla Detallada -->
-            <div class="card">
-                <div class="card-title"><svg class="icon"><use href="assets/icons.svg#icon-list"></use></svg> Registro del Mes</div>
-                <div class="table-wrap">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Detalle</th>
-                                <th style="text-align:right;">Monto</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><span class="cell-ic"><svg class="icon"><use href="assets/icons.svg#icon-home"></use></svg> Pago Recibo CNFL</span></td>
-                                <td style="text-align:right;" class="text-red fw-700 num">-₡ 28,500</td>
-                            </tr>
-                            <tr>
-                                <td><span class="cell-ic"><svg class="icon"><use href="assets/icons.svg#icon-cart"></use></svg> Compra Walmart</span></td>
-                                <td style="text-align:right;" class="text-red fw-700 num">-₡ 45,000</td>
-                            </tr>
-                            <tr>
-                                <td><span class="cell-ic"><svg class="icon"><use href="assets/icons.svg#icon-smartphone"></use></svg> SINPE Recibido</span></td>
-                                <td style="text-align:right;" class="text-green fw-700 num">+₡ 15,000</td>
-                            </tr>
-                        </tbody>
-                    </table>
+
+            <input
+                type="text"
+                class="form-control transaction-search"
+                id="buscarTransaccion"
+                placeholder="Buscar comercio o persona..."
+            >
+
+        </div>
+
+
+        <!-- TABLA -->
+
+        <div class="table-wrap">
+
+            <table class="transaction-table compact">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Comercio / Persona
+                        </th>
+
+                        <th>
+                            Fecha
+                        </th>
+
+                        <th>
+                            Método
+                        </th>
+
+                        <th style="text-align:right;">
+                            Monto
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="tablaTransacciones">
+
+                    <!-- WALMART -->
+
+                    <tr
+                        data-tipo="gasto"
+                        data-metodo="visa">
+
+                        <td>
+
+                            <div class="transaction-main">
+
+                                <div class="transaction-merchant-icon ic-red">
+
+                                    <svg class="icon">
+                                        <use href="assets/icons.svg#icon-cart"></use>
+                                    </svg>
+
+                                </div>
+
+                                <div>
+
+                                    <strong>
+                                        Walmart Alajuela
+                                    </strong>
+
+                                    <span>
+                                        Compra con tarjeta
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </td>
+
+                        <td>
+                            14 ago. 2026
+                        </td>
+
+                        <td>
+                            Visa •••• 4821
+                        </td>
+
+                        <td
+                            class="text-red fw-700 num"
+                            style="text-align:right;">
+
+                            -₡ 64,500
+
+                        </td>
+
+                    </tr>
+
+
+                    <!-- SALARIO -->
+
+                    <tr
+                        data-tipo="ingreso"
+                        data-metodo="cuenta">
+
+                        <td>
+
+                            <div class="transaction-main">
+
+                                <div class="transaction-merchant-icon ic-green">
+
+                                    <svg class="icon">
+                                        <use href="assets/icons.svg#icon-arrow-down-left"></use>
+                                    </svg>
+
+                                </div>
+
+                                <div>
+
+                                    <strong>
+                                        Depósito Quincena
+                                    </strong>
+
+                                    <span>
+                                        Salario
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </td>
+
+                        <td>
+                            14 ago. 2026
+                        </td>
+
+                        <td>
+                            Cuenta •••• 2045
+                        </td>
+
+                        <td
+                            class="text-green fw-700 num"
+                            style="text-align:right;">
+
+                            +₡ 425,000
+
+                        </td>
+
+                    </tr>
+
+
+                    <!-- TELECABLE -->
+
+                    <tr
+                        data-tipo="gasto"
+                        data-metodo="mastercard">
+
+                        <td>
+
+                            <div class="transaction-main">
+
+                                <div class="transaction-merchant-icon ic-blue">
+
+                                    <svg class="icon">
+                                        <use href="assets/icons.svg#icon-home"></use>
+                                    </svg>
+
+                                </div>
+
+                                <div>
+
+                                    <strong>
+                                        Telecable Costa Rica
+                                    </strong>
+
+                                    <span>
+                                        Pago de servicio
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </td>
+
+                        <td>
+                            12 ago. 2026
+                        </td>
+
+                        <td>
+                            Mastercard •••• 7314
+                        </td>
+
+                        <td
+                            class="text-red fw-700 num"
+                            style="text-align:right;">
+
+                            -₡ 32,000
+
+                        </td>
+
+                    </tr>
+
+
+                    <!-- SINPE RECIBIDO -->
+
+                    <tr
+                        data-tipo="ingreso"
+                        data-metodo="sinpe">
+
+                        <td>
+
+                            <div class="transaction-main">
+
+                                <div class="transaction-merchant-icon ic-green">
+
+                                    <svg class="icon">
+                                        <use href="assets/icons.svg#icon-smartphone"></use>
+                                    </svg>
+
+                                </div>
+
+                                <div>
+
+                                    <strong>
+                                        Carlos Rodríguez
+                                    </strong>
+
+                                    <span>
+                                        SINPE recibido
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </td>
+
+                        <td>
+                            10 ago. 2026
+                        </td>
+
+                        <td>
+                            SINPE Móvil
+                        </td>
+
+                        <td
+                            class="text-green fw-700 num"
+                            style="text-align:right;">
+
+                            +₡ 25,000
+
+                        </td>
+
+                    </tr>
+
+
+                    <!-- DELTA -->
+
+                    <tr
+                        data-tipo="gasto"
+                        data-metodo="amex">
+
+                        <td>
+
+                            <div class="transaction-main">
+
+                                <div class="transaction-merchant-icon ic-yellow">
+
+                                    <svg class="icon">
+                                        <use href="assets/icons.svg#icon-credit-card"></use>
+                                    </svg>
+
+                                </div>
+
+                                <div>
+
+                                    <strong>
+                                        Estación Delta
+                                    </strong>
+
+                                    <span>
+                                        Compra con tarjeta
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </td>
+
+                        <td>
+                            8 ago. 2026
+                        </td>
+
+                        <td>
+                            Amex •••• 1098
+                        </td>
+
+                        <td
+                            class="text-red fw-700 num"
+                            style="text-align:right;">
+
+                            -₡ 35,000
+
+                        </td>
+
+                    </tr>
+
+
+                    <!-- SINPE ENVIADO -->
+
+                    <tr
+                        data-tipo="gasto"
+                        data-metodo="sinpe">
+
+                        <td>
+
+                            <div class="transaction-main">
+
+                                <div class="transaction-merchant-icon ic-teal">
+
+                                    <svg class="icon">
+                                        <use href="assets/icons.svg#icon-smartphone"></use>
+                                    </svg>
+
+                                </div>
+
+                                <div>
+
+                                    <strong>
+                                        José Vargas
+                                    </strong>
+
+                                    <span>
+                                        SINPE enviado
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </td>
+
+                        <td>
+                            7 ago. 2026
+                        </td>
+
+                        <td>
+                            SINPE Móvil
+                        </td>
+
+                        <td
+                            class="text-red fw-700 num"
+                            style="text-align:right;">
+
+                            -₡ 15,000
+
+                        </td>
+
+                    </tr>
+
+
+                    <!-- GOLLO -->
+
+                    <tr
+                        data-tipo="gasto"
+                        data-metodo="mastercard">
+
+                        <td>
+
+                            <div class="transaction-main">
+
+                                <div class="transaction-merchant-icon ic-red">
+
+                                    <svg class="icon">
+                                        <use href="assets/icons.svg#icon-credit-card"></use>
+                                    </svg>
+
+                                </div>
+
+                                <div>
+
+                                    <strong>
+                                        Gollo Alajuela
+                                    </strong>
+
+                                    <span>
+                                        Pago de cuota
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </td>
+
+                        <td>
+                            6 ago. 2026
+                        </td>
+
+                        <td>
+                            Mastercard •••• 7314
+                        </td>
+
+                        <td
+                            class="text-red fw-700 num"
+                            style="text-align:right;">
+
+                            -₡ 55,000
+
+                        </td>
+
+                    </tr>
+
+
+                    <!-- PALI -->
+
+                    <tr
+                        data-tipo="gasto"
+                        data-metodo="visa">
+
+                        <td>
+
+                            <div class="transaction-main">
+
+                                <div class="transaction-merchant-icon ic-red">
+
+                                    <svg class="icon">
+                                        <use href="assets/icons.svg#icon-cart"></use>
+                                    </svg>
+
+                                </div>
+
+                                <div>
+
+                                    <strong>
+                                        Supermercado Palí
+                                    </strong>
+
+                                    <span>
+                                        Compra con tarjeta
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </td>
+
+                        <td>
+                            5 ago. 2026
+                        </td>
+
+                        <td>
+                            Visa •••• 4821
+                        </td>
+
+                        <td
+                            class="text-red fw-700 num"
+                            style="text-align:right;">
+
+                            -₡ 42,000
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         DERECHA
+    ====================================================== -->
+
+    <aside class="transaction-side">
+
+        <!-- BOTÓN -->
+
+        <button
+            type="button"
+            class="btn btn-primary transaction-new-button"
+            id="btnNuevaTransaccion">
+
+            <svg class="icon">
+                <use href="assets/icons.svg#icon-plus-circle"></use>
+            </svg>
+
+            Nueva transacción
+
+        </button>
+
+
+        <!-- BARRA -->
+
+        <div class="card transaction-consumption-card">
+
+            <div class="transaction-consumption-header">
+
+                <div>
+
+                    <div class="card-title mb-0">
+                        Uso de ingresos
+                    </div>
+
+                    <div class="text-muted text-sm">
+                        Agosto 2026
+                    </div>
+
+                </div>
+
+                <div class="transaction-consumption-percent">
+                    62.8%
+                </div>
+
+            </div>
+
+
+            <div class="transaction-side-amount">
+
+                <span>
+                    Gastado
+                </span>
+
+                <strong class="num text-red">
+                    ₡ 534,200
+                </strong>
+
+            </div>
+
+
+            <div class="usage-bar transaction-usage-bar">
+
+                <div
+                    class="usage-progress"
+                    style="width:62.8%;">
+                </div>
+
+            </div>
+
+
+            <div class="transaction-side-footer">
+
+                <span>
+                    Disponible
+                </span>
+
+                <strong class="num text-green">
+                    ₡ 315,800
+                </strong>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+</div>
+
+
+
+        <!-- =================================================
+             RESUMEN SUPERIOR
+        ================================================== -->
+
+        <!-- =================================================
+     BARRA + NUEVA TRANSACCIÓN
+================================================== -->
+
+<div class="transaction-summary-row">
+
+    <!-- USO DE INGRESOS -->
+    <div class="card transaction-consumption-card">
+
+        <div class="transaction-consumption-header">
+
+            <div>
+                <div class="card-title mb-0">
+                    Uso de ingresos
+                </div>
+
+                <div class="text-muted text-sm">
+                    Agosto 2026
                 </div>
             </div>
+
+            <div class="transaction-consumption-percent">
+                62.8%
+            </div>
+
         </div>
-    </main>
+
+
+        <div class="transaction-summary-info">
+
+            <div>
+                <span>Gastado este mes</span>
+
+                <strong class="text-red num">
+                    ₡ 534,200
+                </strong>
+            </div>
+
+            <div>
+                <span>Disponible</span>
+
+                <strong class="text-green num">
+                    ₡ 315,800
+                </strong>
+            </div>
+
+        </div>
+
+
+        <div class="usage-bar transaction-usage-bar">
+            <div
+                class="usage-progress"
+                style="width: 62.8%;">
+            </div>
+        </div>
+
+
+        <div class="transaction-income-caption">
+            Has utilizado ₡534,200 de los ₡850,000 recibidos este mes.
+        </div>
+
+    </div>
+
+
+    <!-- BOTÓN -->
+    <button
+        type="button"
+        class="btn btn-primary transaction-new-button"
+        id="btnNuevaTransaccion">
+
+        <svg class="icon">
+            <use href="assets/icons.svg#icon-plus-circle"></use>
+        </svg>
+
+        Nueva transacción
+
+    </button>
+
 </div>
+
+
+
+            <!-- =============================================
+                 NUEVA TRANSACCIÓN
+            ============================================== -->
+
+            <div class="transaction-action-card">
+
+                <button
+                    type="button"
+                    class="btn btn-primary transaction-new-button"
+                    id="btnNuevaTransaccion"
+                >
+
+                    <svg class="icon">
+                        <use href="assets/icons.svg#icon-plus-circle"></use>
+                    </svg>
+
+                    Nueva transacción
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             HISTORIAL
+        ================================================== -->
+
+        <div class="card transaction-history-card">
+
+
+            <!-- TÍTULO -->
+
+            <div class="transaction-history-header">
+
+                <div>
+
+                    <div class="card-title mb-0">
+
+                        <svg class="icon">
+                            <use href="assets/icons.svg#icon-list"></use>
+                        </svg>
+
+                        Movimientos de agosto
+
+                    </div>
+
+
+                    <div class="text-muted text-sm">
+                        Historial sincronizado con tus medios de pago.
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 FILTROS
+            ================================================== -->
+
+            <div class="transaction-filters">
+
+
+                <!-- TODOS / INGRESOS / GASTOS -->
+
+                <div class="transaction-filter-tabs">
+
+                    <button
+                        type="button"
+                        class="transaction-filter active"
+                        data-tipo="todos"
+                    >
+                        Todos
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="transaction-filter"
+                        data-tipo="ingreso"
+                    >
+                        Ingresos
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="transaction-filter"
+                        data-tipo="gasto"
+                    >
+                        Gastos
+                    </button>
+
+                </div>
+
+
+
+                <!-- MES -->
+
+                <select
+                    class="form-control transaction-filter-select"
+                    id="filtroMes"
+                >
+
+                    <option value="agosto">
+                        Agosto 2026
+                    </option>
+
+                </select>
+
+
+
+                <!-- MÉTODO -->
+
+                <select
+                    class="form-control transaction-filter-select"
+                    id="filtroMetodo"
+                >
+
+                    <option value="todos">
+                        Todos los métodos
+                    </option>
+
+                    <option value="visa">
+                        Visa •••• 4821
+                    </option>
+
+                    <option value="mastercard">
+                        Mastercard •••• 7314
+                    </option>
+
+                    <option value="amex">
+                        American Express •••• 1098
+                    </option>
+
+                    <option value="sinpe">
+                        SINPE Móvil
+                    </option>
+
+                    <option value="cuenta">
+                        Cuenta bancaria
+                    </option>
+
+                </select>
+
+
+
+                <!-- BUSCADOR -->
+
+                <input
+                    type="text"
+                    class="form-control transaction-search"
+                    id="buscarTransaccion"
+                    placeholder="Buscar comercio o persona..."
+                >
+
+            </div>
+
+
+
+            <!-- =================================================
+                 TABLA
+            ================================================== -->
+
+            <div class="table-wrap">
+
+                <table class="transaction-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Comercio / Persona
+                            </th>
+
+                            <th>
+                                Categoría
+                            </th>
+
+                            <th>
+                                Fecha
+                            </th>
+
+                            <th>
+                                Método
+                            </th>
+
+                            <th class="transaction-status-column">
+                                Estado
+                            </th>
+
+                            <th style="text-align:right;">
+                                Monto
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="tablaTransacciones">
+
+
+                        <!-- =====================================
+                             WALMART
+                        ====================================== -->
+
+                        <tr
+                            data-tipo="gasto"
+                            data-metodo="visa"
+                        >
+
+                            <td>
+
+                                <div class="transaction-main">
+
+                                    <div class="transaction-merchant-icon ic-red">
+
+                                        <svg class="icon">
+                                            <use href="assets/icons.svg#icon-cart"></use>
+                                        </svg>
+
+                                    </div>
+
+
+                                    <div>
+
+                                        <strong>
+                                            Walmart Alajuela
+                                        </strong>
+
+                                        <span>
+                                            Compra con tarjeta
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+                                Supermercado
+                            </td>
+
+
+                            <td>
+                                14 ago. 2026
+                            </td>
+
+
+                            <td>
+                                Visa •••• 4821
+                            </td>
+
+
+                            <td class="transaction-status-column">
+
+                                <span class="status status-success">
+                                    Procesado
+                                </span>
+
+                            </td>
+
+
+                            <td
+                                class="text-red fw-700 num"
+                                style="text-align:right;"
+                            >
+                                -₡ 64,500
+                            </td>
+
+                        </tr>
+
+
+
+                        <!-- =====================================
+                             SALARIO
+                        ====================================== -->
+
+                        <tr
+                            data-tipo="ingreso"
+                            data-metodo="cuenta"
+                        >
+
+                            <td>
+
+                                <div class="transaction-main">
+
+                                    <div class="transaction-merchant-icon ic-green">
+
+                                        <svg class="icon">
+                                            <use href="assets/icons.svg#icon-arrow-down-left"></use>
+                                        </svg>
+
+                                    </div>
+
+
+                                    <div>
+
+                                        <strong>
+                                            Depósito Quincena
+                                        </strong>
+
+                                        <span>
+                                            Salario
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+                                Ingreso
+                            </td>
+
+
+                            <td>
+                                14 ago. 2026
+                            </td>
+
+
+                            <td>
+                                Cuenta •••• 2045
+                            </td>
+
+
+                            <td class="transaction-status-column">
+
+                                <span class="status status-success">
+                                    Recibido
+                                </span>
+
+                            </td>
+
+
+                            <td
+                                class="text-green fw-700 num"
+                                style="text-align:right;"
+                            >
+                                +₡ 425,000
+                            </td>
+
+                        </tr>
+
+
+
+                        <!-- =====================================
+                             TELECABLE
+                        ====================================== -->
+
+                        <tr
+                            data-tipo="gasto"
+                            data-metodo="mastercard"
+                        >
+
+                            <td>
+
+                                <div class="transaction-main">
+
+                                    <div class="transaction-merchant-icon ic-blue">
+
+                                        <svg class="icon">
+                                            <use href="assets/icons.svg#icon-home"></use>
+                                        </svg>
+
+                                    </div>
+
+
+                                    <div>
+
+                                        <strong>
+                                            Telecable Costa Rica
+                                        </strong>
+
+                                        <span>
+                                            Pago de servicio
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+                                Servicios
+                            </td>
+
+
+                            <td>
+                                12 ago. 2026
+                            </td>
+
+
+                            <td>
+                                Mastercard •••• 7314
+                            </td>
+
+
+                            <td class="transaction-status-column">
+
+                                <span class="status status-success">
+                                    Procesado
+                                </span>
+
+                            </td>
+
+
+                            <td
+                                class="text-red fw-700 num"
+                                style="text-align:right;"
+                            >
+                                -₡ 32,000
+                            </td>
+
+                        </tr>
+
+
+
+                        <!-- =====================================
+                             SINPE RECIBIDO
+                        ====================================== -->
+
+                        <tr
+                            data-tipo="ingreso"
+                            data-metodo="sinpe"
+                        >
+
+                            <td>
+
+                                <div class="transaction-main">
+
+                                    <div class="transaction-merchant-icon ic-green">
+
+                                        <svg class="icon">
+                                            <use href="assets/icons.svg#icon-smartphone"></use>
+                                        </svg>
+
+                                    </div>
+
+
+                                    <div>
+
+                                        <strong>
+                                            Carlos Rodríguez
+                                        </strong>
+
+                                        <span>
+                                            SINPE recibido
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+                                Transferencia
+                            </td>
+
+
+                            <td>
+                                10 ago. 2026
+                            </td>
+
+
+                            <td>
+                                SINPE Móvil
+                            </td>
+
+
+                            <td class="transaction-status-column">
+
+                                <span class="status status-success">
+                                    Recibido
+                                </span>
+
+                            </td>
+
+
+                            <td
+                                class="text-green fw-700 num"
+                                style="text-align:right;"
+                            >
+                                +₡ 25,000
+                            </td>
+
+                        </tr>
+
+
+
+                        <!-- =====================================
+                             DELTA
+                        ====================================== -->
+
+                        <tr
+                            data-tipo="gasto"
+                            data-metodo="amex"
+                        >
+
+                            <td>
+
+                                <div class="transaction-main">
+
+                                    <div class="transaction-merchant-icon ic-yellow">
+
+                                        <svg class="icon">
+                                            <use href="assets/icons.svg#icon-credit-card"></use>
+                                        </svg>
+
+                                    </div>
+
+
+                                    <div>
+
+                                        <strong>
+                                            Estación Delta
+                                        </strong>
+
+                                        <span>
+                                            Compra con tarjeta
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+                                Transporte
+                            </td>
+
+
+                            <td>
+                                8 ago. 2026
+                            </td>
+
+
+                            <td>
+                                American Express •••• 1098
+                            </td>
+
+
+                            <td class="transaction-status-column">
+
+                                <span class="status status-success">
+                                    Procesado
+                                </span>
+
+                            </td>
+
+
+                            <td
+                                class="text-red fw-700 num"
+                                style="text-align:right;"
+                            >
+                                -₡ 35,000
+                            </td>
+
+                        </tr>
+
+
+
+                        <!-- =====================================
+                             SINPE ENVIADO
+                        ====================================== -->
+
+                        <tr
+                            data-tipo="gasto"
+                            data-metodo="sinpe"
+                        >
+
+                            <td>
+
+                                <div class="transaction-main">
+
+                                    <div class="transaction-merchant-icon ic-teal">
+
+                                        <svg class="icon">
+                                            <use href="assets/icons.svg#icon-smartphone"></use>
+                                        </svg>
+
+                                    </div>
+
+
+                                    <div>
+
+                                        <strong>
+                                            José Vargas
+                                        </strong>
+
+                                        <span>
+                                            SINPE enviado
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+                                Transferencia
+                            </td>
+
+
+                            <td>
+                                7 ago. 2026
+                            </td>
+
+
+                            <td>
+                                SINPE Móvil
+                            </td>
+
+
+                            <td class="transaction-status-column">
+
+                                <span class="status status-info">
+                                    Enviado
+                                </span>
+
+                            </td>
+
+
+                            <td
+                                class="text-red fw-700 num"
+                                style="text-align:right;"
+                            >
+                                -₡ 15,000
+                            </td>
+
+                        </tr>
+
+
+
+                        <!-- =====================================
+                             GOLLO
+                        ====================================== -->
+
+                        <tr
+                            data-tipo="gasto"
+                            data-metodo="mastercard"
+                        >
+
+                            <td>
+
+                                <div class="transaction-main">
+
+                                    <div class="transaction-merchant-icon ic-red">
+
+                                        <svg class="icon">
+                                            <use href="assets/icons.svg#icon-credit-card"></use>
+                                        </svg>
+
+                                    </div>
+
+
+                                    <div>
+
+                                        <strong>
+                                            Gollo Alajuela
+                                        </strong>
+
+                                        <span>
+                                            Pago de cuota
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+                                Deudas
+                            </td>
+
+
+                            <td>
+                                6 ago. 2026
+                            </td>
+
+
+                            <td>
+                                Mastercard •••• 7314
+                            </td>
+
+
+                            <td class="transaction-status-column">
+
+                                <span class="status status-success">
+                                    Procesado
+                                </span>
+
+                            </td>
+
+
+                            <td
+                                class="text-red fw-700 num"
+                                style="text-align:right;"
+                            >
+                                -₡ 55,000
+                            </td>
+
+                        </tr>
+
+
+
+                        <!-- =====================================
+                             PALI
+                        ====================================== -->
+
+                        <tr
+                            data-tipo="gasto"
+                            data-metodo="visa"
+                        >
+
+                            <td>
+
+                                <div class="transaction-main">
+
+                                    <div class="transaction-merchant-icon ic-red">
+
+                                        <svg class="icon">
+                                            <use href="assets/icons.svg#icon-cart"></use>
+                                        </svg>
+
+                                    </div>
+
+
+                                    <div>
+
+                                        <strong>
+                                            Supermercado Palí
+                                        </strong>
+
+                                        <span>
+                                            Compra con tarjeta
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+                                Alimentación
+                            </td>
+
+
+                            <td>
+                                5 ago. 2026
+                            </td>
+
+
+                            <td>
+                                Visa •••• 4821
+                            </td>
+
+
+                            <td class="transaction-status-column">
+
+                                <span class="status status-success">
+                                    Procesado
+                                </span>
+
+                            </td>
+
+
+                            <td
+                                class="text-red fw-700 num"
+                                style="text-align:right;"
+                            >
+                                -₡ 42,000
+                            </td>
+
+                        </tr>
+
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+
 <script src="js/app.js"></script>
+
 </body>
+
 </html>
