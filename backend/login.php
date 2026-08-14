@@ -5,36 +5,52 @@ header("Content-Type: application/json; charset=UTF-8");
 require_once "conexion.php";
 
 
+// =====================================================
+// RECIBIR DATOS
+// =====================================================
+
 $datos = json_decode(
     file_get_contents("php://input"),
     true
 );
 
 
-$correo = strtolower(
-    trim($datos["correo"] ?? "")
+// Nombre de usuario
+$usuarioLogin = strtolower(
+    trim($datos["usuario"] ?? "")
 );
 
+
+// Contraseña
 $clave = $datos["clave"] ?? "";
 
 
-if ($correo === "" || $clave === "") {
+// =====================================================
+// VALIDAR CAMPOS
+// =====================================================
+
+if ($usuarioLogin === "" || $clave === "") {
 
     echo json_encode([
         "ok" => false,
         "tipo" => "campos",
-        "mensaje" => "Debe ingresar correo y contraseña."
+        "mensaje" => "Debe ingresar usuario y contraseña."
     ]);
 
     exit;
 }
 
 
-// Buscar usuario por correo
+// =====================================================
+// BUSCAR USUARIO
+// =====================================================
+
 $consulta = $conexion->prepare(
     "SELECT
         id,
         nombre,
+        apellidos,
+        usuario,
         correo,
         clave,
         balance,
@@ -43,30 +59,42 @@ $consulta = $conexion->prepare(
         deudas,
         ahorro
      FROM usuarios
-     WHERE correo = ?"
+     WHERE usuario = ?"
 );
 
 
-$consulta->execute([$correo]);
+$consulta->execute([
+    $usuarioLogin
+]);
+
 
 $usuario = $consulta->fetch();
 
 
-// La cuenta no existe
+// =====================================================
+// CUENTA NO EXISTE
+// =====================================================
+
 if (!$usuario) {
 
     echo json_encode([
         "ok" => false,
         "tipo" => "cuenta",
-        "mensaje" => "La cuenta no existe."
+        "mensaje" => "El usuario no existe."
     ]);
 
     exit;
 }
 
 
-// Contraseña incorrecta
-if (!password_verify($clave, $usuario["clave"])) {
+// =====================================================
+// CONTRASEÑA INCORRECTA
+// =====================================================
+
+if (!password_verify(
+    $clave,
+    $usuario["clave"]
+)) {
 
     echo json_encode([
         "ok" => false,
@@ -78,9 +106,16 @@ if (!password_verify($clave, $usuario["clave"])) {
 }
 
 
-// No devolver el hash de contraseña
+// =====================================================
+// NO DEVOLVER CONTRASEÑA
+// =====================================================
+
 unset($usuario["clave"]);
 
+
+// =====================================================
+// LOGIN CORRECTO
+// =====================================================
 
 echo json_encode([
     "ok" => true,

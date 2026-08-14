@@ -34,16 +34,19 @@
 
           <form id="formLogin">
             <div class="form-group">
-              <label class="form-label">Correo Electronico</label>
+              <label class="form-label">Nombre de Usuario</label>
+
               <div class="control-icon">
                 <svg class="icon">
-                  <use href="assets/icons.svg#icon-mail"></use>
+                  <use href="assets/icons.svg#icon-user"></use>
                 </svg>
+
                 <input
-                id="loginCorreo"
-                  type="email"
+                  id="loginUsuario"
+                  type="text"
                   class="form-control"
-                  placeholder="Tu Correo Electronico"
+                  placeholder="Ingrese su usuario"
+                  autocomplete="username"
                   required
                 />
               </div>
