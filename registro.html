@@ -9,176 +9,224 @@
 
 <body>
 
-<div class="auth-page">
+<div class="auth-hero">
 
-    <div class="auth-hero">
-
-        <div class="mark">
-            <svg class="icon">
-                <use href="assets/icons.svg#icon-user"></use>
-            </svg>
-        </div>
-
-        <h1>Crea tu cuenta</h1>
-
-        <p>
-            Empieza a organizar tus ingresos, gastos,
-            deudas y metas personales desde una sola plataforma.
-        </p>
-
-        <ul class="value-props">
-            <li>Información organizada.</li>
-            <li>Control financiero personal.</li>
-            <li>Seguimiento de metas.</li>
-        </ul>
-
+    <div class="mark">
+        <svg class="icon">
+            <use href="assets/icons.svg#icon-user"></use>
+        </svg>
     </div>
 
+    <h1>Crea tu cuenta</h1>
 
-    <div class="auth-panel auth-panel-register">
+    <p>
+        Empieza a organizar tus ingresos, gastos,
+        deudas y metas personales desde una sola plataforma.
+    </p>
 
-        <div class="auth-card">
+    <ul class="value-props">
+        <li>Información organizada.</li>
+        <li>Control financiero personal.</li>
+        <li>Seguimiento de metas.</li>
+    </ul>
 
-            <div class="logo">FinTrack</div>
+</div>
 
-            <h2>Crear usuario</h2>
 
-            <div class="sub">
-                Completa tus datos para registrarte
+<div class="auth-panel auth-panel-register">
+
+    <div class="auth-card">
+
+        <div class="logo">FinTrack</div>
+
+        <h2>Crear usuario</h2>
+
+        <div class="sub">
+            Completa tus datos para registrarte
+        </div>
+
+
+        <form id="formRegistro">
+
+
+            <!-- NOMBRE -->
+            <div class="form-group">
+
+                <label
+                    class="form-label"
+                    for="registroNombre">
+
+                    Nombre
+
+                </label>
+
+                <input
+                    id="registroNombre"
+                    type="text"
+                    class="form-control"
+                    placeholder="Ingrese tu nombre"
+                    required
+                />
+
             </div>
 
 
+            <!-- APELLIDOS -->
             <div class="form-group">
-  <label class="form-label">
-    Nombre
-  </label>
 
-  <div class="control-icon">
-    <svg class="icon">
-      <use href="assets/icons.svg#icon-user"></use>
-    </svg>
+                <label
+                    class="form-label"
+                    for="registroApellidos">
 
-    <input
-      id="registroNombre"
-      type="text"
-      class="form-control"
-      placeholder="Ingrese tu nombre"
-      required
-    />
-  </div>
-</div>
+                    Apellidos
 
-<div class="form-group">
-  <label class="form-label">
-    Apellidos
-  </label>
+                </label>
 
-  <div class="control-icon">
-    <svg class="icon">
-      <use href="assets/icons.svg#icon-user"></use>
-    </svg>
+                <input
+                    id="registroApellidos"
+                    type="text"
+                    class="form-control"
+                    placeholder="Ingrese tus apellidos"
+                    required
+                />
 
-    <input
-      id="registroApellidos"
-      type="text"
-      class="form-control"
-      placeholder="Ingrese tus apellidos"
-      required
-    />
-  </div>
-</div>
+            </div>
+
+
+            <!-- NOMBRE DE USUARIO -->
+            <div class="form-group">
+
+                <label
+                    class="form-label"
+                    for="registroUsuario">
+
+                    Nombre de Usuario
+
+                </label>
+
+                <input
+                    id="registroUsuario"
+                    type="text"
+                    class="form-control"
+                    placeholder="Ej. leimanwu26"
+                    minlength="4"
+                    maxlength="50"
+                    pattern="[A-Za-z0-9]+"
+                    title="El usuario solo puede contener letras y números"
+                    required
+                />
+
+                <div
+                    id="usuarioMensaje"
+                    class="text-sm"
+                    style="margin-top: 6px;">
+                </div>
+
+                <div
+                    id="usuarioSugerencias"
+                    style="margin-top: 6px;">
+                </div>
+
+            </div>
+
+
+            <!-- CORREO -->
+            <div class="form-group">
+
+                <label
+                    class="form-label"
+                    for="registroCorreo">
+
+                    Correo Electrónico
+
+                </label>
+
+                <input
+                    id="registroCorreo"
+                    type="email"
+                    class="form-control"
+                    placeholder="Su correo electrónico"
+                    required
+                />
+
+            </div>
+
+
+            <!-- CONTRASEÑAS -->
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label
+                        class="form-label"
+                        for="registroClave">
+
+                        Contraseña
+
+                    </label>
+
+                    <input
+                        id="registroClave"
+                        type="password"
+                        class="form-control"
+                        placeholder="Mínimo 8 caracteres"
+                        minlength="8"
+                        required
+                    />
+
+                </div>
 
 
                 <div class="form-group">
 
                     <label
                         class="form-label"
-                        for="registroCorreo">
+                        for="registroConfirmar">
 
-                        Correo Electronico
+                        Confirmar
 
                     </label>
 
                     <input
-                        id="registroCorreo"
-                        type="email"
+                        id="registroConfirmar"
+                        type="password"
                         class="form-control"
-                        placeholder="Su correo electronico"
-                        required>
+                        placeholder="Repite la contraseña"
+                        minlength="8"
+                        required
+                    />
 
                 </div>
-`
-
-                <div class="form-row">
-
-                    <div class="form-group">
-
-                        <label
-                            class="form-label"
-                            for="registroClave">
-
-                            Contraseña
-
-                        </label>
-
-                        <input
-                            id="registroClave"
-                            type="password"
-                            class="form-control"
-                            placeholder="Mínimo 8 caracteres"
-                            required>
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label
-                            class="form-label"
-                            for="registroConfirmar">
-
-                            Confirmar
-
-                        </label>
-
-                        <input
-                            id="registroConfirmar"
-                            type="password"
-                            class="form-control"
-                            placeholder="Repite la contraseña"
-                            required>
-
-                    </div>
-
-                </div>
-
-
-                <div
-                    id="registroMensaje"
-                    class="form-message">
-                </div>
-
-
-                <button
-                    type="submit"
-                    class="btn btn-primary btn-full">
-
-                    Crear Cuenta
-
-                </button>
-
-            </form>
-
-
-            <div class="auth-footer">
-
-                ¿Ya tienes una cuenta?
-
-                <a href="index.html">
-                    Iniciar sesión
-                </a>
 
             </div>
+
+
+            <!-- MENSAJE -->
+            <div
+                id="registroMensaje"
+                class="form-message">
+            </div>
+
+
+            <!-- BOTÓN -->
+            <button
+                type="submit"
+                class="btn btn-primary btn-full">
+
+                Crear Cuenta
+
+            </button>
+
+        </form>
+
+
+        <div class="auth-footer">
+
+            ¿Ya tienes una cuenta?
+
+            <a href="index.html">
+                Iniciar sesión
+            </a>
 
         </div>
 
