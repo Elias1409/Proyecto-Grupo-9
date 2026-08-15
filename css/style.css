@@ -3296,3 +3296,262 @@ tbody tr:hover td {
     }
 
 }
+
+/* =====================================================
+   DEUDAS
+===================================================== */
+
+.debt-top {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+
+    gap: 18px;
+
+    margin-bottom: 28px;
+}
+
+
+.debt-summary-group {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+
+    gap: 16px;
+
+    flex: 1;
+}
+
+
+.debt-summary-card {
+    margin: 0;
+}
+
+
+.debt-summary-card .val {
+    margin-top: 5px;
+}
+
+
+/* BOTONES A LA DERECHA, UNO DEBAJO DEL OTRO */
+
+.debt-actions {
+    width: 190px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    gap: 10px;
+
+    flex-shrink: 0;
+}
+
+
+.debt-actions .btn {
+    width: 100%;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    white-space: nowrap;
+}
+
+
+.debt-actions .icon {
+    width: 16px;
+    height: 16px;
+}
+
+
+/* =====================================================
+   LISTADO DE DEUDAS
+===================================================== */
+
+.debt-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 16px;
+}
+
+
+.debt-card {
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow-sm);
+
+    padding: 22px;
+}
+
+
+.debt-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: 15px;
+
+    margin-bottom: 18px;
+}
+
+
+.debt-card-title {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+.debt-icon {
+    width: 38px;
+    height: 38px;
+
+    border-radius: 9px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--accent-wash);
+    color: var(--primary);
+}
+
+
+.debt-icon .icon {
+    width: 17px;
+    height: 17px;
+}
+
+
+.debt-card-title strong {
+    display: block;
+
+    font-size: 14px;
+}
+
+
+.debt-card-title span {
+    display: block;
+
+    margin-top: 2px;
+
+    font-size: 12px;
+
+    color: var(--ink-700);
+}
+
+
+/* DATOS DE LA DEUDA */
+
+.debt-data {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+
+.debt-data-item {
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+
+.debt-data-item span {
+    font-size: 12px;
+
+    color: var(--ink-700);
+}
+
+
+.debt-data-item strong {
+    font-size: 15px;
+}
+
+
+/* CUOTAS */
+
+.debt-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: 18px;
+
+    padding-top: 14px;
+
+    border-top: 1px solid var(--border);
+}
+
+
+.debt-installments {
+    font-size: 12px;
+
+    color: var(--ink-700);
+}
+
+
+.debt-installments strong {
+    color: var(--ink-900);
+}
+
+
+/* =====================================================
+   RESPONSIVE DEUDAS
+===================================================== */
+
+@media (max-width: 1000px) {
+
+    .debt-top {
+        flex-direction: column;
+    }
+
+
+    .debt-actions {
+        width: 100%;
+
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+
+
+    .debt-actions .btn {
+        width: auto;
+
+        min-width: 170px;
+    }
+
+}
+
+@media (max-width: 700px) {
+
+    .debt-summary-group {
+        grid-template-columns: 1fr;
+    }
+
+
+    .debt-actions {
+        flex-direction: column;
+    }
+
+
+    .debt-actions .btn {
+        width: 100%;
+    }
+
+
+    .debt-data {
+        grid-template-columns: 1fr;
+    }
+
+}

@@ -1,118 +1,721 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deudas – FinTrack Web</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-<div class="layout">
+  <head>
+    <meta charset="UTF-8" />
 
-    <!-- Sidebar -->
-    <aside class="sidebar">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Gestión de Deudas – FinTrack</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <div class="layout">
+      <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+      <aside class="sidebar">
         <div class="sidebar-logo">
-            <div class="mark"><svg class="icon"><use href="assets/icons.svg#icon-bar-chart"></use></svg></div>
-            <div>
-                <div class="brand">FinTrack</div>
-                <span class="tagline">Finanzas personales</span>
-            </div>
+          <div class="mark">
+            <svg class="icon">
+              <use href="assets/icons.svg#icon-bar-chart"></use>
+            </svg>
+          </div>
+
+          <div>
+            <div class="brand">FinTrack</div>
+
+            <span class="tagline"> Finanzas personales </span>
+          </div>
         </div>
+
         <nav class="sidebar-nav">
-            <div class="nav-section">
-                <span class="nav-label">Principal</span>
-                <a href="dashboard.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-home"></use></svg> Dashboard</a>
-                <a href="transacciones.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-exchange"></use></svg> Transacciones</a>
-                <a href="deudas.html" class="nav-item active"><svg class="icon"><use href="assets/icons.svg#icon-credit-card"></use></svg> Deudas</a>
-            </div>
-            <div class="nav-section">
-                <span class="nav-label">Análisis</span>
-                <a href="reportes.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-bar-chart"></use></svg> Reportes</a>
-                <a href="metas.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-target"></use></svg> Metas de ahorro</a>
-            </div>
-            <div class="nav-section">
-                <span class="nav-label">Cuenta</span>
-                <a href="perfil.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-user"></use></svg> Mi perfil</a>
-                <a href="index.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-log-out"></use></svg> Cerrar sesión</a>
-            </div>
+          <!-- PRINCIPAL -->
+
+          <div class="nav-section">
+            <span class="nav-label"> Principal </span>
+
+            <a href="dashboard.html" class="nav-item">
+              <svg class="icon">
+                <use href="assets/icons.svg#icon-home"></use>
+              </svg>
+
+              Dashboard
+            </a>
+
+            <a href="transacciones.html" class="nav-item">
+              <svg class="icon">
+                <use href="assets/icons.svg#icon-exchange"></use>
+              </svg>
+
+              Transacciones
+            </a>
+
+            <a href="deudas.html" class="nav-item active">
+              <svg class="icon">
+                <use href="assets/icons.svg#icon-credit-card"></use>
+              </svg>
+
+              Deudas
+            </a>
+          </div>
+
+          <!-- ANÁLISIS -->
+
+          <div class="nav-section">
+            <span class="nav-label"> Análisis </span>
+
+            <a href="reportes.html" class="nav-item">
+              <svg class="icon">
+                <use href="assets/icons.svg#icon-bar-chart"></use>
+              </svg>
+
+              Reportes
+            </a>
+
+            <a href="metas.html" class="nav-item">
+              <svg class="icon">
+                <use href="assets/icons.svg#icon-target"></use>
+              </svg>
+
+              Metas de ahorro
+            </a>
+          </div>
+
+          <!-- CUENTA -->
+
+          <div class="nav-section">
+            <span class="nav-label"> Cuenta </span>
+
+            <a href="perfil.html" class="nav-item">
+              <svg class="icon">
+                <use href="assets/icons.svg#icon-user"></use>
+              </svg>
+
+              Mi perfil
+            </a>
+
+            <a href="index.html" class="nav-item logout-link">
+              <svg class="icon">
+                <use href="assets/icons.svg#icon-log-out"></use>
+              </svg>
+
+              Cerrar sesión
+            </a>
+          </div>
         </nav>
+
+        <!-- USUARIO -->
+
         <div class="sidebar-user">
+          <div class="avatar" id="avatarUsuario">ER</div>
 
-    <div class="avatar usuario-avatar">ER</div>
+          <div>
+            <div class="s-name" id="nombreUsuario">Elias Rodriguez</div>
 
-<div>
-    <div class="s-name usuario-nombre">Elias Rodriguez</div>
-    <div class="s-email usuario-correo">erodriguez60177@ufide.ac.cr</div>
-</div>
+            <div class="s-email" id="correoUsuario">
+              erodriguez60177@ufide.ac.cr
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- =====================================================
+         CONTENIDO
+    ====================================================== -->
+
+      <main class="main">
+        <!-- =================================================
+             ENCABEZADO
+        ================================================== -->
+
+        <div class="page-header">
+          <div>
+            <h2>Gestión de Deudas</h2>
+
+            <div class="sub">
+              Administra tus deudas, cuotas y próximos pagos.
+            </div>
+          </div>
+        </div>
+
+        <!-- =================================================
+             RESUMEN + BOTONES
+        ================================================== -->
+
+        <div class="debt-top">
+          <!-- =============================================
+                 RESUMEN
+            ============================================== -->
+
+          <div class="debt-summary-group">
+            <!-- TOTAL PENDIENTE -->
+
+            <div class="stat-card debt-summary-card">
+              <div class="lbl">Total pendiente</div>
+
+              <div class="val num" id="totalDeudasPendientes">₡ 1,245,000</div>
+
+              <div class="chg">
+                <span id="cantidadDeudasActivas"> 3 </span>
+
+                deudas activas
+              </div>
+            </div>
+
+            <!-- PRÓXIMO PAGO -->
+
+            <div class="stat-card debt-summary-card">
+              <div class="lbl">Próximo pago</div>
+
+              <div class="val num text-red" id="proximoPagoMonto">₡ 55,000</div>
+
+              <div class="chg">
+                <strong id="proximoPagoEntidad"> Gollo </strong>
+
+                ·
+
+                <span id="proximoPagoFecha"> 17 ago. 2026 </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- =============================================
+                 BOTONES
+            ============================================== -->
+
+          <div class="debt-actions">
+            <!-- NUEVA DEUDA -->
+
+            <button type="button" class="btn btn-primary" id="btnNuevaDeuda">
+              <svg class="icon">
+                <use href="assets/icons.svg#icon-plus-circle"></use>
+              </svg>
+
+              Nueva deuda
+            </button>
+
+            <!-- REGISTRAR PAGO -->
+
+            <button type="button" class="btn btn-primary" id="btnRegistrarPago">
+              <svg class="icon">
+                <use href="assets/icons.svg#icon-credit-card"></use>
+              </svg>
+
+              Registrar pago
+            </button>
+          </div>
+        </div>
+
+        <!-- =================================================
+             MIS DEUDAS
+        ================================================== -->
+
+        <div class="section-header">
+          <div>
+            <h3>Mis deudas</h3>
+
+            <div class="text-muted text-sm">
+              Consulta tus saldos pendientes y próximos vencimientos.
+            </div>
+          </div>
+        </div>
+
+        <!-- =================================================
+             LISTADO
+        ================================================== -->
+
+        <div class="debt-list" id="listaDeudas">
+          <!-- =================================================
+                 DEUDA 1 - GOLLO
+            ================================================== -->
+
+          <div class="debt-card" data-deuda-id="1">
+            <div class="debt-card-header">
+              <div class="debt-card-title">
+                <div class="debt-icon">
+                  <svg class="icon">
+                    <use href="assets/icons.svg#icon-credit-card"></use>
+                  </svg>
+                </div>
+
+                <div>
+                  <strong> Gollo </strong>
+
+                  <span> Televisor Samsung </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- DATOS -->
+
+            <div class="debt-data">
+              <!-- SALDO -->
+
+              <div class="debt-data-item">
+                <span> Saldo pendiente </span>
+
+                <strong class="num" id="saldoDeuda1"> ₡ 275,000 </strong>
+              </div>
+
+              <!-- CUOTA -->
+
+              <div class="debt-data-item">
+                <span> Próxima cuota </span>
+
+                <strong class="num"> ₡ 55,000 </strong>
+              </div>
+
+              <!-- VENCIMIENTO -->
+
+              <div class="debt-data-item">
+                <span> Próximo vencimiento </span>
+
+                <strong> 17 ago. 2026 </strong>
+              </div>
+            </div>
+
+            <!-- PIE -->
+
+            <div class="debt-footer">
+              <div class="debt-installments">
+                <strong id="cuotasPagadas1"> 5 </strong>
+
+                de
+
+                <strong id="cuotasTotales1"> 10 </strong>
+
+                cuotas pagadas
+              </div>
+
+              <button
+                type="button"
+                class="btn btn-ghost btn-sm"
+                data-ver-deuda="1"
+              >
+                Ver detalle
+              </button>
+            </div>
+          </div>
+
+          <!-- =================================================
+                 DEUDA 2 - BAC
+            ================================================== -->
+
+          <div class="debt-card" data-deuda-id="2">
+            <div class="debt-card-header">
+              <div class="debt-card-title">
+                <div class="debt-icon">
+                  <svg class="icon">
+                    <use href="assets/icons.svg#icon-credit-card"></use>
+                  </svg>
+                </div>
+
+                <div>
+                  <strong> BAC Credomatic </strong>
+
+                  <span> Tarjeta de crédito •••• 4821 </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="debt-data">
+              <div class="debt-data-item">
+                <span> Saldo pendiente </span>
+
+                <strong class="num" id="saldoDeuda2"> ₡ 184,500 </strong>
+              </div>
+
+              <div class="debt-data-item">
+                <span> Pago mínimo </span>
+
+                <strong class="num"> ₡ 25,000 </strong>
+              </div>
+
+              <div class="debt-data-item">
+                <span> Próximo vencimiento </span>
+
+                <strong> 22 ago. 2026 </strong>
+              </div>
+            </div>
+
+            <div class="debt-footer">
+              <div class="debt-installments">Tarjeta de crédito</div>
+
+              <button
+                type="button"
+                class="btn btn-ghost btn-sm"
+                data-ver-deuda="2"
+              >
+                Ver detalle
+              </button>
+            </div>
+          </div>
+
+          <!-- =================================================
+                 DEUDA 3 - PRÉSTAMO
+            ================================================== -->
+
+          <div class="debt-card" data-deuda-id="3">
+            <div class="debt-card-header">
+              <div class="debt-card-title">
+                <div class="debt-icon">
+                  <svg class="icon">
+                    <use href="assets/icons.svg#icon-home"></use>
+                  </svg>
+                </div>
+
+                <div>
+                  <strong> Préstamo Personal </strong>
+
+                  <span> Financiamiento personal </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="debt-data">
+              <div class="debt-data-item">
+                <span> Saldo pendiente </span>
+
+                <strong class="num" id="saldoDeuda3"> ₡ 785,500 </strong>
+              </div>
+
+              <div class="debt-data-item">
+                <span> Próxima cuota </span>
+
+                <strong class="num"> ₡ 85,000 </strong>
+              </div>
+
+              <div class="debt-data-item">
+                <span> Próximo vencimiento </span>
+
+                <strong> 30 ago. 2026 </strong>
+              </div>
+            </div>
+
+            <div class="debt-footer">
+              <div class="debt-installments">
+                <strong id="cuotasPagadas3"> 7 </strong>
+
+                de
+
+                <strong id="cuotasTotales3"> 18 </strong>
+
+                cuotas pagadas
+              </div>
+
+              <button
+                type="button"
+                class="btn btn-ghost btn-sm"
+                data-ver-deuda="3"
+              >
+                Ver detalle
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <!-- =====================================================
+     MODAL - NUEVA DEUDA
+===================================================== -->
+
+<div class="fintrack-modal" id="modalNuevaDeuda">
+
+    <div class="fintrack-modal-content">
+
+        <div class="fintrack-modal-header">
+
+            <div>
+                <h3>Nueva deuda</h3>
+                <p>Registra una nueva deuda.</p>
+            </div>
+
+            <button
+                type="button"
+                class="modal-close"
+                data-cerrar-modal="modalNuevaDeuda">
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="formNuevaDeuda">
+
+            <div class="form-group">
+                <label class="form-label">
+                    Entidad
+                </label>
+
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Ej: Gollo"
+                    required
+                >
+            </div>
+
+
+            <div class="form-group">
+                <label class="form-label">
+                    Descripción
+                </label>
+
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Ej: Televisor Samsung"
+                    required
+                >
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label class="form-label">
+                        Saldo pendiente
+                    </label>
+
+                    <input
+                        type="number"
+                        class="form-control"
+                        placeholder="0"
+                        required
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label class="form-label">
+                        Cuota mensual
+                    </label>
+
+                    <input
+                        type="number"
+                        class="form-control"
+                        placeholder="0"
+                        required
+                    >
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+                <label class="form-label">
+                    Próximo vencimiento
+                </label>
+
+                <input
+                    type="date"
+                    class="form-control"
+                    required
+                >
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="btn btn-outline"
+                    data-cerrar-modal="modalNuevaDeuda">
+                    Cancelar
+                </button>
+
+                <button
+                    type="submit"
+                    class="btn btn-primary">
+                    Guardar deuda
+                </button>
+
+            </div>
+
+        </form>
+
     </div>
 
 </div>
-    </aside>
 
-    <main class="main">
-        <div class="page-header">
+
+<!-- =====================================================
+     MODAL - REGISTRAR PAGO
+===================================================== -->
+
+<div class="fintrack-modal" id="modalRegistrarPago">
+
+    <div class="fintrack-modal-content">
+
+        <div class="fintrack-modal-header">
+
             <div>
-                <h2>Gestión de deudas</h2>
-                <div class="sub">Control de cuentas pendientes</div>
-            </div>
-        </div>
-
-        <div class="grid-65">
-            <!-- Formulario básico -->
-            <div class="card">
-                <div class="card-title"><svg class="icon"><use href="assets/icons.svg#icon-plus-circle"></use></svg> Nueva Deuda</div>
-                <form action="#">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label">Tipo</label>
-                            <select class="form-control" required>
-                                <option value="debo">Yo debo</option>
-                                <option value="me_deben">Me deben</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Monto (₡)</label>
-                            <input type="number" class="form-control" placeholder="0" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Persona / Entidad</label>
-                        <input type="text" class="form-control" placeholder="Ej: Gollo, Juan Pérez..." required>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-full">Guardar Registro</button>
-                </form>
+                <h3>Registrar pago</h3>
+                <p>Selecciona la deuda que deseas pagar.</p>
             </div>
 
-            <!-- Tabla básica -->
-            <div class="card">
-                <div class="card-title"><svg class="icon"><use href="assets/icons.svg#icon-list"></use></svg> Cuentas Pendientes</div>
-                <div class="table-wrap">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Contacto</th>
-                                <th>Tipo</th>
-                                <th style="text-align:right;">Monto</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Gollo</strong></td>
-                                <td><span class="badge badge-red">Yo debo</span></td>
-                                <td style="text-align:right;" class="text-red fw-700 num">₡ 45,000</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Carlos Alvarado</strong></td>
-                                <td><span class="badge badge-green">Me deben</span></td>
-                                <td style="text-align:right;" class="text-green fw-700 num">₡ 30,000</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            <button
+                type="button"
+                class="modal-close"
+                data-cerrar-modal="modalRegistrarPago">
+                ×
+            </button>
+
         </div>
-    </main>
+
+
+        <form id="formRegistrarPago">
+
+            <div class="form-group">
+
+                <label class="form-label">
+                    Deuda
+                </label>
+
+                <select
+                    class="form-control"
+                    id="seleccionarDeudaPago"
+                    required>
+
+                    <option value="">
+                        Selecciona una deuda
+                    </option>
+
+                    <option value="gollo">
+                        Gollo — ₡275,000
+                    </option>
+
+                    <option value="bac">
+                        BAC Credomatic — ₡184,500
+                    </option>
+
+                    <option value="prestamo">
+                        Préstamo Personal — ₡785,500
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label class="form-label">
+                    Monto a pagar
+                </label>
+
+                <input
+                    type="number"
+                    class="form-control"
+                    id="montoPago"
+                    placeholder="0"
+                    required
+                >
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="btn btn-outline"
+                    data-cerrar-modal="modalRegistrarPago">
+                    Cancelar
+                </button>
+
+                <button
+                    type="submit"
+                    class="btn btn-primary">
+                    Registrar pago
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
 </div>
-<script src="js/app.js"></script>
-</body>
+
+
+<!-- =====================================================
+     MODAL - VER DETALLE
+===================================================== -->
+
+<div class="fintrack-modal" id="modalDetalleDeuda">
+
+    <div class="fintrack-modal-content">
+
+        <div class="fintrack-modal-header">
+
+            <div>
+                <h3 id="detalleDeudaTitulo">
+                    Detalle de deuda
+                </h3>
+
+                <p id="detalleDeudaDescripcion"></p>
+            </div>
+
+            <button
+                type="button"
+                class="modal-close"
+                data-cerrar-modal="modalDetalleDeuda">
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="debt-detail-grid">
+
+            <div>
+                <span>Saldo pendiente</span>
+
+                <strong
+                    class="num"
+                    id="detalleSaldo">
+                    ₡0
+                </strong>
+            </div>
+
+
+            <div>
+                <span>Cuota</span>
+
+                <strong
+                    class="num"
+                    id="detalleCuota">
+                    ₡0
+                </strong>
+            </div>
+
+
+            <div>
+                <span>Próximo vencimiento</span>
+
+                <strong id="detalleFecha">
+                    —
+                </strong>
+            </div>
+
+
+            <div>
+                <span>Cuotas pagadas</span>
+
+                <strong id="detalleCuotas">
+                    —
+                </strong>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+    <script src="js/app.js"></script>
+  </body>
 </html>

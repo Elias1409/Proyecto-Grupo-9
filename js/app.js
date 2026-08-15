@@ -902,3 +902,312 @@ if (buscarTransaccion) {
     });
   });
 });
+// =====================================================
+// BOTONES DE DEUDAS
+// =====================================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+
+        const btnNuevaDeuda =
+            document.getElementById(
+                "btnNuevaDeuda"
+            );
+
+
+        const btnRegistrarPago =
+            document.getElementById(
+                "btnRegistrarPago"
+            );
+
+
+
+        // =================================================
+        // ABRIR MODAL
+        // =================================================
+
+        function abrirModal(id) {
+
+            const modal =
+                document.getElementById(id);
+
+            if (modal) {
+
+                modal.classList.add(
+                    "abierto"
+                );
+
+            }
+
+        }
+
+
+
+        // =================================================
+        // CERRAR MODAL
+        // =================================================
+
+        function cerrarModal(id) {
+
+            const modal =
+                document.getElementById(id);
+
+            if (modal) {
+
+                modal.classList.remove(
+                    "abierto"
+                );
+
+            }
+
+        }
+
+
+
+        // =================================================
+        // NUEVA DEUDA
+        // =================================================
+
+        if (btnNuevaDeuda) {
+
+            btnNuevaDeuda.addEventListener(
+                "click",
+                function () {
+
+                    abrirModal(
+                        "modalNuevaDeuda"
+                    );
+
+                }
+            );
+
+        }
+
+
+
+        // =================================================
+        // REGISTRAR PAGO
+        // =================================================
+
+        if (btnRegistrarPago) {
+
+            btnRegistrarPago.addEventListener(
+                "click",
+                function () {
+
+                    abrirModal(
+                        "modalRegistrarPago"
+                    );
+
+                }
+            );
+
+        }
+
+
+
+        // =================================================
+        // CERRAR MODALES
+        // =================================================
+
+        document
+            .querySelectorAll(
+                "[data-cerrar-modal]"
+            )
+            .forEach(
+                function (boton) {
+
+                    boton.addEventListener(
+                        "click",
+                        function () {
+
+                            cerrarModal(
+                                boton.dataset
+                                    .cerrarModal
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
+
+
+        // =================================================
+        // DATOS DE EJEMPLO PARA VER DETALLE
+        // =================================================
+
+        const detallesDeudas = {
+
+            1: {
+                nombre: "Gollo",
+                descripcion: "Televisor Samsung",
+                saldo: "₡ 275,000",
+                cuota: "₡ 55,000",
+                fecha: "17 ago. 2026",
+                cuotas: "5 de 10"
+            },
+
+
+            2: {
+                nombre: "BAC Credomatic",
+                descripcion:
+                    "Tarjeta de crédito •••• 4821",
+                saldo: "₡ 184,500",
+                cuota: "₡ 25,000",
+                fecha: "22 ago. 2026",
+                cuotas: "Pago mínimo"
+            },
+
+
+            3: {
+                nombre:
+                    "Préstamo Personal",
+                descripcion:
+                    "Financiamiento personal",
+                saldo: "₡ 785,500",
+                cuota: "₡ 85,000",
+                fecha: "30 ago. 2026",
+                cuotas: "7 de 18"
+            }
+
+        };
+
+
+
+        // =================================================
+        // VER DETALLE
+        // =================================================
+
+        const botonesDetalle =
+            document.querySelectorAll(
+                "[data-ver-deuda]"
+            );
+
+
+        botonesDetalle.forEach(
+            function (boton) {
+
+                boton.addEventListener(
+                    "click",
+                    function () {
+
+                        const id =
+                            boton.dataset
+                                .verDeuda;
+
+
+                        const deuda =
+                            detallesDeudas[id];
+
+
+                        if (!deuda) {
+                            return;
+                        }
+
+
+                        document.getElementById(
+                            "detalleDeudaTitulo"
+                        ).textContent =
+                            deuda.nombre;
+
+
+                        document.getElementById(
+                            "detalleDeudaDescripcion"
+                        ).textContent =
+                            deuda.descripcion;
+
+
+                        document.getElementById(
+                            "detalleSaldo"
+                        ).textContent =
+                            deuda.saldo;
+
+
+                        document.getElementById(
+                            "detalleCuota"
+                        ).textContent =
+                            deuda.cuota;
+
+
+                        document.getElementById(
+                            "detalleFecha"
+                        ).textContent =
+                            deuda.fecha;
+
+
+                        document.getElementById(
+                            "detalleCuotas"
+                        ).textContent =
+                            deuda.cuotas;
+
+
+                        abrirModal(
+                            "modalDetalleDeuda"
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+
+        // =================================================
+        // POR AHORA EVITAR ENVÍO REAL
+        // =================================================
+
+        const formNuevaDeuda =
+            document.getElementById(
+                "formNuevaDeuda"
+            );
+
+
+        if (formNuevaDeuda) {
+
+            formNuevaDeuda.addEventListener(
+                "submit",
+                function (event) {
+
+                    event.preventDefault();
+
+                    cerrarModal(
+                        "modalNuevaDeuda"
+                    );
+
+                }
+            );
+
+        }
+
+
+
+        const formRegistrarPago =
+            document.getElementById(
+                "formRegistrarPago"
+            );
+
+
+        if (formRegistrarPago) {
+
+            formRegistrarPago.addEventListener(
+                "submit",
+                function (event) {
+
+                    event.preventDefault();
+
+                    cerrarModal(
+                        "modalRegistrarPago"
+                    );
+
+                }
+            );
+
+        }
+
+    }
+);
