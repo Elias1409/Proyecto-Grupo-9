@@ -1398,71 +1398,226 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   // =====================================================
-  // ACTUALIZAR PERFIL
-  // =====================================================
+// ACTUALIZAR PERFIL
+// =====================================================
 
-  const formPerfil =
-    document.getElementById("formPerfil");
-
-
-  if (formPerfil) {
-
-    formPerfil.addEventListener(
-      "submit",
-      function (event) {
-
-        event.preventDefault();
+const formPerfil =
+  document.getElementById("formPerfil");
 
 
-        const nombreCompleto =
-          inputNombre.value.trim();
+if (formPerfil) {
 
-        let usuarioNuevo =
-          inputUsuario.value.trim();
+  formPerfil.addEventListener(
+    "submit",
+    async function (event) {
 
-
-        usuarioNuevo =
-          usuarioNuevo
-            .replace(/^@/, "")
-            .replace(/[^a-zA-Z0-9]/g, "")
-            .toLowerCase();
+      event.preventDefault();
 
 
-        const partesNombre =
-          nombreCompleto
-            .split(/\s+/)
-            .filter(Boolean);
+      // =================================================
+      // OBTENER DATOS DEL FORMULARIO
+      // =================================================
+
+      const nombreCompleto =
+        inputNombre
+          ? inputNombre.value.trim()
+          : "";
 
 
-        usuario.nombre =
-          partesNombre.shift() || "";
+      let usuarioNuevo =
+        inputUsuario
+          ? inputUsuario.value.trim()
+          : "";
 
-        usuario.apellidos =
-          partesNombre.join(" ");
 
-        usuario.usuario =
-          usuarioNuevo;
+      usuarioNuevo =
+        usuarioNuevo
+          .replace(/^@/, "")
+          .replace(/[^a-zA-Z0-9]/g, "")
+          .toLowerCase();
 
-        usuario.correo =
-          inputCorreo.value
-            .trim()
-            .toLowerCase();
 
-        usuario.telefono =
-          inputTelefono.value.trim();
+      const correoNuevo =
+        inputCorreo
+          ? inputCorreo.value
+              .trim()
+              .toLowerCase()
+          : "";
 
-        usuario.pais =
-          inputPais.value;
 
-        usuario.zonaHoraria =
-          inputZona.value;
+      // =================================================
+      // VALIDACIONES
+      // =================================================
 
-        usuario.moneda =
-          inputMoneda.value;
+      if (nombreCompleto === "") {
 
-        usuario.fechaNacimiento =
-          inputFecha.value;
+        alert(
+          "Debe ingresar su nombre."
+        );
 
+        return;
+      }
+
+
+      if (usuarioNuevo === "") {
+
+        alert(
+          "Debe ingresar un nombre de usuario."
+        );
+
+        return;
+      }
+
+
+      if (usuarioNuevo.length < 4) {
+
+        alert(
+          "El nombre de usuario debe tener mínimo 4 caracteres."
+        );
+
+        return;
+      }
+
+
+      if (correoNuevo === "") {
+
+        alert(
+          "Debe ingresar su correo electrónico."
+        );
+
+        return;
+      }
+
+
+      // =================================================
+      // SEPARAR NOMBRE Y APELLIDOS
+      // =================================================
+
+      const partesNombre =
+        nombreCompleto
+          .split(/\s+/)
+          .filter(Boolean);
+
+
+      const nombre =
+        partesNombre.shift() || "";
+
+
+      const apellidos =
+        partesNombre.join(" ");
+
+
+      // =================================================
+      // DATOS A ENVIAR A PHP
+      // =================================================
+
+      const datosPerfil = {
+
+        id: usuario.id,
+
+        nombre: nombre,
+
+        apellidos: apellidos,
+
+        usuario: usuarioNuevo,
+
+        correo: correoNuevo,
+
+        telefono:
+          inputTelefono
+            ? inputTelefono.value.trim()
+            : "",
+
+        pais:
+          inputPais
+            ? inputPais.value
+            : "CR",
+
+        zonaHoraria:
+          inputZona
+            ? inputZona.value
+            : "(GMT-06:00) América/Costa_Rica",
+
+        moneda:
+          inputMoneda
+            ? inputMoneda.value
+            : "Colón Costarricense (₡)",
+
+        fechaNacimiento:
+          inputFecha
+            ? inputFecha.value
+            : ""
+
+      };
+
+
+      try {
+
+        // =================================================
+        // ENVIAR A MYSQL MEDIANTE PHP
+        // =================================================
+
+        const respuesta =
+          await fetch(
+            "backend/actualizar_perfil.php",
+            {
+              method: "POST",
+
+              headers: {
+                "Content-Type":
+                  "application/json"
+              },
+
+              body:
+                JSON.stringify(
+                  datosPerfil
+                )
+            }
+          );
+
+
+        // =================================================
+        // COMPROBAR RESPUESTA HTTP
+        // =================================================
+
+        if (!respuesta.ok) {
+
+          throw new Error(
+            "Error HTTP: " +
+            respuesta.status
+          );
+
+        }
+
+
+        const datos =
+          await respuesta.json();
+
+
+        // =================================================
+        // PHP DEVOLVIÓ ERROR
+        // =================================================
+
+        if (!datos.ok) {
+
+          alert(
+            datos.mensaje ||
+            "No se pudo actualizar el perfil."
+          );
+
+          return;
+        }
+
+
+        // =================================================
+        // USUARIO ACTUALIZADO
+        // =================================================
+
+        usuario =
+          datos.usuario;
+
+
+        // Guardar versión actualizada en sesión
 
         sessionStorage.setItem(
           "fintrackUsuarioActual",
@@ -1470,19 +1625,129 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
 
+        // =================================================
+        // ACTUALIZAR LA PANTALLA
+        // =================================================
+
         mostrarDatosPerfil();
+
+
+        // =================================================
+        // ACTUALIZAR SIDEBAR
+        // =================================================
+
+        const nombreCompletoActualizado =
+          `${usuario.nombre || ""} ${usuario.apellidos || ""}`
+            .trim();
+
+
+        const usuarioFormateado =
+          usuario.usuario
+            ? "@" +
+              usuario.usuario.replace(/^@/, "")
+            : "@usuario";
+
+
+        if (nombreUsuario) {
+
+          nombreUsuario.textContent =
+            nombreCompletoActualizado ||
+            "Usuario";
+
+        }
+
+
+        if (correoUsuario) {
+
+          correoUsuario.textContent =
+            usuarioFormateado;
+
+        }
+
+
+        // =================================================
+        // ACTUALIZAR AVATAR
+        // =================================================
+
+        const partesAvatar =
+          nombreCompletoActualizado
+            .split(/\s+/)
+            .filter(Boolean);
+
+
+        let iniciales =
+          "US";
+
+
+        if (partesAvatar.length === 1) {
+
+          iniciales =
+            partesAvatar[0][0]
+              .toUpperCase();
+
+        }
+
+
+        if (partesAvatar.length >= 2) {
+
+          iniciales =
+            (
+              partesAvatar[0][0] +
+              partesAvatar[
+                partesAvatar.length - 1
+              ][0]
+            ).toUpperCase();
+
+        }
+
+
+        if (avatarUsuario) {
+
+          avatarUsuario.textContent =
+            iniciales;
+
+        }
+
+
+        if (perfilAvatar) {
+
+          // Solo mostrar iniciales si no hay foto
+          if (
+            !fotoPerfil ||
+            !fotoPerfil.src ||
+            fotoPerfil.style.display === "none"
+          ) {
+
+            perfilAvatar.textContent =
+              iniciales;
+
+          }
+
+        }
 
 
         alert(
           "Perfil actualizado correctamente."
         );
 
+      } catch (error) {
+
+        console.error(
+          "Error actualizando perfil:",
+          error
+        );
+
+
+        alert(
+          "No se pudo conectar con el servidor para actualizar el perfil."
+        );
+
       }
-    );
 
-  }
+    }
+  );
 
-
+}
   // =====================================================
   // EDITAR FOTO
   // =====================================================

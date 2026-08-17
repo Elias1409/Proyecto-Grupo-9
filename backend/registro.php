@@ -59,7 +59,6 @@ if (
 
 // =====================================================
 // VALIDAR USUARIO
-// SOLO LETRAS Y NÚMEROS
 // =====================================================
 
 if (!preg_match('/^[a-zA-Z0-9]+$/', $usuario)) {
@@ -130,7 +129,8 @@ if (strlen($clave) < 8) {
 $consultaCorreo = $conexion->prepare(
     "SELECT id
      FROM usuarios
-     WHERE correo = ?"
+     WHERE correo = ?
+     LIMIT 1"
 );
 
 $consultaCorreo->execute([
@@ -151,13 +151,14 @@ if ($consultaCorreo->fetch()) {
 
 
 // =====================================================
-// COMPROBAR NOMBRE DE USUARIO
+// COMPROBAR USUARIO
 // =====================================================
 
 $consultaUsuario = $conexion->prepare(
     "SELECT id
      FROM usuarios
-     WHERE usuario = ?"
+     WHERE usuario = ?
+     LIMIT 1"
 );
 
 $consultaUsuario->execute([
@@ -191,39 +192,125 @@ $claveSegura = password_hash(
 // CREAR USUARIO
 // =====================================================
 
-$insertar = $conexion->prepare(
-    "INSERT INTO usuarios
-    (
-        nombre,
-        apellidos,
-        usuario,
-        correo,
-        clave
-    )
-    VALUES
-    (
-        ?,
-        ?,
-        ?,
-        ?,
-        ?
-    )"
-);
+try {
+
+    $insertar = $conexion->prepare(
+        "INSERT INTO usuarios
+        (
+            nombre,
+            apellidos,
+            usuario,
+            correo,
+            clave,
+            telefono,
+            pais,
+            zona_horaria,
+            moneda,
+            fecha_nacimiento,
+            balance,
+            ingresos,
+            gastos,
+            deudas,
+            ahorro
+        )
+        VALUES
+        (
+            ?,
+            ?,
+            ?,
+            ?,
+            ?,
+            NULL,
+            'CR',
+            '(GMT-06:00) América/Costa_Rica',
+            'Colón Costarricense (₡)',
+            NULL,
+            0,
+            0,
+            0,
+            0,
+            0
+        )"
+    );
 
 
-$insertar->execute([
-    $nombre,
-    $apellidos,
-    $usuario,
-    $correo,
-    $claveSegura
-]);
+    $insertar->execute([
+        $nombre,
+        $apellidos,
+        $usuario,
+        $correo,
+        $claveSegura
+    ]);
 
 
-echo json_encode([
-    "ok" => true,
-    "mensaje" =>
-        "Cuenta creada correctamente."
-]);
+    $idUsuario =
+        $conexion->lastInsertId();
 
+
+    // =====================================================
+    // DEVOLVER USUARIO CREADO
+    // =====================================================
+
+    echo json_encode([
+        "ok" => true,
+        "mensaje" =>
+            "Cuenta creada correctamente.",
+
+        "usuario" => [
+            "id" =>
+                (int) $idUsuario,
+
+            "nombre" =>
+                $nombre,
+
+            "apellidos" =>
+                $apellidos,
+
+            "usuario" =>
+                $usuario,
+
+            "correo" =>
+                $correo,
+
+            "telefono" =>
+                "",
+
+            "pais" =>
+                "CR",
+
+            "zonaHoraria" =>
+                "(GMT-06:00) América/Costa_Rica",
+
+            "moneda" =>
+                "Colón Costarricense (₡)",
+
+            "fechaNacimiento" =>
+                "",
+
+            "balance" =>
+                0,
+
+            "ingresos" =>
+                0,
+
+            "gastos" =>
+                0,
+
+            "deudas" =>
+                0,
+
+            "ahorro" =>
+                0
+        ]
+    ]);
+
+} catch (PDOException $error) {
+
+    echo json_encode([
+        "ok" => false,
+        "mensaje" =>
+            "No se pudo crear la cuenta."
+    ]);
+
+}
 ?>

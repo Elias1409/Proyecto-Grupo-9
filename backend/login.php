@@ -53,13 +53,20 @@ $consulta = $conexion->prepare(
         usuario,
         correo,
         clave,
+        telefono,
+        pais,
+        zona_horaria,
+        moneda,
+        fecha_nacimiento,
         balance,
         ingresos,
         gastos,
         deudas,
-        ahorro
+        ahorro,
+        fecha_registro
      FROM usuarios
-     WHERE usuario = ?"
+     WHERE usuario = ?
+     LIMIT 1"
 );
 
 
@@ -68,7 +75,7 @@ $consulta->execute([
 ]);
 
 
-$usuario = $consulta->fetch();
+$usuario = $consulta->fetch(PDO::FETCH_ASSOC);
 
 
 // =====================================================
@@ -111,6 +118,26 @@ if (!password_verify(
 // =====================================================
 
 unset($usuario["clave"]);
+
+
+// =====================================================
+// ADAPTAR NOMBRES PARA JAVASCRIPT
+// =====================================================
+
+$usuario["zonaHoraria"] =
+    $usuario["zona_horaria"] ?? "";
+
+$usuario["fechaNacimiento"] =
+    $usuario["fecha_nacimiento"] ?? "";
+
+$usuario["fechaRegistro"] =
+    $usuario["fecha_registro"] ?? "";
+
+
+// Quitar nombres internos que ya no necesitamos
+unset($usuario["zona_horaria"]);
+unset($usuario["fecha_nacimiento"]);
+unset($usuario["fecha_registro"]);
 
 
 // =====================================================
