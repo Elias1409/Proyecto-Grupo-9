@@ -412,194 +412,1073 @@ document.addEventListener("DOMContentLoaded", function () {
       perfilAvatar.textContent = iniciales.toUpperCase();
     }
 
-    // =====================================================
-    // ELEMENTOS DEL DASHBOARD
-    // =====================================================
+  // =====================================================
+// DASHBOARD CONECTADO A MYSQL
+// =====================================================
 
-    const ahorroUsuario = document.getElementById("ahorroUsuario");
+const balanceUsuario =
+  document.getElementById("balanceUsuario");
 
-    const balanceUsuario = document.getElementById("balanceUsuario");
+const ingresosUsuario =
+  document.getElementById("ingresosUsuario");
 
-    const ingresosUsuario = document.getElementById("ingresosUsuario");
+const gastosUsuario =
+  document.getElementById("gastosUsuario");
 
-    const gastosUsuario = document.getElementById("gastosUsuario");
+const ahorroUsuario =
+  document.getElementById("ahorroUsuario");
 
-    // =====================================================
-    // ELIAS - CLIENTE ANTIGUO
-    // =====================================================
+const tablaMovimientos =
+  document.getElementById("tablaMovimientos");
 
-    if (esElias) {
-      if (ahorroUsuario) {
-        ahorroUsuario.textContent = formatoColones(usuario.ahorro);
+const proximosPagos =
+  document.getElementById("proximosPagos");
+
+const sobresAhorro =
+  document.getElementById("sobresAhorro");
+
+const detalleIngresos =
+  document.getElementById("detalleIngresos");
+
+const detalleGastos =
+  document.getElementById("detalleGastos");
+
+const resumenIngresos =
+  document.getElementById("resumenIngresos");
+
+const resumenGastos =
+  document.getElementById("resumenGastos");
+
+const resumenDisponible =
+  document.getElementById("resumenDisponible");
+
+
+// =====================================================
+// COMPROBAR SI ESTAMOS EN DASHBOARD
+// =====================================================
+
+const estamosEnDashboard =
+  balanceUsuario ||
+  tablaMovimientos ||
+  proximosPagos ||
+  sobresAhorro;
+
+
+// =====================================================
+// FORMATO MONEDA
+// =====================================================
+
+function monedaDashboard(valor) {
+
+  const numero =
+    Number(valor) || 0;
+
+  return (
+    "₡ " +
+    numero.toLocaleString(
+      "es-CR",
+      {
+        maximumFractionDigits: 0
       }
+    )
+  );
 
-      if (balanceUsuario) {
-        balanceUsuario.textContent = formatoColones(315800);
-      }
+}
 
-      if (ingresosUsuario) {
-        ingresosUsuario.textContent = formatoColones(850000);
-      }
 
-      if (gastosUsuario) {
-        gastosUsuario.textContent = formatoColones(534200);
-      }
-    }
+// =====================================================
+// FORMATEAR FECHA
+// =====================================================
 
-    // =====================================================
-    // USUARIO NUEVO
-    // =====================================================
-    else if (esUsuarioNuevo) {
-      // Ahorro
-      if (ahorroUsuario) {
-        ahorroUsuario.textContent = "₡ 0";
-      }
+function fechaDashboard(fecha) {
 
-      // Balance
-      if (balanceUsuario) {
-        balanceUsuario.textContent = "₡ 0";
-      }
-
-      // Ingresos
-      if (ingresosUsuario) {
-        ingresosUsuario.textContent = "₡ 0";
-      }
-
-      // Gastos
-      if (gastosUsuario) {
-        gastosUsuario.textContent = "₡ 0";
-      }
-
-      // =====================================================
-      // ACTIVIDAD RECIENTE
-      // =====================================================
-
-      const tablaMovimientos = document.getElementById("tablaMovimientos");
-
-      if (tablaMovimientos) {
-        tablaMovimientos.innerHTML = `
-            <tr>
-                <td colspan="2">
-                    No hay movimientos registrados.
-                </td>
-            </tr>
-        `;
-      }
-
-      // =====================================================
-      // AVISOS
-      // =====================================================
-
-      const avisosUsuario = document.getElementById("avisosUsuario");
-
-      if (avisosUsuario) {
-        avisosUsuario.innerHTML = `
-            <div class="alert alert-info">
-                No tienes avisos importantes.
-            </div>
-        `;
-      }
-
-      // =====================================================
-      // PRÓXIMOS PAGOS
-      // =====================================================
-
-      const proximosPagos = document.getElementById("proximosPagos");
-
-      if (proximosPagos) {
-        proximosPagos.innerHTML = `
-            <div class="alert alert-info">
-                No tienes pagos próximos.
-            </div>
-        `;
-      }
-
-      // =====================================================
-      // SOBRES DE AHORRO
-      // =====================================================
-
-      const sobresAhorro = document.getElementById("sobresAhorro");
-
-      if (sobresAhorro) {
-        sobresAhorro.innerHTML = `
-            <div class="alert alert-info">
-                Aún no tienes metas de ahorro.
-            </div>
-        `;
-      }
-
-      // =====================================================
-      // CONTADOR DE NOTIFICACIONES
-      // =====================================================
-
-      const contadorNotificaciones = document.getElementById(
-        "contadorNotificaciones"
-      );
-
-      if (contadorNotificaciones) {
-        contadorNotificaciones.textContent = "0";
-      }
-
-      // =====================================================
-      // PANEL DE NOTIFICACIONES
-      // =====================================================
-
-      const panelNotificaciones = document.getElementById(
-        "panelNotificaciones"
-      );
-
-      if (panelNotificaciones) {
-        panelNotificaciones.innerHTML = `
-            <div class="notification-panel-title">
-                Notificaciones
-            </div>
-
-            <div class="notification-item">
-                No tienes notificaciones.
-            </div>
-        `;
-      }
-
-      // =====================================================
-      // RESUMEN DEL MES
-      // =====================================================
-
-      const resumenIngresos = document.getElementById("resumenIngresos");
-
-      const resumenGastos = document.getElementById("resumenGastos");
-
-      const resumenDisponible = document.getElementById("resumenDisponible");
-
-      if (resumenIngresos) {
-        resumenIngresos.textContent = "₡ 0";
-      }
-
-      if (resumenGastos) {
-        resumenGastos.textContent = "₡ 0";
-      }
-
-      if (resumenDisponible) {
-        resumenDisponible.textContent = "₡ 0";
-      }
-    }
-
-    // =====================================================
-    // OTRO USUARIO CON DATOS
-    // =====================================================
-    else {
-      if (balanceUsuario) {
-        balanceUsuario.textContent = formatoColones(usuario.balance);
-      }
-
-      if (ingresosUsuario) {
-        ingresosUsuario.textContent = formatoColones(usuario.ingresos);
-      }
-
-      if (gastosUsuario) {
-        gastosUsuario.textContent = formatoColones(usuario.gastos);
-      }
-    }
+  if (!fecha) {
+    return "";
   }
+
+  const partes =
+    fecha.split("-");
+
+  if (partes.length !== 3) {
+    return fecha;
+  }
+
+  const fechaLocal =
+    new Date(
+      Number(partes[0]),
+      Number(partes[1]) - 1,
+      Number(partes[2])
+    );
+
+  return fechaLocal.toLocaleDateString(
+    "es-CR",
+    {
+      day: "numeric",
+      month: "short",
+      year: "numeric"
+    }
+  );
+
+}
+
+
+// =====================================================
+// DÍAS PARA PRÓXIMO PAGO
+// =====================================================
+
+function diasHasta(fecha) {
+
+  if (!fecha) {
+    return null;
+  }
+
+  const partes =
+    fecha.split("-");
+
+  const fechaPago =
+    new Date(
+      Number(partes[0]),
+      Number(partes[1]) - 1,
+      Number(partes[2])
+    );
+
+  const hoy =
+    new Date();
+
+  hoy.setHours(
+    0,
+    0,
+    0,
+    0
+  );
+
+  fechaPago.setHours(
+    0,
+    0,
+    0,
+    0
+  );
+
+  const diferencia =
+    fechaPago - hoy;
+
+  return Math.ceil(
+    diferencia /
+    (
+      1000 *
+      60 *
+      60 *
+      24
+    )
+  );
+
+}
+
+
+// =====================================================
+// TEXTO PRÓXIMO PAGO
+// =====================================================
+
+function textoProximoPago(fecha) {
+
+  const dias =
+    diasHasta(fecha);
+
+
+  if (dias === null) {
+    return "";
+  }
+
+
+  if (dias < 0) {
+
+    return (
+      "Vencido hace " +
+      Math.abs(dias) +
+      (
+        Math.abs(dias) === 1
+          ? " día"
+          : " días"
+      )
+    );
+
+  }
+
+
+  if (dias === 0) {
+
+    return "Vence hoy";
+
+  }
+
+
+  if (dias === 1) {
+
+    return "Vence mañana";
+
+  }
+
+
+  return (
+    "Vence en " +
+    dias +
+    " días"
+  );
+
+}
+
+
+// =====================================================
+// CARGAR DASHBOARD DESDE MYSQL
+// =====================================================
+
+async function cargarDashboard() {
+
+  if (!estamosEnDashboard) {
+    return;
+  }
+
+
+  if (!usuario.id) {
+
+    console.error(
+      "El usuario actual no tiene ID."
+    );
+
+    return;
+  }
+
+
+  try {
+
+    const respuesta =
+      await fetch(
+        "backend/dashboard.php?usuario_id=" +
+        encodeURIComponent(
+          usuario.id
+        )
+      );
+
+
+    if (!respuesta.ok) {
+
+      throw new Error(
+        "Error HTTP: " +
+        respuesta.status
+      );
+
+    }
+
+
+    const datos =
+      await respuesta.json();
+
+
+    if (!datos.ok) {
+
+      console.error(
+        datos.mensaje
+      );
+
+      return;
+    }
+
+
+    // =================================================
+    // ACTUALIZAR USUARIO EN SESSIONSTORAGE
+    // =================================================
+
+    /*
+      Conservamos teléfono, país, moneda,
+      fecha de nacimiento, etc.
+
+      dashboard.php solamente devuelve
+      algunos campos del usuario.
+    */
+
+    const usuarioActualizado = {
+      ...usuario,
+      ...datos.usuario
+    };
+
+
+    sessionStorage.setItem(
+      "fintrackUsuarioActual",
+      JSON.stringify(
+        usuarioActualizado
+      )
+    );
+
+
+    // =================================================
+    // NOMBRE Y USUARIO DEL SIDEBAR
+    // =================================================
+
+    const nombreCompleto =
+      `${usuarioActualizado.nombre || ""} ${usuarioActualizado.apellidos || ""}`
+        .trim();
+
+
+    if (nombreUsuario) {
+
+      nombreUsuario.textContent =
+        nombreCompleto ||
+        "Usuario";
+
+    }
+
+
+    if (correoUsuario) {
+
+      correoUsuario.textContent =
+        usuarioActualizado.usuario
+          ? "@" +
+            usuarioActualizado.usuario
+          : "@usuario";
+
+    }
+
+
+    // =================================================
+    // BIENVENIDA
+    // =================================================
+
+    if (nombreBienvenida) {
+
+      nombreBienvenida.textContent =
+        usuarioActualizado.nombre ||
+        "Usuario";
+
+    }
+
+
+    // =================================================
+    // AVATAR
+    // =================================================
+
+    const partesNombre =
+      nombreCompleto
+        .split(/\s+/)
+        .filter(Boolean);
+
+
+    let iniciales =
+      "US";
+
+
+    if (partesNombre.length === 1) {
+
+      iniciales =
+        partesNombre[0][0]
+          .toUpperCase();
+
+    }
+
+
+    if (partesNombre.length >= 2) {
+
+      iniciales =
+        (
+          partesNombre[0][0] +
+          partesNombre[
+            partesNombre.length - 1
+          ][0]
+        ).toUpperCase();
+
+    }
+
+
+    if (avatarUsuario) {
+
+      avatarUsuario.textContent =
+        iniciales;
+
+    }
+
+
+    if (avatarBienvenida) {
+
+      avatarBienvenida.textContent =
+        iniciales;
+
+    }
+
+
+    // =================================================
+    // BALANCE / INGRESOS / GASTOS / AHORRO
+    // =================================================
+
+    if (balanceUsuario) {
+
+      balanceUsuario.textContent =
+        monedaDashboard(
+          datos.usuario.balance
+        );
+
+    }
+
+
+    if (ingresosUsuario) {
+
+      ingresosUsuario.textContent =
+        monedaDashboard(
+          datos.usuario.ingresos
+        );
+
+    }
+
+
+    if (gastosUsuario) {
+
+      gastosUsuario.textContent =
+        monedaDashboard(
+          datos.usuario.gastos
+        );
+
+    }
+
+
+    if (ahorroUsuario) {
+
+      ahorroUsuario.textContent =
+        monedaDashboard(
+          datos.usuario.ahorro
+        );
+
+    }
+
+
+    // =================================================
+    // RESUMEN DEL MES
+    // =================================================
+
+    if (resumenIngresos) {
+
+      resumenIngresos.textContent =
+        monedaDashboard(
+          datos.usuario.ingresos
+        );
+
+    }
+
+
+    if (resumenGastos) {
+
+      resumenGastos.textContent =
+        monedaDashboard(
+          datos.usuario.gastos
+        );
+
+    }
+
+
+    if (resumenDisponible) {
+
+      resumenDisponible.textContent =
+        monedaDashboard(
+          datos.usuario.balance
+        );
+
+    }
+
+
+    // =================================================
+    // PORCENTAJE DE GASTOS
+    // =================================================
+
+    const totalIngresos =
+      Number(
+        datos.usuario.ingresos
+      ) || 0;
+
+
+    const totalGastos =
+      Number(
+        datos.usuario.gastos
+      ) || 0;
+
+
+    let porcentajeUso =
+      0;
+
+
+    if (totalIngresos > 0) {
+
+      porcentajeUso =
+        (
+          totalGastos /
+          totalIngresos
+        ) * 100;
+
+    }
+
+
+    porcentajeUso =
+      Math.min(
+        porcentajeUso,
+        100
+      );
+
+
+    const etiquetaUso =
+      document.querySelector(
+        ".usage-label"
+      );
+
+
+    const barraUso =
+      document.querySelector(
+        ".usage-progress"
+      );
+
+
+    if (etiquetaUso) {
+
+      if (totalIngresos === 0) {
+
+        etiquetaUso.textContent =
+          "Aún no tienes ingresos registrados.";
+
+      } else {
+
+        etiquetaUso.textContent =
+          "Has utilizado el " +
+          porcentajeUso.toFixed(1) +
+          "% de tus ingresos.";
+
+      }
+
+    }
+
+
+    if (barraUso) {
+
+      barraUso.style.width =
+        porcentajeUso + "%";
+
+    }
+
+
+    // =================================================
+    // ACTIVIDAD RECIENTE
+    // =================================================
+
+    if (tablaMovimientos) {
+
+      tablaMovimientos.innerHTML =
+        "";
+
+
+      if (
+        !datos.movimientos ||
+        datos.movimientos.length === 0
+      ) {
+
+        tablaMovimientos.innerHTML = `
+
+          <tr>
+
+            <td colspan="2">
+
+              <div class="alert alert-info">
+                No hay movimientos registrados.
+              </div>
+
+            </td>
+
+          </tr>
+
+        `;
+
+      } else {
+
+        datos.movimientos.forEach(
+          function (movimiento) {
+
+            const esIngreso =
+              movimiento.tipo === "ingreso" ||
+              movimiento.tipo ===
+                "transferencia_recibida" ||
+              movimiento.tipo ===
+                "retiro_meta";
+
+
+            const signo =
+              esIngreso
+                ? "+"
+                : "-";
+
+
+            const clase =
+              esIngreso
+                ? "text-green"
+                : "text-red";
+
+
+            const icono =
+              esIngreso
+                ? "icon-arrow-down-left"
+                : "icon-cart";
+
+
+            const fila =
+              document.createElement(
+                "tr"
+              );
+
+
+            fila.innerHTML = `
+
+              <td>
+
+                <span class="cell-ic">
+
+                  <svg class="icon">
+
+                    <use
+                      href="assets/icons.svg#${icono}">
+                    </use>
+
+                  </svg>
+
+                  <div>
+
+                    <strong>
+                      ${movimiento.descripcion}
+                    </strong>
+
+                    <div class="text-muted text-xs">
+
+                      ${fechaDashboard(
+                        movimiento.fecha
+                      )}
+
+                    </div>
+
+                  </div>
+
+                </span>
+
+              </td>
+
+
+              <td
+                class="${clase} fw-700 num"
+                style="text-align:right;"
+              >
+
+                ${signo}${monedaDashboard(
+                  movimiento.monto
+                )}
+
+              </td>
+
+            `;
+
+
+            tablaMovimientos.appendChild(
+              fila
+            );
+
+          }
+        );
+
+      }
+
+    }
+
+
+    // =================================================
+    // PRÓXIMOS PAGOS
+    // =================================================
+
+    if (proximosPagos) {
+
+      proximosPagos.innerHTML =
+        "";
+
+
+      if (
+        !datos.proximosPagos ||
+        datos.proximosPagos.length === 0
+      ) {
+
+        proximosPagos.innerHTML = `
+
+          <div class="alert alert-info">
+
+            No tienes pagos próximos.
+
+          </div>
+
+        `;
+
+      } else {
+
+        datos.proximosPagos.forEach(
+          function (pago) {
+
+            const item =
+              document.createElement(
+                "div"
+              );
+
+
+            item.className =
+              "payment-item";
+
+
+            const dias =
+              diasHasta(
+                pago.proximo_pago
+              );
+
+
+            const claseMonto =
+              dias !== null &&
+              dias <= 3
+                ? "text-red"
+                : "";
+
+
+            item.innerHTML = `
+
+              <div>
+
+                <strong>
+                  ${pago.nombre}
+                </strong>
+
+                <div
+                  class="text-muted text-sm"
+                >
+
+                  ${textoProximoPago(
+                    pago.proximo_pago
+                  )}
+
+                </div>
+
+              </div>
+
+
+              <div
+                class="${claseMonto} fw-700 num"
+              >
+
+                ${monedaDashboard(
+                  pago.cuota
+                )}
+
+              </div>
+
+            `;
+
+
+            proximosPagos.appendChild(
+              item
+            );
+
+          }
+        );
+
+      }
+
+    }
+
+
+    // =================================================
+    // METAS DE AHORRO
+    // =================================================
+
+    if (sobresAhorro) {
+
+      sobresAhorro.innerHTML =
+        "";
+
+
+      if (
+        !datos.metas ||
+        datos.metas.length === 0
+      ) {
+
+        sobresAhorro.innerHTML = `
+
+          <div class="alert alert-info">
+
+            Aún no tienes metas de ahorro.
+
+          </div>
+
+        `;
+
+      } else {
+
+        datos.metas.forEach(
+          function (meta) {
+
+            const objetivo =
+              Number(
+                meta.monto_objetivo
+              ) || 0;
+
+
+            const actual =
+              Number(
+                meta.monto_actual
+              ) || 0;
+
+
+            let porcentaje =
+              0;
+
+
+            if (objetivo > 0) {
+
+              porcentaje =
+                (
+                  actual /
+                  objetivo
+                ) * 100;
+
+            }
+
+
+            porcentaje =
+              Math.min(
+                porcentaje,
+                100
+              );
+
+
+            const item =
+              document.createElement(
+                "div"
+              );
+
+
+            item.className =
+              "goal-item";
+
+
+            item.innerHTML = `
+
+              <div class="goal-top">
+
+                <strong>
+                  ${meta.nombre}
+                </strong>
+
+                <span>
+                  ${porcentaje.toFixed(0)}%
+                </span>
+
+              </div>
+
+
+              <div class="goal-bar">
+
+                <div
+                  class="goal-progress"
+                  style="width:${porcentaje}%;">
+                </div>
+
+              </div>
+
+
+              <div
+                class="text-muted text-sm"
+              >
+
+                ${monedaDashboard(
+                  actual
+                )}
+                de
+                ${monedaDashboard(
+                  objetivo
+                )}
+
+              </div>
+
+            `;
+
+
+            sobresAhorro.appendChild(
+              item
+            );
+
+          }
+        );
+
+      }
+
+    }
+
+
+    // =================================================
+    // DESGLOSE DE INGRESOS
+    // =================================================
+
+    if (detalleIngresos) {
+
+      detalleIngresos.innerHTML =
+        "";
+
+
+      if (
+        !datos.desgloseIngresos ||
+        datos.desgloseIngresos.length === 0
+      ) {
+
+        detalleIngresos.innerHTML = `
+
+          <div class="detalle-item">
+
+            <span>
+              Sin ingresos registrados
+            </span>
+
+            <strong>
+              ₡ 0
+            </strong>
+
+          </div>
+
+        `;
+
+      } else {
+
+        datos.desgloseIngresos.forEach(
+          function (categoria) {
+
+            const item =
+              document.createElement(
+                "div"
+              );
+
+
+            item.className =
+              "detalle-item";
+
+
+            item.innerHTML = `
+
+              <span>
+                ${categoria.categoria}
+              </span>
+
+              <strong>
+                ${monedaDashboard(
+                  categoria.total
+                )}
+              </strong>
+
+            `;
+
+
+            detalleIngresos.appendChild(
+              item
+            );
+
+          }
+        );
+
+      }
+
+    }
+
+
+    // =================================================
+    // DESGLOSE DE GASTOS
+    // =================================================
+
+    if (detalleGastos) {
+
+      detalleGastos.innerHTML =
+        "";
+
+
+      if (
+        !datos.desgloseGastos ||
+        datos.desgloseGastos.length === 0
+      ) {
+
+        detalleGastos.innerHTML = `
+
+          <div class="detalle-item">
+
+            <span>
+              Sin gastos registrados
+            </span>
+
+            <strong>
+              ₡ 0
+            </strong>
+
+          </div>
+
+        `;
+
+      } else {
+
+        datos.desgloseGastos.forEach(
+          function (categoria) {
+
+            const item =
+              document.createElement(
+                "div"
+              );
+
+
+            item.className =
+              "detalle-item";
+
+
+            item.innerHTML = `
+
+              <span>
+                ${categoria.categoria}
+              </span>
+
+              <strong>
+                ${monedaDashboard(
+                  categoria.total
+                )}
+              </strong>
+
+            `;
+
+
+            detalleGastos.appendChild(
+              item
+            );
+
+          }
+        );
+
+      }
+
+    }
+
+
+  } catch (error) {
+
+    console.error(
+      "Error cargando Dashboard:",
+      error
+    );
+
+  }
+
+}
+
+
+// =====================================================
+// INICIAR DASHBOARD
+// =====================================================
+  }
+cargarDashboard();
+
   // =====================================================
   // DESPLEGAR INGRESOS Y GASTOS
   // =====================================================
