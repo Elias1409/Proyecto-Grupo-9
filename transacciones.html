@@ -885,90 +885,93 @@
 
                 <div class="transaction-consumption-header">
 
-                    <div>
+    <div>
 
-                        <div class="card-title mb-0">
-                            Uso de ingresos
-                        </div>
+        <div class="card-title mb-0">
+            Uso de ingresos
+        </div>
 
-                        <div class="text-muted text-sm">
-                            Agosto 2026
-                        </div>
+        <div class="text-muted text-sm">
+            Agosto 2026
+        </div>
 
-                    </div>
-
-
-                    <div class="transaction-consumption-percent">
-                        62.8%
-                    </div>
-
-                </div>
+    </div>
 
 
+    <div
+        class="transaction-consumption-percent"
+        id="porcentajeUsoTransacciones">
+        0%
+    </div>
 
-                <!-- GASTADO -->
-
-                <div class="transaction-side-amount">
-
-                    <span>
-                        Gastado este mes
-                    </span>
-
-                    <strong class="num text-red">
-                        ₡ 534,200
-                    </strong>
-
-                </div>
+</div>
 
 
+<!-- GASTADO -->
 
-                <!-- BARRA -->
+<div class="transaction-side-amount">
 
-                <div class="usage-bar transaction-usage-bar">
+    <span>
+        Gastado este mes
+    </span>
 
-                    <div
-                        class="usage-progress"
-                        style="width: 62.8%;"
-                    >
-                    </div>
+    <strong
+        class="num text-red"
+        id="gastosTransacciones">
+        ₡ 0
+    </strong>
 
-                </div>
-
-
-
-                <!-- DISPONIBLE -->
-
-                <div class="transaction-side-footer">
-
-                    <span>
-                        Disponible
-                    </span>
-
-                    <strong class="num text-green">
-                        ₡ 315,800
-                    </strong>
-
-                </div>
+</div>
 
 
+<!-- BARRA -->
 
-                <div class="divider"></div>
+<div class="usage-bar transaction-usage-bar">
+
+    <div
+        class="usage-progress"
+        id="barraUsoTransacciones"
+        style="width: 0%;">
+    </div>
+
+</div>
 
 
+<!-- DISPONIBLE -->
 
-                <!-- INGRESOS -->
+<div class="transaction-side-footer">
 
-                <div class="transaction-side-footer">
+    <span>
+        Disponible
+    </span>
 
-                    <span>
-                        Ingresos de agosto
-                    </span>
+    <strong
+        class="num text-green"
+        id="balanceTransacciones">
+        ₡ 0
+    </strong>
 
-                    <strong class="num">
-                        ₡ 850,000
-                    </strong>
+</div>
 
-                </div>
+
+<div class="divider"></div>
+
+
+<!-- INGRESOS -->
+
+<div class="transaction-side-footer">
+
+    <span>
+        Ingresos de agosto
+    </span>
+
+    <strong
+        class="num"
+        id="ingresosTransacciones">
+        ₡ 0
+    </strong>
+
+</div>
 
             </div>
 
@@ -980,7 +983,245 @@
 
 </div>
 
+<!-- =====================================================
+     MODAL NUEVA TRANSACCIÓN
+====================================================== -->
 
+<div class="modal-overlay" id="modalNuevaTransaccion">
+
+    <div class="modal-card">
+
+        <div class="modal-header">
+
+            <div>
+                <h3>Nueva transacción</h3>
+                <p class="text-muted">
+                    Registra un ingreso o un gasto.
+                </p>
+            </div>
+
+            <button
+                type="button"
+                class="modal-close"
+                id="cerrarNuevaTransaccion">
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="formNuevaTransaccion">
+
+            <div class="form-group">
+
+                <label class="form-label">
+                    Tipo de transacción
+                </label>
+
+                <select
+                    class="form-control"
+                    id="transaccionTipo"
+                    required>
+
+                    <option value="">
+                        Seleccione
+                    </option>
+
+                    <option value="ingreso">
+                        Ingreso
+                    </option>
+
+                    <option value="gasto">
+                        Gasto
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label class="form-label">
+                    Comercio / Persona
+                </label>
+
+                <input
+                    type="text"
+                    class="form-control"
+                    id="transaccionComercio"
+                    placeholder="Ej: Walmart, Salario, Uber..."
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label class="form-label">
+                    Descripción
+                </label>
+
+                <input
+                    type="text"
+                    class="form-control"
+                    id="transaccionDescripcion"
+                    placeholder="Ej: Compra supermercado"
+                    required>
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label class="form-label">
+                        Categoría
+                    </label>
+
+                    <select
+                        class="form-control"
+                        id="transaccionCategoria"
+                        required>
+
+                        <option value="">
+                            Seleccione
+                        </option>
+
+                        <option value="1">
+                            Ingreso
+                        </option>
+
+                        <option value="2">
+                            Alimentación
+                        </option>
+
+                        <option value="3">
+                            Vivienda
+                        </option>
+
+                        <option value="4">
+                            Servicios
+                        </option>
+
+                        <option value="5">
+                            Transporte
+                        </option>
+
+                        <option value="6">
+                            Entretenimiento
+                        </option>
+
+                        <option value="7">
+                            Compras
+                        </option>
+
+                        <option value="8">
+                            Deudas
+                        </option>
+
+                        <option value="9">
+                            Transferencias
+                        </option>
+
+                        <option value="10">
+                            Ahorro
+                        </option>
+
+                        <option value="11">
+                            Otros
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label class="form-label">
+                        Monto (₡)
+                    </label>
+
+                    <input
+                        type="number"
+                        class="form-control"
+                        id="transaccionMonto"
+                        min="1"
+                        step="1"
+                        placeholder="0"
+                        required>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label class="form-label">
+                        Fecha
+                    </label>
+
+                    <input
+                        type="date"
+                        class="form-control"
+                        id="transaccionFecha"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label class="form-label">
+                        Medio de pago
+                    </label>
+
+                    <select
+                        class="form-control"
+                        id="transaccionMedioPago">
+
+                        <option value="">
+                            Sin especificar
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="btn btn-ghost"
+                    id="cancelarNuevaTransaccion">
+
+                    Cancelar
+
+                </button>
+
+                <button
+                    type="submit"
+                    class="btn btn-primary">
+
+                    Guardar transacción
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
 <script src="js/app.js"></script>
 
 </body>

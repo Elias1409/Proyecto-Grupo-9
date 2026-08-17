@@ -1,778 +1,1750 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reportes – FinTrack Web</title>
-    <link rel="stylesheet" href="css/style.css">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Reportes – FinTrack Web
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
 </head>
+
+
 <body>
+
+
 <div class="layout">
 
-    <!-- Sidebar -->
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
     <aside class="sidebar">
+
+
         <div class="sidebar-logo">
-            <div class="mark"><svg class="icon"><use href="assets/icons.svg#icon-bar-chart"></use></svg></div>
+
+            <div class="mark">
+
+                <svg class="icon">
+                    <use href="assets/icons.svg#icon-bar-chart"></use>
+                </svg>
+
+            </div>
+
+
             <div>
-                <div class="brand">FinTrack</div>
-                <span class="tagline">Finanzas personales</span>
+
+                <div class="brand">
+                    FinTrack
+                </div>
+
+                <span class="tagline">
+                    Finanzas personales
+                </span>
+
             </div>
+
         </div>
+
+
         <nav class="sidebar-nav">
+
+
+            <!-- PRINCIPAL -->
+
             <div class="nav-section">
-                <span class="nav-label">Principal</span>
-                <a href="dashboard.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-home"></use></svg> Dashboard</a>
-                <a href="transacciones.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-exchange"></use></svg> Transacciones</a>
-                <a href="deudas.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-credit-card"></use></svg> Deudas</a>
+
+                <span class="nav-label">
+                    Principal
+                </span>
+
+
+                <a
+                    href="dashboard.html"
+                    class="nav-item"
+                >
+
+                    <svg class="icon">
+                        <use href="assets/icons.svg#icon-home"></use>
+                    </svg>
+
+                    Dashboard
+
+                </a>
+
+
+                <a
+                    href="transacciones.html"
+                    class="nav-item"
+                >
+
+                    <svg class="icon">
+                        <use href="assets/icons.svg#icon-exchange"></use>
+                    </svg>
+
+                    Transacciones
+
+                </a>
+
+
+                <a
+                    href="deudas.html"
+                    class="nav-item"
+                >
+
+                    <svg class="icon">
+                        <use href="assets/icons.svg#icon-credit-card"></use>
+                    </svg>
+
+                    Deudas
+
+                </a>
+
             </div>
+
+
+
+            <!-- ANÁLISIS -->
+
             <div class="nav-section">
-                <span class="nav-label">Análisis</span>
-                <a href="reportes.html" class="nav-item active"><svg class="icon"><use href="assets/icons.svg#icon-bar-chart"></use></svg> Reportes</a>
-                <a href="metas.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-target"></use></svg> Metas de ahorro</a>
+
+                <span class="nav-label">
+                    Análisis
+                </span>
+
+
+                <a
+                    href="reportes.html"
+                    class="nav-item active"
+                >
+
+                    <svg class="icon">
+                        <use href="assets/icons.svg#icon-bar-chart"></use>
+                    </svg>
+
+                    Reportes
+
+                </a>
+
+
+                <a
+                    href="metas.html"
+                    class="nav-item"
+                >
+
+                    <svg class="icon">
+                        <use href="assets/icons.svg#icon-target"></use>
+                    </svg>
+
+                    Metas de ahorro
+
+                </a>
+
             </div>
+
+
+
+            <!-- CUENTA -->
+
             <div class="nav-section">
-                <span class="nav-label">Cuenta</span>
-                <a href="perfil.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-user"></use></svg> Mi perfil</a>
-                <a href="index.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-log-out"></use></svg> Cerrar sesión</a>
+
+                <span class="nav-label">
+                    Cuenta
+                </span>
+
+
+                <a
+                    href="perfil.html"
+                    class="nav-item"
+                >
+
+                    <svg class="icon">
+                        <use href="assets/icons.svg#icon-user"></use>
+                    </svg>
+
+                    Mi perfil
+
+                </a>
+
+
+                <a
+                    href="index.html"
+                    class="nav-item logout-link"
+                >
+
+                    <svg class="icon">
+                        <use href="assets/icons.svg#icon-log-out"></use>
+                    </svg>
+
+                    Cerrar sesión
+
+                </a>
+
             </div>
+
+
         </nav>
+
+
+
+        <!-- USUARIO -->
+
         <div class="sidebar-user">
 
-    <div class="avatar" id="avatarUsuario">
-        ER
-    </div>
+            <div
+                class="avatar"
+                id="avatarUsuario"
+            >
+                ER
+            </div>
 
-    <div>
-        <div class="s-name" id="nombreUsuario">
-            Elias Rodriguez
+
+            <div>
+
+                <div
+                    class="s-name"
+                    id="nombreUsuario"
+                >
+                    Usuario
+                </div>
+
+
+                <div
+                    class="s-email"
+                    id="correoUsuario"
+                >
+                    correo@fintrack.com
+                </div>
+
+            </div>
+
         </div>
 
-        <div class="s-email" id="correoUsuario">
-            erodriguez60177@ufide.ac.cr
-        </div>
-    </div>
 
-</div>
     </aside>
+
+
+
+    <!-- =====================================================
+         CONTENIDO
+    ====================================================== -->
 
     <main class="main">
 
-    <!-- =====================================================
-         ENCABEZADO
-    ====================================================== -->
 
-    <div class="page-header">
+        <!-- ENCABEZADO -->
 
-        <div>
-            <h2>Reportes financieros</h2>
+        <div class="page-header">
 
-            <div class="sub">
-                Analiza el comportamiento de tus finanzas.
-            </div>
-        </div>
+            <div>
 
-    </div>
+                <h2>
+                    Reportes financieros
+                </h2>
 
+                <div class="sub">
+                    Analiza el comportamiento de tus finanzas.
+                </div>
 
-    <!-- =====================================================
-         RESUMEN
-    ====================================================== -->
-
-    <div class="stats-grid-3">
-
-        <!-- INGRESOS -->
-
-        <div class="stat-card">
-
-            <div class="ic ic-green">
-                <svg class="icon">
-                    <use href="assets/icons.svg#icon-trending-up"></use>
-                </svg>
-            </div>
-
-            <div class="lbl">
-                Ingresos acumulados
-            </div>
-
-            <div class="val green num">
-                ₡ 850,000
-            </div>
-
-            <div class="chg">
-                En lo que va de agosto
             </div>
 
         </div>
 
 
-        <!-- GASTOS -->
 
-        <div class="stat-card">
+        <!-- =====================================================
+             RESUMEN
+        ====================================================== -->
 
-            <div class="ic ic-red">
-                <svg class="icon">
-                    <use href="assets/icons.svg#icon-cart"></use>
-                </svg>
-            </div>
-
-            <div class="lbl">
-                Gastos acumulados
-            </div>
-
-            <div class="val red num">
-                ₡ 534,200
-            </div>
-
-            <div class="chg">
-                En lo que va de agosto
-            </div>
-
-        </div>
+        <div class="stats-grid-3">
 
 
-        <!-- BALANCE -->
+            <!-- INGRESOS -->
 
-        <div class="stat-card">
+            <div class="stat-card">
 
-            <div class="ic ic-teal">
-                <svg class="icon">
-                    <use href="assets/icons.svg#icon-credit-card"></use>
-                </svg>
-            </div>
+                <div class="ic ic-green">
 
-            <div class="lbl">
-                Balance disponible
-            </div>
+                    <svg class="icon">
+                        <use href="assets/icons.svg#icon-trending-up"></use>
+                    </svg>
 
-            <div class="val green num">
-                ₡ 315,800
-            </div>
-
-            <div class="chg">
-                Disponible actualmente
-            </div>
-
-        </div>
-
-    </div>
+                </div>
 
 
-    <!-- =====================================================
-         FILA PRINCIPAL
-    ====================================================== -->
-
-    <div class="reports-main-grid">
+                <div class="lbl">
+                    Ingresos acumulados
+                </div>
 
 
-        <!-- =================================================
-             HISTÓRICO DE GASTOS
-        ================================================== -->
+                <div
+                    class="val green num"
+                    id="reporteIngresos"
+                >
+                    ₡ 0
+                </div>
 
-        <div class="card report-history-card">
 
-            <div class="report-card-header">
-
-                <div>
-
-                    <div class="card-title mb-0">
-
-                        <svg class="icon">
-                            <use href="assets/icons.svg#icon-trending-up"></use>
-                        </svg>
-
-                        Histórico de gastos
-
-                    </div>
-
-                    <div class="text-muted text-sm">
-                        Comparación de gastos de los últimos meses.
-                    </div>
-
+                <div
+                    class="chg"
+                    id="reporteTextoIngresos"
+                >
+                    En el mes actual
                 </div>
 
             </div>
 
 
-            <div class="bar-chart report-bar-chart">
 
-                <!-- MAYO -->
+            <!-- GASTOS -->
 
-                <div class="bar-col report-month">
+            <div class="stat-card">
 
-                    <span class="bar-val num">
-                        ₡623k
-                    </span>
+                <div class="ic ic-red">
 
-                    <div class="bar-track">
+                    <svg class="icon">
+                        <use href="assets/icons.svg#icon-cart"></use>
+                    </svg>
 
-                        <div
-                            class="bar-fill expense"
-                            style="height: 70%;">
+                </div>
+
+
+                <div class="lbl">
+                    Gastos acumulados
+                </div>
+
+
+                <div
+                    class="val red num"
+                    id="reporteGastos"
+                >
+                    ₡ 0
+                </div>
+
+
+                <div
+                    class="chg"
+                    id="reporteTextoGastos"
+                >
+                    En el mes actual
+                </div>
+
+            </div>
+
+
+
+            <!-- BALANCE -->
+
+            <div class="stat-card">
+
+                <div class="ic ic-teal">
+
+                    <svg class="icon">
+                        <use href="assets/icons.svg#icon-credit-card"></use>
+                    </svg>
+
+                </div>
+
+
+                <div class="lbl">
+                    Balance disponible
+                </div>
+
+
+                <div
+                    class="val green num"
+                    id="reporteBalance"
+                >
+                    ₡ 0
+                </div>
+
+
+                <div class="chg">
+                    Disponible actualmente
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =====================================================
+             FILA PRINCIPAL
+        ====================================================== -->
+
+        <div class="reports-main-grid">
+
+
+            <!-- =================================================
+                 HISTÓRICO
+            ================================================== -->
+
+            <div class="card report-history-card">
+
+
+                <div class="report-card-header">
+
+                    <div>
+
+                        <div class="card-title mb-0">
+
+                            <svg class="icon">
+                                <use href="assets/icons.svg#icon-trending-up"></use>
+                            </svg>
+
+                            Histórico de gastos
+
+                        </div>
+
+
+                        <div class="text-muted text-sm">
+                            Comparación de gastos de los últimos meses.
                         </div>
 
                     </div>
 
-                    <span class="bar-lbl">
-                        Mayo
+                </div>
+
+
+
+                <div
+                    class="bar-chart report-bar-chart"
+                    id="reporteHistorico"
+                >
+                </div>
+
+
+
+                <div class="report-selected-month">
+
+                    <span>
+                        Mes seleccionado
                     </span>
+
+                    <strong id="reporteMes">
+                        —
+                    </strong>
 
                 </div>
 
 
-                <!-- JUNIO -->
+            </div>
 
-                <div class="bar-col report-month">
 
-                    <span class="bar-val num">
-                        ₡757k
-                    </span>
 
-                    <div class="bar-track">
+            <!-- =================================================
+                 GASTOS POR CATEGORÍA
+            ================================================== -->
+
+            <div class="card report-category-card">
+
+
+                <div class="report-card-header">
+
+                    <div>
+
+                        <div class="card-title mb-0">
+
+                            <svg class="icon">
+                                <use href="assets/icons.svg#icon-list"></use>
+                            </svg>
+
+                            Gastos por categoría
+
+                        </div>
+
 
                         <div
-                            class="bar-fill expense"
-                            style="height: 85%;">
+                            class="text-muted text-sm"
+                            id="reporteTextoCategorias"
+                        >
+                            Distribución del mes actual.
                         </div>
 
                     </div>
 
-                    <span class="bar-lbl">
-                        Junio
-                    </span>
-
                 </div>
 
 
-                <!-- JULIO -->
 
-                <div class="bar-col report-month">
+                <!-- DONA -->
 
-                    <span class="bar-val num">
-                        ₡610k
-                    </span>
+                <div class="report-donut-wrap">
 
-                    <div class="bar-track">
+                    <div
+                        class="report-donut"
+                        id="reporteDona"
+                    >
 
-                        <div
-                            class="bar-fill expense"
-                            style="height: 69%;">
+                        <div class="report-donut-center">
+
+                            <span>
+                                Total
+                            </span>
+
+                            <strong
+                                class="num"
+                                id="reporteTotalGastos"
+                            >
+                                ₡ 0
+                            </strong>
+
                         </div>
 
                     </div>
 
-                    <span class="bar-lbl">
-                        Julio
-                    </span>
+                </div>
+
+
+
+                <!-- CATEGORÍAS -->
+
+                <div
+                    class="report-category-list"
+                    id="reporteCategorias"
+                >
+
+                    <div class="text-muted">
+                        Cargando...
+                    </div>
 
                 </div>
 
 
-                <!-- AGOSTO -->
+            </div>
 
-                <div class="bar-col report-month active">
 
-                    <span class="bar-val num">
-                        ₡534k
-                    </span>
+        </div>
 
-                    <div class="bar-track">
 
-                        <div
-                            class="bar-fill"
-                            style="
-                                height: 60%;
-                                background: var(--primary);
-                            ">
+
+        <!-- =====================================================
+             FILA INFERIOR
+        ====================================================== -->
+
+        <div class="reports-bottom-grid">
+
+
+            <!-- =================================================
+                 DETALLE
+            ================================================== -->
+
+            <div class="card report-detail-card">
+
+
+                <div class="report-card-header">
+
+                    <div>
+
+                        <div class="card-title mb-0">
+
+                            <svg class="icon">
+                                <use href="assets/icons.svg#icon-list"></use>
+                            </svg>
+
+                            Detalle de gastos
+
+                        </div>
+
+
+                        <div class="text-muted text-sm">
+                            Consulta qué movimientos conforman cada categoría.
                         </div>
 
                     </div>
 
-                    <span class="bar-lbl">
-                        Agosto
-                    </span>
+                </div>
+
+
+
+                <div
+                    class="report-detail-list"
+                    id="reporteDetalle"
+                >
+
+                    <div class="text-muted">
+                        Cargando...
+                    </div>
 
                 </div>
 
-            </div>
-
-
-            <div class="report-selected-month">
-
-                <span>
-                    Mes seleccionado
-                </span>
-
-                <strong>
-                    Agosto 2026
-                </strong>
 
             </div>
+
+
+
+            <!-- =================================================
+                 ÚLTIMOS GASTOS
+            ================================================== -->
+
+            <div class="card report-recent-card">
+
+
+                <div class="report-card-header">
+
+                    <div>
+
+                        <div class="card-title mb-0">
+
+                            <svg class="icon">
+                                <use href="assets/icons.svg#icon-credit-card"></use>
+                            </svg>
+
+                            Últimos gastos
+
+                        </div>
+
+
+                        <div class="text-muted text-sm">
+                            Movimientos recientes registrados.
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div
+                    class="report-recent-list"
+                    id="reporteUltimos"
+                >
+
+                    <div class="text-muted">
+                        Cargando...
+                    </div>
+
+                </div>
+
+
+            </div>
+
 
         </div>
 
 
+    </main>
 
-        <!-- =================================================
-             GASTOS POR CATEGORÍA
-        ================================================== -->
-
-        <div class="card report-category-card">
-
-            <div class="report-card-header">
-
-                <div>
-
-                    <div class="card-title mb-0">
-
-                        <svg class="icon">
-                            <use href="assets/icons.svg#icon-list"></use>
-                        </svg>
-
-                        Gastos por categoría
-
-                    </div>
-
-                    <div class="text-muted text-sm">
-                        Distribución de agosto 2026.
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- GRÁFICA TIPO DONA VISUAL -->
-
-            <div class="report-donut-wrap">
-
-                <div class="report-donut">
-
-                    <div class="report-donut-center">
-
-                        <span>
-                            Total
-                        </span>
-
-                        <strong class="num">
-                            ₡534,200
-                        </strong>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- CATEGORÍAS -->
-
-            <div class="report-category-list">
-
-                <div class="report-category-item">
-
-                    <div>
-                        <span class="report-dot report-dot-1"></span>
-                        Alimentación
-                    </div>
-
-                    <strong class="num">
-                        ₡142,000
-                    </strong>
-
-                </div>
-
-
-                <div class="report-category-item">
-
-                    <div>
-                        <span class="report-dot report-dot-2"></span>
-                        Vivienda
-                    </div>
-
-                    <strong class="num">
-                        ₡120,000
-                    </strong>
-
-                </div>
-
-
-                <div class="report-category-item">
-
-                    <div>
-                        <span class="report-dot report-dot-3"></span>
-                        Transporte
-                    </div>
-
-                    <strong class="num">
-                        ₡98,000
-                    </strong>
-
-                </div>
-
-
-                <div class="report-category-item">
-
-                    <div>
-                        <span class="report-dot report-dot-4"></span>
-                        Servicios
-                    </div>
-
-                    <strong class="num">
-                        ₡92,200
-                    </strong>
-
-                </div>
-
-
-                <div class="report-category-item">
-
-                    <div>
-                        <span class="report-dot report-dot-5"></span>
-                        Entretenimiento
-                    </div>
-
-                    <strong class="num">
-                        ₡82,000
-                    </strong>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-
-    <!-- =====================================================
-         FILA INFERIOR
-    ====================================================== -->
-
-    <div class="reports-bottom-grid">
-
-
-        <!-- =================================================
-             DETALLE DE GASTOS
-        ================================================== -->
-
-        <div class="card report-detail-card">
-
-            <div class="report-card-header">
-
-                <div>
-
-                    <div class="card-title mb-0">
-
-                        <svg class="icon">
-                            <use href="assets/icons.svg#icon-list"></use>
-                        </svg>
-
-                        Detalle de gastos
-
-                    </div>
-
-                    <div class="text-muted text-sm">
-                        Consulta qué movimientos conforman cada categoría.
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="report-detail-list">
-
-
-                <!-- ALIMENTACIÓN -->
-
-                <div class="report-detail-item">
-
-                    <div>
-
-                        <strong>
-                            Alimentación
-                        </strong>
-
-                        <span class="num">
-                            ₡142,000
-                        </span>
-
-                    </div>
-
-                    <button
-                        type="button"
-                        class="btn btn-ghost btn-sm report-view-button"
-                        data-categoria="alimentacion">
-                        Ver gastos
-                    </button>
-
-                </div>
-
-
-                <!-- VIVIENDA -->
-
-                <div class="report-detail-item">
-
-                    <div>
-
-                        <strong>
-                            Vivienda
-                        </strong>
-
-                        <span class="num">
-                            ₡120,000
-                        </span>
-
-                    </div>
-
-                    <button
-                        type="button"
-                        class="btn btn-ghost btn-sm report-view-button"
-                        data-categoria="vivienda">
-                        Ver gastos
-                    </button>
-
-                </div>
-
-
-                <!-- TRANSPORTE -->
-
-                <div class="report-detail-item">
-
-                    <div>
-
-                        <strong>
-                            Transporte
-                        </strong>
-
-                        <span class="num">
-                            ₡98,000
-                        </span>
-
-                    </div>
-
-                    <button
-                        type="button"
-                        class="btn btn-ghost btn-sm report-view-button"
-                        data-categoria="transporte">
-                        Ver gastos
-                    </button>
-
-                </div>
-
-
-                <!-- SERVICIOS -->
-
-                <div class="report-detail-item">
-
-                    <div>
-
-                        <strong>
-                            Servicios
-                        </strong>
-
-                        <span class="num">
-                            ₡92,200
-                        </span>
-
-                    </div>
-
-                    <button
-                        type="button"
-                        class="btn btn-ghost btn-sm report-view-button"
-                        data-categoria="servicios">
-                        Ver gastos
-                    </button>
-
-                </div>
-
-
-                <!-- ENTRETENIMIENTO -->
-
-                <div class="report-detail-item">
-
-                    <div>
-
-                        <strong>
-                            Entretenimiento
-                        </strong>
-
-                        <span class="num">
-                            ₡82,000
-                        </span>
-
-                    </div>
-
-                    <button
-                        type="button"
-                        class="btn btn-ghost btn-sm report-view-button"
-                        data-categoria="entretenimiento">
-                        Ver gastos
-                    </button>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- =================================================
-             ÚLTIMOS GASTOS
-        ================================================== -->
-
-        <div class="card report-recent-card">
-
-            <div class="report-card-header">
-
-                <div>
-
-                    <div class="card-title mb-0">
-
-                        <svg class="icon">
-                            <use href="assets/icons.svg#icon-credit-card"></use>
-                        </svg>
-
-                        Últimos gastos
-
-                    </div>
-
-                    <div class="text-muted text-sm">
-                        Movimientos recientes de agosto.
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="report-recent-list">
-
-
-                <!-- WALMART -->
-
-                <div class="report-recent-item">
-
-                    <div>
-
-                        <strong>
-                            Walmart Alajuela
-                        </strong>
-
-                        <span>
-                            Alimentación · 14 ago. 2026
-                        </span>
-
-                    </div>
-
-                    <strong class="text-red num">
-                        -₡64,500
-                    </strong>
-
-                </div>
-
-
-                <!-- TELECABLE -->
-
-                <div class="report-recent-item">
-
-                    <div>
-
-                        <strong>
-                            Telecable Costa Rica
-                        </strong>
-
-                        <span>
-                            Servicios · 12 ago. 2026
-                        </span>
-
-                    </div>
-
-                    <strong class="text-red num">
-                        -₡32,000
-                    </strong>
-
-                </div>
-
-
-                <!-- DELTA -->
-
-                <div class="report-recent-item">
-
-                    <div>
-
-                        <strong>
-                            Estación Delta
-                        </strong>
-
-                        <span>
-                            Transporte · 8 ago. 2026
-                        </span>
-
-                    </div>
-
-                    <strong class="text-red num">
-                        -₡35,000
-                    </strong>
-
-                </div>
-
-
-                <!-- GOLLO -->
-
-                <div class="report-recent-item">
-
-                    <div>
-
-                        <strong>
-                            Gollo Alajuela
-                        </strong>
-
-                        <span>
-                            Deudas · 6 ago. 2026
-                        </span>
-
-                    </div>
-
-                    <strong class="text-red num">
-                        -₡55,000
-                    </strong>
-
-                </div>
-
-
-                <!-- PALI -->
-
-                <div class="report-recent-item">
-
-                    <div>
-
-                        <strong>
-                            Supermercado Palí
-                        </strong>
-
-                        <span>
-                            Alimentación · 5 ago. 2026
-                        </span>
-
-                    </div>
-
-                    <strong class="text-red num">
-                        -₡42,000
-                    </strong>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</main>
 </div>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT GENERAL
+===================================================== -->
+
 <script src="js/app.js"></script>
+
+
+
+<!-- =====================================================
+     REPORTES MYSQL
+===================================================== -->
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+
+        // =====================================================
+        // USUARIO
+        // =====================================================
+
+        const usuarioGuardado =
+            sessionStorage.getItem(
+                "fintrackUsuarioActual"
+            );
+
+
+        if (!usuarioGuardado) {
+
+            console.error(
+                "No hay usuario iniciado."
+            );
+
+            return;
+
+        }
+
+
+        const usuario =
+            JSON.parse(
+                usuarioGuardado
+            );
+
+
+        // =====================================================
+        // USUARIO SIDEBAR
+        // =====================================================
+
+        const nombreUsuario =
+            document.getElementById(
+                "nombreUsuario"
+            );
+
+        const correoUsuario =
+            document.getElementById(
+                "correoUsuario"
+            );
+
+        const avatarUsuario =
+            document.getElementById(
+                "avatarUsuario"
+            );
+
+
+        if (nombreUsuario) {
+
+            nombreUsuario.textContent =
+                (
+                    usuario.nombre || ""
+                ) +
+                " " +
+                (
+                    usuario.apellidos || ""
+                );
+
+        }
+
+
+        if (correoUsuario) {
+
+            correoUsuario.textContent =
+                usuario.correo || "";
+
+        }
+
+
+        if (avatarUsuario) {
+
+            const inicialNombre =
+                (
+                    usuario.nombre || "U"
+                )
+                .charAt(0)
+                .toUpperCase();
+
+
+            const inicialApellido =
+                (
+                    usuario.apellidos || ""
+                )
+                .charAt(0)
+                .toUpperCase();
+
+
+            avatarUsuario.textContent =
+                inicialNombre +
+                inicialApellido;
+
+        }
+
+
+
+        // =====================================================
+        // ELEMENTOS
+        // =====================================================
+
+        const reporteIngresos =
+            document.getElementById(
+                "reporteIngresos"
+            );
+
+        const reporteGastos =
+            document.getElementById(
+                "reporteGastos"
+            );
+
+        const reporteBalance =
+            document.getElementById(
+                "reporteBalance"
+            );
+
+        const reporteHistorico =
+            document.getElementById(
+                "reporteHistorico"
+            );
+
+        const reporteMes =
+            document.getElementById(
+                "reporteMes"
+            );
+
+        const reporteTotalGastos =
+            document.getElementById(
+                "reporteTotalGastos"
+            );
+
+        const reporteCategorias =
+            document.getElementById(
+                "reporteCategorias"
+            );
+
+        const reporteDetalle =
+            document.getElementById(
+                "reporteDetalle"
+            );
+
+        const reporteUltimos =
+            document.getElementById(
+                "reporteUltimos"
+            );
+
+        const reporteDona =
+            document.getElementById(
+                "reporteDona"
+            );
+
+        const reporteTextoIngresos =
+            document.getElementById(
+                "reporteTextoIngresos"
+            );
+
+        const reporteTextoGastos =
+            document.getElementById(
+                "reporteTextoGastos"
+            );
+
+        const reporteTextoCategorias =
+            document.getElementById(
+                "reporteTextoCategorias"
+            );
+
+
+
+        // =====================================================
+        // MONEDA
+        // =====================================================
+
+        function moneda(valor) {
+
+            const numero =
+                Number(valor) || 0;
+
+
+            return (
+                "₡ " +
+                numero.toLocaleString(
+                    "es-CR",
+                    {
+                        maximumFractionDigits: 0
+                    }
+                )
+            );
+
+        }
+
+
+
+        // =====================================================
+        // MONEDA CORTA
+        // =====================================================
+
+        function monedaCorta(valor) {
+
+            const numero =
+                Number(valor) || 0;
+
+
+            if (numero >= 1000000) {
+
+                return (
+                    "₡" +
+                    (
+                        numero /
+                        1000000
+                    ).toFixed(1) +
+                    "M"
+                );
+
+            }
+
+
+            if (numero >= 1000) {
+
+                return (
+                    "₡" +
+                    Math.round(
+                        numero /
+                        1000
+                    ) +
+                    "k"
+                );
+
+            }
+
+
+            return (
+                "₡" +
+                numero
+            );
+
+        }
+
+
+
+        // =====================================================
+        // NOMBRE MES
+        // =====================================================
+
+        function nombreMes(numero) {
+
+            const meses = [
+                "",
+                "Enero",
+                "Febrero",
+                "Marzo",
+                "Abril",
+                "Mayo",
+                "Junio",
+                "Julio",
+                "Agosto",
+                "Septiembre",
+                "Octubre",
+                "Noviembre",
+                "Diciembre"
+            ];
+
+
+            return (
+                meses[
+                    Number(numero)
+                ] || ""
+            );
+
+        }
+
+
+
+        // =====================================================
+        // FECHA
+        // =====================================================
+
+        function fechaReporte(fechaTexto) {
+
+            if (!fechaTexto) {
+
+                return "";
+
+            }
+
+
+            const partes =
+                fechaTexto.split("-");
+
+
+            if (partes.length !== 3) {
+
+                return fechaTexto;
+
+            }
+
+
+            const fecha =
+                new Date(
+                    Number(partes[0]),
+                    Number(partes[1]) - 1,
+                    Number(partes[2])
+                );
+
+
+            return fecha.toLocaleDateString(
+                "es-CR",
+                {
+                    day: "numeric",
+                    month: "short",
+                    year: "numeric"
+                }
+            );
+
+        }
+
+
+
+        // =====================================================
+        // CARGAR REPORTES
+        // =====================================================
+
+        async function cargarReportes() {
+
+
+            try {
+
+
+                const respuesta =
+                    await fetch(
+                        "backend/reportes.php?usuario_id=" +
+                        encodeURIComponent(
+                            usuario.id
+                        )
+                    );
+
+
+                if (!respuesta.ok) {
+
+                    throw new Error(
+                        "Error HTTP: " +
+                        respuesta.status
+                    );
+
+                }
+
+
+                const datos =
+                    await respuesta.json();
+
+
+                console.log(
+                    "DATOS REPORTES:",
+                    datos
+                );
+
+
+                if (!datos.ok) {
+
+                    console.error(
+                        datos.mensaje
+                    );
+
+                    return;
+
+                }
+
+
+
+                // =================================================
+                // RESUMEN
+                // =================================================
+
+                reporteIngresos.textContent =
+                    moneda(
+                        datos.ingresosMes
+                    );
+
+
+                reporteGastos.textContent =
+                    moneda(
+                        datos.gastosMes
+                    );
+
+
+                reporteBalance.textContent =
+                    moneda(
+                        datos.usuario.balance
+                    );
+
+
+
+                // =================================================
+                // TEXTO MES
+                // =================================================
+
+                const textoMes =
+                    nombreMes(
+                        datos.mesActual
+                    ) +
+                    " " +
+                    datos.anioActual;
+
+
+                reporteMes.textContent =
+                    textoMes;
+
+
+                if (
+                    reporteTextoIngresos
+                ) {
+
+                    reporteTextoIngresos.textContent =
+                        "En lo que va de " +
+                        nombreMes(
+                            datos.mesActual
+                        ).toLowerCase();
+
+                }
+
+
+                if (
+                    reporteTextoGastos
+                ) {
+
+                    reporteTextoGastos.textContent =
+                        "En lo que va de " +
+                        nombreMes(
+                            datos.mesActual
+                        ).toLowerCase();
+
+                }
+
+
+                if (
+                    reporteTextoCategorias
+                ) {
+
+                    reporteTextoCategorias.textContent =
+                        "Distribución de " +
+                        textoMes +
+                        ".";
+
+                }
+
+
+
+                // =================================================
+                // TOTAL DONA
+                // =================================================
+
+                reporteTotalGastos.textContent =
+                    moneda(
+                        datos.gastosMes
+                    );
+
+
+
+                // =================================================
+                // HISTÓRICO
+                // =================================================
+
+                reporteHistorico.innerHTML =
+                    "";
+
+
+                const maximo =
+                    Math.max(
+                        ...datos.historico.map(
+                            function (item) {
+
+                                return (
+                                    Number(
+                                        item.total
+                                    ) || 0
+                                );
+
+                            }
+                        ),
+                        1
+                    );
+
+
+                datos.historico.forEach(
+                    function (
+                        item,
+                        indice
+                    ) {
+
+
+                        const total =
+                            Number(
+                                item.total
+                            ) || 0;
+
+
+                        const porcentaje =
+                            (
+                                total /
+                                maximo
+                            ) *
+                            100;
+
+
+                        const columna =
+                            document.createElement(
+                                "div"
+                            );
+
+
+                        columna.className =
+                            "bar-col report-month";
+
+
+                        if (
+                            indice ===
+                            datos.historico.length - 1
+                        ) {
+
+                            columna.classList.add(
+                                "active"
+                            );
+
+                        }
+
+
+                        columna.innerHTML = `
+
+                            <span
+                                class="bar-val num"
+                            >
+                                ${monedaCorta(total)}
+                            </span>
+
+
+                            <div class="bar-track">
+
+                                <div
+                                    class="bar-fill expense"
+                                    style="
+                                        height:
+                                        ${
+                                            Math.max(
+                                                porcentaje,
+                                                total > 0
+                                                    ? 5
+                                                    : 0
+                                            )
+                                        }%;
+                                    "
+                                >
+                                </div>
+
+                            </div>
+
+
+                            <span class="bar-lbl">
+
+                                ${
+                                    nombreMes(
+                                        item.mes
+                                    )
+                                }
+
+                            </span>
+
+                        `;
+
+
+                        reporteHistorico.appendChild(
+                            columna
+                        );
+
+                    }
+                );
+
+
+
+                // =================================================
+                // CATEGORÍAS
+                // =================================================
+
+                reporteCategorias.innerHTML =
+                    "";
+
+
+                reporteDetalle.innerHTML =
+                    "";
+
+
+                const categorias =
+                    datos.categorias || [];
+
+
+                if (
+                    categorias.length === 0
+                ) {
+
+                    reporteCategorias.innerHTML = `
+
+                        <div
+                            class="text-muted text-sm"
+                        >
+                            No hay gastos registrados.
+                        </div>
+
+                    `;
+
+
+                    reporteDetalle.innerHTML = `
+
+                        <div
+                            class="text-muted text-sm"
+                        >
+                            No hay gastos registrados.
+                        </div>
+
+                    `;
+
+                }
+
+
+
+                // =================================================
+                // DONA
+                // =================================================
+
+                const colores = [
+                    "#23866f",
+                    "#73a392",
+                    "#dcae5d",
+                    "#6d93b6",
+                    "#b77c9f",
+                    "#de725e",
+                    "#7e7aa8",
+                    "#9a856d"
+                ];
+
+
+                let acumulado =
+                    0;
+
+
+                const partesDona =
+                    [];
+
+
+                const totalCategorias =
+                    categorias.reduce(
+                        function (
+                            acumulador,
+                            categoria
+                        ) {
+
+                            return (
+                                acumulador +
+                                (
+                                    Number(
+                                        categoria.total
+                                    ) || 0
+                                )
+                            );
+
+                        },
+                        0
+                    );
+
+
+
+                categorias.forEach(
+                    function (
+                        categoria,
+                        indice
+                    ) {
+
+
+                        const totalCategoria =
+                            Number(
+                                categoria.total
+                            ) || 0;
+
+
+                        const porcentaje =
+                            totalCategorias > 0
+                                ?
+                                    (
+                                        totalCategoria /
+                                        totalCategorias
+                                    ) *
+                                    100
+                                :
+                                    0;
+
+
+                        const inicio =
+                            acumulado;
+
+
+                        acumulado +=
+                            porcentaje;
+
+
+                        partesDona.push(
+                            colores[
+                                indice %
+                                colores.length
+                            ] +
+                            " " +
+                            inicio +
+                            "% " +
+                            acumulado +
+                            "%"
+                        );
+
+
+
+                        // =========================================
+                        // LISTA CATEGORÍAS
+                        // =========================================
+
+                        const fila =
+                            document.createElement(
+                                "div"
+                            );
+
+
+                        fila.className =
+                            "report-category-item";
+
+
+                        fila.innerHTML = `
+
+                            <div>
+
+                                <span
+                                    class="report-dot"
+                                    style="
+                                        background:
+                                        ${
+                                            colores[
+                                                indice %
+                                                colores.length
+                                            ]
+                                        };
+                                    "
+                                >
+                                </span>
+
+                                ${categoria.categoria}
+
+                            </div>
+
+
+                            <strong
+                                class="num"
+                            >
+
+                                ${
+                                    moneda(
+                                        categoria.total
+                                    )
+                                }
+
+                            </strong>
+
+                        `;
+
+
+                        reporteCategorias.appendChild(
+                            fila
+                        );
+
+
+
+                        // =========================================
+                        // DETALLE
+                        // =========================================
+
+                        const detalle =
+                            document.createElement(
+                                "div"
+                            );
+
+
+                        detalle.className =
+                            "report-detail-item";
+
+
+                        detalle.innerHTML = `
+
+                            <div>
+
+                                <strong>
+
+                                    ${
+                                        categoria.categoria
+                                    }
+
+                                </strong>
+
+                                <span class="num">
+
+                                    ${
+                                        moneda(
+                                            categoria.total
+                                        )
+                                    }
+
+                                </span>
+
+                            </div>
+
+
+                            <button
+                                type="button"
+                                class="
+                                    btn
+                                    btn-ghost
+                                    btn-sm
+                                    report-view-button
+                                "
+                            >
+
+                                Ver gastos
+
+                            </button>
+
+                        `;
+
+
+
+                        // =========================================
+                        // VER GASTOS
+                        // =========================================
+
+                        const boton =
+                            detalle.querySelector(
+                                ".report-view-button"
+                            );
+
+
+                        boton.addEventListener(
+                            "click",
+                            function () {
+
+
+                                const movimientos =
+                                    (
+                                        datos.movimientos ||
+                                        []
+                                    )
+                                    .filter(
+                                        function (
+                                            movimiento
+                                        ) {
+
+                                            return (
+                                                movimiento
+                                                    .categoria ===
+                                                categoria
+                                                    .categoria
+                                            );
+
+                                        }
+                                    );
+
+
+                                if (
+                                    movimientos.length === 0
+                                ) {
+
+                                    alert(
+                                        "No hay movimientos."
+                                    );
+
+                                    return;
+
+                                }
+
+
+                                let texto =
+                                    categoria.categoria +
+                                    "\n\n";
+
+
+                                movimientos.forEach(
+                                    function (
+                                        movimiento
+                                    ) {
+
+
+                                        texto +=
+                                            (
+                                                movimiento
+                                                    .comercio_persona ||
+                                                movimiento
+                                                    .descripcion ||
+                                                "Movimiento"
+                                            ) +
+                                            " — " +
+                                            moneda(
+                                                movimiento
+                                                    .monto
+                                            ) +
+                                            "\n";
+
+                                    }
+                                );
+
+
+                                alert(
+                                    texto
+                                );
+
+                            }
+                        );
+
+
+                        reporteDetalle.appendChild(
+                            detalle
+                        );
+
+
+                    }
+                );
+
+
+
+                // =================================================
+                // ACTUALIZAR DONA
+                // =================================================
+
+                if (
+                    reporteDona &&
+                    partesDona.length > 0
+                ) {
+
+                    reporteDona.style.background =
+                        "conic-gradient(" +
+                        partesDona.join(",") +
+                        ")";
+
+                }
+
+
+
+                // =================================================
+                // ÚLTIMOS GASTOS
+                // =================================================
+
+                reporteUltimos.innerHTML =
+                    "";
+
+
+                const ultimos =
+                    datos.ultimosGastos ||
+                    [];
+
+
+                if (
+                    ultimos.length === 0
+                ) {
+
+                    reporteUltimos.innerHTML = `
+
+                        <div
+                            class="text-muted text-sm"
+                        >
+                            No tienes gastos recientes.
+                        </div>
+
+                    `;
+
+                }
+
+
+                ultimos.forEach(
+                    function (gasto) {
+
+
+                        const fila =
+                            document.createElement(
+                                "div"
+                            );
+
+
+                        fila.className =
+                            "report-recent-item";
+
+
+                        fila.innerHTML = `
+
+                            <div>
+
+                                <strong>
+
+                                    ${
+                                        gasto
+                                            .comercio_persona ||
+                                        gasto
+                                            .descripcion ||
+                                        "Movimiento"
+                                    }
+
+                                </strong>
+
+
+                                <span>
+
+                                    ${
+                                        gasto.categoria
+                                    }
+
+                                    ·
+
+                                    ${
+                                        fechaReporte(
+                                            gasto.fecha
+                                        )
+                                    }
+
+                                </span>
+
+                            </div>
+
+
+                            <strong
+                                class="text-red num"
+                            >
+
+                                -${
+                                    moneda(
+                                        gasto.monto
+                                    )
+                                }
+
+                            </strong>
+
+                        `;
+
+
+                        reporteUltimos.appendChild(
+                            fila
+                        );
+
+
+                    }
+                );
+
+
+            }
+            catch (error) {
+
+
+                console.error(
+                    "ERROR REPORTES:",
+                    error
+                );
+
+
+                alert(
+                    "No se pudieron cargar los reportes."
+                );
+
+
+            }
+
+
+        }
+
+
+
+        // =====================================================
+        // EJECUTAR
+        // =====================================================
+
+        cargarReportes();
+
+
+    }
+);
+
+</script>
+
+
 </body>
 </html>

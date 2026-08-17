@@ -5060,3 +5060,141 @@ tbody tr:hover td {
   }
 
 }
+
+/* =====================================================
+   MODAL NUEVA TRANSACCIÓN
+===================================================== */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.45);
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  z-index: 9999;
+}
+
+
+/* MOSTRAR MODAL */
+
+.modal-overlay.abierto {
+  display: flex;
+}
+
+
+/* CAJA DEL MODAL */
+
+.modal-card {
+  width: 100%;
+  max-width: 650px;
+
+  max-height: 90vh;
+  overflow-y: auto;
+
+  background: #ffffff;
+
+  border-radius: 18px;
+  padding: 28px;
+
+  box-shadow:
+    0 20px 60px
+    rgba(0, 0, 0, 0.18);
+}
+
+
+/* ENCABEZADO */
+
+.modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin-bottom: 24px;
+}
+
+
+.modal-header h3 {
+  margin: 0 0 5px;
+  font-size: 22px;
+}
+
+
+/* BOTÓN X */
+
+.modal-close {
+  border: none;
+  background: transparent;
+
+  font-size: 28px;
+  line-height: 1;
+
+  cursor: pointer;
+
+  color: #6b7280;
+}
+
+
+.modal-close:hover {
+  color: #111827;
+}
+
+
+/* CAMPOS */
+
+.modal-card .form-group {
+  margin-bottom: 18px;
+}
+
+
+.modal-card .form-row {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 18px;
+}
+
+
+.modal-card .form-control {
+  width: 100%;
+}
+
+
+/* BOTONES INFERIORES */
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+
+  gap: 12px;
+
+  margin-top: 25px;
+  padding-top: 20px;
+
+  border-top:
+    1px solid #e5e7eb;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 650px) {
+
+  .modal-card .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-card {
+    padding: 20px;
+  }
+
+}

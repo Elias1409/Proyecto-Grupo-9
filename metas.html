@@ -2,23 +2,38 @@
 <html lang="es">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Metas de Ahorro – FinTrack Web</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <link rel="stylesheet" href="css/style.css">
+    <title>
+        Metas de Ahorro – FinTrack Web
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
 </head>
+
 
 <body>
 
+
 <div class="layout">
+
 
     <!-- =====================================================
          SIDEBAR
     ====================================================== -->
 
     <aside class="sidebar">
+
 
         <div class="sidebar-logo">
 
@@ -29,6 +44,7 @@
                 </svg>
 
             </div>
+
 
             <div>
 
@@ -45,7 +61,9 @@
         </div>
 
 
+
         <nav class="sidebar-nav">
+
 
             <!-- PRINCIPAL -->
 
@@ -55,15 +73,18 @@
                     Principal
                 </span>
 
+
                 <a
                     href="dashboard.html"
                     class="nav-item"
                 >
+
                     <svg class="icon">
                         <use href="assets/icons.svg#icon-home"></use>
                     </svg>
 
                     Dashboard
+
                 </a>
 
 
@@ -71,11 +92,13 @@
                     href="transacciones.html"
                     class="nav-item"
                 >
+
                     <svg class="icon">
                         <use href="assets/icons.svg#icon-exchange"></use>
                     </svg>
 
                     Transacciones
+
                 </a>
 
 
@@ -83,14 +106,17 @@
                     href="deudas.html"
                     class="nav-item"
                 >
+
                     <svg class="icon">
                         <use href="assets/icons.svg#icon-credit-card"></use>
                     </svg>
 
                     Deudas
+
                 </a>
 
             </div>
+
 
 
             <!-- ANÁLISIS -->
@@ -101,15 +127,18 @@
                     Análisis
                 </span>
 
+
                 <a
                     href="reportes.html"
                     class="nav-item"
                 >
+
                     <svg class="icon">
                         <use href="assets/icons.svg#icon-bar-chart"></use>
                     </svg>
 
                     Reportes
+
                 </a>
 
 
@@ -117,14 +146,17 @@
                     href="metas.html"
                     class="nav-item active"
                 >
+
                     <svg class="icon">
                         <use href="assets/icons.svg#icon-target"></use>
                     </svg>
 
                     Metas de ahorro
+
                 </a>
 
             </div>
+
 
 
             <!-- CUENTA -->
@@ -135,15 +167,18 @@
                     Cuenta
                 </span>
 
+
                 <a
                     href="perfil.html"
                     class="nav-item"
                 >
+
                     <svg class="icon">
                         <use href="assets/icons.svg#icon-user"></use>
                     </svg>
 
                     Mi perfil
+
                 </a>
 
 
@@ -151,16 +186,20 @@
                     href="index.html"
                     class="nav-item logout-link"
                 >
+
                     <svg class="icon">
                         <use href="assets/icons.svg#icon-log-out"></use>
                     </svg>
 
                     Cerrar sesión
+
                 </a>
 
             </div>
 
+
         </nav>
+
 
 
         <!-- USUARIO -->
@@ -174,25 +213,28 @@
                 ER
             </div>
 
+
             <div>
 
                 <div
                     class="s-name"
                     id="nombreUsuario"
                 >
-                    Elias Rodriguez
+                    Usuario
                 </div>
+
 
                 <div
                     class="s-email"
                     id="correoUsuario"
                 >
-                    erodriguez60177@ufide.ac.cr
+                    correo@fintrack.com
                 </div>
 
             </div>
 
         </div>
+
 
     </aside>
 
@@ -204,9 +246,8 @@
 
     <main class="main">
 
-        <!-- =================================================
-             ENCABEZADO
-        ================================================== -->
+
+        <!-- ENCABEZADO -->
 
         <div class="page-header">
 
@@ -226,11 +267,12 @@
 
 
 
-        <!-- =================================================
+        <!-- =====================================================
              RESUMEN
-        ================================================== -->
+        ====================================================== -->
 
         <div class="stats-grid-3">
+
 
             <!-- TOTAL AHORRADO -->
 
@@ -244,19 +286,26 @@
 
                 </div>
 
+
                 <div class="lbl">
                     Total ahorrado
                 </div>
 
-                <div class="val green num">
-                    ₡ 380,000
+
+                <div
+                    class="val green num"
+                    id="totalAhorroMetas"
+                >
+                    ₡ 0
                 </div>
+
 
                 <div class="chg">
                     Entre todas tus metas
                 </div>
 
             </div>
+
 
 
             <!-- META TOTAL -->
@@ -271,19 +320,26 @@
 
                 </div>
 
+
                 <div class="lbl">
                     Meta total
                 </div>
 
-                <div class="val num">
-                    ₡ 700,000
+
+                <div
+                    class="val num"
+                    id="metaTotalMetas"
+                >
+                    ₡ 0
                 </div>
+
 
                 <div class="chg">
                     Objetivo acumulado
                 </div>
 
             </div>
+
 
 
             <!-- METAS ACTIVAS -->
@@ -298,13 +354,19 @@
 
                 </div>
 
+
                 <div class="lbl">
                     Metas activas
                 </div>
 
-                <div class="val num">
-                    2
+
+                <div
+                    class="val num"
+                    id="cantidadMetasActivas"
+                >
+                    0
                 </div>
+
 
                 <div class="chg">
                     En progreso
@@ -312,15 +374,17 @@
 
             </div>
 
+
         </div>
 
 
 
-        <!-- =================================================
-             ENCABEZADO DE MIS METAS
-        ================================================== -->
+        <!-- =====================================================
+             MIS METAS
+        ====================================================== -->
 
         <div class="goals-section-header">
+
 
             <div>
 
@@ -349,273 +413,1248 @@
 
             </button>
 
+
         </div>
 
 
 
-        <!-- =================================================
-             LISTA DE METAS
-        ================================================== -->
-
-        <div class="goals-list">
-
-
-            <!-- =================================================
-                 META 1 - LAPTOP
-            ================================================== -->
-
-            <div class="goal-card">
-
-                <div class="goal-card-header">
-
-                    <div class="goal-title">
-
-                        <div class="goal-icon ic-teal">
-
-                            <svg class="icon">
-                                <use href="assets/icons.svg#icon-laptop"></use>
-                            </svg>
-
-                        </div>
-
-
-                        <div>
-
-                            <strong>
-                                Laptop nueva
-                            </strong>
-
-                            <span>
-                                Compra de equipo personal
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <span class="badge badge-teal">
-                        60%
-                    </span>
-
-                </div>
-
-
-                <!-- PROGRESO -->
-
-                <div class="progress-bar goal-progress">
-
-                    <div
-                        class="progress-fill"
-                        style="width: 60%;">
-                    </div>
-
-                </div>
-
-
-                <!-- DATOS -->
-
-                <div class="goal-data">
-
-                    <div>
-
-                        <span>
-                            Ahorrado
-                        </span>
-
-                        <strong class="num">
-                            ₡ 300,000
-                        </strong>
-
-                    </div>
-
-
-                    <div>
-
-                        <span>
-                            Meta
-                        </span>
-
-                        <strong class="num">
-                            ₡ 500,000
-                        </strong>
-
-                    </div>
-
-
-                    <div>
-
-                        <span>
-                            Faltante
-                        </span>
-
-                        <strong class="num">
-                            ₡ 200,000
-                        </strong>
-
-                    </div>
-
-                </div>
-
-
-                <!-- BOTONES -->
-
-                <div class="goal-actions">
-
-                    <button
-                        type="button"
-                        class="btn btn-primary btn-sm"
-                        data-agregar-ahorro="1"
-                    >
-                        Agregar ahorro
-                    </button>
-
-
-                    <button
-                        type="button"
-                        class="btn btn-ghost btn-sm"
-                        data-ver-meta="1"
-                    >
-                        Ver detalle
-                    </button>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- =================================================
-                 META 2 - MARCHAMO
-            ================================================== -->
-
-            <div class="goal-card">
-
-                <div class="goal-card-header">
-
-                    <div class="goal-title">
-
-                        <div class="goal-icon ic-yellow">
-
-                            <svg class="icon">
-                                <use href="assets/icons.svg#icon-car"></use>
-                            </svg>
-
-                        </div>
-
-
-                        <div>
-
-                            <strong>
-                                Marchamo
-                            </strong>
-
-                            <span>
-                                Pago anual del vehículo
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <span class="badge badge-yellow">
-                        40%
-                    </span>
-
-                </div>
-
-
-                <!-- PROGRESO -->
-
-                <div class="progress-bar goal-progress">
-
-                    <div
-                        class="progress-fill orange"
-                        style="width: 40%;">
-                    </div>
-
-                </div>
-
-
-                <!-- DATOS -->
-
-                <div class="goal-data">
-
-                    <div>
-
-                        <span>
-                            Ahorrado
-                        </span>
-
-                        <strong class="num">
-                            ₡ 80,000
-                        </strong>
-
-                    </div>
-
-
-                    <div>
-
-                        <span>
-                            Meta
-                        </span>
-
-                        <strong class="num">
-                            ₡ 200,000
-                        </strong>
-
-                    </div>
-
-
-                    <div>
-
-                        <span>
-                            Faltante
-                        </span>
-
-                        <strong class="num">
-                            ₡ 120,000
-                        </strong>
-
-                    </div>
-
-                </div>
-
-
-                <!-- BOTONES -->
-
-                <div class="goal-actions">
-
-                    <button
-                        type="button"
-                        class="btn btn-primary btn-sm"
-                        data-agregar-ahorro="2"
-                    >
-                        Agregar ahorro
-                    </button>
-
-
-                    <button
-                        type="button"
-                        class="btn btn-ghost btn-sm"
-                        data-ver-meta="2"
-                    >
-                        Ver detalle
-                    </button>
-
-                </div>
-
+        <!-- LISTA -->
+
+        <div
+            class="goals-list"
+            id="listaMetas"
+        >
+
+            <div class="text-muted">
+                Cargando metas...
             </div>
 
         </div>
+
 
     </main>
 
 </div>
 
 
+
+<!-- =====================================================
+     MODAL NUEVA META
+===================================================== -->
+
+<div
+    class="modal-overlay"
+    id="modalNuevaMeta"
+>
+
+
+    <div class="modal-card">
+
+
+        <div class="modal-header">
+
+            <div>
+
+                <h3>
+                    Nueva meta
+                </h3>
+
+                <div class="text-muted">
+                    Crea un nuevo objetivo de ahorro.
+                </div>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="modal-close"
+                id="cerrarNuevaMeta"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+
+        <form id="formNuevaMeta">
+
+
+            <div class="form-group">
+
+                <label class="form-label">
+                    Nombre de la meta
+                </label>
+
+                <input
+                    type="text"
+                    class="form-control"
+                    id="metaNombre"
+                    placeholder="Ej: Viaje a México"
+                    required
+                >
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label class="form-label">
+                    Descripción
+                </label>
+
+                <input
+                    type="text"
+                    class="form-control"
+                    id="metaDescripcion"
+                    placeholder="Ej: Gastos del viaje"
+                >
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label class="form-label">
+                    Monto objetivo
+                </label>
+
+                <input
+                    type="number"
+                    class="form-control"
+                    id="metaObjetivo"
+                    min="1"
+                    placeholder="0"
+                    required
+                >
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label class="form-label">
+                    Fecha límite
+                </label>
+
+                <input
+                    type="date"
+                    class="form-control"
+                    id="metaFecha"
+                >
+
+            </div>
+
+
+
+            <div class="modal-actions">
+
+
+                <button
+                    type="button"
+                    class="btn btn-outline"
+                    id="cancelarNuevaMeta"
+                >
+                    Cancelar
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                >
+                    Guardar meta
+                </button>
+
+
+            </div>
+
+
+        </form>
+
+
+    </div>
+
+</div>
+
+
+
 <script src="js/app.js"></script>
 
+
+<!-- =====================================================
+     METAS MYSQL
+===================================================== -->
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+
+        // =====================================================
+        // USUARIO
+        // =====================================================
+
+        const usuarioGuardadoMetas =
+            sessionStorage.getItem(
+                "fintrackUsuarioActual"
+            );
+
+
+        if (!usuarioGuardadoMetas) {
+
+            return;
+
+        }
+
+
+        const usuarioMetas =
+            JSON.parse(
+                usuarioGuardadoMetas
+            );
+
+
+
+        // =====================================================
+        // ELEMENTOS
+        // =====================================================
+
+        const listaMetas =
+            document.getElementById(
+                "listaMetas"
+            );
+
+        const btnNuevaMeta =
+            document.getElementById(
+                "btnNuevaMeta"
+            );
+
+        const modalNuevaMeta =
+            document.getElementById(
+                "modalNuevaMeta"
+            );
+
+        const cerrarNuevaMeta =
+            document.getElementById(
+                "cerrarNuevaMeta"
+            );
+
+        const cancelarNuevaMeta =
+            document.getElementById(
+                "cancelarNuevaMeta"
+            );
+
+        const formNuevaMeta =
+            document.getElementById(
+                "formNuevaMeta"
+            );
+
+        const totalAhorroMetas =
+            document.getElementById(
+                "totalAhorroMetas"
+            );
+
+        const metaTotalMetas =
+            document.getElementById(
+                "metaTotalMetas"
+            );
+
+        const cantidadMetasActivas =
+            document.getElementById(
+                "cantidadMetasActivas"
+            );
+
+
+
+        // =====================================================
+        // SIDEBAR
+        // =====================================================
+
+        const nombreUsuario =
+            document.getElementById(
+                "nombreUsuario"
+            );
+
+        const correoUsuario =
+            document.getElementById(
+                "correoUsuario"
+            );
+
+        const avatarUsuario =
+            document.getElementById(
+                "avatarUsuario"
+            );
+
+
+        if (nombreUsuario) {
+
+            nombreUsuario.textContent =
+                (
+                    usuarioMetas.nombre || ""
+                ) +
+                " " +
+                (
+                    usuarioMetas.apellidos || ""
+                );
+
+        }
+
+
+        if (correoUsuario) {
+
+            correoUsuario.textContent =
+                usuarioMetas.correo || "";
+
+        }
+
+
+        if (avatarUsuario) {
+
+            avatarUsuario.textContent =
+                (
+                    usuarioMetas.nombre || "U"
+                )
+                .charAt(0)
+                .toUpperCase()
+                +
+                (
+                    usuarioMetas.apellidos || ""
+                )
+                .charAt(0)
+                .toUpperCase();
+
+        }
+
+
+
+        // =====================================================
+        // MONEDA
+        // =====================================================
+
+        function monedaMeta(valor) {
+
+            return (
+                "₡ " +
+                (
+                    Number(valor) || 0
+                )
+                .toLocaleString(
+                    "es-CR",
+                    {
+                        maximumFractionDigits: 0
+                    }
+                )
+            );
+
+        }
+
+
+
+        // =====================================================
+        // MODAL
+        // =====================================================
+
+        function abrirNuevaMeta() {
+
+            if (modalNuevaMeta) {
+
+                modalNuevaMeta.classList.add(
+                    "abierto"
+                );
+
+            }
+
+        }
+
+
+        function cerrarModalNuevaMeta() {
+
+            if (modalNuevaMeta) {
+
+                modalNuevaMeta.classList.remove(
+                    "abierto"
+                );
+
+            }
+
+        }
+
+
+        if (btnNuevaMeta) {
+
+            btnNuevaMeta.addEventListener(
+                "click",
+                abrirNuevaMeta
+            );
+
+        }
+
+
+        if (cerrarNuevaMeta) {
+
+            cerrarNuevaMeta.addEventListener(
+                "click",
+                cerrarModalNuevaMeta
+            );
+
+        }
+
+
+        if (cancelarNuevaMeta) {
+
+            cancelarNuevaMeta.addEventListener(
+                "click",
+                cerrarModalNuevaMeta
+            );
+
+        }
+
+
+        if (modalNuevaMeta) {
+
+            modalNuevaMeta.addEventListener(
+                "click",
+                function (event) {
+
+                    if (
+                        event.target ===
+                        modalNuevaMeta
+                    ) {
+
+                        cerrarModalNuevaMeta();
+
+                    }
+
+                }
+            );
+
+        }
+
+
+
+        // =====================================================
+        // CARGAR METAS
+        // =====================================================
+
+        async function cargarMetas() {
+
+
+            try {
+
+
+                const respuesta =
+                    await fetch(
+                        "backend/metas.php?usuario_id=" +
+                        encodeURIComponent(
+                            usuarioMetas.id
+                        )
+                    );
+
+
+                const datos =
+                    await respuesta.json();
+
+
+                if (!datos.ok) {
+
+                    console.error(
+                        datos.mensaje
+                    );
+
+                    return;
+
+                }
+
+
+
+                // =============================================
+                // RESUMEN
+                // =============================================
+
+                let totalAhorrado =
+                    0;
+
+                let metaTotal =
+                    0;
+
+
+                datos.metas.forEach(
+                    function (meta) {
+
+                        totalAhorrado +=
+                            Number(
+                                meta.monto_actual
+                            ) || 0;
+
+
+                        metaTotal +=
+                            Number(
+                                meta.monto_objetivo
+                            ) || 0;
+
+                    }
+                );
+
+
+                totalAhorroMetas.textContent =
+                    monedaMeta(
+                        totalAhorrado
+                    );
+
+
+                metaTotalMetas.textContent =
+                    monedaMeta(
+                        metaTotal
+                    );
+
+
+                cantidadMetasActivas.textContent =
+                    datos.metas.length;
+
+
+
+                // =============================================
+                // LISTA
+                // =============================================
+
+                listaMetas.innerHTML =
+                    "";
+
+
+                if (
+                    datos.metas.length === 0
+                ) {
+
+                    listaMetas.innerHTML = `
+
+                        <div class="alert alert-info">
+
+                            No tienes metas activas.
+
+                        </div>
+
+                    `;
+
+                    return;
+
+                }
+
+
+
+                datos.metas.forEach(
+                    function (meta) {
+
+
+                        const actual =
+                            Number(
+                                meta.monto_actual
+                            ) || 0;
+
+
+                        const objetivo =
+                            Number(
+                                meta.monto_objetivo
+                            ) || 0;
+
+
+                        const faltante =
+                            Math.max(
+                                objetivo - actual,
+                                0
+                            );
+
+
+                        const porcentaje =
+                            objetivo > 0
+                                ?
+                                Math.min(
+                                    (
+                                        actual /
+                                        objetivo
+                                    ) * 100,
+                                    100
+                                )
+                                :
+                                0;
+
+
+
+                        const tarjeta =
+                            document.createElement(
+                                "div"
+                            );
+
+
+                        tarjeta.className =
+                            "goal-card";
+
+
+                        tarjeta.innerHTML = `
+
+                            <div class="goal-card-header">
+
+
+                                <div class="goal-title">
+
+
+                                    <div
+                                        class="goal-icon ic-teal"
+                                    >
+
+                                        <svg class="icon">
+
+                                            <use
+                                                href="assets/icons.svg#icon-target">
+                                            </use>
+
+                                        </svg>
+
+                                    </div>
+
+
+                                    <div>
+
+                                        <strong>
+                                            ${meta.nombre}
+                                        </strong>
+
+                                        <span>
+
+                                            ${
+                                                meta.descripcion ||
+                                                "Meta de ahorro"
+                                            }
+
+                                        </span>
+
+                                    </div>
+
+
+                                </div>
+
+
+                                <span
+                                    class="badge badge-teal"
+                                >
+
+                                    ${porcentaje.toFixed(0)}%
+
+                                </span>
+
+
+                            </div>
+
+
+
+                            <div
+                                class="progress-bar goal-progress"
+                            >
+
+                                <div
+                                    class="progress-fill"
+                                    style="
+                                        width:
+                                        ${porcentaje}%;
+                                    "
+                                >
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="goal-data">
+
+
+                                <div>
+
+                                    <span>
+                                        Ahorrado
+                                    </span>
+
+                                    <strong class="num">
+
+                                        ${monedaMeta(actual)}
+
+                                    </strong>
+
+                                </div>
+
+
+
+                                <div>
+
+                                    <span>
+                                        Meta
+                                    </span>
+
+                                    <strong class="num">
+
+                                        ${monedaMeta(objetivo)}
+
+                                    </strong>
+
+                                </div>
+
+
+
+                                <div>
+
+                                    <span>
+                                        Faltante
+                                    </span>
+
+                                    <strong class="num">
+
+                                        ${monedaMeta(faltante)}
+
+                                    </strong>
+
+                                </div>
+
+
+                            </div>
+
+
+
+                            <div class="goal-actions">
+
+
+                                <button
+                                    type="button"
+                                    class="
+                                        btn
+                                        btn-primary
+                                        btn-sm
+                                    "
+                                    data-aportar-meta="${meta.id}"
+                                >
+
+                                    Agregar ahorro
+
+                                </button>
+
+
+
+                                <button
+                                    type="button"
+                                    class="
+                                        btn
+                                        btn-ghost
+                                        btn-sm
+                                    "
+                                    data-ver-meta="${meta.id}"
+                                >
+
+                                    Ver detalle
+
+                                </button>
+
+
+
+                                <button
+                                    type="button"
+                                    class="
+                                        btn
+                                        btn-outline
+                                        btn-sm
+                                    "
+                                    data-eliminar-meta="${meta.id}"
+                                >
+
+                                    Eliminar
+
+                                </button>
+
+
+                            </div>
+
+                        `;
+
+
+
+                        // =========================================
+                        // AGREGAR AHORRO
+                        // =========================================
+
+                        tarjeta
+                            .querySelector(
+                                "[data-aportar-meta]"
+                            )
+                            .addEventListener(
+                                "click",
+                                async function () {
+
+
+                                    const valor =
+                                        prompt(
+                                            "¿Cuánto desea agregar a " +
+                                            meta.nombre +
+                                            "?"
+                                        );
+
+
+                                    if (valor === null) {
+                                        return;
+                                    }
+
+
+                                    const monto =
+                                        Number(valor);
+
+
+                                    if (
+                                        !monto ||
+                                        monto <= 0
+                                    ) {
+
+                                        alert(
+                                            "Ingrese un monto válido."
+                                        );
+
+                                        return;
+
+                                    }
+
+
+
+                                    try {
+
+
+                                        const respuesta =
+                                            await fetch(
+                                                "backend/aportar_meta.php",
+                                                {
+                                                    method:
+                                                        "POST",
+
+                                                    headers: {
+                                                        "Content-Type":
+                                                            "application/json"
+                                                    },
+
+                                                    body:
+                                                        JSON.stringify({
+                                                            usuario_id:
+                                                                usuarioMetas.id,
+
+                                                            meta_id:
+                                                                meta.id,
+
+                                                            monto:
+                                                                monto
+                                                        })
+                                                }
+                                            );
+
+
+                                        const resultado =
+                                            await respuesta.json();
+
+
+                                        alert(
+                                            resultado.mensaje
+                                        );
+
+
+                                        if (
+                                            resultado.ok
+                                        ) {
+
+                                            cargarMetas();
+
+                                        }
+
+
+                                    }
+                                    catch (error) {
+
+                                        console.error(
+                                            error
+                                        );
+
+                                        alert(
+                                            "No se pudo agregar el ahorro."
+                                        );
+
+                                    }
+
+
+                                }
+                            );
+
+
+
+                        // =========================================
+                        // VER DETALLE
+                        // =========================================
+
+                        tarjeta
+                            .querySelector(
+                                "[data-ver-meta]"
+                            )
+                            .addEventListener(
+                                "click",
+                                function () {
+
+
+                                    let detalle =
+                                        meta.nombre +
+                                        "\n\n";
+
+
+                                    detalle +=
+                                        (
+                                            meta.descripcion ||
+                                            "Sin descripción"
+                                        ) +
+                                        "\n\n";
+
+
+                                    detalle +=
+                                        "Ahorrado: " +
+                                        monedaMeta(actual) +
+                                        "\n";
+
+
+                                    detalle +=
+                                        "Objetivo: " +
+                                        monedaMeta(objetivo) +
+                                        "\n";
+
+
+                                    detalle +=
+                                        "Faltante: " +
+                                        monedaMeta(faltante) +
+                                        "\n";
+
+
+                                    detalle +=
+                                        "Progreso: " +
+                                        porcentaje.toFixed(0) +
+                                        "%";
+
+
+                                    if (
+                                        meta.fecha_limite
+                                    ) {
+
+                                        detalle +=
+                                            "\nFecha límite: " +
+                                            meta.fecha_limite;
+
+                                    }
+
+
+                                    alert(
+                                        detalle
+                                    );
+
+
+                                }
+                            );
+
+
+
+                        // =========================================
+                        // ELIMINAR
+                        // =========================================
+
+                        tarjeta
+                            .querySelector(
+                                "[data-eliminar-meta]"
+                            )
+                            .addEventListener(
+                                "click",
+                                async function () {
+
+
+                                    const confirmar =
+                                        confirm(
+                                            "¿Eliminar la meta " +
+                                            meta.nombre +
+                                            "? El dinero ahorrado volverá al balance."
+                                        );
+
+
+                                    if (!confirmar) {
+                                        return;
+                                    }
+
+
+                                    try {
+
+
+                                        const respuesta =
+                                            await fetch(
+                                                "backend/eliminar_meta.php",
+                                                {
+                                                    method:
+                                                        "POST",
+
+                                                    headers: {
+                                                        "Content-Type":
+                                                            "application/json"
+                                                    },
+
+                                                    body:
+                                                        JSON.stringify({
+                                                            usuario_id:
+                                                                usuarioMetas.id,
+
+                                                            meta_id:
+                                                                meta.id
+                                                        })
+                                                }
+                                            );
+
+
+                                        const resultado =
+                                            await respuesta.json();
+
+
+                                        alert(
+                                            resultado.mensaje
+                                        );
+
+
+                                        if (
+                                            resultado.ok
+                                        ) {
+
+                                            cargarMetas();
+
+                                        }
+
+
+                                    }
+                                    catch (error) {
+
+                                        console.error(
+                                            error
+                                        );
+
+                                        alert(
+                                            "No se pudo eliminar la meta."
+                                        );
+
+                                    }
+
+
+                                }
+                            );
+
+
+
+                        listaMetas.appendChild(
+                            tarjeta
+                        );
+
+
+                    }
+                );
+
+
+            }
+            catch (error) {
+
+
+                console.error(
+                    "Error cargando metas:",
+                    error
+                );
+
+
+                listaMetas.innerHTML = `
+
+                    <div class="alert alert-error">
+
+                        No se pudieron cargar las metas.
+
+                    </div>
+
+                `;
+
+
+            }
+
+
+        }
+
+
+
+        // =====================================================
+        // GUARDAR NUEVA META
+        // =====================================================
+
+        if (formNuevaMeta) {
+
+
+            formNuevaMeta.addEventListener(
+                "submit",
+                async function (event) {
+
+
+                    event.preventDefault();
+
+
+
+                    const nombre =
+                        document
+                            .getElementById(
+                                "metaNombre"
+                            )
+                            .value
+                            .trim();
+
+
+                    const descripcion =
+                        document
+                            .getElementById(
+                                "metaDescripcion"
+                            )
+                            .value
+                            .trim();
+
+
+                    const objetivo =
+                        Number(
+                            document
+                                .getElementById(
+                                    "metaObjetivo"
+                                )
+                                .value
+                        );
+
+
+                    const fecha =
+                        document
+                            .getElementById(
+                                "metaFecha"
+                            )
+                            .value;
+
+
+
+                    if (
+                        !nombre ||
+                        objetivo <= 0
+                    ) {
+
+                        alert(
+                            "Complete los datos de la meta."
+                        );
+
+                        return;
+
+                    }
+
+
+
+                    try {
+
+
+                        const respuesta =
+                            await fetch(
+                                "backend/guardar_meta.php",
+                                {
+                                    method:
+                                        "POST",
+
+                                    headers: {
+                                        "Content-Type":
+                                            "application/json"
+                                    },
+
+                                    body:
+                                        JSON.stringify({
+                                            usuario_id:
+                                                usuarioMetas.id,
+
+                                            nombre:
+                                                nombre,
+
+                                            descripcion:
+                                                descripcion,
+
+                                            monto_objetivo:
+                                                objetivo,
+
+                                            fecha_limite:
+                                                fecha
+                                        })
+                                }
+                            );
+
+
+                        const datos =
+                            await respuesta.json();
+
+
+                        alert(
+                            datos.mensaje
+                        );
+
+
+                        if (datos.ok) {
+
+
+                            formNuevaMeta.reset();
+
+
+                            cerrarModalNuevaMeta();
+
+
+                            cargarMetas();
+
+
+                        }
+
+
+                    }
+                    catch (error) {
+
+
+                        console.error(
+                            error
+                        );
+
+
+                        alert(
+                            "No se pudo crear la meta."
+                        );
+
+
+                    }
+
+
+                }
+            );
+
+
+        }
+
+
+
+        // =====================================================
+        // INICIAR
+        // =====================================================
+
+        cargarMetas();
+
+
+    }
+);
+
+</script>
+
+
 </body>
+
 </html>

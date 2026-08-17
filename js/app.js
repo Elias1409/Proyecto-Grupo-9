@@ -1476,9 +1476,72 @@ async function cargarDashboard() {
 // =====================================================
 // INICIAR DASHBOARD
 // =====================================================
-  }
+  
 cargarDashboard();
+  }
 
+  // =====================================================
+// NUEVA TRANSACCIÓN - ABRIR Y CERRAR MODAL
+// =====================================================
+
+const btnNuevaTransaccion =
+  document.getElementById("btnNuevaTransaccion");
+
+const modalNuevaTransaccion =
+  document.getElementById("modalNuevaTransaccion");
+
+const cerrarNuevaTransaccion =
+  document.getElementById("cerrarNuevaTransaccion");
+
+const cancelarNuevaTransaccion =
+  document.getElementById("cancelarNuevaTransaccion");
+
+
+function abrirModalNuevaTransaccion() {
+
+  if (!modalNuevaTransaccion) {
+    return;
+  }
+
+  modalNuevaTransaccion.classList.add("abierto");
+}
+
+
+function cerrarModalNuevaTransaccion() {
+
+  if (!modalNuevaTransaccion) {
+    return;
+  }
+
+  modalNuevaTransaccion.classList.remove("abierto");
+}
+
+
+if (btnNuevaTransaccion) {
+
+  btnNuevaTransaccion.addEventListener(
+    "click",
+    abrirModalNuevaTransaccion
+  );
+}
+
+
+if (cerrarNuevaTransaccion) {
+
+  cerrarNuevaTransaccion.addEventListener(
+    "click",
+    cerrarModalNuevaTransaccion
+  );
+}
+
+
+if (cancelarNuevaTransaccion) {
+
+  cancelarNuevaTransaccion.addEventListener(
+    "click",
+    cerrarModalNuevaTransaccion
+  );
+}
   // =====================================================
   // DESPLEGAR INGRESOS Y GASTOS
   // =====================================================
@@ -1579,110 +1642,698 @@ cargarDashboard();
       contador.style.display = "flex";
     }
   }
+
+  const formNuevaTransaccion =
+  document.getElementById("formNuevaTransaccion");
+
+if (formNuevaTransaccion) {
+  formNuevaTransaccion.addEventListener(
+    "submit",
+    async function (event) {
+      event.preventDefault();
+
+      const usuarioGuardado =
+        sessionStorage.getItem("fintrackUsuarioActual");
+
+      const usuarioActual =
+        JSON.parse(usuarioGuardado);
+
+      const datosTransaccion = {
+        usuario_id: usuarioActual.id,
+        tipo: document.getElementById("transaccionTipo").value,
+        comercio_persona: document.getElementById("transaccionComercio").value.trim(),
+        descripcion: document.getElementById("transaccionDescripcion").value.trim(),
+        categoria_id: Number(document.getElementById("transaccionCategoria").value),
+        medio_pago_id: document.getElementById("transaccionMedioPago").value
+          ? Number(document.getElementById("transaccionMedioPago").value)
+          : null,
+        monto: Number(document.getElementById("transaccionMonto").value),
+        fecha: document.getElementById("transaccionFecha").value
+      };
+
+      try {
+        console.log("DATOS ENVIADOS:", datosTransaccion);
+        const respuesta = await fetch(
+          "backend/guardar_transaccion.php",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(datosTransaccion)
+          }
+        );
+
+        const datos = await respuesta.json();
+
+        if (!datos.ok) {
+          alert(datos.mensaje);
+          return;
+        }
+
+        const usuarioNuevo = {
+          ...usuarioActual,
+          ...datos.usuario
+        };
+
+        sessionStorage.setItem(
+          "fintrackUsuarioActual",
+          JSON.stringify(usuarioNuevo)
+        );
+
+        alert("Transacción guardada correctamente.");
+
+        window.location.reload();
+
+      } catch (error) {
+        console.error(error);
+        alert("No se pudo conectar con el servidor.");
+      }
+    }
+  );
+}
+  
+
   // =====================================================
-// FILTROS DE TRANSACCIONES
+// CARGAR TRANSACCIONES DESDE MYSQL
 // =====================================================
 
-const filtrosTransaccion =
-    document.querySelectorAll(".transaction-filter");
-
-const filtroMetodo =
-    document.getElementById("filtroMetodo");
-
-const buscarTransaccion =
-    document.getElementById("buscarTransaccion");
+const tablaTransacciones =
+  document.getElementById("tablaTransacciones");
 
 
-function filtrarTransacciones() {
+if (tablaTransacciones) {
 
-    // BOTÓN ACTIVO
-    const filtroActivo =
-        document.querySelector(
-            ".transaction-filter.active"
-        );
-
-    const tipoSeleccionado =
-        filtroActivo
-            ? filtroActivo.dataset.tipo
-            : "todos";
-
-
-    // MÉTODO DE PAGO
-    const metodoSeleccionado =
-        filtroMetodo
-            ? filtroMetodo.value
-            : "todos";
-
-
-    // BÚSQUEDA
-    const textoBusqueda =
-    buscarTransaccion
-        ? normalizarTexto(
-            buscarTransaccion.value.trim()
-        )
-        : "";
-
-
-    // FILAS DE LA TABLA
-    const filas =
-        document.querySelectorAll(
-            "#tablaTransacciones tr"
-        );
-
-
-    filas.forEach(function (fila) {
-
-        const tipoFila =
-            fila.dataset.tipo;
-
-        const metodoFila =
-            fila.dataset.metodo;
-
-        const contenidoFila =
-    normalizarTexto(
-        fila.textContent
+  const usuarioGuardadoTransacciones =
+    sessionStorage.getItem(
+      "fintrackUsuarioActual"
     );
 
 
-        // FILTRAR POR TIPO
-        const coincideTipo =
-            tipoSeleccionado === "todos" ||
-            tipoFila === tipoSeleccionado;
+  if (usuarioGuardadoTransacciones) {
+
+    const usuarioActualTransacciones =
+      JSON.parse(
+        usuarioGuardadoTransacciones
+      );
 
 
-        // FILTRAR POR MÉTODO
-        const coincideMetodo =
-            metodoSeleccionado === "todos" ||
-            metodoFila === metodoSeleccionado;
+    // =====================================================
+    // FORMATO COLONES
+    // =====================================================
+
+    function formatoColonesTransaccion(valor) {
+
+      const numero =
+        Number(valor) || 0;
+
+      return (
+        "₡ " +
+        numero.toLocaleString(
+          "es-CR",
+          {
+            maximumFractionDigits: 0
+          }
+        )
+      );
+
+    }
 
 
-        // FILTRAR POR BÚSQUEDA
-        const coincideBusqueda =
-            textoBusqueda === "" ||
-            contenidoFila.includes(
-                textoBusqueda
-            );
+    // =====================================================
+    // FORMATO FECHA
+    // =====================================================
+
+    function formatoFechaTransaccion(fecha) {
+
+      if (!fecha) {
+        return "";
+      }
 
 
-        // MOSTRAR U OCULTAR
-        if (
-            coincideTipo &&
-            coincideMetodo &&
-            coincideBusqueda
-        ) {
+      const partes =
+        fecha.split("-");
 
-            fila.style.display = "";
 
-        } else {
+      if (partes.length !== 3) {
+        return fecha;
+      }
 
-            fila.style.display = "none";
+
+      const fechaLocal =
+        new Date(
+          Number(partes[0]),
+          Number(partes[1]) - 1,
+          Number(partes[2])
+        );
+
+
+      return fechaLocal.toLocaleDateString(
+        "es-CR",
+        {
+          day: "numeric",
+          month: "short",
+          year: "numeric"
+        }
+      );
+
+    }
+
+
+    // =====================================================
+    // MÉTODO DE PAGO
+    // =====================================================
+
+    function obtenerMetodo(transaccion) {
+
+      if (
+        transaccion.tipo ===
+          "transferencia_recibida" ||
+        transaccion.tipo ===
+          "transferencia_enviada"
+      ) {
+
+        return "SINPE Móvil";
+
+      }
+
+
+      if (
+        !transaccion.medio_nombre &&
+        !transaccion.medio_banco
+      ) {
+
+        return "Sin especificar";
+
+      }
+
+
+      const nombre =
+        transaccion.medio_nombre ||
+        transaccion.medio_banco ||
+        "Medio de pago";
+
+
+      if (transaccion.medio_ultimos4) {
+
+        return (
+          nombre +
+          " •••• " +
+          transaccion.medio_ultimos4
+        );
+
+      }
+
+
+      return nombre;
+
+    }
+
+
+    // =====================================================
+    // TIPO PARA FILTRO
+    // =====================================================
+
+    function obtenerTipoFiltro(tipo) {
+
+      if (
+        tipo === "ingreso" ||
+        tipo ===
+          "transferencia_recibida" ||
+        tipo === "retiro_meta"
+      ) {
+
+        return "ingreso";
+
+      }
+
+
+      return "gasto";
+
+    }
+
+
+    // =====================================================
+    // MÉTODO PARA FILTRO
+    // =====================================================
+
+    function obtenerMetodoFiltro(transaccion) {
+
+      if (
+        transaccion.tipo ===
+          "transferencia_recibida" ||
+        transaccion.tipo ===
+          "transferencia_enviada"
+      ) {
+
+        return "sinpe";
+
+      }
+
+
+      const nombre =
+        (
+          transaccion.medio_nombre ||
+          transaccion.medio_tipo ||
+          ""
+        ).toLowerCase();
+
+
+      if (nombre.includes("visa")) {
+
+        return "visa";
+
+      }
+
+
+      if (
+        nombre.includes(
+          "mastercard"
+        )
+      ) {
+
+        return "mastercard";
+
+      }
+
+
+      if (
+        nombre.includes("cuenta") ||
+        transaccion.medio_tipo ===
+          "cuenta"
+      ) {
+
+        return "cuenta";
+
+      }
+
+
+      return "otro";
+
+    }
+
+
+    // =====================================================
+    // CARGAR
+    // =====================================================
+
+    async function cargarTransacciones() {
+
+      try {
+
+        const respuesta =
+          await fetch(
+            "backend/transacciones.php?usuario_id=" +
+            encodeURIComponent(
+              usuarioActualTransacciones.id
+            )
+          );
+
+
+        if (!respuesta.ok) {
+
+          throw new Error(
+            "Error HTTP: " +
+            respuesta.status
+          );
+
         }
 
-    });
+
+        const datos =
+          await respuesta.json();
+
+
+        if (!datos.ok) {
+
+          console.error(
+            datos.mensaje
+          );
+
+          return;
+
+        }
+        // =====================================================
+// ACTUALIZAR RESUMEN DE TRANSACCIONES
+// =====================================================
+
+const gastosTransacciones =
+  document.getElementById(
+    "gastosTransacciones"
+  );
+
+const balanceTransacciones =
+  document.getElementById(
+    "balanceTransacciones"
+  );
+
+const ingresosTransacciones =
+  document.getElementById(
+    "ingresosTransacciones"
+  );
+
+const porcentajeUsoTransacciones =
+  document.getElementById(
+    "porcentajeUsoTransacciones"
+  );
+
+const barraUsoTransacciones =
+  document.getElementById(
+    "barraUsoTransacciones"
+  );
+
+
+const totalIngresos =
+  Number(datos.usuario.ingresos) || 0;
+
+const totalGastos =
+  Number(datos.usuario.gastos) || 0;
+
+const balanceActual =
+  Number(datos.usuario.balance) || 0;
+
+
+if (gastosTransacciones) {
+
+  gastosTransacciones.textContent =
+    formatoColonesTransaccion(
+      totalGastos
+    );
 
 }
 
 
+if (balanceTransacciones) {
+
+  balanceTransacciones.textContent =
+    formatoColonesTransaccion(
+      balanceActual
+    );
+
+}
+
+
+if (ingresosTransacciones) {
+
+  ingresosTransacciones.textContent =
+    formatoColonesTransaccion(
+      totalIngresos
+    );
+
+}
+
+
+// =====================================================
+// PORCENTAJE UTILIZADO
+// =====================================================
+
+let porcentaje =
+  0;
+
+
+if (totalIngresos > 0) {
+
+  porcentaje =
+    (
+      totalGastos /
+      totalIngresos
+    ) * 100;
+
+}
+
+
+porcentaje =
+  Math.min(
+    porcentaje,
+    100
+  );
+
+
+if (porcentajeUsoTransacciones) {
+
+  porcentajeUsoTransacciones.textContent =
+    porcentaje.toFixed(1) + "%";
+
+}
+
+
+if (barraUsoTransacciones) {
+
+  barraUsoTransacciones.style.width =
+    porcentaje + "%";
+
+}
+
+
+        // Limpiar datos escritos en HTML
+        tablaTransacciones.innerHTML =
+          "";
+
+
+        // =================================================
+        // SIN TRANSACCIONES
+        // =================================================
+
+        if (
+          !datos.transacciones ||
+          datos.transacciones.length === 0
+        ) {
+
+          tablaTransacciones.innerHTML = `
+
+            <tr>
+
+              <td colspan="4">
+
+                <div class="alert alert-info">
+
+                  No tienes transacciones registradas.
+
+                </div>
+
+              </td>
+
+            </tr>
+
+          `;
+
+          return;
+
+        }
+
+
+        // =================================================
+        // MOSTRAR TRANSACCIONES
+        // =================================================
+
+        datos.transacciones.forEach(
+          function (transaccion) {
+
+            const tipoFiltro =
+              obtenerTipoFiltro(
+                transaccion.tipo
+              );
+
+
+            const esIngreso =
+              tipoFiltro === "ingreso";
+
+
+            const signo =
+              esIngreso
+                ? "+"
+                : "-";
+
+
+            const claseMonto =
+              esIngreso
+                ? "text-green"
+                : "text-red";
+
+
+            const claseIcono =
+              esIngreso
+                ? "ic-green"
+                : "ic-red";
+
+
+            const icono =
+              esIngreso
+                ? "icon-arrow-down-left"
+                : "icon-cart";
+
+
+            const comercio =
+              transaccion.comercio_persona ||
+              transaccion.descripcion ||
+              "Movimiento";
+
+
+            const descripcion =
+              transaccion.descripcion ||
+              "Transacción";
+
+
+            const metodo =
+              obtenerMetodo(
+                transaccion
+              );
+
+
+            const metodoFiltro =
+              obtenerMetodoFiltro(
+                transaccion
+              );
+
+
+            const fila =
+              document.createElement(
+                "tr"
+              );
+
+
+            // Para filtros
+            fila.dataset.tipo =
+              tipoFiltro;
+
+            fila.dataset.metodo =
+              metodoFiltro;
+
+
+            // =================================================
+            // TU TABLA TIENE 4 COLUMNAS
+            // =================================================
+
+            fila.innerHTML = `
+
+              <td>
+
+                <div class="transaction-main">
+
+                  <div
+                    class="transaction-merchant-icon ${claseIcono}"
+                  >
+
+                    <svg class="icon">
+
+                      <use
+                        href="assets/icons.svg#${icono}">
+                      </use>
+
+                    </svg>
+
+                  </div>
+
+
+                  <div>
+
+                    <strong>
+                      ${comercio}
+                    </strong>
+
+                    <span>
+                      ${descripcion}
+                    </span>
+
+                  </div>
+
+                </div>
+
+              </td>
+
+
+              <td>
+
+                ${formatoFechaTransaccion(
+                  transaccion.fecha
+                )}
+
+              </td>
+
+
+              <td>
+
+                ${metodo}
+
+              </td>
+
+
+              <td
+                class="${claseMonto} fw-700 num"
+                style="text-align:right;"
+              >
+
+                ${signo}${formatoColonesTransaccion(
+                  transaccion.monto
+                )}
+
+              </td>
+
+            `;
+
+
+            tablaTransacciones.appendChild(
+              fila
+            );
+
+          }
+        );
+
+
+        // =================================================
+        // VOLVER A APLICAR FILTROS
+        // =================================================
+
+        if (
+          typeof filtrarTransacciones ===
+          "function"
+        ) {
+
+          filtrarTransacciones();
+
+        }
+
+
+      } catch (error) {
+
+        console.error(
+          "Error cargando transacciones:",
+          error
+        );
+
+      }
+
+    }
+
+
+    // =====================================================
+    // EJECUTAR
+    // =====================================================
+
+    cargarTransacciones();
+
+  }
+
+}
+
+// =====================================================
+// FILTROS DE TRANSACCIONES
+// =====================================================
+
+const filtrosTransaccion =
+    document.querySelectorAll(
+      ".transaction-filter"
+    );
+
+const filtroMetodo =
+    document.getElementById(
+      "filtroMetodo"
+    );
+
+const buscarTransaccion =
+    document.getElementById(
+      "buscarTransaccion"
+    );
 
 // =====================================================
 // BOTONES TODOS / INGRESOS / GASTOS
@@ -1782,315 +2433,1034 @@ if (buscarTransaccion) {
   });
 });
 // =====================================================
-// BOTONES DE DEUDAS
+// DEUDAS CONECTADAS A MYSQL
 // =====================================================
 
 document.addEventListener(
-    "DOMContentLoaded",
-    function () {
+  "DOMContentLoaded",
+  function () {
+
+    const listaDeudas =
+      document.getElementById(
+        "listaDeudas"
+      );
 
 
-        const btnNuevaDeuda =
-            document.getElementById(
-                "btnNuevaDeuda"
-            );
+    if (!listaDeudas) {
+      return;
+    }
 
 
-        const btnRegistrarPago =
-            document.getElementById(
-                "btnRegistrarPago"
-            );
+    // =====================================================
+    // USUARIO
+    // =====================================================
+
+    const usuarioGuardadoDeudas =
+      sessionStorage.getItem(
+        "fintrackUsuarioActual"
+      );
 
 
+    if (!usuarioGuardadoDeudas) {
+      return;
+    }
 
-        // =================================================
-        // ABRIR MODAL
-        // =================================================
 
-        function abrirModal(id) {
+    const usuarioDeudas =
+      JSON.parse(
+        usuarioGuardadoDeudas
+      );
 
-            const modal =
-                document.getElementById(id);
 
-            if (modal) {
+    // =====================================================
+    // ELEMENTOS
+    // =====================================================
 
-                modal.classList.add(
-                    "abierto"
-                );
+    const btnNuevaDeuda =
+      document.getElementById(
+        "btnNuevaDeuda"
+      );
 
+    const btnRegistrarPago =
+      document.getElementById(
+        "btnRegistrarPago"
+      );
+
+
+    const totalDeudasPendientes =
+      document.getElementById(
+        "totalDeudasPendientes"
+      );
+
+    const cantidadDeudasActivas =
+      document.getElementById(
+        "cantidadDeudasActivas"
+      );
+
+    const proximoPagoMonto =
+      document.getElementById(
+        "proximoPagoMonto"
+      );
+
+    const proximoPagoEntidad =
+      document.getElementById(
+        "proximoPagoEntidad"
+      );
+
+    const proximoPagoFecha =
+      document.getElementById(
+        "proximoPagoFecha"
+      );
+
+
+    const seleccionarDeudaPago =
+      document.getElementById(
+        "seleccionarDeudaPago"
+      );
+
+
+    // =====================================================
+    // FORMATO MONEDA
+    // =====================================================
+
+    function monedaDeuda(valor) {
+
+      return (
+        "₡ " +
+        (Number(valor) || 0)
+          .toLocaleString(
+            "es-CR",
+            {
+              maximumFractionDigits: 0
             }
+          )
+      );
 
-        }
+    }
 
 
+    // =====================================================
+    // FORMATO FECHA
+    // =====================================================
 
-        // =================================================
-        // CERRAR MODAL
-        // =================================================
+    function fechaDeuda(fecha) {
 
-        function cerrarModal(id) {
+      if (!fecha) {
+        return "—";
+      }
 
-            const modal =
-                document.getElementById(id);
 
-            if (modal) {
+      const partes =
+        fecha.split("-");
 
-                modal.classList.remove(
-                    "abierto"
-                );
 
-            }
-
-        }
-
-
-
-        // =================================================
-        // NUEVA DEUDA
-        // =================================================
-
-        if (btnNuevaDeuda) {
-
-            btnNuevaDeuda.addEventListener(
-                "click",
-                function () {
-
-                    abrirModal(
-                        "modalNuevaDeuda"
-                    );
-
-                }
-            );
-
-        }
-
-
-
-        // =================================================
-        // REGISTRAR PAGO
-        // =================================================
-
-        if (btnRegistrarPago) {
-
-            btnRegistrarPago.addEventListener(
-                "click",
-                function () {
-
-                    abrirModal(
-                        "modalRegistrarPago"
-                    );
-
-                }
-            );
-
-        }
-
-
-
-        // =================================================
-        // CERRAR MODALES
-        // =================================================
-
-        document
-            .querySelectorAll(
-                "[data-cerrar-modal]"
-            )
-            .forEach(
-                function (boton) {
-
-                    boton.addEventListener(
-                        "click",
-                        function () {
-
-                            cerrarModal(
-                                boton.dataset
-                                    .cerrarModal
-                            );
-
-                        }
-                    );
-
-                }
-            );
-
-
-
-        // =================================================
-        // DATOS DE EJEMPLO PARA VER DETALLE
-        // =================================================
-
-        const detallesDeudas = {
-
-            1: {
-                nombre: "Gollo",
-                descripcion: "Televisor Samsung",
-                saldo: "₡ 275,000",
-                cuota: "₡ 55,000",
-                fecha: "17 ago. 2026",
-                cuotas: "5 de 10"
-            },
-
-
-            2: {
-                nombre: "BAC Credomatic",
-                descripcion:
-                    "Tarjeta de crédito •••• 4821",
-                saldo: "₡ 184,500",
-                cuota: "₡ 25,000",
-                fecha: "22 ago. 2026",
-                cuotas: "Pago mínimo"
-            },
-
-
-            3: {
-                nombre:
-                    "Préstamo Personal",
-                descripcion:
-                    "Financiamiento personal",
-                saldo: "₡ 785,500",
-                cuota: "₡ 85,000",
-                fecha: "30 ago. 2026",
-                cuotas: "7 de 18"
-            }
-
-        };
-
-
-
-        // =================================================
-        // VER DETALLE
-        // =================================================
-
-        const botonesDetalle =
-            document.querySelectorAll(
-                "[data-ver-deuda]"
-            );
-
-
-        botonesDetalle.forEach(
-            function (boton) {
-
-                boton.addEventListener(
-                    "click",
-                    function () {
-
-                        const id =
-                            boton.dataset
-                                .verDeuda;
-
-
-                        const deuda =
-                            detallesDeudas[id];
-
-
-                        if (!deuda) {
-                            return;
-                        }
-
-
-                        document.getElementById(
-                            "detalleDeudaTitulo"
-                        ).textContent =
-                            deuda.nombre;
-
-
-                        document.getElementById(
-                            "detalleDeudaDescripcion"
-                        ).textContent =
-                            deuda.descripcion;
-
-
-                        document.getElementById(
-                            "detalleSaldo"
-                        ).textContent =
-                            deuda.saldo;
-
-
-                        document.getElementById(
-                            "detalleCuota"
-                        ).textContent =
-                            deuda.cuota;
-
-
-                        document.getElementById(
-                            "detalleFecha"
-                        ).textContent =
-                            deuda.fecha;
-
-
-                        document.getElementById(
-                            "detalleCuotas"
-                        ).textContent =
-                            deuda.cuotas;
-
-
-                        abrirModal(
-                            "modalDetalleDeuda"
-                        );
-
-                    }
-                );
-
-            }
+      const fechaLocal =
+        new Date(
+          Number(partes[0]),
+          Number(partes[1]) - 1,
+          Number(partes[2])
         );
 
 
-
-        // =================================================
-        // POR AHORA EVITAR ENVÍO REAL
-        // =================================================
-
-        const formNuevaDeuda =
-            document.getElementById(
-                "formNuevaDeuda"
-            );
-
-
-        if (formNuevaDeuda) {
-
-            formNuevaDeuda.addEventListener(
-                "submit",
-                function (event) {
-
-                    event.preventDefault();
-
-                    cerrarModal(
-                        "modalNuevaDeuda"
-                    );
-
-                }
-            );
-
+      return fechaLocal.toLocaleDateString(
+        "es-CR",
+        {
+          day: "numeric",
+          month: "short",
+          year: "numeric"
         }
-
-
-
-        const formRegistrarPago =
-            document.getElementById(
-                "formRegistrarPago"
-            );
-
-
-        if (formRegistrarPago) {
-
-            formRegistrarPago.addEventListener(
-                "submit",
-                function (event) {
-
-                    event.preventDefault();
-
-                    cerrarModal(
-                        "modalRegistrarPago"
-                    );
-
-                }
-            );
-
-        }
+      );
 
     }
-);
 
+
+    // =====================================================
+    // ABRIR MODAL
+    // =====================================================
+
+    function abrirModalDeuda(id) {
+
+      const modal =
+        document.getElementById(id);
+
+
+      if (modal) {
+
+        modal.classList.add(
+          "abierto"
+        );
+
+      }
+
+    }
+
+
+    // =====================================================
+    // CERRAR MODAL
+    // =====================================================
+
+    function cerrarModalDeuda(id) {
+
+      const modal =
+        document.getElementById(id);
+
+
+      if (modal) {
+
+        modal.classList.remove(
+          "abierto"
+        );
+
+      }
+
+    }
+
+
+    // =====================================================
+    // BOTONES ABRIR
+    // =====================================================
+
+    if (btnNuevaDeuda) {
+
+      btnNuevaDeuda.addEventListener(
+        "click",
+        function () {
+
+          abrirModalDeuda(
+            "modalNuevaDeuda"
+          );
+
+        }
+      );
+
+    }
+
+
+    if (btnRegistrarPago) {
+
+      btnRegistrarPago.addEventListener(
+        "click",
+        function () {
+
+          abrirModalDeuda(
+            "modalRegistrarPago"
+          );
+
+        }
+      );
+
+    }
+
+
+    // =====================================================
+    // BOTONES CERRAR
+    // =====================================================
+
+    document
+      .querySelectorAll(
+        "[data-cerrar-modal]"
+      )
+      .forEach(
+        function (boton) {
+
+          boton.addEventListener(
+            "click",
+            function () {
+
+              cerrarModalDeuda(
+                boton.dataset.cerrarModal
+              );
+
+            }
+          );
+
+        }
+      );
+
+
+    // =====================================================
+    // CARGAR DEUDAS
+    // =====================================================
+
+    async function cargarDeudas() {
+
+      try {
+
+        const respuesta =
+          await fetch(
+            "backend/deudas.php?usuario_id=" +
+            encodeURIComponent(
+              usuarioDeudas.id
+            )
+          );
+
+
+        const datos =
+          await respuesta.json();
+
+
+        if (!datos.ok) {
+
+          console.error(
+            datos.mensaje
+          );
+
+          return;
+
+        }
+
+
+        // =================================================
+        // RESUMEN
+        // =================================================
+
+        if (totalDeudasPendientes) {
+
+          totalDeudasPendientes.textContent =
+            monedaDeuda(
+              datos.totalPendiente
+            );
+
+        }
+
+
+        if (cantidadDeudasActivas) {
+
+          cantidadDeudasActivas.textContent =
+            datos.cantidadActivas;
+
+        }
+
+
+        if (datos.proximoPago) {
+
+          if (proximoPagoMonto) {
+
+            proximoPagoMonto.textContent =
+              monedaDeuda(
+                datos.proximoPago.cuota
+              );
+
+          }
+
+
+          if (proximoPagoEntidad) {
+
+            proximoPagoEntidad.textContent =
+              datos.proximoPago.nombre;
+
+          }
+
+
+          if (proximoPagoFecha) {
+
+            proximoPagoFecha.textContent =
+              fechaDeuda(
+                datos.proximoPago.fecha
+              );
+
+          }
+
+        } else {
+
+          if (proximoPagoMonto) {
+            proximoPagoMonto.textContent =
+              "₡ 0";
+          }
+
+          if (proximoPagoEntidad) {
+            proximoPagoEntidad.textContent =
+              "Sin pagos";
+          }
+
+          if (proximoPagoFecha) {
+            proximoPagoFecha.textContent =
+              "—";
+          }
+
+        }
+
+
+        // =================================================
+        // LIMPIAR LISTA
+        // =================================================
+
+        listaDeudas.innerHTML = "";
+
+
+        if (
+          !datos.deudas ||
+          datos.deudas.length === 0
+        ) {
+
+          listaDeudas.innerHTML = `
+
+            <div class="alert alert-info">
+
+              No tienes deudas activas.
+
+            </div>
+
+          `;
+
+        } else {
+
+          datos.deudas.forEach(
+            function (deuda) {
+
+              const pendiente =
+                Math.max(
+                  0,
+                  Number(
+                    deuda.monto_total
+                  ) -
+                  Number(
+                    deuda.monto_pagado
+                  )
+                );
+
+
+              const tarjeta =
+                document.createElement(
+                  "div"
+                );
+
+
+              tarjeta.className =
+                "debt-card";
+
+
+              tarjeta.innerHTML = `
+
+                <div class="debt-card-header">
+
+                  <div class="debt-card-title">
+
+                    <div class="debt-icon">
+
+                      <svg class="icon">
+
+                        <use
+                          href="assets/icons.svg#icon-credit-card">
+                        </use>
+
+                      </svg>
+
+                    </div>
+
+
+                    <div>
+
+                      <strong>
+                        ${deuda.nombre}
+                      </strong>
+
+                      <span>
+                        ${deuda.descripcion}
+                      </span>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+
+                <div class="debt-data">
+
+                  <div class="debt-data-item">
+
+                    <span>
+                      Saldo pendiente
+                    </span>
+
+                    <strong class="num">
+
+                      ${monedaDeuda(
+                        pendiente
+                      )}
+
+                    </strong>
+
+                  </div>
+
+
+                  <div class="debt-data-item">
+
+                    <span>
+                      Próxima cuota
+                    </span>
+
+                    <strong class="num">
+
+                      ${monedaDeuda(
+                        deuda.cuota
+                      )}
+
+                    </strong>
+
+                  </div>
+
+
+                  <div class="debt-data-item">
+
+                    <span>
+                      Próximo vencimiento
+                    </span>
+
+                    <strong>
+
+                      ${fechaDeuda(
+                        deuda.proximo_pago
+                      )}
+
+                    </strong>
+
+                  </div>
+
+                </div>
+
+
+                <div class="debt-footer">
+
+                  <div
+                    class="debt-installments"
+                  >
+
+                    Pendiente:
+                    ${monedaDeuda(
+                      pendiente
+                    )}
+
+                  </div>
+
+
+                  <button
+                    type="button"
+                    class="btn btn-ghost btn-sm"
+                    data-detalle-id="${deuda.id}"
+                  >
+
+                    Ver detalle
+
+                  </button>
+
+                </div>
+
+              `;
+
+
+              listaDeudas.appendChild(
+                tarjeta
+              );
+
+
+              const botonDetalle =
+                tarjeta.querySelector(
+                  "[data-detalle-id]"
+                );
+
+
+              if (botonDetalle) {
+
+                botonDetalle.addEventListener(
+                  "click",
+                  function () {
+
+                    const titulo =
+                      document.getElementById(
+                        "detalleDeudaTitulo"
+                      );
+
+                    const descripcion =
+                      document.getElementById(
+                        "detalleDeudaDescripcion"
+                      );
+
+                    const saldo =
+                      document.getElementById(
+                        "detalleSaldo"
+                      );
+
+                    const cuota =
+                      document.getElementById(
+                        "detalleCuota"
+                      );
+
+                    const fecha =
+                      document.getElementById(
+                        "detalleFecha"
+                      );
+
+                    const cuotas =
+                      document.getElementById(
+                        "detalleCuotas"
+                      );
+
+
+                    if (titulo) {
+                      titulo.textContent =
+                        deuda.nombre;
+                    }
+
+
+                    if (descripcion) {
+                      descripcion.textContent =
+                        deuda.descripcion;
+                    }
+
+
+                    if (saldo) {
+                      saldo.textContent =
+                        monedaDeuda(
+                          pendiente
+                        );
+                    }
+
+
+                    if (cuota) {
+                      cuota.textContent =
+                        monedaDeuda(
+                          deuda.cuota
+                        );
+                    }
+
+
+                    if (fecha) {
+                      fecha.textContent =
+                        fechaDeuda(
+                          deuda.proximo_pago
+                        );
+                    }
+
+
+                    if (cuotas) {
+                      cuotas.textContent =
+                        monedaDeuda(
+                          deuda.monto_pagado
+                        ) +
+                        " pagado";
+                    }
+
+
+                    abrirModalDeuda(
+                      "modalDetalleDeuda"
+                    );
+
+                  }
+                );
+
+              }
+
+            }
+          );
+
+        }
+
+
+        // =================================================
+        // SELECT PARA PAGAR
+        // =================================================
+
+        if (seleccionarDeudaPago) {
+
+          seleccionarDeudaPago.innerHTML =
+            `
+              <option value="">
+                Selecciona una deuda
+              </option>
+            `;
+
+
+          datos.deudas.forEach(
+            function (deuda) {
+
+              const pendiente =
+                Math.max(
+                  0,
+                  Number(
+                    deuda.monto_total
+                  ) -
+                  Number(
+                    deuda.monto_pagado
+                  )
+                );
+
+
+              const opcion =
+                document.createElement(
+                  "option"
+                );
+
+
+              opcion.value =
+                deuda.id;
+
+
+              opcion.textContent =
+                deuda.nombre +
+                " — " +
+                monedaDeuda(
+                  pendiente
+                );
+
+
+              seleccionarDeudaPago.appendChild(
+                opcion
+              );
+
+            }
+          );
+
+        }
+
+
+      } catch (error) {
+
+        console.error(
+          "Error cargando deudas:",
+          error
+        );
+
+      }
+
+    }
+
+
+    // =====================================================
+    // GUARDAR NUEVA DEUDA
+    // =====================================================
+
+    const formNuevaDeuda =
+      document.getElementById(
+        "formNuevaDeuda"
+      );
+
+
+    if (formNuevaDeuda) {
+
+      formNuevaDeuda.addEventListener(
+        "submit",
+        async function (event) {
+
+          event.preventDefault();
+
+
+          const nombre =
+            document
+              .getElementById(
+                "deudaNombre"
+              )
+              .value
+              .trim();
+
+
+          const descripcion =
+            document
+              .getElementById(
+                "deudaDescripcion"
+              )
+              .value
+              .trim();
+
+
+          const monto =
+            Number(
+              document.getElementById(
+                "deudaMonto"
+              ).value
+            );
+
+
+          const cuota =
+            Number(
+              document.getElementById(
+                "deudaCuota"
+              ).value
+            );
+
+
+          const fecha =
+            document.getElementById(
+              "deudaProximoPago"
+            ).value;
+
+
+          try {
+
+            const respuesta =
+              await fetch(
+                "backend/guardar_deuda.php",
+                {
+                  method: "POST",
+
+                  headers: {
+                    "Content-Type":
+                      "application/json"
+                  },
+
+                  body:
+                    JSON.stringify({
+                      usuario_id:
+                        usuarioDeudas.id,
+
+                      nombre:
+                        nombre,
+
+                      descripcion:
+                        descripcion,
+
+                      monto_total:
+                        monto,
+
+                      cuota:
+                        cuota,
+
+                      proximo_pago:
+                        fecha
+                    })
+                }
+              );
+
+
+            const datos =
+              await respuesta.json();
+
+
+            if (!datos.ok) {
+
+              alert(
+                datos.mensaje
+              );
+
+              return;
+
+            }
+
+
+            alert(
+              "Deuda creada correctamente."
+            );
+
+
+            formNuevaDeuda.reset();
+
+
+            cerrarModalDeuda(
+              "modalNuevaDeuda"
+            );
+
+
+            cargarDeudas();
+
+
+          } catch (error) {
+
+            console.error(
+              error
+            );
+
+            alert(
+              "No se pudo guardar la deuda."
+            );
+
+          }
+
+        }
+      );
+
+    }
+
+// =====================================================
+// REGISTRAR PAGO DE DEUDA
+// =====================================================
+
+const formRegistrarPago =
+  document.getElementById(
+    "formRegistrarPago"
+  );
+
+
+if (formRegistrarPago) {
+
+  formRegistrarPago.addEventListener(
+    "submit",
+    async function (event) {
+
+      event.preventDefault();
+
+
+      const deudaId =
+        Number(
+          document.getElementById(
+            "seleccionarDeudaPago"
+          ).value
+        );
+
+
+      const monto =
+        Number(
+          document.getElementById(
+            "montoPago"
+          ).value
+        );
+
+
+      if (
+        deudaId <= 0 ||
+        monto <= 0
+      ) {
+
+        alert(
+          "Seleccione una deuda e ingrese un monto válido."
+        );
+
+        return;
+
+      }
+
+
+      try {
+
+        const respuesta =
+          await fetch(
+            "backend/registrar_pago_deuda.php",
+            {
+              method: "POST",
+
+              headers: {
+                "Content-Type":
+                  "application/json"
+              },
+
+              body:
+                JSON.stringify({
+                  usuario_id:
+                    usuarioDeudas.id,
+
+                  deuda_id:
+                    deudaId,
+
+                  monto:
+                    monto
+                })
+            }
+          );
+
+
+        const datos =
+          await respuesta.json();
+
+
+        if (!datos.ok) {
+
+          alert(
+            datos.mensaje
+          );
+
+          return;
+
+        }
+
+
+        alert(
+          "Pago registrado correctamente."
+        );
+
+
+        formRegistrarPago.reset();
+
+
+        cerrarModalDeuda(
+          "modalRegistrarPago"
+        );
+
+
+        // Actualizar lista inmediatamente
+        cargarDeudas();
+
+
+        // Actualizar sesión para que
+        // Dashboard tenga los nuevos valores
+        try {
+
+          const respuestaDashboard =
+            await fetch(
+              "backend/dashboard.php?usuario_id=" +
+              encodeURIComponent(
+                usuarioDeudas.id
+              )
+            );
+
+
+          const datosDashboard =
+            await respuestaDashboard.json();
+
+
+          if (
+            datosDashboard.ok &&
+            datosDashboard.usuario
+          ) {
+
+            const usuarioSesion =
+              JSON.parse(
+                sessionStorage.getItem(
+                  "fintrackUsuarioActual"
+                )
+              );
+
+
+            const actualizado = {
+              ...usuarioSesion,
+              ...datosDashboard.usuario
+            };
+
+
+            sessionStorage.setItem(
+              "fintrackUsuarioActual",
+              JSON.stringify(
+                actualizado
+              )
+            );
+
+          }
+
+        } catch (error) {
+
+          console.error(
+            "No se pudo actualizar la sesión:",
+            error
+          );
+
+        }
+
+
+      } catch (error) {
+
+        console.error(
+          "Error registrando pago:",
+          error
+        );
+
+
+        alert(
+          "No se pudo registrar el pago."
+        );
+
+      }
+
+    }
+  );
+
+}
+    // =====================================================
+    // INICIAR
+    // =====================================================
+
+    cargarDeudas();
+
+  }
+);
 // =====================================================
 // PERFIL - BOTONES FUNCIONALES
 // =====================================================
@@ -3946,3 +5316,1376 @@ function vencimientoValido(valor) {
   mostrarMedios();
 
 });
+
+// =====================================================
+// REPORTES CONECTADOS A MYSQL
+// =====================================================
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function () {
+
+    const reportesMain =
+      document.querySelector(
+        ".reports-main-grid"
+      );
+
+
+    // Si no estamos en reportes.html
+    if (!reportesMain) {
+      return;
+    }
+
+
+    // =====================================================
+    // USUARIO
+    // =====================================================
+
+    const usuarioGuardadoReportes =
+      sessionStorage.getItem(
+        "fintrackUsuarioActual"
+      );
+
+
+    if (!usuarioGuardadoReportes) {
+      return;
+    }
+
+
+    const usuarioReportes =
+      JSON.parse(
+        usuarioGuardadoReportes
+      );
+
+
+    // =====================================================
+    // ELEMENTOS
+    // =====================================================
+
+    const tarjetasResumen =
+      document.querySelectorAll(
+        ".stats-grid-3 .stat-card .val"
+      );
+
+
+    const graficoHistorico =
+      document.querySelector(
+        ".report-bar-chart"
+      );
+
+
+    const mesSeleccionado =
+      document.querySelector(
+        ".report-selected-month strong"
+      );
+
+
+    const totalDona =
+      document.querySelector(
+        ".report-donut-center strong"
+      );
+
+
+    const listaCategorias =
+      document.querySelector(
+        ".report-category-list"
+      );
+
+
+    const listaDetalle =
+      document.querySelector(
+        ".report-detail-list"
+      );
+
+
+    const listaUltimos =
+      document.querySelector(
+        ".report-recent-list"
+      );
+
+
+    // =====================================================
+    // MONEDA
+    // =====================================================
+
+    function monedaReporte(valor) {
+
+      return (
+        "₡ " +
+        (Number(valor) || 0)
+          .toLocaleString(
+            "es-CR",
+            {
+              maximumFractionDigits: 0
+            }
+          )
+      );
+
+    }
+
+
+    // =====================================================
+    // MONEDA CORTA PARA GRÁFICA
+    // =====================================================
+
+    function monedaCorta(valor) {
+
+      const numero =
+        Number(valor) || 0;
+
+
+      if (numero >= 1000000) {
+
+        return (
+          "₡" +
+          (
+            numero /
+            1000000
+          ).toFixed(1) +
+          "M"
+        );
+
+      }
+
+
+      if (numero >= 1000) {
+
+        return (
+          "₡" +
+          Math.round(
+            numero / 1000
+          ) +
+          "k"
+        );
+
+      }
+
+
+      return "₡" + numero;
+
+    }
+
+
+    // =====================================================
+    // NOMBRE MES
+    // =====================================================
+
+    function nombreMes(numero) {
+
+      const meses = [
+        "",
+        "Enero",
+        "Febrero",
+        "Marzo",
+        "Abril",
+        "Mayo",
+        "Junio",
+        "Julio",
+        "Agosto",
+        "Septiembre",
+        "Octubre",
+        "Noviembre",
+        "Diciembre"
+      ];
+
+
+      return (
+        meses[
+          Number(numero)
+        ] || ""
+      );
+
+    }
+
+
+    // =====================================================
+    // FECHA
+    // =====================================================
+
+    function fechaReporte(fecha) {
+
+      if (!fecha) {
+        return "";
+      }
+
+
+      const partes =
+        fecha.split("-");
+
+
+      const fechaLocal =
+        new Date(
+          Number(partes[0]),
+          Number(partes[1]) - 1,
+          Number(partes[2])
+        );
+
+
+      return fechaLocal.toLocaleDateString(
+        "es-CR",
+        {
+          day: "numeric",
+          month: "short",
+          year: "numeric"
+        }
+      );
+
+    }
+
+
+    // =====================================================
+    // CARGAR REPORTES
+    // =====================================================
+
+    async function cargarReportes() {
+
+      try {
+
+        const respuesta =
+          await fetch(
+            "backend/reportes.php?usuario_id=" +
+            encodeURIComponent(
+              usuarioReportes.id
+            )
+          );
+
+
+        if (!respuesta.ok) {
+
+          throw new Error(
+            "Error HTTP " +
+            respuesta.status
+          );
+
+        }
+
+
+        const datos =
+          await respuesta.json();
+
+
+        if (!datos.ok) {
+
+          console.error(
+            datos.mensaje
+          );
+
+          return;
+
+        }
+
+
+        // =================================================
+        // RESUMEN SUPERIOR
+        // =================================================
+
+        /*
+          Orden actual de reportes.html:
+
+          0 = Ingresos
+          1 = Gastos
+          2 = Balance
+        */
+
+        if (tarjetasResumen[0]) {
+
+          tarjetasResumen[0]
+            .textContent =
+              monedaReporte(
+                datos.usuario.ingresos
+              );
+
+        }
+
+
+        if (tarjetasResumen[1]) {
+
+          tarjetasResumen[1]
+            .textContent =
+              monedaReporte(
+                datos.usuario.gastos
+              );
+
+        }
+
+
+        if (tarjetasResumen[2]) {
+
+          tarjetasResumen[2]
+            .textContent =
+              monedaReporte(
+                datos.usuario.balance
+              );
+
+        }
+
+
+        // =================================================
+        // HISTÓRICO DE GASTOS
+        // =================================================
+
+        if (graficoHistorico) {
+
+          graficoHistorico.innerHTML =
+            "";
+
+
+          let maximo =
+            Math.max(
+              ...datos.historico.map(
+                item =>
+                  Number(item.total) || 0
+              ),
+              1
+            );
+
+
+          datos.historico.forEach(
+            function (
+              item,
+              indice
+            ) {
+
+              const total =
+                Number(
+                  item.total
+                ) || 0;
+
+
+              const porcentaje =
+                maximo > 0
+                  ? (
+                      total /
+                      maximo
+                    ) * 100
+                  : 0;
+
+
+              const columna =
+                document.createElement(
+                  "div"
+                );
+
+
+              columna.className =
+                "bar-col report-month";
+
+
+              if (
+                indice ===
+                datos.historico.length - 1
+              ) {
+
+                columna.classList.add(
+                  "active"
+                );
+
+              }
+
+
+              columna.innerHTML = `
+
+                <span
+                  class="bar-val num"
+                >
+
+                  ${monedaCorta(
+                    total
+                  )}
+
+                </span>
+
+
+                <div
+                  class="bar-track"
+                >
+
+                  <div
+                    class="bar-fill expense"
+                    style="
+                      height:
+                      ${Math.max(
+                        porcentaje,
+                        total > 0
+                          ? 5
+                          : 0
+                      )}%;
+                    "
+                  >
+                  </div>
+
+                </div>
+
+
+                <span
+                  class="bar-lbl"
+                >
+
+                  ${nombreMes(
+                    item.mes
+                  )}
+
+                </span>
+
+              `;
+
+
+              graficoHistorico.appendChild(
+                columna
+              );
+
+            }
+          );
+
+        }
+
+
+        // =================================================
+        // MES SELECCIONADO
+        // =================================================
+
+        if (mesSeleccionado) {
+
+          mesSeleccionado.textContent =
+            nombreMes(
+              datos.mesActual
+            ) +
+            " " +
+            datos.anioActual;
+
+        }
+
+
+        // =================================================
+        // TOTAL DONA
+        // =================================================
+
+        if (totalDona) {
+
+          totalDona.textContent =
+            monedaReporte(
+              datos.gastosMes
+            );
+
+        }
+
+
+        // =================================================
+        // CATEGORÍAS
+        // =================================================
+
+        if (listaCategorias) {
+
+          listaCategorias.innerHTML =
+            "";
+
+
+          if (
+            !datos.categorias ||
+            datos.categorias.length === 0
+          ) {
+
+            listaCategorias.innerHTML = `
+
+              <div class="alert alert-info">
+                No hay gastos registrados.
+              </div>
+
+            `;
+
+          } else {
+
+            datos.categorias.forEach(
+              function (
+                categoria,
+                indice
+              ) {
+
+                const item =
+                  document.createElement(
+                    "div"
+                  );
+
+
+                item.className =
+                  "report-category-item";
+
+
+                const numeroColor =
+                  (
+                    indice % 5
+                  ) + 1;
+
+
+                item.innerHTML = `
+
+                  <div>
+
+                    <span
+                      class="
+                        report-dot
+                        report-dot-${numeroColor}
+                      "
+                    >
+                    </span>
+
+                    ${categoria.categoria}
+
+                  </div>
+
+
+                  <strong
+                    class="num"
+                  >
+
+                    ${monedaReporte(
+                      categoria.total
+                    )}
+
+                  </strong>
+
+                `;
+
+
+                listaCategorias.appendChild(
+                  item
+                );
+
+              }
+            );
+
+          }
+
+        }
+
+
+        // =================================================
+        // DETALLE DE GASTOS
+        // =================================================
+
+        if (listaDetalle) {
+
+          listaDetalle.innerHTML =
+            "";
+
+
+          if (
+            !datos.categorias ||
+            datos.categorias.length === 0
+          ) {
+
+            listaDetalle.innerHTML = `
+
+              <div class="alert alert-info">
+                No hay categorías de gastos.
+              </div>
+
+            `;
+
+          } else {
+
+            datos.categorias.forEach(
+              function (categoria) {
+
+                const item =
+                  document.createElement(
+                    "div"
+                  );
+
+
+                item.className =
+                  "report-detail-item";
+
+
+                item.innerHTML = `
+
+                  <div>
+
+                    <strong>
+                      ${categoria.categoria}
+                    </strong>
+
+                    <span class="num">
+
+                      ${monedaReporte(
+                        categoria.total
+                      )}
+
+                    </span>
+
+                  </div>
+
+
+                  <button
+                    type="button"
+                    class="
+                      btn
+                      btn-ghost
+                      btn-sm
+                      report-view-button
+                    "
+                  >
+
+                    Ver gastos
+
+                  </button>
+
+                `;
+
+
+                const boton =
+                  item.querySelector(
+                    ".report-view-button"
+                  );
+
+
+                boton.addEventListener(
+                  "click",
+                  function () {
+
+                    const movimientos =
+                      datos.movimientos.filter(
+                        movimiento =>
+                          movimiento.categoria ===
+                          categoria.categoria
+                      );
+
+
+                    if (
+                      movimientos.length === 0
+                    ) {
+
+                      alert(
+                        "No hay movimientos en esta categoría."
+                      );
+
+                      return;
+
+                    }
+
+
+                    let texto =
+                      categoria.categoria +
+                      "\n\n";
+
+
+                    movimientos.forEach(
+                      function (movimiento) {
+
+                        texto +=
+                          (
+                            movimiento
+                              .comercio_persona ||
+                            movimiento
+                              .descripcion
+                          ) +
+                          " - " +
+                          monedaReporte(
+                            movimiento.monto
+                          ) +
+                          "\n";
+
+                      }
+                    );
+
+
+                    alert(texto);
+
+                  }
+                );
+
+
+                listaDetalle.appendChild(
+                  item
+                );
+
+              }
+            );
+
+          }
+
+        }
+
+
+        // =================================================
+        // ÚLTIMOS GASTOS
+        // =================================================
+
+        if (listaUltimos) {
+
+          listaUltimos.innerHTML =
+            "";
+
+
+          if (
+            !datos.ultimosGastos ||
+            datos.ultimosGastos.length === 0
+          ) {
+
+            listaUltimos.innerHTML = `
+
+              <div class="alert alert-info">
+                No tienes gastos recientes.
+              </div>
+
+            `;
+
+          } else {
+
+            datos.ultimosGastos.forEach(
+              function (gasto) {
+
+                const item =
+                  document.createElement(
+                    "div"
+                  );
+
+
+                item.className =
+                  "report-recent-item";
+
+
+                item.innerHTML = `
+
+                  <div>
+
+                    <strong>
+
+                      ${
+                        gasto.comercio_persona ||
+                        gasto.descripcion ||
+                        "Movimiento"
+                      }
+
+                    </strong>
+
+
+                    <span>
+
+                      ${gasto.categoria}
+
+                      ·
+
+                      ${fechaReporte(
+                        gasto.fecha
+                      )}
+
+                    </span>
+
+                  </div>
+
+
+                  <strong
+                    class="text-red num"
+                  >
+
+                    -${monedaReporte(
+                      gasto.monto
+                    )}
+
+                  </strong>
+
+                `;
+
+
+                listaUltimos.appendChild(
+                  item
+                );
+
+              }
+            );
+
+          }
+
+        }
+
+
+      } catch (error) {
+
+        console.error(
+          "Error cargando reportes:",
+          error
+        );
+
+      }
+
+    }
+
+
+    // =====================================================
+    // INICIAR
+    // =====================================================
+
+    cargarReportes();
+
+  }
+);
+
+// =====================================================
+// METAS DE AHORRO - MYSQL
+// =====================================================
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function () {
+
+    const listaMetas =
+      document.getElementById(
+        "listaMetas"
+      );
+
+
+    if (!listaMetas) {
+      return;
+    }
+
+
+    const usuarioGuardado =
+      sessionStorage.getItem(
+        "fintrackUsuarioActual"
+      );
+
+
+    if (!usuarioGuardado) {
+      return;
+    }
+
+
+    const usuario =
+      JSON.parse(
+        usuarioGuardado
+      );
+
+
+    const btnNuevaMeta =
+      document.getElementById(
+        "btnNuevaMeta"
+      );
+
+    const modalNuevaMeta =
+      document.getElementById(
+        "modalNuevaMeta"
+      );
+
+    const formNuevaMeta =
+      document.getElementById(
+        "formNuevaMeta"
+      );
+
+    const totalAhorro =
+      document.getElementById(
+        "totalAhorroMetas"
+      );
+
+    const balanceDisponible =
+      document.getElementById(
+        "balanceDisponibleMetas"
+      );
+
+
+    function monedaMeta(valor) {
+
+      return (
+        "₡ " +
+        (Number(valor) || 0)
+          .toLocaleString(
+            "es-CR",
+            {
+              maximumFractionDigits: 0
+            }
+          )
+      );
+
+    }
+
+
+    function abrirModalMeta() {
+
+      if (modalNuevaMeta) {
+        modalNuevaMeta.classList.add(
+          "abierto"
+        );
+      }
+
+    }
+
+
+    function cerrarModalMeta() {
+
+      if (modalNuevaMeta) {
+        modalNuevaMeta.classList.remove(
+          "abierto"
+        );
+      }
+
+    }
+
+
+    if (btnNuevaMeta) {
+
+      btnNuevaMeta.addEventListener(
+        "click",
+        abrirModalMeta
+      );
+
+    }
+
+
+    document
+      .querySelectorAll(
+        "[data-cerrar-meta]"
+      )
+      .forEach(
+        function (boton) {
+
+          boton.addEventListener(
+            "click",
+            cerrarModalMeta
+          );
+
+        }
+      );
+
+
+    async function cargarMetas() {
+
+      try {
+
+        const respuesta =
+          await fetch(
+            "backend/metas.php?usuario_id=" +
+            encodeURIComponent(
+              usuario.id
+            )
+          );
+
+
+        const datos =
+          await respuesta.json();
+
+
+        if (!datos.ok) {
+
+          console.error(
+            datos.mensaje
+          );
+
+          return;
+
+        }
+
+
+        if (totalAhorro) {
+
+          totalAhorro.textContent =
+            monedaMeta(
+              datos.usuario.ahorro
+            );
+
+        }
+
+
+        if (balanceDisponible) {
+
+          balanceDisponible.textContent =
+            monedaMeta(
+              datos.usuario.balance
+            );
+
+        }
+
+
+        listaMetas.innerHTML =
+          "";
+
+
+        if (
+          !datos.metas ||
+          datos.metas.length === 0
+        ) {
+
+          listaMetas.innerHTML = `
+
+            <div class="alert alert-info">
+              No tienes metas de ahorro.
+            </div>
+
+          `;
+
+          return;
+
+        }
+
+
+        datos.metas.forEach(
+          function (meta) {
+
+            const actual =
+              Number(
+                meta.monto_actual
+              ) || 0;
+
+
+            const objetivo =
+              Number(
+                meta.monto_objetivo
+              ) || 0;
+
+
+            const porcentaje =
+              objetivo > 0
+                ? Math.min(
+                    (
+                      actual /
+                      objetivo
+                    ) * 100,
+                    100
+                  )
+                : 0;
+
+
+            const tarjeta =
+              document.createElement(
+                "div"
+              );
+
+
+            tarjeta.className =
+              "goal-card";
+
+
+            tarjeta.innerHTML = `
+
+              <div class="goal-card-header">
+
+                <div>
+
+                  <strong>
+                    ${meta.nombre}
+                  </strong>
+
+                  <span>
+                    ${meta.descripcion || ""}
+                  </span>
+
+                </div>
+
+                <strong>
+                  ${porcentaje.toFixed(0)}%
+                </strong>
+
+              </div>
+
+
+              <div class="goal-bar">
+
+                <div
+                  class="goal-progress"
+                  style="
+                    width:${porcentaje}%;
+                  "
+                >
+                </div>
+
+              </div>
+
+
+              <div class="goal-values">
+
+                <span>
+
+                  ${monedaMeta(actual)}
+                  de
+                  ${monedaMeta(objetivo)}
+
+                </span>
+
+              </div>
+
+
+              <div
+                class="modal-actions"
+              >
+
+                <button
+                  type="button"
+                  class="btn btn-primary btn-sm"
+                  data-aportar="${meta.id}"
+                >
+                  Aportar
+                </button>
+
+
+                <button
+                  type="button"
+                  class="btn btn-outline btn-sm"
+                  data-eliminar="${meta.id}"
+                >
+                  Eliminar
+                </button>
+
+              </div>
+
+            `;
+
+
+            // =============================================
+            // APORTAR
+            // =============================================
+
+            tarjeta
+              .querySelector(
+                "[data-aportar]"
+              )
+              .addEventListener(
+                "click",
+                async function () {
+
+                  const monto =
+                    Number(
+                      prompt(
+                        "Monto que desea aportar:"
+                      )
+                    );
+
+
+                  if (
+                    !monto ||
+                    monto <= 0
+                  ) {
+                    return;
+                  }
+
+
+                  const respuesta =
+                    await fetch(
+                      "backend/aportar_meta.php",
+                      {
+                        method: "POST",
+
+                        headers: {
+                          "Content-Type":
+                            "application/json"
+                        },
+
+                        body:
+                          JSON.stringify({
+                            usuario_id:
+                              usuario.id,
+
+                            meta_id:
+                              meta.id,
+
+                            monto:
+                              monto
+                          })
+                      }
+                    );
+
+
+                  const resultado =
+                    await respuesta.json();
+
+
+                  alert(
+                    resultado.mensaje
+                  );
+
+
+                  if (resultado.ok) {
+                    cargarMetas();
+                  }
+
+                }
+              );
+
+
+            // =============================================
+            // ELIMINAR
+            // =============================================
+
+            tarjeta
+              .querySelector(
+                "[data-eliminar]"
+              )
+              .addEventListener(
+                "click",
+                async function () {
+
+                  const confirmar =
+                    confirm(
+                      "¿Desea eliminar esta meta? El dinero ahorrado será devuelto a su balance."
+                    );
+
+
+                  if (!confirmar) {
+                    return;
+                  }
+
+
+                  const respuesta =
+                    await fetch(
+                      "backend/eliminar_meta.php",
+                      {
+                        method: "POST",
+
+                        headers: {
+                          "Content-Type":
+                            "application/json"
+                        },
+
+                        body:
+                          JSON.stringify({
+                            usuario_id:
+                              usuario.id,
+
+                            meta_id:
+                              meta.id
+                          })
+                      }
+                    );
+
+
+                  const resultado =
+                    await respuesta.json();
+
+
+                  alert(
+                    resultado.mensaje
+                  );
+
+
+                  if (resultado.ok) {
+                    cargarMetas();
+                  }
+
+                }
+              );
+
+
+            listaMetas.appendChild(
+              tarjeta
+            );
+
+          }
+        );
+
+
+      } catch (error) {
+
+        console.error(
+          "Error cargando metas:",
+          error
+        );
+
+      }
+
+    }
+
+
+    // =====================================================
+    // CREAR META
+    // =====================================================
+
+    if (formNuevaMeta) {
+
+      formNuevaMeta.addEventListener(
+        "submit",
+        async function (event) {
+
+          event.preventDefault();
+
+
+          const nombre =
+            document
+              .getElementById(
+                "metaNombre"
+              )
+              .value
+              .trim();
+
+
+          const descripcion =
+            document
+              .getElementById(
+                "metaDescripcion"
+              )
+              .value
+              .trim();
+
+
+          const objetivo =
+            Number(
+              document.getElementById(
+                "metaObjetivo"
+              ).value
+            );
+
+
+          const fecha =
+            document.getElementById(
+              "metaFecha"
+            ).value;
+
+
+          const respuesta =
+            await fetch(
+              "backend/guardar_meta.php",
+              {
+                method: "POST",
+
+                headers: {
+                  "Content-Type":
+                    "application/json"
+                },
+
+                body:
+                  JSON.stringify({
+                    usuario_id:
+                      usuario.id,
+
+                    nombre:
+                      nombre,
+
+                    descripcion:
+                      descripcion,
+
+                    monto_objetivo:
+                      objetivo,
+
+                    fecha_limite:
+                      fecha
+                  })
+              }
+            );
+
+
+          const datos =
+            await respuesta.json();
+
+
+          alert(
+            datos.mensaje
+          );
+
+
+          if (datos.ok) {
+
+            formNuevaMeta.reset();
+
+            cerrarModalMeta();
+
+            cargarMetas();
+
+          }
+
+        }
+      );
+
+    }
+
+
+    cargarMetas();
+
+  }
+);

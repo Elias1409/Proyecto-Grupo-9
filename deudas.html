@@ -445,97 +445,100 @@
 
         <form id="formNuevaDeuda">
 
-            <div class="form-group">
-                <label class="form-label">
-                    Entidad
-                </label>
+    <div class="form-group">
+        <label class="form-label">Entidad</label>
 
-                <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Ej: Gollo"
-                    required
-                >
-            </div>
-
-
-            <div class="form-group">
-                <label class="form-label">
-                    Descripción
-                </label>
-
-                <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Ej: Televisor Samsung"
-                    required
-                >
-            </div>
+        <input
+            type="text"
+            class="form-control"
+            id="deudaNombre"
+            placeholder="Ej: Gollo"
+            required
+        >
+    </div>
 
 
-            <div class="form-row">
+    <div class="form-group">
+        <label class="form-label">Descripción</label>
 
-                <div class="form-group">
-                    <label class="form-label">
-                        Saldo pendiente
-                    </label>
-
-                    <input
-                        type="number"
-                        class="form-control"
-                        placeholder="0"
-                        required
-                    >
-                </div>
+        <input
+            type="text"
+            class="form-control"
+            id="deudaDescripcion"
+            placeholder="Ej: Televisor Samsung"
+            required
+        >
+    </div>
 
 
-                <div class="form-group">
-                    <label class="form-label">
-                        Cuota mensual
-                    </label>
+    <div class="form-row">
 
-                    <input
-                        type="number"
-                        class="form-control"
-                        placeholder="0"
-                        required
-                    >
-                </div>
+        <div class="form-group">
+            <label class="form-label">
+                Saldo pendiente
+            </label>
 
-            </div>
-
-
-            <div class="form-group">
-                <label class="form-label">
-                    Próximo vencimiento
-                </label>
-
-                <input
-                    type="date"
-                    class="form-control"
-                    required
-                >
-            </div>
+            <input
+                type="number"
+                class="form-control"
+                id="deudaMonto"
+                min="1"
+                placeholder="0"
+                required
+            >
+        </div>
 
 
-            <div class="modal-actions">
+        <div class="form-group">
+            <label class="form-label">
+                Cuota mensual
+            </label>
 
-                <button
-                    type="button"
-                    class="btn btn-outline"
-                    data-cerrar-modal="modalNuevaDeuda">
-                    Cancelar
-                </button>
+            <input
+                type="number"
+                class="form-control"
+                id="deudaCuota"
+                min="0"
+                placeholder="0"
+                required
+            >
+        </div>
 
-                <button
-                    type="submit"
-                    class="btn btn-primary">
-                    Guardar deuda
-                </button>
+    </div>
 
-            </div>
 
-        </form>
+    <div class="form-group">
+        <label class="form-label">
+            Próximo vencimiento
+        </label>
+
+        <input
+            type="date"
+            class="form-control"
+            id="deudaProximoPago"
+            required
+        >
+    </div>
+
+
+    <div class="modal-actions">
+
+        <button
+            type="button"
+            class="btn btn-outline"
+            data-cerrar-modal="modalNuevaDeuda">
+            Cancelar
+        </button>
+
+        <button
+            type="submit"
+            class="btn btn-primary">
+            Guardar deuda
+        </button>
+
+    </div>
+
+</form>
 
     </div>
 
