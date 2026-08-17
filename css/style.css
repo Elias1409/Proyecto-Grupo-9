@@ -3555,3 +3555,1508 @@ tbody tr:hover td {
     }
 
 }
+
+/* =====================================================
+   MODALES - GESTIÓN DE DEUDAS
+===================================================== */
+
+.fintrack-modal {
+    display: none;
+
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(15, 23, 20, 0.55);
+
+    z-index: 9999;
+
+    padding: 20px;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* CUANDO EL MODAL ESTÁ ABIERTO */
+
+.fintrack-modal.abierto {
+    display: flex;
+}
+
+
+/* CAJA DEL MODAL */
+
+.fintrack-modal-content {
+    width: 100%;
+    max-width: 520px;
+
+    max-height: 90vh;
+    overflow-y: auto;
+
+    background: #ffffff;
+
+    border-radius: 16px;
+
+    padding: 26px;
+
+    box-shadow:
+        0 20px 50px
+        rgba(0, 0, 0, 0.18);
+}
+
+
+/* =====================================================
+   ENCABEZADO DEL MODAL
+===================================================== */
+
+.fintrack-modal-header {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: 20px;
+
+    margin-bottom: 24px;
+}
+
+
+.fintrack-modal-header h3 {
+    margin: 0 0 5px;
+
+    font-size: 21px;
+    font-weight: 700;
+}
+
+
+.fintrack-modal-header p {
+    margin: 0;
+
+    font-size: 13px;
+
+    color: #66756f;
+}
+
+
+/* =====================================================
+   BOTÓN CERRAR
+===================================================== */
+
+.modal-close {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #f4f6f5;
+
+    color: #52615b;
+
+    font-size: 24px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.modal-close:hover {
+    background: #e8eeeb;
+
+    color: #163b2d;
+}
+
+
+/* =====================================================
+   BOTONES INFERIORES
+===================================================== */
+
+.modal-actions {
+    display: flex;
+
+    justify-content: flex-end;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 24px;
+}
+
+
+/* =====================================================
+   DETALLE DE DEUDA
+===================================================== */
+
+.debt-detail-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 14px;
+}
+
+
+.debt-detail-grid > div {
+    padding: 16px;
+
+    background: #f6f8f7;
+
+    border: 1px solid #e7ece9;
+
+    border-radius: 12px;
+}
+
+
+.debt-detail-grid span {
+    display: block;
+
+    margin-bottom: 6px;
+
+    font-size: 12px;
+
+    color: #66756f;
+}
+
+
+.debt-detail-grid strong {
+    display: block;
+
+    font-size: 16px;
+
+    color: #1d2d27;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .fintrack-modal {
+        padding: 12px;
+    }
+
+
+    .fintrack-modal-content {
+        padding: 20px;
+    }
+
+
+    .debt-detail-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .modal-actions {
+        flex-direction: column-reverse;
+    }
+
+
+    .modal-actions .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+}
+
+/* =====================================================
+   REPORTES
+===================================================== */
+
+.reports-main-grid,
+.reports-bottom-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(320px, .8fr);
+
+    gap: 20px;
+
+    margin-bottom: 20px;
+
+    align-items: stretch;
+}
+
+
+/* =====================================================
+   ENCABEZADO DE TARJETAS
+===================================================== */
+
+.report-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    margin-bottom: 20px;
+}
+
+
+/* =====================================================
+   HISTÓRICO
+===================================================== */
+
+.report-bar-chart {
+    min-height: 240px;
+
+    margin-top: 12px;
+}
+
+
+.report-month {
+    cursor: pointer;
+
+    transition: .2s ease;
+}
+
+
+.report-month:hover {
+    transform: translateY(-3px);
+}
+
+
+.report-month.active .bar-lbl {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+
+.report-selected-month {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: 18px;
+
+    padding-top: 14px;
+
+    border-top: 1px solid var(--border);
+
+    font-size: 12px;
+}
+
+
+.report-selected-month span {
+    color: var(--ink-700);
+}
+
+
+/* =====================================================
+   DONA
+===================================================== */
+
+.report-donut-wrap {
+    display: flex;
+    justify-content: center;
+
+    margin: 14px 0 20px;
+}
+
+
+.report-donut {
+    width: 180px;
+    height: 180px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        conic-gradient(
+            #2f7d63 0% 26.6%,
+            #6f9d8c 26.6% 49.1%,
+            #d6a85f 49.1% 67.4%,
+            #6b8cae 67.4% 84.7%,
+            #b982a6 84.7% 100%
+        );
+}
+
+
+.report-donut::before {
+    content: "";
+
+    position: absolute;
+
+    width: 112px;
+    height: 112px;
+
+    border-radius: 50%;
+
+    background: var(--surface);
+}
+
+
+.report-donut {
+    position: relative;
+}
+
+
+.report-donut-center {
+    position: relative;
+
+    z-index: 2;
+
+    text-align: center;
+}
+
+
+.report-donut-center span {
+    display: block;
+
+    font-size: 11px;
+
+    color: var(--ink-700);
+}
+
+
+.report-donut-center strong {
+    display: block;
+
+    margin-top: 3px;
+
+    font-size: 15px;
+}
+
+
+/* =====================================================
+   LISTA DE CATEGORÍAS
+===================================================== */
+
+.report-category-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+
+.report-category-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 14px;
+
+    font-size: 12px;
+}
+
+
+.report-category-item > div {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+}
+
+
+.report-dot {
+    width: 9px;
+    height: 9px;
+
+    border-radius: 50%;
+
+    flex-shrink: 0;
+}
+
+
+.report-dot-1 {
+    background: #2f7d63;
+}
+
+.report-dot-2 {
+    background: #6f9d8c;
+}
+
+.report-dot-3 {
+    background: #d6a85f;
+}
+
+.report-dot-4 {
+    background: #6b8cae;
+}
+
+.report-dot-5 {
+    background: #b982a6;
+}
+
+
+/* =====================================================
+   DETALLE DE GASTOS
+===================================================== */
+
+.report-detail-list {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.report-detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 16px;
+
+    padding: 14px 0;
+
+    border-bottom: 1px solid var(--border);
+}
+
+
+.report-detail-item:last-child {
+    border-bottom: none;
+}
+
+
+.report-detail-item > div {
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+
+.report-detail-item strong {
+    font-size: 13px;
+}
+
+
+.report-detail-item span {
+    font-size: 12px;
+
+    color: var(--ink-700);
+}
+
+
+/* =====================================================
+   ÚLTIMOS GASTOS
+===================================================== */
+
+.report-recent-list {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.report-recent-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 16px;
+
+    padding: 14px 0;
+
+    border-bottom: 1px solid var(--border);
+}
+
+
+.report-recent-item:last-child {
+    border-bottom: none;
+}
+
+
+.report-recent-item > div {
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+
+.report-recent-item > div strong {
+    font-size: 13px;
+}
+
+
+.report-recent-item span {
+    font-size: 11.5px;
+
+    color: var(--ink-700);
+}
+
+
+.report-recent-item > strong {
+    white-space: nowrap;
+
+    font-size: 13px;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 1050px) {
+
+    .reports-main-grid,
+    .reports-bottom-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .report-recent-item,
+    .report-detail-item {
+        align-items: flex-start;
+    }
+
+}
+
+/* =====================================================
+   METAS DE AHORRO
+===================================================== */
+
+.goals-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin: 28px 0 18px;
+}
+
+
+.goals-section-header h3 {
+    margin: 0 0 4px;
+
+    font-size: 18px;
+}
+
+
+/* =====================================================
+   LISTA
+===================================================== */
+
+.goals-list {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+}
+
+
+/* =====================================================
+   TARJETA
+===================================================== */
+
+.goal-card {
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow-sm);
+
+    padding: 22px;
+}
+
+
+.goal-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: 16px;
+
+    margin-bottom: 20px;
+}
+
+
+.goal-title {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+.goal-title strong {
+    display: block;
+
+    font-size: 15px;
+}
+
+
+.goal-title span {
+    display: block;
+
+    margin-top: 3px;
+
+    font-size: 12px;
+
+    color: var(--ink-700);
+}
+
+
+/* =====================================================
+   ICONO
+===================================================== */
+
+.goal-icon {
+    width: 40px;
+    height: 40px;
+
+    min-width: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+}
+
+
+.goal-icon .icon {
+    width: 18px;
+    height: 18px;
+}
+
+
+/* =====================================================
+   BARRA DE PROGRESO
+===================================================== */
+
+.goal-progress {
+    margin-bottom: 18px;
+}
+
+
+/* =====================================================
+   DATOS
+===================================================== */
+
+.goal-data {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 12px;
+}
+
+
+.goal-data > div {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+
+.goal-data span {
+    font-size: 11.5px;
+
+    color: var(--ink-700);
+}
+
+
+.goal-data strong {
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   BOTONES
+===================================================== */
+
+.goal-actions {
+    display: flex;
+
+    justify-content: flex-end;
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 20px;
+
+    padding-top: 16px;
+
+    border-top: 1px solid var(--border);
+}
+
+
+.goal-actions .btn {
+    min-height: 36px;
+
+    padding: 7px 13px;
+
+    font-size: 11.5px;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 1000px) {
+
+    .goals-list {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .goals-section-header {
+        align-items: stretch;
+
+        flex-direction: column;
+    }
+
+
+    .goals-section-header .btn {
+        width: 100%;
+
+        justify-content: center;
+    }
+
+
+    .goal-data {
+        grid-template-columns: 1fr;
+    }
+
+
+    .goal-actions {
+        flex-direction: column;
+    }
+
+
+    .goal-actions .btn {
+        width: 100%;
+
+        justify-content: center;
+    }
+
+}
+
+/* =====================================================
+   CORRECCIÓN VISUAL - METAS DE AHORRO
+===================================================== */
+
+.goals-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+
+.goal-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+
+    padding: 22px;
+
+    min-height: 0;
+    overflow: hidden;
+}
+
+
+.goal-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 16px;
+
+    margin-bottom: 18px;
+}
+
+
+.goal-title {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+.goal-title strong {
+    display: block;
+
+    font-size: 15px;
+    font-weight: 700;
+}
+
+
+.goal-title span {
+    display: block;
+
+    margin-top: 3px;
+
+    font-size: 12px;
+
+    color: var(--ink-700);
+}
+
+
+.goal-icon {
+    width: 40px;
+    height: 40px;
+
+    min-width: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+}
+
+
+.goal-icon .icon {
+    width: 18px;
+    height: 18px;
+}
+
+
+/* =====================================================
+   BARRA CORRECTA
+===================================================== */
+
+.goal-card .progress-bar {
+    width: 100%;
+    height: 10px;
+
+    min-height: 10px;
+    max-height: 10px;
+
+    display: block;
+
+    position: relative;
+
+    overflow: hidden;
+
+    margin: 0 0 18px;
+
+    padding: 0;
+
+    border-radius: 999px;
+
+    background: #e7e2d8;
+}
+
+
+.goal-card .progress-fill {
+    height: 100%;
+
+    min-height: 0;
+    max-height: none;
+
+    border-radius: 999px;
+
+    background: var(--primary);
+
+    display: block;
+}
+
+
+.goal-card .progress-fill.orange {
+    background: #df7a3a;
+}
+
+
+/* =====================================================
+   DATOS
+===================================================== */
+
+.goal-data {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 12px;
+
+    margin-top: 4px;
+}
+
+
+.goal-data > div {
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+
+.goal-data span {
+    font-size: 11.5px;
+
+    color: var(--ink-700);
+}
+
+
+.goal-data strong {
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   BOTONES
+===================================================== */
+
+.goal-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 18px;
+
+    padding-top: 14px;
+
+    border-top: 1px solid var(--border);
+}
+
+
+.goal-actions .btn {
+    min-height: 36px;
+
+    padding: 7px 13px;
+
+    font-size: 11.5px;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 1000px) {
+
+    .goals-list {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .goal-data {
+        grid-template-columns: 1fr;
+    }
+
+
+    .goal-actions {
+        flex-direction: column;
+    }
+
+
+    .goal-actions .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+}
+
+/* =====================================================
+   PERFIL
+===================================================== */
+
+.profile-hero {
+    position: relative;
+
+    overflow: hidden;
+
+    margin-bottom: 22px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow-sm);
+}
+
+
+.profile-hero-cover {
+    height: 115px;
+
+    background:
+        linear-gradient(
+            110deg,
+            #064c3e,
+            #19a68f
+        );
+}
+
+
+.profile-hero-content {
+    min-height: 130px;
+
+    display: flex;
+    align-items: center;
+
+    position: relative;
+
+    padding:
+        22px
+        28px
+        24px
+        150px;
+}
+
+
+/* =====================================================
+   FOTO
+===================================================== */
+
+.profile-photo-wrapper {
+    position: absolute;
+
+    left: 30px;
+    top: -48px;
+}
+
+
+.profile-photo {
+    width: 112px;
+    height: 112px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 4px solid white;
+
+    border-radius: 50%;
+
+    background: var(--primary);
+
+    box-shadow: var(--shadow-md);
+}
+
+
+.profile-photo img {
+    display: none;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+.profile-photo-initials {
+    font-size: 30px;
+    font-weight: 800;
+
+    color: white;
+}
+
+
+.profile-photo-button {
+    width: 38px;
+    height: 38px;
+
+    position: absolute;
+
+    right: -2px;
+    bottom: 4px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 3px solid white;
+    border-radius: 50%;
+
+    background: var(--primary);
+
+    color: white;
+
+    cursor: pointer;
+
+    box-shadow: var(--shadow-sm);
+}
+
+
+.profile-photo-button .icon {
+    width: 15px;
+    height: 15px;
+}
+
+
+/* =====================================================
+   INFORMACIÓN PRINCIPAL
+===================================================== */
+
+.profile-main-info {
+    flex: 1;
+}
+
+
+.profile-name-line {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+}
+
+
+.profile-name-line h3 {
+    margin: 0;
+
+    font-size: 22px;
+}
+
+
+.profile-active {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 5px;
+
+    color: var(--primary);
+
+    font-size: 11.5px;
+    font-weight: 600;
+}
+
+
+.profile-active-dot {
+    width: 18px;
+    height: 18px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: var(--success-wash);
+}
+
+
+.profile-username {
+    margin-top: 4px;
+
+    color: var(--primary);
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+
+.profile-member {
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+
+    margin-top: 12px;
+
+    color: var(--ink-700);
+
+    font-size: 12px;
+}
+
+
+.profile-member .icon {
+    width: 14px;
+    height: 14px;
+}
+
+
+.profile-edit-photo {
+    flex-shrink: 0;
+}
+
+
+/* =====================================================
+   SECCIONES
+===================================================== */
+
+.profile-section {
+    margin-bottom: 18px;
+}
+
+
+.profile-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+}
+
+
+.profile-help {
+    margin-top: 5px;
+
+    color: var(--ink-700);
+
+    font-size: 10.5px;
+}
+
+
+/* =====================================================
+   SEGURIDAD
+===================================================== */
+
+.profile-security-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 12px;
+
+    margin-top: 18px;
+}
+
+
+.profile-security-item {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 10px;
+
+    padding: 13px;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+}
+
+
+.profile-security-icon {
+    width: 36px;
+    height: 36px;
+
+    min-width: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background: var(--accent-wash);
+
+    color: var(--primary);
+}
+
+
+.profile-security-icon .icon {
+    width: 16px;
+    height: 16px;
+}
+
+
+.profile-security-item strong {
+    display: block;
+
+    margin-bottom: 3px;
+
+    font-size: 11.5px;
+
+    color: var(--primary);
+}
+
+
+.profile-security-item span {
+    display: block;
+
+    font-size: 10.5px;
+
+    line-height: 1.4;
+
+    color: var(--ink-700);
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 900px) {
+
+    .profile-security-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .profile-hero-content {
+        padding:
+            75px
+            20px
+            22px;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+
+    .profile-photo-wrapper {
+        top: -60px;
+
+        left: 20px;
+    }
+
+
+    .profile-edit-photo {
+        margin-top: 18px;
+    }
+
+}
+
+/* =====================================================
+   CUENTAS Y MEDIOS VINCULADOS
+===================================================== */
+
+.linked-accounts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 14px;
+
+  margin-top: 16px;
+}
+
+
+.linked-account-card {
+  min-height: 180px;
+
+  padding: 18px;
+
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+
+  border-radius: var(--radius-md);
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+
+  transition: 0.2s ease;
+}
+
+
+.linked-account-card:hover {
+  transform: translateY(-2px);
+
+  box-shadow: var(--shadow-sm);
+}
+
+
+.linked-account-top {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 10px;
+}
+
+
+.linked-account-icon {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background: var(--accent-wash);
+
+  color: var(--primary);
+}
+
+
+.linked-account-icon .icon {
+  width: 17px;
+  height: 17px;
+}
+
+
+.linked-account-card > strong {
+  font-size: 14px;
+}
+
+
+.linked-account-type {
+  font-size: 11.5px;
+
+  color: var(--ink-700);
+}
+
+
+.linked-account-number {
+  margin: 10px 0;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  letter-spacing: 1px;
+}
+
+
+.linked-account-card .btn {
+  margin-top: auto;
+
+  align-self: flex-start;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 1000px) {
+
+  .linked-accounts-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+
+@media (max-width: 650px) {
+
+  .linked-accounts-grid {
+    grid-template-columns: 1fr;
+  }
+
+}

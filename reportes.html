@@ -56,80 +56,722 @@
     </aside>
 
     <main class="main">
-        <div class="page-header">
-            <div>
-                <h2>Reportes financieros</h2>
-                <div class="sub">Resumen de ingresos y gastos</div>
+
+    <!-- =====================================================
+         ENCABEZADO
+    ====================================================== -->
+
+    <div class="page-header">
+
+        <div>
+            <h2>Reportes financieros</h2>
+
+            <div class="sub">
+                Analiza el comportamiento de tus finanzas.
             </div>
         </div>
 
-        <!-- Tarjetas esenciales -->
-        <div class="stats-grid-2">
-            <div class="stat-card">
-                <div class="ic ic-green"><svg class="icon"><use href="assets/icons.svg#icon-trending-up"></use></svg></div>
-                <div class="lbl">Total Ingresos</div>
-                <div class="val green num">₡ 850,000</div>
+    </div>
+
+
+    <!-- =====================================================
+         RESUMEN
+    ====================================================== -->
+
+    <div class="stats-grid-3">
+
+        <!-- INGRESOS -->
+
+        <div class="stat-card">
+
+            <div class="ic ic-green">
+                <svg class="icon">
+                    <use href="assets/icons.svg#icon-trending-up"></use>
+                </svg>
             </div>
-            <div class="stat-card">
-                <div class="ic ic-red"><svg class="icon"><use href="assets/icons.svg#icon-cart"></use></svg></div>
-                <div class="lbl">Total Gastos</div>
-                <div class="val red num">₡ 534,200</div>
+
+            <div class="lbl">
+                Ingresos acumulados
             </div>
+
+            <div class="val green num">
+                ₡ 850,000
+            </div>
+
+            <div class="chg">
+                En lo que va de agosto
+            </div>
+
         </div>
 
-        <div class="grid-65">
-            <!-- Gráfico mensual limpio -->
-            <div class="card">
-                <div class="card-title"><svg class="icon"><use href="assets/icons.svg#icon-trending-up"></use></svg> Histórico de Gastos</div>
-                <div class="bar-chart" style="margin-top: 20px;">
-                    <div class="bar-col">
-                        <span class="bar-val num">₡623k</span>
-                        <div class="bar-track"><div class="bar-fill expense" style="height: 70%;"></div></div>
-                        <span class="bar-lbl">Mayo</span>
+
+        <!-- GASTOS -->
+
+        <div class="stat-card">
+
+            <div class="ic ic-red">
+                <svg class="icon">
+                    <use href="assets/icons.svg#icon-cart"></use>
+                </svg>
+            </div>
+
+            <div class="lbl">
+                Gastos acumulados
+            </div>
+
+            <div class="val red num">
+                ₡ 534,200
+            </div>
+
+            <div class="chg">
+                En lo que va de agosto
+            </div>
+
+        </div>
+
+
+        <!-- BALANCE -->
+
+        <div class="stat-card">
+
+            <div class="ic ic-teal">
+                <svg class="icon">
+                    <use href="assets/icons.svg#icon-credit-card"></use>
+                </svg>
+            </div>
+
+            <div class="lbl">
+                Balance disponible
+            </div>
+
+            <div class="val green num">
+                ₡ 315,800
+            </div>
+
+            <div class="chg">
+                Disponible actualmente
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         FILA PRINCIPAL
+    ====================================================== -->
+
+    <div class="reports-main-grid">
+
+
+        <!-- =================================================
+             HISTÓRICO DE GASTOS
+        ================================================== -->
+
+        <div class="card report-history-card">
+
+            <div class="report-card-header">
+
+                <div>
+
+                    <div class="card-title mb-0">
+
+                        <svg class="icon">
+                            <use href="assets/icons.svg#icon-trending-up"></use>
+                        </svg>
+
+                        Histórico de gastos
+
                     </div>
-                    <div class="bar-col">
-                        <span class="bar-val num">₡757k</span>
-                        <div class="bar-track"><div class="bar-fill expense" style="height: 85%;"></div></div>
-                        <span class="bar-lbl">Junio</span>
+
+                    <div class="text-muted text-sm">
+                        Comparación de gastos de los últimos meses.
                     </div>
-                    <div class="bar-col">
-                        <span class="bar-val num">₡534k</span>
-                        <div class="bar-track"><div class="bar-fill" style="height: 60%; background: var(--primary);"></div></div>
-                        <span class="bar-lbl">Julio</span>
-                    </div>
+
                 </div>
+
             </div>
 
-            <!-- Tabla básica por categoría -->
-            <div class="card">
-                <div class="card-title"><svg class="icon"><use href="assets/icons.svg#icon-list"></use></svg> Gastos por Categoría</div>
-                <div class="table-wrap">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Categoría</th>
-                                <th style="text-align:right;">Monto</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><span class="cell-ic"><span class="dot" style="background:var(--info-text);"></span><svg class="icon"><use href="assets/icons.svg#icon-home"></use></svg> Vivienda</span></td>
-                                <td style="text-align:right;" class="fw-700 num">₡ 160,000</td>
-                            </tr>
-                            <tr>
-                                <td><span class="cell-ic"><span class="dot" style="background:var(--warning-text);"></span><svg class="icon"><use href="assets/icons.svg#icon-cart"></use></svg> Alimentación</span></td>
-                                <td style="text-align:right;" class="fw-700 num">₡ 142,000</td>
-                            </tr>
-                            <tr>
-                                <td><span class="cell-ic"><span class="dot" style="background:var(--primary);"></span><svg class="icon"><use href="assets/icons.svg#icon-bus"></use></svg> Transporte</span></td>
-                                <td style="text-align:right;" class="fw-700 num">₡ 98,000</td>
-                            </tr>
-                        </tbody>
-                    </table>
+
+            <div class="bar-chart report-bar-chart">
+
+                <!-- MAYO -->
+
+                <div class="bar-col report-month">
+
+                    <span class="bar-val num">
+                        ₡623k
+                    </span>
+
+                    <div class="bar-track">
+
+                        <div
+                            class="bar-fill expense"
+                            style="height: 70%;">
+                        </div>
+
+                    </div>
+
+                    <span class="bar-lbl">
+                        Mayo
+                    </span>
+
                 </div>
+
+
+                <!-- JUNIO -->
+
+                <div class="bar-col report-month">
+
+                    <span class="bar-val num">
+                        ₡757k
+                    </span>
+
+                    <div class="bar-track">
+
+                        <div
+                            class="bar-fill expense"
+                            style="height: 85%;">
+                        </div>
+
+                    </div>
+
+                    <span class="bar-lbl">
+                        Junio
+                    </span>
+
+                </div>
+
+
+                <!-- JULIO -->
+
+                <div class="bar-col report-month">
+
+                    <span class="bar-val num">
+                        ₡610k
+                    </span>
+
+                    <div class="bar-track">
+
+                        <div
+                            class="bar-fill expense"
+                            style="height: 69%;">
+                        </div>
+
+                    </div>
+
+                    <span class="bar-lbl">
+                        Julio
+                    </span>
+
+                </div>
+
+
+                <!-- AGOSTO -->
+
+                <div class="bar-col report-month active">
+
+                    <span class="bar-val num">
+                        ₡534k
+                    </span>
+
+                    <div class="bar-track">
+
+                        <div
+                            class="bar-fill"
+                            style="
+                                height: 60%;
+                                background: var(--primary);
+                            ">
+                        </div>
+
+                    </div>
+
+                    <span class="bar-lbl">
+                        Agosto
+                    </span>
+
+                </div>
+
             </div>
+
+
+            <div class="report-selected-month">
+
+                <span>
+                    Mes seleccionado
+                </span>
+
+                <strong>
+                    Agosto 2026
+                </strong>
+
+            </div>
+
         </div>
-    </main>
+
+
+
+        <!-- =================================================
+             GASTOS POR CATEGORÍA
+        ================================================== -->
+
+        <div class="card report-category-card">
+
+            <div class="report-card-header">
+
+                <div>
+
+                    <div class="card-title mb-0">
+
+                        <svg class="icon">
+                            <use href="assets/icons.svg#icon-list"></use>
+                        </svg>
+
+                        Gastos por categoría
+
+                    </div>
+
+                    <div class="text-muted text-sm">
+                        Distribución de agosto 2026.
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- GRÁFICA TIPO DONA VISUAL -->
+
+            <div class="report-donut-wrap">
+
+                <div class="report-donut">
+
+                    <div class="report-donut-center">
+
+                        <span>
+                            Total
+                        </span>
+
+                        <strong class="num">
+                            ₡534,200
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CATEGORÍAS -->
+
+            <div class="report-category-list">
+
+                <div class="report-category-item">
+
+                    <div>
+                        <span class="report-dot report-dot-1"></span>
+                        Alimentación
+                    </div>
+
+                    <strong class="num">
+                        ₡142,000
+                    </strong>
+
+                </div>
+
+
+                <div class="report-category-item">
+
+                    <div>
+                        <span class="report-dot report-dot-2"></span>
+                        Vivienda
+                    </div>
+
+                    <strong class="num">
+                        ₡120,000
+                    </strong>
+
+                </div>
+
+
+                <div class="report-category-item">
+
+                    <div>
+                        <span class="report-dot report-dot-3"></span>
+                        Transporte
+                    </div>
+
+                    <strong class="num">
+                        ₡98,000
+                    </strong>
+
+                </div>
+
+
+                <div class="report-category-item">
+
+                    <div>
+                        <span class="report-dot report-dot-4"></span>
+                        Servicios
+                    </div>
+
+                    <strong class="num">
+                        ₡92,200
+                    </strong>
+
+                </div>
+
+
+                <div class="report-category-item">
+
+                    <div>
+                        <span class="report-dot report-dot-5"></span>
+                        Entretenimiento
+                    </div>
+
+                    <strong class="num">
+                        ₡82,000
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         FILA INFERIOR
+    ====================================================== -->
+
+    <div class="reports-bottom-grid">
+
+
+        <!-- =================================================
+             DETALLE DE GASTOS
+        ================================================== -->
+
+        <div class="card report-detail-card">
+
+            <div class="report-card-header">
+
+                <div>
+
+                    <div class="card-title mb-0">
+
+                        <svg class="icon">
+                            <use href="assets/icons.svg#icon-list"></use>
+                        </svg>
+
+                        Detalle de gastos
+
+                    </div>
+
+                    <div class="text-muted text-sm">
+                        Consulta qué movimientos conforman cada categoría.
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="report-detail-list">
+
+
+                <!-- ALIMENTACIÓN -->
+
+                <div class="report-detail-item">
+
+                    <div>
+
+                        <strong>
+                            Alimentación
+                        </strong>
+
+                        <span class="num">
+                            ₡142,000
+                        </span>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-ghost btn-sm report-view-button"
+                        data-categoria="alimentacion">
+                        Ver gastos
+                    </button>
+
+                </div>
+
+
+                <!-- VIVIENDA -->
+
+                <div class="report-detail-item">
+
+                    <div>
+
+                        <strong>
+                            Vivienda
+                        </strong>
+
+                        <span class="num">
+                            ₡120,000
+                        </span>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-ghost btn-sm report-view-button"
+                        data-categoria="vivienda">
+                        Ver gastos
+                    </button>
+
+                </div>
+
+
+                <!-- TRANSPORTE -->
+
+                <div class="report-detail-item">
+
+                    <div>
+
+                        <strong>
+                            Transporte
+                        </strong>
+
+                        <span class="num">
+                            ₡98,000
+                        </span>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-ghost btn-sm report-view-button"
+                        data-categoria="transporte">
+                        Ver gastos
+                    </button>
+
+                </div>
+
+
+                <!-- SERVICIOS -->
+
+                <div class="report-detail-item">
+
+                    <div>
+
+                        <strong>
+                            Servicios
+                        </strong>
+
+                        <span class="num">
+                            ₡92,200
+                        </span>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-ghost btn-sm report-view-button"
+                        data-categoria="servicios">
+                        Ver gastos
+                    </button>
+
+                </div>
+
+
+                <!-- ENTRETENIMIENTO -->
+
+                <div class="report-detail-item">
+
+                    <div>
+
+                        <strong>
+                            Entretenimiento
+                        </strong>
+
+                        <span class="num">
+                            ₡82,000
+                        </span>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-ghost btn-sm report-view-button"
+                        data-categoria="entretenimiento">
+                        Ver gastos
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             ÚLTIMOS GASTOS
+        ================================================== -->
+
+        <div class="card report-recent-card">
+
+            <div class="report-card-header">
+
+                <div>
+
+                    <div class="card-title mb-0">
+
+                        <svg class="icon">
+                            <use href="assets/icons.svg#icon-credit-card"></use>
+                        </svg>
+
+                        Últimos gastos
+
+                    </div>
+
+                    <div class="text-muted text-sm">
+                        Movimientos recientes de agosto.
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="report-recent-list">
+
+
+                <!-- WALMART -->
+
+                <div class="report-recent-item">
+
+                    <div>
+
+                        <strong>
+                            Walmart Alajuela
+                        </strong>
+
+                        <span>
+                            Alimentación · 14 ago. 2026
+                        </span>
+
+                    </div>
+
+                    <strong class="text-red num">
+                        -₡64,500
+                    </strong>
+
+                </div>
+
+
+                <!-- TELECABLE -->
+
+                <div class="report-recent-item">
+
+                    <div>
+
+                        <strong>
+                            Telecable Costa Rica
+                        </strong>
+
+                        <span>
+                            Servicios · 12 ago. 2026
+                        </span>
+
+                    </div>
+
+                    <strong class="text-red num">
+                        -₡32,000
+                    </strong>
+
+                </div>
+
+
+                <!-- DELTA -->
+
+                <div class="report-recent-item">
+
+                    <div>
+
+                        <strong>
+                            Estación Delta
+                        </strong>
+
+                        <span>
+                            Transporte · 8 ago. 2026
+                        </span>
+
+                    </div>
+
+                    <strong class="text-red num">
+                        -₡35,000
+                    </strong>
+
+                </div>
+
+
+                <!-- GOLLO -->
+
+                <div class="report-recent-item">
+
+                    <div>
+
+                        <strong>
+                            Gollo Alajuela
+                        </strong>
+
+                        <span>
+                            Deudas · 6 ago. 2026
+                        </span>
+
+                    </div>
+
+                    <strong class="text-red num">
+                        -₡55,000
+                    </strong>
+
+                </div>
+
+
+                <!-- PALI -->
+
+                <div class="report-recent-item">
+
+                    <div>
+
+                        <strong>
+                            Supermercado Palí
+                        </strong>
+
+                        <span>
+                            Alimentación · 5 ago. 2026
+                        </span>
+
+                    </div>
+
+                    <strong class="text-red num">
+                        -₡42,000
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
 </div>
 <script src="js/app.js"></script>
 </body>

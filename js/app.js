@@ -1211,3 +1211,1495 @@ document.addEventListener(
 
     }
 );
+
+// =====================================================
+// PERFIL - BOTONES FUNCIONALES
+// =====================================================
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  // =====================================================
+  // USUARIO ACTUAL
+  // =====================================================
+
+  const usuarioGuardado =
+    sessionStorage.getItem("fintrackUsuarioActual");
+
+  if (!usuarioGuardado) {
+    return;
+  }
+
+  let usuario = JSON.parse(usuarioGuardado);
+
+
+  // =====================================================
+  // ELEMENTOS DEL PERFIL
+  // =====================================================
+
+  const perfilNombre =
+    document.getElementById("perfilNombre");
+
+  const perfilUsuario =
+    document.getElementById("perfilUsuario");
+
+  const nombreUsuario =
+    document.getElementById("nombreUsuario");
+
+  const correoUsuario =
+    document.getElementById("correoUsuario");
+
+  const avatarUsuario =
+    document.getElementById("avatarUsuario");
+
+  const perfilAvatar =
+    document.getElementById("perfilAvatar");
+
+
+  const inputNombre =
+    document.getElementById("perfilNombreInput");
+
+  const inputUsuario =
+    document.getElementById("perfilUsuarioInput");
+
+  const inputCorreo =
+    document.getElementById("perfilCorreoInput");
+
+  const inputTelefono =
+    document.getElementById("perfilTelefono");
+
+  const inputPais =
+    document.getElementById("perfilPais");
+
+  const inputZona =
+    document.getElementById("perfilZonaHoraria");
+
+  const inputMoneda =
+    document.getElementById("perfilMoneda");
+
+  const inputFecha =
+    document.getElementById("perfilFechaNacimiento");
+
+
+  // =====================================================
+  // MOSTRAR DATOS
+  // =====================================================
+
+  function mostrarDatosPerfil() {
+
+    const nombreCompleto =
+      `${usuario.nombre || ""} ${usuario.apellidos || ""}`
+        .trim();
+
+    const nombreUsuarioFormateado =
+      usuario.usuario
+        ? "@" + usuario.usuario.replace(/^@/, "")
+        : "@usuario";
+
+
+    if (perfilNombre) {
+      perfilNombre.textContent =
+        nombreCompleto || "Usuario";
+    }
+
+    if (perfilUsuario) {
+      perfilUsuario.textContent =
+        nombreUsuarioFormateado;
+    }
+
+    if (nombreUsuario) {
+      nombreUsuario.textContent =
+        nombreCompleto || "Usuario";
+    }
+
+    if (correoUsuario) {
+      correoUsuario.textContent =
+        nombreUsuarioFormateado;
+    }
+
+
+    if (inputNombre) {
+      inputNombre.value =
+        nombreCompleto;
+    }
+
+    if (inputUsuario) {
+      inputUsuario.value =
+        nombreUsuarioFormateado;
+    }
+
+    if (inputCorreo) {
+      inputCorreo.value =
+        usuario.correo || "";
+    }
+
+    if (inputTelefono) {
+      inputTelefono.value =
+        usuario.telefono || "";
+    }
+
+    if (inputPais && usuario.pais) {
+      inputPais.value =
+        usuario.pais;
+    }
+
+    if (inputZona && usuario.zonaHoraria) {
+      inputZona.value =
+        usuario.zonaHoraria;
+    }
+
+    if (inputMoneda && usuario.moneda) {
+      inputMoneda.value =
+        usuario.moneda;
+    }
+
+    if (inputFecha) {
+      inputFecha.value =
+        usuario.fechaNacimiento || "";
+    }
+
+
+    // INICIALES
+
+    const partes =
+      nombreCompleto
+        .split(/\s+/)
+        .filter(Boolean);
+
+    let iniciales = "US";
+
+    if (partes.length === 1) {
+      iniciales =
+        partes[0][0].toUpperCase();
+    }
+
+    if (partes.length >= 2) {
+      iniciales =
+        (
+          partes[0][0] +
+          partes[partes.length - 1][0]
+        ).toUpperCase();
+    }
+
+
+    if (avatarUsuario) {
+      avatarUsuario.textContent =
+        iniciales;
+    }
+
+    if (perfilAvatar) {
+      perfilAvatar.textContent =
+        iniciales;
+    }
+
+  }
+
+
+  mostrarDatosPerfil();
+
+
+  // =====================================================
+  // ACTUALIZAR PERFIL
+  // =====================================================
+
+  const formPerfil =
+    document.getElementById("formPerfil");
+
+
+  if (formPerfil) {
+
+    formPerfil.addEventListener(
+      "submit",
+      function (event) {
+
+        event.preventDefault();
+
+
+        const nombreCompleto =
+          inputNombre.value.trim();
+
+        let usuarioNuevo =
+          inputUsuario.value.trim();
+
+
+        usuarioNuevo =
+          usuarioNuevo
+            .replace(/^@/, "")
+            .replace(/[^a-zA-Z0-9]/g, "")
+            .toLowerCase();
+
+
+        const partesNombre =
+          nombreCompleto
+            .split(/\s+/)
+            .filter(Boolean);
+
+
+        usuario.nombre =
+          partesNombre.shift() || "";
+
+        usuario.apellidos =
+          partesNombre.join(" ");
+
+        usuario.usuario =
+          usuarioNuevo;
+
+        usuario.correo =
+          inputCorreo.value
+            .trim()
+            .toLowerCase();
+
+        usuario.telefono =
+          inputTelefono.value.trim();
+
+        usuario.pais =
+          inputPais.value;
+
+        usuario.zonaHoraria =
+          inputZona.value;
+
+        usuario.moneda =
+          inputMoneda.value;
+
+        usuario.fechaNacimiento =
+          inputFecha.value;
+
+
+        sessionStorage.setItem(
+          "fintrackUsuarioActual",
+          JSON.stringify(usuario)
+        );
+
+
+        mostrarDatosPerfil();
+
+
+        alert(
+          "Perfil actualizado correctamente."
+        );
+
+      }
+    );
+
+  }
+
+
+  // =====================================================
+  // EDITAR FOTO
+  // =====================================================
+
+  const inputFoto =
+    document.getElementById(
+      "inputFotoPerfil"
+    );
+
+  const fotoPerfil =
+    document.getElementById(
+      "fotoPerfil"
+    );
+
+
+  const identificador =
+    usuario.id ||
+    usuario.usuario ||
+    usuario.correo ||
+    "usuario";
+
+
+  const claveFoto =
+    "fintrackFotoPerfil_" +
+    identificador;
+
+
+  const fotoGuardada =
+    localStorage.getItem(claveFoto);
+
+
+  if (
+    fotoGuardada &&
+    fotoPerfil
+  ) {
+
+    fotoPerfil.src =
+      fotoGuardada;
+
+    fotoPerfil.style.display =
+      "block";
+
+    if (perfilAvatar) {
+      perfilAvatar.style.display =
+        "none";
+    }
+
+  }
+
+
+  if (
+    inputFoto &&
+    fotoPerfil
+  ) {
+
+    inputFoto.addEventListener(
+      "change",
+      function () {
+
+        const archivo =
+          inputFoto.files[0];
+
+        if (!archivo) {
+          return;
+        }
+
+
+        if (
+          !archivo.type.startsWith("image/")
+        ) {
+
+          alert(
+            "Seleccione una imagen válida."
+          );
+
+          return;
+        }
+
+
+        const lector =
+          new FileReader();
+
+
+        lector.onload =
+          function (event) {
+
+            const imagen =
+              event.target.result;
+
+            fotoPerfil.src =
+              imagen;
+
+            fotoPerfil.style.display =
+              "block";
+
+            if (perfilAvatar) {
+              perfilAvatar.style.display =
+                "none";
+            }
+
+            localStorage.setItem(
+              claveFoto,
+              imagen
+            );
+
+          };
+
+
+        lector.readAsDataURL(
+          archivo
+        );
+
+      }
+    );
+
+  }
+
+});
+
+// =====================================================
+// PERFIL - MEDIOS VINCULADOS
+// =====================================================
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  // =====================================================
+  // USUARIO ACTUAL
+  // =====================================================
+
+  const usuarioGuardado =
+    sessionStorage.getItem("fintrackUsuarioActual");
+
+  if (!usuarioGuardado) {
+    return;
+  }
+
+  const usuarioActual =
+    JSON.parse(usuarioGuardado);
+
+
+  const identificadorUsuario =
+    usuarioActual.id ||
+    usuarioActual.usuario ||
+    usuarioActual.correo ||
+    "usuario";
+
+
+  // Elias solamente tendrá medios de demostración
+  const esElias =
+    usuarioActual.correo ===
+    "erodriguez60177@ufide.ac.cr";
+
+
+  // =====================================================
+  // ELEMENTOS HTML
+  // =====================================================
+
+  const btnVincularMedio =
+    document.getElementById("btnVincularMedio");
+
+  const modalMedio =
+    document.getElementById("modalMedioPago");
+
+  const cerrarModalMedio =
+    document.getElementById("cerrarModalMedio");
+
+  const cancelarMedio =
+    document.getElementById("cancelarMedio");
+
+  const formMedio =
+    document.getElementById("formMedioPago");
+
+  const tituloModal =
+    document.getElementById("tituloModalMedio");
+
+  const listaMedios =
+    document.getElementById("listaMediosVinculados");
+
+
+  // INPUTS
+
+  const inputId =
+    document.getElementById("medioId");
+
+  const inputTipo =
+    document.getElementById("medioTipo");
+
+  const inputBanco =
+    document.getElementById("medioBanco");
+
+  const inputNombre =
+    document.getElementById("medioNombre");
+
+  const inputNumeroTarjeta =
+    document.getElementById("medioNumeroTarjeta");
+
+  const inputVencimiento =
+    document.getElementById("medioVencimiento");
+
+  const inputTitular =
+    document.getElementById("medioTitular");
+
+  const inputNumeroCuenta =
+    document.getElementById("medioNumeroCuenta");
+
+  const inputPrincipal =
+    document.getElementById("medioPrincipal");
+
+
+  // GRUPOS
+
+  const grupoNumeroTarjeta =
+    document.getElementById("grupoNumeroTarjeta");
+
+  const datosTarjeta =
+    document.getElementById("datosTarjeta");
+
+  const grupoNumeroCuenta =
+    document.getElementById("grupoNumeroCuenta");
+
+
+  if (!listaMedios) {
+    return;
+  }
+
+
+  // =====================================================
+  // DATOS DE EJEMPLO PARA ELIAS
+  // =====================================================
+
+  const mediosElias = [
+
+    {
+      id: 1,
+      tipo: "Cuenta bancaria",
+      banco: "BAC Credomatic",
+      nombre: "Cuenta BAC",
+      numeroCuenta: "CR000000000000002045",
+      ultimos4: "2045",
+      titular: "Elias Rodriguez",
+      vencimiento: "",
+      principal: true
+    },
+
+    {
+      id: 2,
+      tipo: "Tarjeta de débito",
+      banco: "BAC Credomatic",
+      nombre: "Visa",
+      numeroTarjeta: "",
+      ultimos4: "4821",
+      titular: "Elias Rodriguez",
+      vencimiento: "08/29",
+      principal: false
+    },
+
+    {
+      id: 3,
+      tipo: "Tarjeta de crédito",
+      banco: "BAC Credomatic",
+      nombre: "Mastercard",
+      numeroTarjeta: "",
+      ultimos4: "7314",
+      titular: "Elias Rodriguez",
+      vencimiento: "11/28",
+      principal: false
+    }
+
+  ];
+
+
+  // =====================================================
+  // CARGAR MEDIOS DEL USUARIO
+  // =====================================================
+
+  const claveMedios =
+    "fintrackMedios_" +
+    identificadorUsuario;
+
+
+  let medios =
+    JSON.parse(
+      localStorage.getItem(claveMedios)
+    );
+
+
+  if (!medios) {
+
+    if (esElias) {
+
+      medios =
+        JSON.parse(
+          JSON.stringify(mediosElias)
+        );
+
+    } else {
+
+      medios = [];
+
+    }
+
+
+    guardarMedios();
+
+  }
+
+
+  // =====================================================
+  // GUARDAR EN LOCALSTORAGE
+  // =====================================================
+
+  function guardarMedios() {
+
+    localStorage.setItem(
+      claveMedios,
+      JSON.stringify(medios)
+    );
+
+  }
+
+
+  // =====================================================
+  // ABRIR MODAL
+  // =====================================================
+
+  function abrirModal() {
+
+    if (!modalMedio) {
+      return;
+    }
+
+    modalMedio.classList.add("abierto");
+
+  }
+
+
+  // =====================================================
+  // CERRAR MODAL
+  // =====================================================
+
+  function cerrarModal() {
+
+    if (!modalMedio) {
+      return;
+    }
+
+    modalMedio.classList.remove("abierto");
+
+  }
+
+
+  // =====================================================
+  // LIMPIAR FORMULARIO
+  // =====================================================
+
+  function limpiarFormulario() {
+
+    if (!formMedio) {
+      return;
+    }
+
+    formMedio.reset();
+
+    inputId.value = "";
+
+    inputPrincipal.value = "no";
+
+    actualizarCamposPorTipo();
+
+  }
+
+
+  // =====================================================
+  // MOSTRAR CAMPOS SEGÚN TIPO
+  // =====================================================
+
+  function actualizarCamposPorTipo() {
+
+    const tipo =
+      inputTipo.value;
+
+
+    const esCuenta =
+      tipo === "Cuenta bancaria";
+
+
+    const esTarjeta =
+      tipo === "Tarjeta de débito" ||
+      tipo === "Tarjeta de crédito";
+
+
+    // CUENTA
+
+    if (grupoNumeroCuenta) {
+
+      grupoNumeroCuenta.style.display =
+        esCuenta ? "block" : "none";
+
+    }
+
+
+    // TARJETA
+
+    if (grupoNumeroTarjeta) {
+
+      grupoNumeroTarjeta.style.display =
+        esTarjeta ? "block" : "none";
+
+    }
+
+
+    if (datosTarjeta) {
+
+      datosTarjeta.style.display =
+        esTarjeta ? "grid" : "none";
+
+    }
+
+
+    // REQUIRED DINÁMICO
+
+    if (inputNumeroCuenta) {
+
+      inputNumeroCuenta.required =
+        esCuenta;
+
+    }
+
+
+    if (inputNumeroTarjeta) {
+
+      inputNumeroTarjeta.required =
+        esTarjeta;
+
+    }
+
+
+    if (inputVencimiento) {
+
+      inputVencimiento.required =
+        esTarjeta;
+
+    }
+
+
+    if (inputTitular) {
+
+      inputTitular.required =
+        esTarjeta || esCuenta;
+
+    }
+
+  }
+
+
+  if (inputTipo) {
+
+    inputTipo.addEventListener(
+      "change",
+      actualizarCamposPorTipo
+    );
+
+  }
+
+
+  // =====================================================
+  // FORMATEAR NÚMERO DE TARJETA
+  // =====================================================
+
+  if (inputNumeroTarjeta) {
+
+    inputNumeroTarjeta.addEventListener(
+      "input",
+      function () {
+
+        let valor =
+          this.value.replace(/\D/g, "");
+
+
+        valor =
+          valor.substring(0, 16);
+
+
+        this.value =
+          valor
+            .replace(
+              /(.{4})/g,
+              "$1 "
+            )
+            .trim();
+
+      }
+    );
+
+  }
+
+
+  // =====================================================
+  // FORMATEAR VENCIMIENTO
+  // =====================================================
+
+  if (inputVencimiento) {
+
+    inputVencimiento.addEventListener(
+      "input",
+      function () {
+
+        let valor =
+          this.value.replace(/\D/g, "");
+
+
+        valor =
+          valor.substring(0, 4);
+
+
+        if (valor.length >= 3) {
+
+          valor =
+            valor.substring(0, 2) +
+            "/" +
+            valor.substring(2);
+
+        }
+
+
+        this.value = valor;
+
+      }
+    );
+
+  }
+
+
+  // =====================================================
+  // MOSTRAR MEDIOS
+  // =====================================================
+
+  function mostrarMedios() {
+
+    listaMedios.innerHTML = "";
+
+
+    // =================================================
+    // SIN MEDIOS
+    // =================================================
+
+    if (medios.length === 0) {
+
+      listaMedios.innerHTML = `
+
+        <div class="linked-accounts-empty">
+
+          <div class="linked-account-empty-icon">
+
+            <svg class="icon">
+              <use href="assets/icons.svg#icon-credit-card"></use>
+            </svg>
+
+          </div>
+
+          <strong>
+            Aún no tienes medios vinculados
+          </strong>
+
+          <span>
+            Vincula una cuenta bancaria o tarjeta para comenzar.
+          </span>
+
+        </div>
+
+      `;
+
+      return;
+
+    }
+
+
+    // =================================================
+    // TARJETAS
+    // =================================================
+
+    medios.forEach(
+      function (medio) {
+
+        const tarjeta =
+          document.createElement("div");
+
+
+        tarjeta.className =
+          "linked-account-card";
+
+
+        tarjeta.innerHTML = `
+
+          <div class="linked-account-top">
+
+            <div class="linked-account-icon">
+
+              <svg class="icon">
+                <use href="assets/icons.svg#icon-credit-card"></use>
+              </svg>
+
+            </div>
+
+
+            ${
+              medio.principal
+                ? `
+                  <span class="badge badge-teal">
+                    Principal
+                  </span>
+                `
+                : ""
+            }
+
+          </div>
+
+
+          <strong>
+            ${medio.nombre}
+          </strong>
+
+
+          <span class="linked-account-type">
+            ${medio.banco}
+            ·
+            ${medio.tipo}
+          </span>
+
+
+          <div class="linked-account-number">
+            •••• ${medio.ultimos4}
+          </div>
+
+
+          ${
+            medio.vencimiento
+              ? `
+                <span class="linked-account-expiration">
+                  Vence ${medio.vencimiento}
+                </span>
+              `
+              : ""
+          }
+
+
+          <div class="linked-account-actions">
+
+  <button
+    type="button"
+    class="btn btn-ghost btn-sm btn-editar-medio"
+    data-medio-id="${medio.id}"
+  >
+    Editar
+  </button>
+
+  <button
+    type="button"
+    class="btn btn-ghost btn-sm btn-eliminar-medio"
+    data-medio-id="${medio.id}"
+  >
+    Eliminar
+  </button>
+
+</div>
+
+
+        listaMedios.appendChild(
+          tarjeta
+        );
+
+      }
+    );
+
+  }
+
+
+  // =====================================================
+  // VINCULAR NUEVO MEDIO
+  // =====================================================
+
+  if (btnVincularMedio) {
+
+    btnVincularMedio.addEventListener(
+      "click",
+      function () {
+
+        limpiarFormulario();
+
+
+        if (tituloModal) {
+
+          tituloModal.textContent =
+            "Vincular medio";
+
+        }
+
+
+        abrirModal();
+
+      }
+    );
+
+  }
+
+
+  // =====================================================
+  // EDITAR MEDIO
+  // =====================================================
+
+  listaMedios.addEventListener(
+    "click",
+    function (event) {
+
+      const boton =
+        event.target.closest(
+          ".btn-editar-medio"
+        );
+
+
+      if (!boton) {
+        return;
+      }
+
+
+      const id =
+        Number(
+          boton.dataset.medioId
+        );
+
+
+      const medio =
+        medios.find(
+          function (item) {
+
+            return item.id === id;
+
+          }
+        );
+
+
+      if (!medio) {
+        return;
+      }
+
+
+      limpiarFormulario();
+
+
+      inputId.value =
+        medio.id;
+
+
+      inputTipo.value =
+        medio.tipo;
+
+
+      inputBanco.value =
+        medio.banco;
+
+
+      inputNombre.value =
+        medio.nombre;
+
+
+      inputPrincipal.value =
+        medio.principal
+          ? "si"
+          : "no";
+
+
+      if (inputTitular) {
+
+        inputTitular.value =
+          medio.titular || "";
+
+      }
+
+
+      if (medio.tipo === "Cuenta bancaria") {
+
+        inputNumeroCuenta.value =
+          medio.numeroCuenta || "";
+
+      } else {
+
+        /*
+        Por seguridad NO cargamos
+        nuevamente el número completo.
+        Solo mostramos los últimos 4.
+        */
+
+        inputNumeroTarjeta.value =
+          medio.ultimos4
+            ? "•••• •••• •••• " +
+              medio.ultimos4
+            : "";
+
+
+        inputVencimiento.value =
+          medio.vencimiento || "";
+
+      }
+
+
+      actualizarCamposPorTipo();
+
+
+      if (tituloModal) {
+
+        tituloModal.textContent =
+          "Editar medio";
+
+      }
+
+
+      abrirModal();
+
+    }
+  );
+
+
+  // =====================================================
+  // VALIDAR VENCIMIENTO
+  // =====================================================
+
+  function vencimientoValido(
+    valor
+  ) {
+
+    if (
+      !/^\d{2}\/\d{2}$/.test(
+        valor
+      )
+    ) {
+
+      return false;
+
+    }
+
+
+    const partes =
+      valor.split("/");
+
+
+    const mes =
+      Number(partes[0]);
+
+
+    return (
+      mes >= 1 &&
+      mes <= 12
+    );
+
+  }
+
+
+  // =====================================================
+  // GUARDAR MEDIO
+  // =====================================================
+
+  if (formMedio) {
+
+    formMedio.addEventListener(
+      "submit",
+      function (event) {
+
+        event.preventDefault();
+
+
+        const tipo =
+          inputTipo.value;
+
+
+        const banco =
+          inputBanco.value.trim();
+
+
+        const nombre =
+          inputNombre.value.trim();
+
+
+        const principal =
+          inputPrincipal.value ===
+          "si";
+
+
+        if (
+          !tipo ||
+          !banco ||
+          !nombre
+        ) {
+
+          alert(
+            "Complete todos los campos obligatorios."
+          );
+
+          return;
+
+        }
+
+
+        // =================================================
+        // DATOS GENERALES
+        // =================================================
+
+        let ultimos4 = "";
+
+        let numeroCuenta = "";
+
+        let titular =
+          inputTitular
+            ? inputTitular.value.trim()
+            : "";
+
+        let vencimiento = "";
+
+
+        // =================================================
+        // CUENTA BANCARIA
+        // =================================================
+
+        if (
+          tipo === "Cuenta bancaria"
+        ) {
+
+          numeroCuenta =
+            inputNumeroCuenta.value
+              .trim()
+              .replace(/\s/g, "");
+
+
+          if (
+            numeroCuenta.length < 4
+          ) {
+
+            alert(
+              "Ingrese un número de cuenta o IBAN válido."
+            );
+
+            return;
+
+          }
+
+
+          ultimos4 =
+            numeroCuenta.slice(-4);
+
+        }
+
+
+        // =================================================
+        // TARJETA
+        // =================================================
+
+        else {
+
+          let numeroTarjeta =
+            inputNumeroTarjeta.value
+              .replace(/\D/g, "");
+
+
+          /*
+          Al editar permitimos que aparezcan
+          solamente los últimos 4 existentes.
+          */
+
+          const idActual =
+            Number(
+              inputId.value
+            );
+
+
+          const medioExistente =
+            medios.find(
+              function (item) {
+
+                return item.id ===
+                  idActual;
+
+              }
+            );
+
+
+          if (
+            inputId.value &&
+            numeroTarjeta.length === 4 &&
+            medioExistente
+          ) {
+
+            ultimos4 =
+              medioExistente.ultimos4;
+
+          } else {
+
+            if (
+              numeroTarjeta.length !== 16
+            ) {
+
+              alert(
+                "La tarjeta debe contener exactamente 16 dígitos."
+              );
+
+              return;
+
+            }
+
+
+            ultimos4 =
+              numeroTarjeta.slice(-4);
+
+          }
+
+
+          vencimiento =
+            inputVencimiento.value.trim();
+
+
+          if (
+            !vencimientoValido(
+              vencimiento
+            )
+          ) {
+
+            alert(
+              "Ingrese un vencimiento válido en formato MM/AA."
+            );
+
+            return;
+
+          }
+
+
+          if (!titular) {
+
+            alert(
+              "Ingrese el nombre del titular."
+            );
+
+            return;
+
+          }
+
+        }
+
+
+        // =================================================
+        // SOLO UN MEDIO PRINCIPAL
+        // =================================================
+
+        if (principal) {
+
+          medios.forEach(
+            function (item) {
+
+              item.principal =
+                false;
+
+            }
+          );
+
+        }
+
+
+        // =================================================
+        // EDITAR
+        // =================================================
+
+        if (inputId.value) {
+
+          const id =
+            Number(
+              inputId.value
+            );
+
+
+          const medio =
+            medios.find(
+              function (item) {
+
+                return item.id === id;
+
+              }
+            );
+
+
+          if (medio) {
+
+            medio.tipo =
+              tipo;
+
+            medio.banco =
+              banco;
+
+            medio.nombre =
+              nombre;
+
+            medio.ultimos4 =
+              ultimos4;
+
+            medio.numeroCuenta =
+              numeroCuenta;
+
+            medio.titular =
+              titular;
+
+            medio.vencimiento =
+              vencimiento;
+
+            medio.principal =
+              principal;
+
+          }
+
+        }
+
+
+        // =================================================
+        // NUEVO
+        // =================================================
+
+        else {
+
+          medios.push({
+
+            id: Date.now(),
+
+            tipo: tipo,
+
+            banco: banco,
+
+            nombre: nombre,
+
+            ultimos4: ultimos4,
+
+            numeroCuenta:
+              numeroCuenta,
+
+            titular:
+              titular,
+
+            vencimiento:
+              vencimiento,
+
+            principal:
+              principal
+
+          });
+
+        }
+
+
+        guardarMedios();
+
+        mostrarMedios();
+
+        cerrarModal();
+
+      }
+    );
+
+  }
+
+
+  // =====================================================
+  // CERRAR
+  // =====================================================
+
+  if (cerrarModalMedio) {
+
+    cerrarModalMedio.addEventListener(
+      "click",
+      cerrarModal
+    );
+
+  }
+
+
+  if (cancelarMedio) {
+
+    cancelarMedio.addEventListener(
+      "click",
+      cerrarModal
+    );
+
+  }
+
+
+  // Cerrar tocando el fondo
+
+  if (modalMedio) {
+
+    modalMedio.addEventListener(
+      "click",
+      function (event) {
+
+        if (
+          event.target ===
+          modalMedio
+        ) {
+
+          cerrarModal();
+
+        }
+
+      }
+    );
+
+  }
+
+
+  // =====================================================
+  // INICIAR
+  // =====================================================
+
+  actualizarCamposPorTipo();
+
+  mostrarMedios();
+
+});

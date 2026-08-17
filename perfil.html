@@ -1,145 +1,703 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mi Perfil – FinTrack Web</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-<div class="layout">
-
-    <!-- Sidebar -->
-    <aside class="sidebar">
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="layout">
+      <!-- Sidebar -->
+      <aside class="sidebar">
         <div class="sidebar-logo">
-            <div class="mark"><svg class="icon"><use href="assets/icons.svg#icon-bar-chart"></use></svg></div>
-            <div>
-                <div class="brand">FinTrack</div>
-                <span class="tagline">Finanzas personales</span>
-            </div>
+          <div class="mark">
+            <svg class="icon">
+              <use href="assets/icons.svg#icon-bar-chart"></use>
+            </svg>
+          </div>
+          <div>
+            <div class="brand">FinTrack</div>
+            <span class="tagline">Finanzas personales</span>
+          </div>
         </div>
         <nav class="sidebar-nav">
-            <div class="nav-section">
-                <span class="nav-label">Principal</span>
-                <a href="dashboard.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-home"></use></svg> Dashboard</a>
-                <a href="transacciones.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-exchange"></use></svg> Transacciones</a>
-                <a href="deudas.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-credit-card"></use></svg> Deudas</a>
-            </div>
-            <div class="nav-section">
-                <span class="nav-label">Análisis</span>
-                <a href="reportes.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-bar-chart"></use></svg> Reportes</a>
-                <a href="metas.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-target"></use></svg> Metas de ahorro</a>
-            </div>
-            <div class="nav-section">
-                <span class="nav-label">Cuenta</span>
-                <a href="perfil.html" class="nav-item active"><svg class="icon"><use href="assets/icons.svg#icon-user"></use></svg> Mi perfil</a>
-                <a href="index.html" class="nav-item"><svg class="icon"><use href="assets/icons.svg#icon-log-out"></use></svg> Cerrar sesión</a>
-            </div>
+          <div class="nav-section">
+            <span class="nav-label">Principal</span>
+            <a href="dashboard.html" class="nav-item"
+              ><svg class="icon">
+                <use href="assets/icons.svg#icon-home"></use>
+              </svg>
+              Dashboard</a
+            >
+            <a href="transacciones.html" class="nav-item"
+              ><svg class="icon">
+                <use href="assets/icons.svg#icon-exchange"></use>
+              </svg>
+              Transacciones</a
+            >
+            <a href="deudas.html" class="nav-item"
+              ><svg class="icon">
+                <use href="assets/icons.svg#icon-credit-card"></use>
+              </svg>
+              Deudas</a
+            >
+          </div>
+          <div class="nav-section">
+            <span class="nav-label">Análisis</span>
+            <a href="reportes.html" class="nav-item"
+              ><svg class="icon">
+                <use href="assets/icons.svg#icon-bar-chart"></use>
+              </svg>
+              Reportes</a
+            >
+            <a href="metas.html" class="nav-item"
+              ><svg class="icon">
+                <use href="assets/icons.svg#icon-target"></use>
+              </svg>
+              Metas de ahorro</a
+            >
+          </div>
+          <div class="nav-section">
+            <span class="nav-label">Cuenta</span>
+            <a href="perfil.html" class="nav-item active"
+              ><svg class="icon">
+                <use href="assets/icons.svg#icon-user"></use>
+              </svg>
+              Mi perfil</a
+            >
+            <a href="index.html" class="nav-item"
+              ><svg class="icon">
+                <use href="assets/icons.svg#icon-log-out"></use>
+              </svg>
+              Cerrar sesión</a
+            >
+          </div>
         </nav>
-       <div class="sidebar-user">
+        <div class="sidebar-user">
+          <div class="avatar lg" id="avatarUsuario">ER</div>
 
-   <div class="avatar lg" id="perfilAvatar">
-    ER
+          <div>
+            <div class="s-name" id="nombreUsuario">Elias Rodriguez</div>
+
+            <div class="s-email" id="correoUsuario">
+              erodriguez60177@ufide.ac.cr
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <!-- =====================================================
+         ENCABEZADO
+    ====================================================== -->
+
+        <div class="page-header">
+          <div>
+            <h2>Mi perfil</h2>
+
+            <div class="sub">Administra la configuración de tu cuenta.</div>
+          </div>
+        </div>
+
+        <!-- =====================================================
+         CABECERA DEL PERFIL
+    ====================================================== -->
+
+        <div class="profile-hero">
+          <div class="profile-hero-cover"></div>
+
+          <div class="profile-hero-content">
+            <!-- FOTO -->
+
+            <div class="profile-photo-wrapper">
+              <div class="profile-photo">
+                <img id="fotoPerfil" src="" alt="Foto de perfil" />
+
+                <span class="profile-photo-initials" id="perfilAvatar">
+                  ER
+                </span>
+              </div>
+
+              <label for="inputFotoPerfil" class="profile-photo-button">
+                <svg class="icon">
+                  <use href="assets/icons.svg#icon-camera"></use>
+                </svg>
+              </label>
+
+              <input
+                type="file"
+                id="inputFotoPerfil"
+                accept="image/png,image/jpeg,image/webp"
+                hidden
+              />
+            </div>
+
+            <!-- INFORMACIÓN -->
+
+            <div class="profile-main-info">
+              <div class="profile-name-line">
+                <h3 id="perfilNombre">Usuario</h3>
+
+                <span class="profile-active">
+                  <span class="profile-active-dot"> ✓ </span>
+
+                  Cuenta activa
+                </span>
+              </div>
+
+              <div
+    class="profile-username"
+    id="perfilUsuario"
+>
+    @usuario
 </div>
+
+              <div class="profile-member">
+                <svg class="icon">
+                  <use href="assets/icons.svg#icon-calendar"></use>
+                </svg>
+
+                Miembro desde agosto 2026
+              </div>
+            </div>
+
+            <!-- BOTÓN -->
+
+            <label
+              for="inputFotoPerfil"
+              class="btn btn-outline profile-edit-photo"
+            >
+              <svg class="icon">
+                <use href="assets/icons.svg#icon-camera"></use>
+              </svg>
+
+              Editar foto
+            </label>
+          </div>
+        </div>
+
+        <!-- =====================================================
+         DATOS PERSONALES
+    ====================================================== -->
+
+        <div class="card profile-section">
+          <div class="profile-section-header">
+            <div class="card-title mb-0">
+              <svg class="icon">
+                <use href="assets/icons.svg#icon-user"></use>
+              </svg>
+
+              Datos personales
+            </div>
+          </div>
+
+          <form id="formPerfil">
+            <!-- FILA 1 -->
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="perfilNombreInput">
+                  Nombre completo
+                </label>
+
+                <input
+                  type="text"
+                  class="form-control"
+                  id="perfilNombreInput"
+                  
+                />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="perfilUsuarioInput">
+                  Usuario
+                </label>
+
+                <input
+                  type="text"
+                  class="form-control"
+                  id="perfilUsuarioInput"
+                  
+                />
+
+                
+              </div>
+            </div>
+
+            <!-- FILA 2 -->
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="perfilCorreoInput">
+                  Correo electrónico
+                </label>
+
+                <input
+                  type="email"
+                  class="form-control"
+                  id="perfilCorreoInput"
+                  
+                />
+
+                
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="perfilTelefono">
+                  Teléfono
+                </label>
+
+                <input
+                  type="tel"
+                  class="form-control"
+                  id="perfilTelefono"
+                  placeholder="+506 8888 8888"
+                />
+
+                
+              </div>
+            </div>
+
+            <!-- FILA 3 -->
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="perfilPais"> País </label>
+
+                <select class="form-control" id="perfilPais">
+                  <option value="CR" selected>Costa Rica</option>
+
+                  <option value="MX">México</option>
+
+                  <option value="CO">Colombia</option>
+
+                  <option value="PA">Panamá</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="perfilZonaHoraria">
+                  Zona horaria
+                </label>
+
+                <select class="form-control" id="perfilZonaHoraria">
+                  <option selected>(GMT-06:00) América/Costa_Rica</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- FILA 4 -->
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="perfilMoneda">
+                  Moneda principal
+                </label>
+
+                <select class="form-control" id="perfilMoneda">
+                  <option selected>Colón Costarricense (₡)</option>
+
+                  <option>Dólar Estadounidense ($)</option>
+
+                  <option>Euro (€)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="perfilFechaNacimiento">
+                  Fecha de nacimiento
+                </label>
+
+                <input
+                  type="date"
+                  class="form-control"
+                  id="perfilFechaNacimiento"
+                />
+
+            
+              </div>
+            </div>
+
+            <!-- BOTÓN -->
+
+            <button type="submit" class="btn btn-primary btn-full">
+              Actualizar perfil
+            </button>
+          </form>
+        </div>
+
+    <!-- =====================================================
+     CUENTAS Y MEDIOS VINCULADOS
+===================================================== -->
+
+<div class="card profile-section">
+
+  <div class="profile-section-header">
 
     <div>
-        <div class="s-name" id="nombreUsuario">
-            Elias Rodriguez
-        </div>
 
-        <div class="s-email" id="correoUsuario">
-            erodriguez60177@ufide.ac.cr
-        </div>
-    </div>
+      <div class="card-title mb-0">
 
-</div>
-    </aside>
+        <svg class="icon">
+          <use href="assets/icons.svg#icon-credit-card"></use>
+        </svg>
 
-    <main class="main">
-        <div class="page-header">
-            <div>
-                <h2>Mi perfil</h2>
-                <div class="sub">Administra la configuración de tu cuenta</div>
-            </div>
-        </div>
+        Cuentas y medios vinculados
 
-        <!-- Encabezado de perfil -->
-       <div class="profile-header-card mb-3">
-    <div class="profile-cover"></div>
+      </div>
 
-    <div class="profile-info">
-
-        <div class="avatar-upload">
-            <div class="avatar lg usuario-avatar">ER</div>
-        </div>
-
-        <div style="padding-bottom:6px;">
-
-            <h3
-                class="usuario-nombre"
-                style="font-size:19px;font-weight:700;">
-                Elias Rodriguez
-            </h3>
-
-            <div class="text-muted text-sm usuario-correo">
-                erodriguez60177@ufide.ac.cr
-            </div>
-
-        </div>
+      <div class="text-muted text-sm">
+        Administra tus cuentas bancarias y medios de pago.
+      </div>
 
     </div>
+
+
+    <button
+      type="button"
+      class="btn btn-primary"
+      id="btnVincularMedio"
+    >
+
+      <svg class="icon">
+        <use href="assets/icons.svg#icon-plus-circle"></use>
+      </svg>
+
+      Vincular medio
+
+    </button>
+
+  </div>
+
+
+  <!-- =====================================================
+       AQUÍ JAVASCRIPT MOSTRARÁ LAS TARJETAS
+  ====================================================== -->
+
+  <div
+    class="linked-accounts-grid"
+    id="listaMediosVinculados"
+  >
+  </div>
+
 </div>
-            <!-- Datos del Usuario -->
-            <div class="card">
-                <div class="card-title"><svg class="icon"><use href="assets/icons.svg#icon-user"></use></svg> Datos Personales</div>
-                <form action="#">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label">Nombre Completo</label>
-                            <input type="text" class="form-control" value="Elias Rodriguez" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Correo Electrónico</label>
-                            <input
-    id="perfilNombreInput"
-    type="text"
-    class="form-control"
-    value="Elias Rodriguez"
-    required
+
+
+<!-- =====================================================
+     MODAL - VINCULAR / EDITAR MEDIO
+===================================================== -->
+
+<div
+  class="fintrack-modal"
+  id="modalMedioPago"
 >
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Moneda Principal</label>
-                        <select class="form-control">
-                            <option value="CRC">Colón Costarricense (₡)</option>
-                            <option value="USD">Dólar (USD $)</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-full">Actualizar Perfil</button>
-                </form>
-            </div>
 
-            <!-- Cambio de contraseña básico -->
-            <div class="card">
-                <div class="card-title"><svg class="icon"><use href="assets/icons.svg#icon-lock"></use></svg> Seguridad</div>
-                <form action="#">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label">Contraseña Actual</label>
-                            <input type="password" class="form-control" placeholder="••••••••" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Nueva Contraseña</label>
-                            <input type="password" class="form-control" placeholder="Mínimo 8 caracteres" required>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-outline btn-full">Cambiar Contraseña</button>
-                </form>
-            </div>
+  <div class="fintrack-modal-content">
+
+
+    <!-- ENCABEZADO -->
+
+    <div class="fintrack-modal-header">
+
+      <div>
+
+        <h3 id="tituloModalMedio">
+          Vincular medio
+        </h3>
+
+        <p>
+          Agrega una cuenta bancaria o tarjeta a FinTrack.
+        </p>
+
+      </div>
+
+
+      <button
+        type="button"
+        class="modal-close"
+        id="cerrarModalMedio"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <!-- FORMULARIO -->
+
+    <form id="formMedioPago">
+
+
+      <!-- ID OCULTO -->
+
+      <input
+        type="hidden"
+        id="medioId"
+      >
+
+
+      <!-- TIPO -->
+
+      <div class="form-group">
+
+        <label
+          class="form-label"
+          for="medioTipo"
+        >
+          Tipo de medio
+        </label>
+
+
+        <select
+          class="form-control"
+          id="medioTipo"
+          required
+        >
+
+          <option value="">
+            Selecciona
+          </option>
+
+          <option value="Cuenta bancaria">
+            Cuenta bancaria
+          </option>
+
+          <option value="Tarjeta de débito">
+            Tarjeta de débito
+          </option>
+
+          <option value="Tarjeta de crédito">
+            Tarjeta de crédito
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- BANCO -->
+
+      <div class="form-group">
+
+        <label
+          class="form-label"
+          for="medioBanco"
+        >
+          Banco / Entidad
+        </label>
+
+
+        <input
+          type="text"
+          class="form-control"
+          id="medioBanco"
+          placeholder="Ej: BAC Credomatic"
+          required
+        >
+
+      </div>
+
+
+      <!-- NOMBRE -->
+
+      <div class="form-group">
+
+        <label
+          class="form-label"
+          for="medioNombre"
+        >
+          Nombre del medio
+        </label>
+
+
+        <input
+          type="text"
+          class="form-control"
+          id="medioNombre"
+          placeholder="Ej: Visa, Mastercard..."
+          required
+        >
+
+      </div>
+
+
+      <!-- NÚMERO DE TARJETA -->
+
+      <div
+        class="form-group"
+        id="grupoNumeroTarjeta"
+      >
+
+        <label
+          class="form-label"
+          for="medioNumeroTarjeta"
+        >
+          Número de tarjeta
+        </label>
+
+
+        <input
+          type="text"
+          class="form-control"
+          id="medioNumeroTarjeta"
+          inputmode="numeric"
+          maxlength="19"
+          placeholder="1234 5678 9012 3456"
+          autocomplete="off"
+        >
+
+      </div>
+
+
+      <!-- VENCIMIENTO + TITULAR -->
+
+      <div
+        class="form-row"
+        id="datosTarjeta"
+      >
+
+
+        <!-- VENCIMIENTO -->
+
+        <div class="form-group">
+
+          <label
+            class="form-label"
+            for="medioVencimiento"
+          >
+            Vencimiento
+          </label>
+
+
+          <input
+            type="text"
+            class="form-control"
+            id="medioVencimiento"
+            inputmode="numeric"
+            maxlength="5"
+            placeholder="MM/AA"
+          >
+
         </div>
-    </main>
+
+
+        <!-- TITULAR -->
+
+        <div class="form-group">
+
+          <label
+            class="form-label"
+            for="medioTitular"
+          >
+            Titular
+          </label>
+
+
+          <input
+            type="text"
+            class="form-control"
+            id="medioTitular"
+            placeholder="Nombre del titular"
+          >
+
+        </div>
+
+      </div>
+
+
+      <!-- NÚMERO DE CUENTA -->
+
+      <div
+        class="form-group"
+        id="grupoNumeroCuenta"
+        style="display:none;"
+      >
+
+        <label
+          class="form-label"
+          for="medioNumeroCuenta"
+        >
+          Número de cuenta / IBAN
+        </label>
+
+
+        <input
+          type="text"
+          class="form-control"
+          id="medioNumeroCuenta"
+          placeholder="Ej: CR00000000000000000000"
+        >
+
+      </div>
+
+
+      <!-- ESTADO -->
+
+      <div class="form-group">
+
+        <label
+          class="form-label"
+          for="medioPrincipal"
+        >
+          Estado
+        </label>
+
+
+        <select
+          class="form-control"
+          id="medioPrincipal"
+        >
+
+          <option value="no">
+            Medio secundario
+          </option>
+
+          <option value="si">
+            Principal
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- BOTONES -->
+
+      <div class="modal-actions">
+
+        <button
+          type="button"
+          class="btn btn-outline"
+          id="cancelarMedio"
+        >
+          Cancelar
+        </button>
+
+
+        <button
+          type="submit"
+          class="btn btn-primary"
+          id="btnGuardarMedio"
+        >
+          Guardar medio
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
 </div>
+
+
+</main>
+
+</div>
+
 <script src="js/app.js"></script>
-</body>
+
+
+  </body>
 </html>
