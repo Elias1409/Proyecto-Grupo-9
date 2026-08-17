@@ -2016,201 +2016,201 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
 
-  // =====================================================
-  // MOSTRAR MEDIOS
-  // =====================================================
+ // =====================================================
+// MOSTRAR MEDIOS
+// =====================================================
 
-  function mostrarMedios() {
+function mostrarMedios() {
 
-    listaMedios.innerHTML = "";
+  listaMedios.innerHTML = "";
 
 
-    // =================================================
-    // SIN MEDIOS
-    // =================================================
+  // =================================================
+  // SIN MEDIOS
+  // =================================================
 
-    if (medios.length === 0) {
+  if (medios.length === 0) {
 
-      listaMedios.innerHTML = `
+    listaMedios.innerHTML = `
 
-        <div class="linked-accounts-empty">
+      <div class="linked-accounts-empty">
 
-          <div class="linked-account-empty-icon">
+        <div class="linked-account-empty-icon">
 
-            <svg class="icon">
-              <use href="assets/icons.svg#icon-credit-card"></use>
-            </svg>
-
-          </div>
-
-          <strong>
-            Aún no tienes medios vinculados
-          </strong>
-
-          <span>
-            Vincula una cuenta bancaria o tarjeta para comenzar.
-          </span>
+          <svg class="icon">
+            <use href="assets/icons.svg#icon-credit-card"></use>
+          </svg>
 
         </div>
 
-      `;
+        <strong>
+          Aún no tienes medios vinculados
+        </strong>
 
-      return;
+        <span>
+          Vincula una cuenta bancaria o tarjeta para comenzar.
+        </span>
 
-    }
+      </div>
 
+    `;
 
-    // =================================================
-    // TARJETAS
-    // =================================================
-
-    medios.forEach(
-      function (medio) {
-
-        const tarjeta =
-          document.createElement("div");
+    return;
+  }
 
 
-        tarjeta.className =
-          "linked-account-card";
+  // =================================================
+  // CREAR TARJETAS
+  // =================================================
+
+  medios.forEach(function (medio) {
+
+    const tarjeta =
+      document.createElement("div");
 
 
-        tarjeta.innerHTML = `
-
-          <div class="linked-account-top">
-
-            <div class="linked-account-icon">
-
-              <svg class="icon">
-                <use href="assets/icons.svg#icon-credit-card"></use>
-              </svg>
-
-            </div>
+    tarjeta.className =
+      "linked-account-card";
 
 
-            ${
-              medio.principal
-                ? `
-                  <span class="badge badge-teal">
-                    Principal
-                  </span>
-                `
-                : ""
-            }
+    tarjeta.innerHTML = `
 
-          </div>
+      <div class="linked-account-top">
 
+        <div class="linked-account-icon">
 
-          <strong>
-            ${medio.nombre}
-          </strong>
+          <svg class="icon">
+            <use href="assets/icons.svg#icon-credit-card"></use>
+          </svg>
+
+        </div>
 
 
-          <span class="linked-account-type">
-            ${medio.banco}
-            ·
-            ${medio.tipo}
-          </span>
-
-
-          <div class="linked-account-number">
-            •••• ${medio.ultimos4}
-          </div>
-
-
-          ${
-            medio.vencimiento
-              ? `
-                <span class="linked-account-expiration">
-                  Vence ${medio.vencimiento}
+        ${
+          medio.principal
+            ? `
+                <span class="badge badge-teal">
+                  Principal
                 </span>
               `
-              : ""
-          }
-
-
-          <div class="linked-account-actions">
-
-  <button
-    type="button"
-    class="btn btn-ghost btn-sm btn-editar-medio"
-    data-medio-id="${medio.id}"
-  >
-    Editar
-  </button>
-
-  <button
-    type="button"
-    class="btn btn-ghost btn-sm btn-eliminar-medio"
-    data-medio-id="${medio.id}"
-  >
-    Eliminar
-  </button>
-
-</div>
-
-
-        listaMedios.appendChild(
-          tarjeta
-        );
-
-      }
-    );
-
-  }
-
-
-  // =====================================================
-  // VINCULAR NUEVO MEDIO
-  // =====================================================
-
-  if (btnVincularMedio) {
-
-    btnVincularMedio.addEventListener(
-      "click",
-      function () {
-
-        limpiarFormulario();
-
-
-        if (tituloModal) {
-
-          tituloModal.textContent =
-            "Vincular medio";
-
+            : ""
         }
 
+      </div>
 
-        abrirModal();
 
+      <strong>
+        ${medio.nombre}
+      </strong>
+
+
+      <span class="linked-account-type">
+        ${medio.banco} · ${medio.tipo}
+      </span>
+
+
+      <div class="linked-account-number">
+        •••• ${medio.ultimos4}
+      </div>
+
+
+      ${
+        medio.vencimiento
+          ? `
+              <span class="linked-account-expiration">
+                Vence ${medio.vencimiento}
+              </span>
+            `
+          : ""
       }
+
+
+      <div class="linked-account-actions">
+
+        <button
+          type="button"
+          class="btn btn-ghost btn-sm btn-editar-medio"
+          data-medio-id="${medio.id}"
+        >
+          Editar
+        </button>
+
+
+        <button
+          type="button"
+          class="btn btn-ghost btn-sm btn-eliminar-medio"
+          data-medio-id="${medio.id}"
+        >
+          Eliminar
+        </button>
+
+      </div>
+
+    `;
+
+
+    listaMedios.appendChild(
+      tarjeta
     );
 
-  }
+  });
+
+}
 
 
-  // =====================================================
-  // EDITAR MEDIO
-  // =====================================================
+// =====================================================
+// VINCULAR NUEVO MEDIO
+// =====================================================
 
-  listaMedios.addEventListener(
+if (btnVincularMedio) {
+
+  btnVincularMedio.addEventListener(
     "click",
-    function (event) {
+    function () {
 
-      const boton =
-        event.target.closest(
-          ".btn-editar-medio"
-        );
+      limpiarFormulario();
 
 
-      if (!boton) {
-        return;
+      if (tituloModal) {
+
+        tituloModal.textContent =
+          "Vincular medio";
+
       }
 
+
+      abrirModal();
+
+    }
+  );
+
+}
+
+
+// =====================================================
+// EDITAR O ELIMINAR MEDIO
+// =====================================================
+
+listaMedios.addEventListener(
+  "click",
+  function (event) {
+
+
+    // =================================================
+    // EDITAR
+    // =================================================
+
+    const botonEditar =
+      event.target.closest(
+        ".btn-editar-medio"
+      );
+
+
+    if (botonEditar) {
 
       const id =
         Number(
-          boton.dataset.medioId
+          botonEditar.dataset.medioId
         );
 
 
@@ -2262,28 +2262,48 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
 
-      if (medio.tipo === "Cuenta bancaria") {
+      // ===============================================
+      // CUENTA BANCARIA
+      // ===============================================
 
-        inputNumeroCuenta.value =
-          medio.numeroCuenta || "";
+      if (
+        medio.tipo ===
+        "Cuenta bancaria"
+      ) {
 
-      } else {
+        if (inputNumeroCuenta) {
 
-        /*
-        Por seguridad NO cargamos
-        nuevamente el número completo.
-        Solo mostramos los últimos 4.
-        */
+          inputNumeroCuenta.value =
+            medio.numeroCuenta || "";
 
-        inputNumeroTarjeta.value =
-          medio.ultimos4
-            ? "•••• •••• •••• " +
-              medio.ultimos4
-            : "";
+        }
+
+      }
 
 
-        inputVencimiento.value =
-          medio.vencimiento || "";
+      // ===============================================
+      // TARJETA
+      // ===============================================
+
+      else {
+
+        if (inputNumeroTarjeta) {
+
+          inputNumeroTarjeta.value =
+            medio.ultimos4
+              ? "•••• •••• •••• " +
+                medio.ultimos4
+              : "";
+
+        }
+
+
+        if (inputVencimiento) {
+
+          inputVencimiento.value =
+            medio.vencimiento || "";
+
+        }
 
       }
 
@@ -2301,44 +2321,123 @@ document.addEventListener("DOMContentLoaded", function () {
 
       abrirModal();
 
+      return;
     }
-  );
 
 
-  // =====================================================
-  // VALIDAR VENCIMIENTO
-  // =====================================================
 
-  function vencimientoValido(
-    valor
+    // =================================================
+    // ELIMINAR
+    // =================================================
+
+    const botonEliminar =
+      event.target.closest(
+        ".btn-eliminar-medio"
+      );
+
+
+    if (botonEliminar) {
+
+      const id =
+        Number(
+          botonEliminar.dataset.medioId
+        );
+
+
+      const medio =
+        medios.find(
+          function (item) {
+
+            return item.id === id;
+
+          }
+        );
+
+
+      if (!medio) {
+        return;
+      }
+
+
+      const confirmar =
+        confirm(
+          `¿Deseas eliminar ${medio.nombre} •••• ${medio.ultimos4}?`
+        );
+
+
+      if (!confirmar) {
+        return;
+      }
+
+
+      const eraPrincipal =
+        medio.principal;
+
+
+      medios =
+        medios.filter(
+          function (item) {
+
+            return item.id !== id;
+
+          }
+        );
+
+
+      // Si se eliminó el principal
+      // y todavía quedan medios,
+      // el primero pasa a ser principal
+
+      if (
+        eraPrincipal &&
+        medios.length > 0
+      ) {
+
+        medios[0].principal =
+          true;
+
+      }
+
+
+      guardarMedios();
+
+      mostrarMedios();
+
+    }
+
+  }
+);
+
+
+// =====================================================
+// VALIDAR VENCIMIENTO
+// =====================================================
+
+function vencimientoValido(valor) {
+
+  if (
+    !/^\d{2}\/\d{2}$/.test(valor)
   ) {
 
-    if (
-      !/^\d{2}\/\d{2}$/.test(
-        valor
-      )
-    ) {
-
-      return false;
-
-    }
-
-
-    const partes =
-      valor.split("/");
-
-
-    const mes =
-      Number(partes[0]);
-
-
-    return (
-      mes >= 1 &&
-      mes <= 12
-    );
+    return false;
 
   }
 
+
+  const partes =
+    valor.split("/");
+
+
+  const mes =
+    Number(partes[0]);
+
+
+  return (
+    mes >= 1 &&
+    mes <= 12
+  );
+
+}
 
   // =====================================================
   // GUARDAR MEDIO
