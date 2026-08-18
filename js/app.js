@@ -2334,6 +2334,74 @@ const buscarTransaccion =
     document.getElementById(
       "buscarTransaccion"
     );
+    function filtrarTransacciones() {
+
+    const botonActivo =
+        document.querySelector(
+            ".transaction-filter.active"
+        );
+
+    const tipoSeleccionado =
+        botonActivo
+            ? botonActivo.dataset.tipo
+            : "todos";
+
+
+    const textoBusqueda =
+        buscarTransaccion
+            ? normalizarTexto(
+                buscarTransaccion.value.trim()
+              )
+            : "";
+
+
+    const filas =
+        document.querySelectorAll(
+            "#tablaTransacciones tr"
+        );
+
+
+    filas.forEach(
+        function (fila) {
+
+            const tipoFila =
+                fila.dataset.tipo || "";
+
+            const textoFila =
+                normalizarTexto(
+                    fila.textContent || ""
+                );
+
+
+            const cumpleTipo =
+                tipoSeleccionado === "todos" ||
+                tipoFila === tipoSeleccionado;
+
+
+            const cumpleBusqueda =
+                textoBusqueda === "" ||
+                textoFila.includes(
+                    textoBusqueda
+                );
+
+
+            if (
+                cumpleTipo &&
+                cumpleBusqueda
+            ) {
+
+                fila.style.display = "";
+
+            } else {
+
+                fila.style.display = "none";
+
+            }
+
+        }
+    );
+
+}
 
 // =====================================================
 // BOTONES TODOS / INGRESOS / GASTOS
